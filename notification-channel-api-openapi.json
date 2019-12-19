@@ -1,0 +1,86 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "Notification Channel API",
+        "description": "The Notification Channel API.",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.newrelic.com\/"
+    ],
+    "paths": [],
+    "components": {
+        "schemas": {
+            "": {
+                "type": "object",
+                "properties": {
+                    "notification_channel": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "downtime_only": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "subdomain": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "service": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "mobile_alerts": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "email_alerts": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "room": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "notification_channels": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "user": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
