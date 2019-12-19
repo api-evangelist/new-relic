@@ -1,0 +1,58 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "Alert Policy API",
+        "description": "The Alert Policy API.",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.newrelic.com\/"
+    ],
+    "paths": [],
+    "components": {
+        "schemas": {
+            "": {
+                "type": "object",
+                "properties": {
+                    "policy": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "channel_ids": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "channel": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "configuration": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "DELETE"
+                    },
+                    "policy_ids": {
+                        "description": "",
+                        "type": "DELETE"
+                    }
+                }
+            }
+        }
+    }
+}
