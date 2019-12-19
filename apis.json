@@ -1,0 +1,172 @@
+{
+    "name": "New Relic",
+    "description": "New Relic???s digital intelligence platform lets developers, ops, and tech teams measure and monitor the performance of their applications and infrastructure.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/22963-new-relic.jpg",
+    "tags": [
+        "api service provider",
+        "have api",
+        "monitoring",
+        "performance",
+        "relative data",
+        "service api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/new-relic\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Notification Channel API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/22963-new-relic.jpg",
+            "humanURL": "https:\/\/newrelic.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/notification-channel-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/notification-channel-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "Usage API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/22963-new-relic.jpg",
+            "humanURL": "https:\/\/newrelic.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/usage-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/usage-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "Alert Policy API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/22963-new-relic.jpg",
+            "humanURL": "https:\/\/newrelic.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/alert-policy-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/alert-policy-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "Server API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/22963-new-relic.jpg",
+            "humanURL": "https:\/\/newrelic.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/server-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/server-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "New Relic",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/22963-new-relic.jpg",
+            "humanURL": "https:\/\/newrelic.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/new-relic.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/new-relic-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "https:\/\/blog.newrelic.com\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "https:\/\/blog.newrelic.com\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/new-relic"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/rpm.newrelic.com\/api\/explore\/"
+        },
+        {
+            "type": "Email",
+            "url": "billing@newrelic.com"
+        },
+        {
+            "type": "Email",
+            "url": "resume@newrelic.com"
+        },
+        {
+            "type": "Email",
+            "url": "PR@newrelic.com"
+        },
+        {
+            "type": "Email",
+            "url": "copyright@newrelic.com"
+        },
+        {
+            "type": "Email",
+            "url": "dataprivacy@newrelic.com"
+        },
+        {
+            "type": "Email",
+            "url": "PersonalDataRequest@newrelic.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@newrelic.com"
+        },
+        {
+            "type": "Email",
+            "url": "compliance@newrelic.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/newrelic"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/NewRelic"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/newrelic.com\/"
+        }
+    ]
+}
