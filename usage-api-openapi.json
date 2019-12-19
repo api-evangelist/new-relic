@@ -1,0 +1,46 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "Usage API",
+        "description": "The Usage API.",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.newrelic.com\/"
+    ],
+    "paths": [],
+    "components": {
+        "schemas": {
+            "": {
+                "type": "object",
+                "properties": {
+                    "usage_data": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "product": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "from": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "to": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "unit": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "usages": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
