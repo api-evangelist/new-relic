@@ -1,0 +1,134 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "Server API",
+        "description": "The Server API.",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.newrelic.com\/"
+    ],
+    "paths": [],
+    "components": {
+        "schemas": {
+            "": {
+                "type": "object",
+                "properties": {
+                    "server": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "account_id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "host": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "health_status": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "reporting": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "last_reported_at": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "summary": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "cpu": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "cpu_stolen": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "disk_io": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "memory": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "memory_used": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "memory_total": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "fullest_disk": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "fullest_disk_free": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "alert_policy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "metric": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "metric_data": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "from": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "to": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "metrics_not_found": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "metrics_found": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "metrics": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "timeslices": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
