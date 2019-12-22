@@ -10,8 +10,8 @@
         "relative data",
         "service api"
     ],
-    "created": "2019-12-19",
-    "modified": "2019-12-19",
+    "created": "2019-12-21",
+    "modified": "2019-12-21",
     "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/new-relic\/master\/apis.json",
     "specificationVersion": "0.14",
     "apis": [
@@ -25,11 +25,11 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/notification-channel-api.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/new-relic\/master\/notification-channel-api-openapi.json"
                 },
                 {
-                    "type": "x-postman-collecction",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/notification-channel-api-postman-collection.json"
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/notification-channel-api.json"
                 }
             ]
         },
@@ -43,11 +43,11 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/usage-api.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/new-relic\/master\/usage-api-openapi.json"
                 },
                 {
-                    "type": "x-postman-collecction",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/usage-api-postman-collection.json"
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/usage-api.json"
                 }
             ]
         },
@@ -61,11 +61,11 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/alert-policy-api.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/new-relic\/master\/alert-policy-api-openapi.json"
                 },
                 {
-                    "type": "x-postman-collecction",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/alert-policy-api-postman-collection.json"
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/alert-policy-api.json"
                 }
             ]
         },
@@ -79,11 +79,11 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/server-api.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/new-relic\/master\/server-api-openapi.json"
                 },
                 {
-                    "type": "x-postman-collecction",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/server-api-postman-collection.json"
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/server-api.json"
                 }
             ]
         },
@@ -97,17 +97,21 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/new-relic.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/new-relic\/master\/new-relic-openapi.json"
                 },
                 {
-                    "type": "x-postman-collecction",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/new-relic-postman-collection.json"
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/new-relic.json"
                 }
             ]
         }
     ],
     "include": [],
     "x-common": [
+        {
+            "type": "APIs.json",
+            "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apis.json"
+        },
         {
             "type": "Blog",
             "url": "https:\/\/blog.newrelic.com\/"
