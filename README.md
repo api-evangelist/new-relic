@@ -1,5 +1,5 @@
 # New Relic (new-relic)
-New Relic is a software analytics company that helps businesses monitor and analyze their applications and infrastructure in real-time. By providing detailed insights into the performance and user experience of their systems, New Relic enables organizations to identify and fix issues quickly, optimize performance, and ultimately deliver better digital experiences to their customers. With a range of products and services, including application performance monitoring, infrastructure monitoring, and synthetic monitoring, New Relic empowers businesses to make data-driven decisions and drive digital transformation.
+New Relic provides observability platform APIs for monitoring, analyzing, and optimizing your entire software stack with real-time insights into applications, infrastructure, and customer experience.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/apis.yml)
 
@@ -11,7 +11,7 @@ New Relic is a software analytics company that helps businesses monitor and anal
 
 ## Tags:
 
- - Monitoring, Platform, Analysis
+ - APM, Analysis, Analytics, DevOps, Infrastructure, Monitoring, Observability, Performance, Platform
 
 ## Timestamps
 
@@ -46,10 +46,18 @@ New Relic offers a variety of APIs and SDKs you can use to: Send data to New Rel
 - [Trust](https://trust.newrelic.com/)
 - [Login](https://login.newrelic.com/?return_to=https%3A%2F%2Fone.newrelic.com%2F%3F_gl%3D1*19a3oxl*_gcl_au*Nzg1NjU0MjMwLjE3NTQzMzY1MDA.*_ga*MTAzNDMwMjA3Ny4xNzU0MzM2NTAw*_ga_R5EF3MCG7B*czE3NTQzMzY1MDAkbzEkZzEkdDE3NTQzMzY2MzgkajUwJGwxJGgxNjk1MTcwNzcy)
 - [SignUp](https://newrelic.com/signup?via=login)
+- [Portal](https://one.newrelic.com/)
+- [Developer Portal](https://developer.newrelic.com/)
+- [API Keys](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
+- [Support](https://support.newrelic.com/)
+- [Status](https://status.newrelic.com/)
+- [GitHub](https://github.com/newrelic)
 
 ## Maintainers
 
 **FN:** Kin Lane
 
 **Email:** info@apievangelist.com
+**FN:** APIs.json Maintainer
 
+**Email:** support@newrelic.com
