@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.newrelic.com/schemas/telemetry/metric-payload.json",
+  "title": "New Relic Metric API Payload",
+  "description": "Schema for metric data payloads submitted to the New Relic Metric API. Represents an array of metric batch objects, each containing a set of metrics and optional shared attributes applied to all metrics in the batch.",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/MetricDataObject"
+  },
+  "$defs": {
+    "MetricDataObject": {
+      "type": "object",
+      "description": "A container for a batch of related metrics with optional shared attributes",
+      "required": ["metrics"],
+      "properties": {
+        "common": {
+          "$ref": "#/$defs/CommonBlock"
+        },
+        "metrics": {
+          "type": "array",
+          "description": "Array of individual metric data points in this batch",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/MetricDataPoint"
+          }
+        }
+      }
+    },
+    "CommonBlock": {
+      "type": "object",
+      "description": "Shared default values and attributes applied to all metrics in the batch",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Default Unix timestamp in milliseconds. Applied to all metrics unless overridden at the metric level.",
+          "minimum": 0
+        },
+        "interval.ms": {
+          "type": "integer",
+          "description": "Default measurement interval in milliseconds. Required for count and summary metric types.",
+          "minimum": 1
+        },
+        "attributes": {
+          "$ref": "#/$defs/AttributeMap"
+        }
+      }
+    },
+    "MetricDataPoint": {
+      "type": "object",
+      "description": "A single metric data point with type, value, and optional attributes",
+      "required": ["name", "type", "value"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The metric name used for NRQL queries (e.g., cpu.utilization.percent)",
+          "maxLength": 255,
+          "pattern": "^[^\\s].{0,254}$"
+        },
+        "type": {
+          "type": "string",
+          "description": "The metric type determines how values are aggregated and interpreted",
+          "enum": ["gauge", "count", "summary"]
+        },
+        "value": {
+          "description": "Metric value. Number for gauge and count; SummaryValue object for summary type.",
+          "oneOf": [
+            {
+              "type": "number",
+              "description": "Numeric value for gauge or count metric types"
+            },
+            {
+              "$ref": "#/$defs/SummaryValue"
+            }
+          ]
+        },
+        "timestamp": {
+          "type": "integer",
+          "description": "Unix timestamp in milliseconds. Overrides the common block timestamp for this metric.",
+          "minimum": 0
+        },
+        "interval.ms": {
+          "type": "integer",
+          "description": "Measurement interval in milliseconds. Required for count and summary types if not in common block.",
+          "minimum": 1
+        },
+        "attributes": {
+          "$ref": "#/$defs/AttributeMap"
+        }
+      }
+    },
+    "SummaryValue": {
+      "type": "object",
+      "description": "Aggregated statistical value for summary metric type",
+      "required": ["count", "sum", "min", "max"],
+      "properties": {
+        "count": {
+          "type": "number",
+          "description": "The number of individual measurements included in this summary",
+          "minimum": 0
+        },
+        "sum": {
+          "type": "number",
+          "description": "The sum of all measurement values in this interval"
+        },
+        "min": {
+          "type": "number",
+          "description": "The minimum individual measurement value in this interval"
+        },
+        "max": {
+          "type": "number",
+          "description": "The maximum individual measurement value in this interval"
+        }
+      }
+    },
+    "AttributeMap": {
+      "type": "object",
+      "description": "Key-value attribute pairs. Keys must not start with nr. (reserved prefix). Values can be strings (max 4096 chars), numbers, or booleans.",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string",
+            "maxLength": 4096
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      }
+    }
+  }
+}

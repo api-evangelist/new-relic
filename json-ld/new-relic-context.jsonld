@@ -1,0 +1,178 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nr": "https://docs.newrelic.com/docs/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Application": {
+      "@id": "nr:Application",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "accountId": {
+          "@id": "nr:accountId",
+          "@type": "xsd:integer"
+        },
+        "language": "nr:language",
+        "health": "nr:healthStatus",
+        "apdexScore": {
+          "@id": "nr:apdexScore",
+          "@type": "xsd:decimal"
+        },
+        "throughput": {
+          "@id": "nr:throughput",
+          "@type": "xsd:decimal"
+        },
+        "errorRate": {
+          "@id": "nr:errorRate",
+          "@type": "xsd:decimal"
+        },
+        "responseTime": {
+          "@id": "nr:responseTime",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "MetricDataPoint": {
+      "@id": "nr:MetricDataPoint",
+      "@context": {
+        "name": "schema:name",
+        "type": "schema:additionalType",
+        "value": "schema:value",
+        "timestamp": {
+          "@id": "dcterms:date",
+          "@type": "xsd:long"
+        },
+        "intervalMs": {
+          "@id": "nr:intervalMs",
+          "@type": "xsd:long"
+        },
+        "attributes": {
+          "@id": "schema:additionalProperty",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "CustomEvent": {
+      "@id": "nr:CustomEvent",
+      "@context": {
+        "eventType": "schema:additionalType",
+        "timestamp": {
+          "@id": "dcterms:date",
+          "@type": "xsd:long"
+        },
+        "accountId": {
+          "@id": "nr:accountId",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "LogRecord": {
+      "@id": "nr:LogRecord",
+      "@context": {
+        "message": "schema:text",
+        "level": "nr:logLevel",
+        "timestamp": {
+          "@id": "dcterms:date",
+          "@type": "xsd:long"
+        },
+        "logtype": "schema:additionalType",
+        "hostname": "schema:name",
+        "serviceName": {
+          "@id": "nr:serviceName",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "Span": {
+      "@id": "nr:Span",
+      "@context": {
+        "id": "@id",
+        "traceId": {
+          "@id": "nr:traceId",
+          "@type": "xsd:string"
+        },
+        "parentId": {
+          "@id": "nr:parentSpanId",
+          "@type": "xsd:string"
+        },
+        "name": "schema:name",
+        "timestamp": {
+          "@id": "dcterms:date",
+          "@type": "xsd:long"
+        },
+        "durationMs": {
+          "@id": "nr:durationMs",
+          "@type": "xsd:decimal"
+        },
+        "serviceName": {
+          "@id": "nr:serviceName",
+          "@type": "xsd:string"
+        },
+        "isError": {
+          "@id": "nr:isError",
+          "@type": "xsd:boolean"
+        },
+        "attributes": {
+          "@id": "schema:additionalProperty",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Alert": {
+      "@id": "nr:Alert",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "condition": "nr:condition",
+        "priority": "nr:priority",
+        "openedAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "closedAt": {
+          "@id": "nr:closedAt",
+          "@type": "xsd:dateTime"
+        },
+        "status": "nr:alertStatus",
+        "entity": {
+          "@id": "schema:about",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Entity": {
+      "@id": "nr:Entity",
+      "@context": {
+        "guid": {
+          "@id": "nr:entityGuid",
+          "@type": "xsd:string"
+        },
+        "name": "schema:name",
+        "type": "schema:additionalType",
+        "domain": "nr:domain",
+        "accountId": {
+          "@id": "nr:accountId",
+          "@type": "xsd:integer"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "relationships": {
+          "@id": "schema:relatedLink",
+          "@container": "@set"
+        }
+      }
+    }
+  }
+}

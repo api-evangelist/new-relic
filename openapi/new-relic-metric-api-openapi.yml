@@ -1,0 +1,262 @@
+openapi: 3.1.0
+info:
+  title: New Relic Metric API
+  description: >-
+    The New Relic Metric API is an HTTP endpoint for ingesting dimensional metric
+    data directly into the New Relic platform. It accepts JSON payloads via POST
+    requests compressed with gzip and is the underlying API used by Telemetry SDKs
+    and open source exporters such as Prometheus and DropWizard. Metrics are sent
+    as arrays of metric data points with attributes, timestamps, and interval values.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+externalDocs:
+  description: New Relic Metric API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/metric-api/introduction-metric-api/
+servers:
+  - url: https://metric-api.newrelic.com
+    description: US Production
+  - url: https://metric-api.eu.newrelic.com
+    description: EU Production
+tags:
+  - name: Metrics
+    description: Metric data ingestion endpoints
+security:
+  - apiKey: []
+paths:
+  /metric/v1:
+    post:
+      operationId: sendMetrics
+      summary: Send metric data
+      description: >-
+        Sends an array of metric data points to the New Relic Metric API. The
+        request body must be a JSON array of metric data objects, each containing
+        a metrics array and optional common attributes. Payloads should be
+        gzip-compressed for best performance. The API supports count, gauge,
+        and summary metric types.
+      tags:
+        - Metrics
+      parameters:
+        - $ref: '#/components/parameters/ApiKey'
+        - name: Content-Encoding
+          in: header
+          description: Compression encoding. Use gzip for compressed payloads.
+          schema:
+            type: string
+            enum:
+              - gzip
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricPayload'
+            example:
+              - common:
+                  timestamp: 1531414060739
+                  interval.ms: 10000
+                  attributes:
+                    host.name: host1
+                    service.name: myService
+                metrics:
+                  - name: cpu.usage.percent
+                    type: gauge
+                    value: 12.3
+                  - name: http.requests
+                    type: count
+                    value: 420
+                    interval.ms: 10000
+      responses:
+        '202':
+          description: Accepted. The data was received and queued for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcceptedResponse'
+        '400':
+          description: Bad request. The payload is malformed or exceeds size limits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden. The API key is invalid or does not have insert permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Payload too large. The request body exceeds the 1 MB limit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests. The rate limit has been exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+  parameters:
+    ApiKey:
+      name: Api-Key
+      in: header
+      required: true
+      description: New Relic License Key or Ingest API Key with Insert permissions
+      schema:
+        type: string
+  schemas:
+    MetricPayload:
+      type: array
+      description: An array of metric data objects to be ingested
+      items:
+        $ref: '#/components/schemas/MetricDataObject'
+    MetricDataObject:
+      type: object
+      description: A container for a batch of metrics with optional shared attributes
+      properties:
+        common:
+          $ref: '#/components/schemas/CommonBlock'
+        metrics:
+          type: array
+          description: Array of individual metric data points
+          items:
+            $ref: '#/components/schemas/MetricDataPoint'
+      required:
+        - metrics
+    CommonBlock:
+      type: object
+      description: >-
+        Shared attributes applied to all metrics in this data object unless
+        overridden at the metric level
+      properties:
+        timestamp:
+          type: integer
+          description: Unix timestamp in milliseconds for all metrics in this batch
+        interval.ms:
+          type: integer
+          description: Default measurement interval in milliseconds for count and summary metrics
+        attributes:
+          type: object
+          description: >-
+            Key-value pairs applied to all metrics in the batch. Values can be
+            strings, numbers, or booleans.
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+    MetricDataPoint:
+      type: object
+      description: A single metric data point
+      required:
+        - name
+        - type
+        - value
+      properties:
+        name:
+          type: string
+          description: The metric name (e.g., cpu.usage.percent)
+          maxLength: 255
+        type:
+          type: string
+          description: The metric type
+          enum:
+            - gauge
+            - count
+            - summary
+        value:
+          description: >-
+            The metric value. For gauge and count, a number. For summary, an
+            object with count, sum, min, and max fields.
+          oneOf:
+            - type: number
+            - $ref: '#/components/schemas/SummaryValue'
+        timestamp:
+          type: integer
+          description: >-
+            Unix timestamp in milliseconds. Overrides the common timestamp
+            for this metric.
+        interval.ms:
+          type: integer
+          description: Measurement interval in milliseconds. Required for count and summary types.
+        attributes:
+          type: object
+          description: Additional key-value attributes for this metric point
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+    SummaryValue:
+      type: object
+      description: Summary metric value containing statistical aggregations
+      required:
+        - count
+        - sum
+        - min
+        - max
+      properties:
+        count:
+          type: number
+          description: The number of measurements in this summary
+        sum:
+          type: number
+          description: The sum of all measurement values
+        min:
+          type: number
+          description: The minimum measurement value
+        max:
+          type: number
+          description: The maximum measurement value
+    AcceptedResponse:
+      type: object
+      description: Response returned when the payload was accepted
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the accepted request
+    ErrorResponse:
+      type: object
+      description: Error response body
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              description: Error type identifier
+            message:
+              type: string
+              description: Human-readable error description
+        failures:
+          type: array
+          description: List of individual failure details when partial rejection occurs
+          items:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+              failed:
+                type: array
+                items:
+                  type: object

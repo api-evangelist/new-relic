@@ -1,0 +1,310 @@
+openapi: 3.1.0
+info:
+  title: New Relic Trace API
+  description: >-
+    The New Relic Trace API allows distributed tracing data to be sent directly
+    to New Relic in either New Relic format or Zipkin JSON v2 format. It is used
+    by Telemetry SDKs, open source integrations, and custom tracing implementations
+    that need to report span data without a full APM agent. Traces appear in the
+    New Relic Distributed Tracing UI after processing.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+externalDocs:
+  description: New Relic Trace API Documentation
+  url: https://docs.newrelic.com/docs/distributed-tracing/trace-api/introduction-trace-api/
+servers:
+  - url: https://trace-api.newrelic.com
+    description: US Production
+  - url: https://trace-api.eu.newrelic.com
+    description: EU Production
+tags:
+  - name: Traces
+    description: Distributed trace span ingestion
+security:
+  - apiKey: []
+paths:
+  /trace/v1:
+    post:
+      operationId: sendTraces
+      summary: Send trace spans
+      description: >-
+        Sends distributed trace spans to New Relic. Supports New Relic format
+        (Content-Type application/json with Data-Format newrelic) and Zipkin
+        JSON v2 format (Data-Format zipkin). Payloads can be gzip-compressed.
+        A single request supports up to 10,000 spans and must not exceed
+        1 MB compressed.
+      tags:
+        - Traces
+      parameters:
+        - name: Data-Format
+          in: header
+          required: true
+          description: The format of the trace data in the request body
+          schema:
+            type: string
+            enum:
+              - newrelic
+              - zipkin
+        - name: Data-Format-Version
+          in: header
+          description: Version of the data format. Use 1 for newrelic format.
+          schema:
+            type: string
+            enum:
+              - '1'
+        - name: Content-Encoding
+          in: header
+          description: Use gzip for compressed payloads
+          schema:
+            type: string
+            enum:
+              - gzip
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/NewRelicTracePayload'
+                - $ref: '#/components/schemas/ZipkinTracePayload'
+            examples:
+              newrelic:
+                summary: New Relic format
+                value:
+                  - common:
+                      attributes:
+                        service.name: myService
+                        host: web01
+                    spans:
+                      - id: 5f5bf6860e3b5208
+                        trace.id: aefb4b81c6eedc5e
+                        attributes:
+                          name: /api/orders
+                          duration.ms: 12
+                          db.statement: SELECT * FROM orders
+              zipkin:
+                summary: Zipkin v2 format
+                value:
+                  - id: 5f5bf6860e3b5208
+                    traceId: aefb4b81c6eedc5e
+                    name: /api/orders
+                    timestamp: 1645564509000000
+                    duration: 12000
+                    localEndpoint:
+                      serviceName: myService
+      responses:
+        '202':
+          description: Accepted. Trace data was received and queued for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcceptedResponse'
+        '400':
+          description: Bad request. Payload is malformed or exceeds limits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden. The API key is invalid or lacks insert permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Payload too large.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests. Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+  schemas:
+    NewRelicTracePayload:
+      type: array
+      description: New Relic format trace payload — array of span batch objects
+      items:
+        $ref: '#/components/schemas/SpanBatch'
+    SpanBatch:
+      type: object
+      description: A batch of spans with optional shared attributes
+      required:
+        - spans
+      properties:
+        common:
+          $ref: '#/components/schemas/CommonBlock'
+        spans:
+          type: array
+          description: Array of individual span objects
+          items:
+            $ref: '#/components/schemas/Span'
+    CommonBlock:
+      type: object
+      description: Shared attributes applied to all spans in this batch
+      properties:
+        attributes:
+          type: object
+          description: Key-value attributes applied to every span in the batch
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+    Span:
+      type: object
+      description: A single distributed trace span in New Relic format
+      required:
+        - id
+        - trace.id
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this span (16 hex characters)
+        trace.id:
+          type: string
+          description: Trace ID that groups all spans in a distributed trace
+        timestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds when the span started
+        attributes:
+          type: object
+          description: Span attributes
+          properties:
+            name:
+              type: string
+              description: Name of the operation represented by this span
+            parent.id:
+              type: string
+              description: The span ID of the parent span
+            duration.ms:
+              type: number
+              description: Duration of the span in milliseconds
+            service.name:
+              type: string
+              description: Name of the service that generated this span
+            error:
+              type: boolean
+              description: Whether the span represents an error
+            db.statement:
+              type: string
+              description: Database query statement if applicable
+            http.url:
+              type: string
+              description: HTTP URL for outbound calls
+            http.method:
+              type: string
+              description: HTTP method for outbound calls
+            http.statusCode:
+              type: integer
+              description: HTTP response status code
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+    ZipkinTracePayload:
+      type: array
+      description: Zipkin JSON v2 format trace payload
+      items:
+        $ref: '#/components/schemas/ZipkinSpan'
+    ZipkinSpan:
+      type: object
+      description: A single span in Zipkin JSON v2 format
+      required:
+        - id
+        - traceId
+      properties:
+        id:
+          type: string
+          description: Span ID (16 hex characters)
+        traceId:
+          type: string
+          description: Trace ID (32 hex characters)
+        parentId:
+          type: string
+          description: Parent span ID
+        name:
+          type: string
+          description: Span name / operation name
+        timestamp:
+          type: integer
+          description: Span start time in microseconds since epoch
+        duration:
+          type: integer
+          description: Span duration in microseconds
+        kind:
+          type: string
+          enum:
+            - CLIENT
+            - SERVER
+            - PRODUCER
+            - CONSUMER
+        localEndpoint:
+          type: object
+          properties:
+            serviceName:
+              type: string
+            ipv4:
+              type: string
+            port:
+              type: integer
+        remoteEndpoint:
+          type: object
+          properties:
+            serviceName:
+              type: string
+            ipv4:
+              type: string
+            port:
+              type: integer
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: integer
+              value:
+                type: string
+    AcceptedResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+            message:
+              type: string

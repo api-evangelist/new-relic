@@ -1,0 +1,184 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event API
+  description: >-
+    The New Relic Event API allows you to send custom event data to the New Relic
+    platform via HTTP POST. Custom events submitted through this API can be queried
+    and visualized using NRQL, making it suitable for tracking arbitrary business or
+    application events. Each event is a JSON object with an eventType and any number
+    of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/
+servers:
+  - url: https://insights-collector.newrelic.com
+    description: US Production
+  - url: https://insights-collector.eu01.nr-data.net
+    description: EU Production
+tags:
+  - name: Events
+    description: Custom event ingestion endpoints
+security:
+  - apiKey: []
+paths:
+  /v1/accounts/{accountId}/events:
+    post:
+      operationId: sendEvents
+      summary: Send custom events
+      description: >-
+        Sends one or more custom events to the specified New Relic account.
+        The request body must be a JSON array of event objects. Each event must
+        include an eventType attribute. Payloads may be gzip-compressed. Events
+        are immediately available for querying via NRQL after processing.
+        A single request may contain up to 2000 events and must not exceed 1 MB
+        uncompressed.
+      tags:
+        - Events
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: The New Relic account ID to ingest events into
+          schema:
+            type: integer
+        - name: Content-Encoding
+          in: header
+          description: Use gzip for compressed payloads
+          schema:
+            type: string
+            enum:
+              - gzip
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPayload'
+            example:
+              - eventType: PurchaseEvent
+                account: 3
+                amount: 259.54
+                success: true
+                userEmail: test@example.com
+              - eventType: PageView
+                uri: /some/page
+                referrer: https://example.com
+                duration: 0.42
+      responses:
+        '200':
+          description: Success. All events were accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request. The payload is malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden. The API key is invalid or lacks insert permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '408':
+          description: Request timeout. The server did not receive the request in time.
+        '413':
+          description: Payload too large. The request body exceeds 1 MB.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests. Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+  schemas:
+    EventPayload:
+      type: array
+      description: An array of custom event objects to ingest
+      maxItems: 2000
+      items:
+        $ref: '#/components/schemas/CustomEvent'
+    CustomEvent:
+      type: object
+      description: >-
+        A custom event to record. Must include eventType. All other attributes
+        are user-defined key-value pairs. Attribute names must not start with
+        nr. (reserved). Values can be strings, numbers, or booleans.
+      required:
+        - eventType
+      properties:
+        eventType:
+          type: string
+          description: >-
+            The type of event. Used as the NRDB event table name.
+            Must match the pattern [a-zA-Z0-9:_ ]+, max 255 characters.
+          maxLength: 255
+        timestamp:
+          type: integer
+          description: >-
+            Unix epoch timestamp in seconds. If omitted, the current time
+            is used. Cannot be more than 48 hours in the past or 24 hours
+            in the future.
+      additionalProperties:
+        description: Additional user-defined event attributes
+        oneOf:
+          - type: string
+            maxLength: 4096
+          - type: number
+          - type: boolean
+    SuccessResponse:
+      type: object
+      description: Successful ingestion response
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was accepted
+          example: true
+        uuid:
+          type: string
+          description: Unique request identifier
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Error message
+        errors:
+          type: array
+          description: List of validation errors
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              timestamp:
+                type: string

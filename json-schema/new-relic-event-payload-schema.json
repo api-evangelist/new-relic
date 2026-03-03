@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.newrelic.com/schemas/telemetry/event-payload.json",
+  "title": "New Relic Event API Payload",
+  "description": "Schema for custom event data payloads submitted to the New Relic Event API. Represents an array of custom event objects, each with a required eventType and any number of user-defined attribute key-value pairs. Events are stored in NRDB and queryable via NRQL.",
+  "type": "array",
+  "maxItems": 2000,
+  "items": {
+    "$ref": "#/$defs/CustomEvent"
+  },
+  "$defs": {
+    "CustomEvent": {
+      "type": "object",
+      "description": "A single custom event. Must include eventType. All other keys are user-defined attributes stored as event fields in NRDB.",
+      "required": ["eventType"],
+      "properties": {
+        "eventType": {
+          "type": "string",
+          "description": "The event type name used as the NRDB table. Must match [a-zA-Z0-9:_ ]+ and not exceed 255 characters. Cannot start with nr. (reserved).",
+          "maxLength": 255,
+          "pattern": "^[a-zA-Z0-9:_ ]+$"
+        },
+        "timestamp": {
+          "type": "integer",
+          "description": "Unix epoch timestamp in seconds when the event occurred. If omitted, the ingestion time is used. Cannot be more than 48 hours in the past or 24 hours in the future.",
+          "examples": [1645564509]
+        }
+      },
+      "additionalProperties": {
+        "description": "User-defined event attribute. Keys must not start with nr. (reserved). String values are limited to 4096 characters.",
+        "oneOf": [
+          {
+            "type": "string",
+            "maxLength": 4096
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      }
+    }
+  }
+}

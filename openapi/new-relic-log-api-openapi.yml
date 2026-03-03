@@ -1,0 +1,201 @@
+openapi: 3.1.0
+info:
+  title: New Relic Log API
+  description: >-
+    The New Relic Log API enables log data to be sent directly to the New Relic
+    platform via HTTP POST requests. It accepts gzip-compressed JSON payloads and
+    provides an alternative to log forwarding agents when direct integration is
+    preferred. Logs are available for querying in New Relic Logs UI and via NRQL
+    immediately after ingestion.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+externalDocs:
+  description: New Relic Log API Documentation
+  url: https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/
+servers:
+  - url: https://log-api.newrelic.com
+    description: US Production
+  - url: https://log-api.eu.newrelic.com
+    description: EU Production
+tags:
+  - name: Logs
+    description: Log data ingestion endpoints
+security:
+  - apiKey: []
+paths:
+  /log/v1:
+    post:
+      operationId: sendLogs
+      summary: Send log data
+      description: >-
+        Sends one or more log records to the New Relic Log API. Accepts a JSON
+        array of log data objects, each containing a logs array and optional
+        common attributes. Payloads must be gzip-compressed. A single request
+        may not exceed 1 MB compressed or 10,000 log entries.
+      tags:
+        - Logs
+      parameters:
+        - name: Content-Encoding
+          in: header
+          required: true
+          description: Compression encoding. Gzip is required.
+          schema:
+            type: string
+            enum:
+              - gzip
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogPayload'
+            example:
+              - common:
+                  attributes:
+                    logtype: nginx
+                    service.name: myService
+                    host.name: web01
+                logs:
+                  - timestamp: 1645564509000
+                    message: 127.0.0.1 - - [01/Jan/2022] "GET /api/health HTTP/1.1" 200 24
+                    level: INFO
+                  - timestamp: 1645564510000
+                    message: 127.0.0.1 - - [01/Jan/2022] "POST /api/orders HTTP/1.1" 500 0
+                    level: ERROR
+      responses:
+        '202':
+          description: Accepted. Log data was received and queued for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcceptedResponse'
+        '400':
+          description: Bad request. Payload is malformed or missing required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden. The API key is invalid or lacks insert permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Payload too large. Exceeds 1 MB compressed limit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests. Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+  schemas:
+    LogPayload:
+      type: array
+      description: Array of log data batch objects
+      items:
+        $ref: '#/components/schemas/LogDataObject'
+    LogDataObject:
+      type: object
+      description: A batch of log records with optional shared attributes
+      required:
+        - logs
+      properties:
+        common:
+          $ref: '#/components/schemas/CommonBlock'
+        logs:
+          type: array
+          description: Array of individual log records
+          items:
+            $ref: '#/components/schemas/LogRecord'
+    CommonBlock:
+      type: object
+      description: Shared attributes applied to all log records in this batch
+      properties:
+        timestamp:
+          type: integer
+          description: Default Unix timestamp in milliseconds for all logs in the batch
+        attributes:
+          type: object
+          description: Key-value attributes applied to all logs in this batch
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+    LogRecord:
+      type: object
+      description: A single log record
+      properties:
+        timestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds when the log event occurred
+        message:
+          type: string
+          description: The log message text
+          maxLength: 32768
+        level:
+          type: string
+          description: Log severity level
+          enum:
+            - FATAL
+            - ERROR
+            - WARN
+            - WARNING
+            - INFO
+            - DEBUG
+            - TRACE
+        logtype:
+          type: string
+          description: Log format type for automatic parsing (e.g., nginx, apache, syslog)
+        attributes:
+          type: object
+          description: Additional key-value attributes for this log record
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+      additionalProperties:
+        description: Additional top-level attributes are accepted and stored
+    AcceptedResponse:
+      type: object
+      description: Response when the payload was accepted
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the accepted ingestion request
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        requestId:
+          type: string
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+            message:
+              type: string
