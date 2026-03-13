@@ -44,6 +44,12 @@ apis:
     url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
   - type: Rate Limits
     url: https://docs.newrelic.com/docs/apis/nerdgraph/nerdgraph-usage-limits/
+  - type: Getting Started
+    url: https://docs.newrelic.com/docs/apis/nerdgraph/get-started/introduction-new-relic-nerdgraph/
+  - type: GraphQL Explorer
+    url: https://api.newrelic.com/graphiql
+  - type: Postman Collection
+    url: https://www.postman.com/new-relic/new-relic-graphql-api-collection/documentation/btuxnnc/new-relic-nerdgraph-graphql-api-collection
   tags:
   - GraphQL
   - Monitoring
@@ -96,6 +102,8 @@ apis:
     url: openapi/new-relic-event-api-openapi.yml
   - type: JSONSchema
     url: json-schema/new-relic-event-payload-schema.json
+  - type: Rate Limits
+    url: https://docs.newrelic.com/docs/data-apis/custom-data/custom-events/data-requirements-limits-custom-event-data/
   tags:
   - Events
   - Telemetry
@@ -143,6 +151,8 @@ apis:
     url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
   - type: OpenAPI
     url: openapi/new-relic-trace-api-openapi.yml
+  - type: Rate Limits
+    url: https://docs.newrelic.com/docs/distributed-tracing/trace-api/trace-api-general-requirements-limits/
   tags:
   - Traces
   - Distributed Tracing
@@ -223,6 +233,8 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.newrelic.com/docs/browser/new-relic-browser/browser-apis/using-browser-apis/
+  - type: Authentication
+    url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
   tags:
   - Browser
   - JavaScript
@@ -316,6 +328,47 @@ apis:
   - Observability
   - Automation
   - Platform
+- aid: new-relic:new-relic-nrql-lookups-api
+  name: New Relic NRQL Lookups API
+  description: >-
+    The New Relic NRQL Lookups API is a REST API for managing lookup tables that
+    can be used to enrich NRQL query results. It supports creating, updating,
+    downloading, listing, and deleting lookup tables in both CSV and JSON formats,
+    enabling automated lookup table maintenance for data enrichment workflows.
+  image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
+  humanURL: https://docs.newrelic.com/docs/apis/lookups-service-api/lookups-service-api/
+  baseURL: https://nrql-lookup.service.newrelic.com
+  properties:
+  - type: Documentation
+    url: https://docs.newrelic.com/docs/apis/lookups-service-api/lookups-service-api/
+  - type: Authentication
+    url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
+  tags:
+  - NRQL
+  - Lookups
+  - Data Enrichment
+  - REST
+- aid: new-relic:new-relic-security-data-api
+  name: New Relic Security Data API
+  description: >-
+    The New Relic Security Data API allows vulnerability and security finding data
+    to be sent directly to New Relic via HTTP POST. It accepts JSON payloads
+    describing detected vulnerabilities or security events, enabling integration
+    with third-party vulnerability assessment tools and custom security scanning
+    solutions for use with New Relic Security RX.
+  image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
+  humanURL: https://docs.newrelic.com/docs/data-apis/ingest-apis/security-data-api/
+  baseURL: https://security-api.newrelic.com/security/v1
+  properties:
+  - type: Documentation
+    url: https://docs.newrelic.com/docs/data-apis/ingest-apis/security-data-api/
+  - type: Authentication
+    url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
+  tags:
+  - Security
+  - Vulnerabilities
+  - Ingest
+  - Compliance
 - aid: new-relic:new-relic-mobile-sdk
   name: New Relic Mobile SDK
   description: >-
@@ -355,7 +408,7 @@ type: Index
 image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
 access: 3rd-Party
 created: '2025-01-13'
-modified: '2026-03-02'
+modified: '2026-03-03'
 position: Consumer
 description: New Relic provides observability platform APIs for monitoring, analyzing, and optimizing your entire software stack with real-time insights into applications, infrastructure, and customer experience.
 maintainers:
@@ -454,3 +507,39 @@ common:
 - url: json-schema/new-relic-event-payload-schema.json
   name: New Relic Event Payload Schema
   type: JSONSchema
+- url: https://twitter.com/newrelic
+  name: New Relic on X (Twitter)
+  type: X
+- url: https://www.linkedin.com/company/new-relic-inc-
+  name: New Relic on LinkedIn
+  type: LinkedIn
+- url: https://newrelic.com/security
+  name: New Relic Security Overview
+  type: Security
+- url: https://newrelic.com/security/compliance-certifications
+  name: New Relic Compliance and Certifications
+  type: Security
+- url: https://github.com/newrelic/newrelic-cli
+  name: New Relic CLI
+  type: CLI
+- url: https://docs.newrelic.com/docs/new-relic-solutions/build-nr-ui/newrelic-cli/
+  name: New Relic CLI Reference
+  type: CLI
+- url: https://registry.terraform.io/providers/newrelic/newrelic/latest/docs
+  name: New Relic Terraform Provider
+  type: Terraform Provider
+- url: https://github.com/newrelic/terraform-provider-newrelic
+  name: New Relic Terraform Provider GitHub Repository
+  type: GitHubRepository
+- url: https://newrelic.com/instant-observability
+  name: New Relic Instant Observability Catalog
+  type: Integrations
+- url: https://www.postman.com/new-relic/
+  name: New Relic Postman Workspace
+  type: PostmanWorkspace
+- url: https://docs.newrelic.com/docs/apis/intro-apis/introduction-new-relic-apis/
+  name: Introduction to New Relic APIs
+  type: Documentation
+- url: https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/
+  name: Introduction to NRQL
+  type: Documentation
