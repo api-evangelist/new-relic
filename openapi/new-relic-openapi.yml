@@ -18,8 +18,8 @@ paths:
   /applications.json:
     get:
       tags:
-        - Get
         - Applications
+        - Get
       summary: New Relic Get  Applications
       description: >-
         This GET endpoint retrieves a paginated list of all applications
@@ -99,10 +99,10 @@ paths:
   /applications/{application_id}/deployments.json:
     get:
       tags:
-        - Get
         - Applications
-        - Identifiers
         - Deployments
+        - Get
+        - Identifiers
       summary: New Relic Get  Applications Deployments
       description: >-
         This API operation retrieves a paginated list of all deployment records
@@ -157,10 +157,10 @@ paths:
       operationId: getApplicationsIdDeployments
     post:
       tags:
-        - Post
         - Applications
-        - Identifiers
         - Deployments
+        - Identifiers
+        - Post
       summary: New Relic Post  Applications Deployments
       description: >-
         Creates a new deployment marker for a specified application in New Relic
@@ -212,10 +212,10 @@ paths:
   /applications/{application_id}/deployments/{id}.json:
     delete:
       tags:
-        - Delete
         - Applications
-        - Identifiers
+        - Delete
         - Deployments
+        - Identifiers
       summary: New Relic Delete  Applications Deployments
       description: >-
         This API operation allows you to delete a specific deployment record
@@ -259,10 +259,10 @@ paths:
   /applications/{application_id}/hosts.json:
     get:
       tags:
-        - Get
         - Applications
-        - Identifiers
+        - Get
         - Hosts
+        - Identifiers
       summary: New Relic Get  Applications Hosts
       description: >-
         This API operation retrieves a paginated list of hosts associated with a
@@ -331,10 +331,10 @@ paths:
   /applications/{application_id}/hosts/{host_id}/metrics.json:
     get:
       tags:
-        - Get
         - Applications
-        - Identifiers
+        - Get
         - Hosts
+        - Identifiers
         - Metrics
       summary: New Relic Get  Applications Hosts Host Metrics
       description: >-
@@ -411,12 +411,12 @@ paths:
   /applications/{application_id}/hosts/{host_id}/metrics/data.json:
     get:
       tags:
-        - Get
         - Applications
-        - Identifiers
-        - Hosts
-        - Metrics
         - Data
+        - Get
+        - Hosts
+        - Identifiers
+        - Metrics
       summary: New Relic Get  Applications Hosts Host Metrics Data
       description: >-
         This API operation retrieves metric data for a specific host associated
@@ -511,10 +511,10 @@ paths:
   /applications/{application_id}/hosts/{id}.json:
     get:
       tags:
-        - Get
         - Applications
-        - Identifiers
+        - Get
         - Hosts
+        - Identifiers
       summary: New Relic Get  Applications Hosts
       description: >-
         This API operation retrieves detailed information about a specific host
@@ -560,8 +560,8 @@ paths:
   /applications/{application_id}/instances.json:
     get:
       tags:
-        - Get
         - Applications
+        - Get
         - Identifiers
         - Instances
       summary: New Relic Get  Applications Instances
@@ -645,8 +645,8 @@ paths:
   /applications/{application_id}/instances/{id}.json:
     get:
       tags:
-        - Get
         - Applications
+        - Get
         - Identifiers
         - Instances
       summary: New Relic Get  Applications Instances
@@ -690,11 +690,11 @@ paths:
   /applications/{application_id}/instances/{instance_id}/metrics.json:
     get:
       tags:
-        - Get
         - Applications
+        - Get
         - Identifiers
-        - Instances
         - Instance
+        - Instances
         - Metrics
       summary: New Relic Get  Applications Instances Instance Metrics
       description: >
@@ -770,13 +770,13 @@ paths:
   /applications/{application_id}/instances/{instance_id}/metrics/data.json:
     get:
       tags:
-        - Get
         - Applications
-        - Identifiers
-        - Instances
-        - Instance
-        - Metrics
         - Data
+        - Get
+        - Identifiers
+        - Instance
+        - Instances
+        - Metrics
       summary: New Relic Get  Applications Instances Instance Metrics Data
       description: >+
         <p>This API endpoint returns a list of values for each of the requested
@@ -888,8 +888,8 @@ paths:
   /applications/{application_id}/metrics.json:
     get:
       tags:
-        - Get
         - Applications
+        - Get
         - Identifiers
         - Metrics
       summary: New Relic Get  Applications Metrics
@@ -960,11 +960,11 @@ paths:
   /applications/{application_id}/metrics/data.json:
     get:
       tags:
-        - Get
         - Applications
+        - Data
+        - Get
         - Identifiers
         - Metrics
-        - Data
       summary: New Relic Get  Applications Metrics Data
       description: >+
         <p>This API endpoint returns a list of values for each of the requested
@@ -1070,8 +1070,8 @@ paths:
   /applications/{id}.json:
     get:
       tags:
-        - Get
         - Applications
+        - Get
         - Identifiers
       summary: New Relic Get  Applications
       description: >+
@@ -1110,9 +1110,9 @@ paths:
       operationId: getApplicationsId
     put:
       tags:
-        - Put
         - Applications
         - Identifiers
+        - Put
       summary: New Relic Put  Applications
       description: >+
         <p>This API endpoint allows you to update certain parameters of your
@@ -1170,8 +1170,8 @@ paths:
       operationId: putApplicationsId
     delete:
       tags:
-        - Delete
         - Applications
+        - Delete
         - Identifiers
       summary: New Relic Delete  Applications
       description: >
@@ -1282,9 +1282,9 @@ paths:
     get:
       tags:
         - Get
+        - Identifiers
         - Keys
         - Transactions
-        - Identifiers
       summary: New Relic Get  Key Transactions
       description: >+
         <p>This endpoint returns a single key transaction, identified by ID. The
@@ -1323,9 +1323,9 @@ paths:
   /mobile_applications.json:
     get:
       tags:
+        - Applications
         - Get
         - Mobile
-        - Applications
       summary: New Relic Get  Mobile Applications
       description: >
         <p>This API endpoint returns a list of the Mobile Applications
@@ -1353,10 +1353,10 @@ paths:
   /mobile_applications/{id}.json:
     get:
       tags:
-        - Get
-        - Mobile
         - Applications
+        - Get
         - Identifiers
+        - Mobile
       summary: New Relic Get  Mobile Applications
       description: >
         <p>This API endpoint returns a single Mobile Application, identified by
@@ -1387,11 +1387,11 @@ paths:
   /mobile_applications/{mobile_application_id}/metrics.json:
     get:
       tags:
-        - Get
-        - Mobile
         - Applications
+        - Get
         - Identifiers
         - Metrics
+        - Mobile
       summary: New Relic Get  Mobile Applications Mobile Application Metrics
       description: >
         <p>Return a list of known metrics and their value names for the given
@@ -1460,12 +1460,12 @@ paths:
   /mobile_applications/{mobile_application_id}/metrics/data.json:
     get:
       tags:
-        - Get
-        - Mobile
         - Applications
+        - Data
+        - Get
         - Identifiers
         - Metrics
-        - Data
+        - Mobile
       summary: New Relic Get  Mobile Applications Mobile Application Metrics Data
       description: >+
         <p>This API endpoint returns a list of values for each of the requested
@@ -1571,9 +1571,9 @@ paths:
   /alerts_channels.json:
     get:
       tags:
-        - Get
         - Alerts
         - Channels
+        - Get
       summary: New Relic Get Alerts Channels
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -1631,9 +1631,9 @@ paths:
       operationId: getAlertsChannels
     post:
       tags:
-        - Post
         - Alerts
         - Channels
+        - Post
       summary: New Relic Post Alerts Channels
       description: >+
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -1870,10 +1870,10 @@ paths:
   /alerts_channels/{channel_id}.json:
     delete:
       tags:
-        - Delete
         - Alerts
-        - Channels
         - Channel
+        - Channels
+        - Delete
         - Identifiers
       summary: New Relic Delete Alerts Channels Channel
       description: >+
@@ -1924,9 +1924,9 @@ paths:
   /alerts_conditions.json:
     get:
       tags:
-        - Get
         - Alerts
         - Conditions
+        - Get
       summary: New Relic Get Alerts Conditions
       description: >
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -1995,11 +1995,11 @@ paths:
   /alerts_conditions/policies/{policy_id}.json:
     post:
       tags:
-        - Post
         - Alerts
         - Conditions
-        - Policies
         - Identifiers
+        - Policies
+        - Post
       summary: New Relic Post Alerts Conditions Policies
       description: "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to create APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are not available.</strong></p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#conditions-create\" target=\"_blank\">creating conditions for policies</a>.\n<br /></p>\n\n<p>All fields are required except for â€œrunbook_urlâ€\x9D, â€œenabledâ€\x9D (defaults to false), â€œuser_definedâ€\x9D.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#type\" target=\"_blank\">type</a>: apm_app_metric, apm_kt_metric, servers_metric, browser_metric, mobile_metric.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#name\" target=\"_blank\">name</a>: A title for your condition.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#enabled\" target=\"_blank\">enabled</a>: The status of your condition (optional).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#entities\" target=\"_blank\">entities</a>: An array of instances associated with your condition.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#metric\" target=\"_blank\">metric</a>: The metric field accepts parameters based on the condition <b>type</b> selected as follows:</p>\n\n<p>Â Â When <b>apm_app_metric</b>: apdex, error_percentage, response_time_web, response_time_background, throughput_web, throughput_background, user_defined.</p>\n\n<p>Â Â When <b>apm_kt_metric</b>: apdex, error_percentage, error_count, response_time, throughput.</p>\n\n<p>Â Â When <b>servers_metric</b>: cpu_percentage, disk_io_percentage, memory_percentage, fullest_disk_percentage, load_average_one_minute, user_defined.</p>\n\n<p>Â Â When <b>browser_metric</b>: end_user_apdex, total_page_load, page_rendering, web_application, network, dom_processing, request_queuing, ajax_response_time, page_views_with_js_errors, page_view_throughput, ajax_throughput, user_defined.</p>\n\n<p>Â Â When <b>mobile_metric</b>: database, images, json, network, view_loading, network_error_percentage, status_error_percentage, mobile_crash_rate, user_defined.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/rest-api-alerts/new-relic-alerts-rest-api/alerts-conditions-api-field-names#condition-scope\">condition_scope</a>: Set to either <code>instance</code> to target a Java application instance or <code>application</code> for a Java app.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/rest-api-alerts/new-relic-alerts-rest-api/alerts-conditions-api-field-names#violation_close_timer\">violation_close_timer</a> (in hours): 1, 2, 4, 8, 12, 24. Duration after which instance-based (including JVM health metric) violations will automatically close.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#runbook_url\" target=\"_blank\">runbook_url</a>: Runbook URL to display in notifications (optional).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_duration\" target=\"_blank\">terms[duration]</a> (in minutes): 5, 10, 15, 30, 60, 120.</p>\n\n<p><a href=\"\
         https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_operator\" target=\"_blank\">terms[operator]</a>: above, below, equal.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_priority\" target=\"_blank\">terms[priority]</a>: critical, warning.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_threshold\" target=\"_blank\">terms[threshold]</a>: Must be 0 or greater.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_time_function\" target=\"_blank\">terms[time_function]</a>: all, any.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#user_defined_metric\" target=\"_blank\">user_defined[metric]</a>: A custom metric to be evaluated.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#user_defined_value_function\" target=\"_blank\">user_defined[value_function]</a>: average, min, max, total, sample_size.</p>\n\n"
@@ -2040,11 +2040,11 @@ paths:
   /alerts_conditions/{condition_id}.json:
     put:
       tags:
-        - Put
         - Alerts
-        - Conditions
         - Condition
+        - Conditions
         - Identifiers
+        - Put
       summary: New Relic Put Alerts Conditions
       description: >+
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -2109,10 +2109,10 @@ paths:
       operationId: putAlertsConditionsConditionId
     delete:
       tags:
-        - Delete
         - Alerts
-        - Conditions
         - Condition
+        - Conditions
+        - Delete
         - Identifiers
       summary: New Relic Delete Alerts Conditions
       description: >
@@ -2167,10 +2167,10 @@ paths:
   /alerts_entity_conditions/{entity_id}.json:
     get:
       tags:
-        - Get
         - Alerts
-        - Entity
         - Conditions
+        - Entity
+        - Get
         - Identifiers
       summary: New Relic Get Alerts Entity Conditions Entity
       description: >
@@ -2235,11 +2235,11 @@ paths:
       operationId: getAlertsEntityConditionsEntityId
     put:
       tags:
-        - Put
         - Alerts
-        - Entity
         - Conditions
+        - Entity
         - Identifiers
+        - Put
       summary: New Relic Put Alerts Entity Conditions Entity
       description: >
         ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a
@@ -2313,10 +2313,10 @@ paths:
       operationId: putAlertsEntityConditionsEntityId
     delete:
       tags:
-        - Delete
         - Alerts
-        - Entity
         - Conditions
+        - Delete
+        - Entity
         - Identifiers
       summary: New Relic Delete Alerts Entity Conditions Entity
       description: >
@@ -2393,9 +2393,9 @@ paths:
   /alerts_events.json:
     get:
       tags:
-        - Get
         - Alerts
         - Events
+        - Get
       summary: New Relic Get Alerts Events
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -2505,11 +2505,10 @@ paths:
   /alerts_external_service_conditions.json:
     get:
       tags:
-        - Get
         - Alerts
-        - External
-        - Services
         - Conditions
+        - External
+        - Get
       summary: New Relic Get Alerts External Service Conditions
       description: >
         ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a
@@ -2572,13 +2571,12 @@ paths:
   /alerts_external_service_conditions/policies/{policy_id}.json:
     post:
       tags:
-        - Post
         - Alerts
-        - External
-        - Services
         - Conditions
-        - Policies
+        - External
         - Identifiers
+        - Policies
+        - Post
       summary: New Relic Post Alerts External Service Conditions Policies
       description: "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to create external service conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#ext-conditions-create\" target=\"_blank\">creating conditions for external services</a>.</p>\n\n<p>All fields are required except for â€œrunbook_urlâ€\x9D, â€œenabledâ€\x9D (defaults to false).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#type\" target=\"_blank\">type</a>: apm_external_service, mobile_external_service.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#name\" target=\"_blank\">name</a>: A title for your condition.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#enabled\" target=\"_blank\">enabled</a>: The status of your condition (optional).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#entities\" target=\"_blank\">entities</a>: An array of instance IDs associated with your condition.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#external_service_url\" target=\"_blank\">external_service_url</a>: The URL of the external service. Must not include protocol (â€œexample.comâ€\x9D, not â€œhttps://example.comâ€\x9D)</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#metric\" target=\"_blank\">metric</a>: The metric field accepts parameters based on the condition <b>type</b> selected as follows:</p>\n\n<p>Â Â When <b>apm_external_service</b>: response_time_average, response_time_minimum, response_time_maximum, throughput.</p>\n\n<p>Â Â When <b>mobile_external_service</b>: response_time_average, response_time_minimum, response_time_maximum, throughput, network_failure_percentage, http_status_error_percentage.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#runbook_url\" target=\"_blank\">runbook_url</a>: Runbook URL to display in notifications (optional).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_duration\" target=\"_blank\">terms[duration]</a> (in minutes): 5, 10, 15, 30, 60, 120.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_operator\" target=\"_blank\">terms[operator]</a>: above, below, equal.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_priority\" target=\"_blank\">terms[priority]</a>: critical, warning.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_threshold\" target=\"_blank\">terms[threshold]</a>: Must be 0 or greater.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_time_function\" target=\"_blank\">terms[time_function]</a>: all, any.</p>\n\n"
       parameters:
@@ -2618,13 +2616,12 @@ paths:
   /alerts_external_service_conditions/{condition_id}.json:
     put:
       tags:
-        - Put
         - Alerts
-        - External
-        - Services
-        - Conditions
         - Condition
+        - Conditions
+        - External
         - Identifiers
+        - Put
       summary: New Relic Put Alerts External Service Conditions
       description: >
         ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a
@@ -2686,12 +2683,11 @@ paths:
       operationId: putAlertsExternalServiceConditionsConditionId
     delete:
       tags:
-        - Delete
         - Alerts
-        - External
-        - Services
-        - Conditions
         - Condition
+        - Conditions
+        - Delete
+        - External
         - Identifiers
       summary: New Relic Delete Alerts External Service Conditions
       description: >+
@@ -2739,8 +2735,8 @@ paths:
   /alerts_incidents.json:
     get:
       tags:
-        - Get
         - Alerts
+        - Get
       summary: New Relic Get Alerts Incidents
       description: >
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -2804,13 +2800,13 @@ paths:
   /alerts_location_failure_conditions/policies/{policy_id}.json:
     get:
       tags:
-        - Get
         - Alerts
-        - Location
-        - Failure
         - Conditions
-        - Policies
+        - Failure
+        - Get
         - Identifiers
+        - Location
+        - Policies
       summary: New Relic Get Alerts Location Failure Conditions Policies
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -2870,13 +2866,13 @@ paths:
       operationId: getAlertsLocationFailureConditionsPoliciesPolicyId
     post:
       tags:
-        - Post
         - Alerts
-        - Location
-        - Failure
         - Conditions
-        - Policies
+        - Failure
         - Identifiers
+        - Location
+        - Policies
+        - Post
       summary: New Relic Post Alerts Location Failure Conditions Policies
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -2933,13 +2929,13 @@ paths:
   /alerts_location_failure_conditions/{condition_id}.json:
     put:
       tags:
-        - Put
         - Alerts
-        - Location
-        - Failure
-        - Conditions
         - Condition
+        - Conditions
+        - Failure
         - Identifiers
+        - Location
+        - Put
       summary: New Relic Put Alerts Location Failure Conditions
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -2989,13 +2985,13 @@ paths:
       operationId: putAlertsLocationFailureConditionsConditionId
     delete:
       tags:
-        - Delete
         - Alerts
-        - Location
-        - Failure
-        - Conditions
         - Condition
+        - Conditions
+        - Delete
+        - Failure
         - Identifiers
+        - Location
       summary: New Relic Delete Alerts Location Failure Conditions
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -3036,9 +3032,9 @@ paths:
   /alerts_nrql_conditions.json:
     get:
       tags:
-        - Get
         - Alerts
         - Conditions
+        - Get
       summary: New Relic Get Alerts Nrql Conditions
       description: >
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -3087,11 +3083,11 @@ paths:
   /alerts_nrql_conditions/policies/{policy_id}.json:
     post:
       tags:
-        - Post
         - Alerts
         - Conditions
-        - Policies
         - Identifiers
+        - Policies
+        - Post
       summary: New Relic Post Alerts Nrql Conditions Policies
       description: >
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -3134,11 +3130,11 @@ paths:
   /alerts_nrql_conditions/{condition_id}.json:
     put:
       tags:
-        - Put
         - Alerts
-        - Conditions
         - Condition
+        - Conditions
         - Identifiers
+        - Put
       summary: New Relic Put Alerts Nrql Conditions
       description: >
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -3180,10 +3176,10 @@ paths:
       operationId: putAlertsNrqlConditionsConditionId
     delete:
       tags:
-        - Delete
         - Alerts
-        - Conditions
         - Condition
+        - Conditions
+        - Delete
         - Identifiers
       summary: New Relic Delete Alerts Nrql Conditions
       description: >
@@ -3216,8 +3212,8 @@ paths:
   /alerts_policies.json:
     get:
       tags:
-        - Get
         - Alerts
+        - Get
         - Policies
       summary: New Relic Get Alerts Policies
       description: >+
@@ -3280,9 +3276,9 @@ paths:
       operationId: getAlertsPolicies
     post:
       tags:
-        - Post
         - Alerts
         - Policies
+        - Post
       summary: New Relic Post Alerts Policies
       description: >+
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -3348,10 +3344,10 @@ paths:
   /alerts_policies/{policy_id}.json:
     put:
       tags:
-        - Put
         - Alerts
-        - Policies
         - Identifiers
+        - Policies
+        - Put
       summary: New Relic Put Alerts Policies
       description: >+
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -3410,10 +3406,10 @@ paths:
       operationId: putAlertsPoliciesPolicyId
     delete:
       tags:
-        - Delete
         - Alerts
-        - Policies
+        - Delete
         - Identifiers
+        - Policies
       summary: New Relic Delete Alerts Policies
       description: >+
         ðŸ”¥ðŸ”¥ New users should use <a
@@ -3462,10 +3458,10 @@ paths:
   /alerts_policy_channels.json:
     put:
       tags:
-        - Put
         - Alerts
-        - Policies
         - Channels
+        - Policies
+        - Put
       summary: New Relic Put Alerts Policy Channels
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -3523,10 +3519,10 @@ paths:
       operationId: putAlertsPolicyChannels
     delete:
       tags:
-        - Delete
         - Alerts
-        - Policies
         - Channels
+        - Delete
+        - Policies
       summary: New Relic Delete Alerts Policy Channels
       description: >
         <strong>ðŸ”¥ This endpoint will be deprecated after 2024/01
@@ -3581,9 +3577,9 @@ paths:
   /alerts_synthetics_conditions.json:
     get:
       tags:
-        - Get
         - Alerts
         - Conditions
+        - Get
       summary: New Relic Get Alerts Synthetics Conditions
       description: >+
         ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a
@@ -3646,11 +3642,11 @@ paths:
   /alerts_synthetics_conditions/policies/{policy_id}.json:
     post:
       tags:
-        - Post
         - Alerts
         - Conditions
-        - Policies
         - Identifiers
+        - Policies
+        - Post
       summary: New Relic Post Alerts Synthetics Conditions Policies
       description: "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to create Synthetics conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#synthetics-conditions-create\" target=\"_blank\">creating Synthetic conditions</a>.</p>\n\n<p>All fields are required except for â€œrunbook_urlâ€\x9D, â€œenabledâ€\x9D (defaults to false).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#name\" target=\"_blank\">name</a>: A title for your condition.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#monitor_id\" target=\"_blank\">monitor_id</a>: The GUID of the Synthetics monitor to alert on.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#runbook_url\" target=\"_blank\">runbook_url</a>: Runbook URL to display in notifications (optional).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#enabled\" target=\"_blank\">enabled</a>: The status of your condition (optional).</p>\n"
       parameters:
@@ -3690,11 +3686,11 @@ paths:
   /alerts_synthetics_conditions/{condition_id}.json:
     put:
       tags:
-        - Put
         - Alerts
-        - Conditions
         - Condition
+        - Conditions
         - Identifiers
+        - Put
       summary: New Relic Put Alerts Synthetics Conditions
       description: >
         ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a
@@ -3757,10 +3753,10 @@ paths:
       operationId: putAlertsSyntheticsConditionsConditionId
     delete:
       tags:
-        - Delete
         - Alerts
-        - Conditions
         - Condition
+        - Conditions
+        - Delete
         - Identifiers
       summary: New Relic Delete Alerts Synthetics Conditions
       description: >+
@@ -3808,8 +3804,8 @@ paths:
   /alerts_violations.json:
     get:
       tags:
-        - Get
         - Alerts
+        - Get
         - Violations
       summary: New Relic Get Alerts Violations
       description: >+
@@ -4850,3 +4846,31 @@ components:
       type: apiKey
       name: Api-Key
       in: header
+tags:
+  - name: Alerts
+  - name: Applications
+  - name: Channel
+  - name: Channels
+  - name: Condition
+  - name: Conditions
+  - name: Data
+  - name: Delete
+  - name: Deployments
+  - name: Entity
+  - name: Events
+  - name: External
+  - name: Failure
+  - name: Get
+  - name: Hosts
+  - name: Identifiers
+  - name: Instance
+  - name: Instances
+  - name: Keys
+  - name: Location
+  - name: Metrics
+  - name: Mobile
+  - name: Policies
+  - name: Post
+  - name: Put
+  - name: Transactions
+  - name: Violations
