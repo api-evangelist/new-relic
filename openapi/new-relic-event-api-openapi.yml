@@ -29,7 +29,7 @@ paths:
   /v1/accounts/{accountId}/events:
     post:
       operationId: sendEvents
-      summary: Send custom events
+      summary: New Relic Send custom events
       description: >-
         Sends one or more custom events to the specified New Relic account.
         The request body must be a JSON array of event objects. Each event must

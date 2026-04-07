@@ -29,7 +29,7 @@ paths:
   /trace/v1:
     post:
       operationId: sendTraces
-      summary: Send trace spans
+      summary: New Relic Send trace spans
       description: >-
         Sends distributed trace spans to New Relic. Supports New Relic format
         (Content-Type application/json with Data-Format newrelic) and Zipkin

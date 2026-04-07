@@ -29,7 +29,7 @@ paths:
   /log/v1:
     post:
       operationId: sendLogs
-      summary: Send log data
+      summary: New Relic Send log data
       description: >-
         Sends one or more log records to the New Relic Log API. Accepts a JSON
         array of log data objects, each containing a logs array and optional

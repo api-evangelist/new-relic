@@ -29,7 +29,7 @@ paths:
   /metric/v1:
     post:
       operationId: sendMetrics
-      summary: Send metric data
+      summary: New Relic Send metric data
       description: >-
         Sends an array of metric data points to the New Relic Metric API. The
         request body must be a JSON array of metric data objects, each containing
