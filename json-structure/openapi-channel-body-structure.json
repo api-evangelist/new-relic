@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-channel-body-structure.json",
+  "name": "ChannelBody",
+  "description": "ChannelBody schema",
+  "type": "object",
+  "properties": {
+    "configuration": {
+      "type": "object",
+      "properties": {},
+      "example": {}
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "type": "{'type': 'string', 'example': 'standard'}"
+  }
+}

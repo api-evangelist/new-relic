@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-user-defined-condition-body-schema.json",
+  "title": "UserDefinedConditionBody",
+  "description": "UserDefinedConditionBody schema",
+  "type": "object",
+  "properties": {
+    "metric": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "value_function": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

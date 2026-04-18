@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-violation-links-response-schema.json",
+  "title": "ViolationLinksResponse",
+  "description": "ViolationLinksResponse schema",
+  "type": "object",
+  "properties": {
+    "condition_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "incident_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "policy_id": {
+      "type": "integer",
+      "example": 100
+    }
+  }
+}

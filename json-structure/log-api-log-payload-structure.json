@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/log-api-log-payload-structure.json",
+  "name": "LogPayload",
+  "description": "Array of log data batch objects",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/LogDataObject"
+  }
+}

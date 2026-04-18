@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/trace-api-new-relic-trace-payload-structure.json",
+  "name": "NewRelicTracePayload",
+  "description": "New Relic format trace payload \u2014 array of span batch objects",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/SpanBatch"
+  }
+}

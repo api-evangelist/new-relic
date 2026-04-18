@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-timeslice-response-schema.json",
+  "title": "TimesliceResponse",
+  "description": "TimesliceResponse schema",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T14:30:00Z"
+    },
+    "to": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T14:30:00Z"
+    },
+    "values": {
+      "type": "object",
+      "properties": {},
+      "example": {}
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-metric-response-structure.json",
+  "name": "MetricResponse",
+  "description": "MetricResponse schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TimesliceResponse"
+      },
+      "example": [
+        {
+          "from": "2026-04-18T14:30:00Z",
+          "to": "2026-04-18T14:30:00Z",
+          "values": {}
+        }
+      ]
+    }
+  }
+}

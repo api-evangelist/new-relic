@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "name": "TimesliceResponse",
+  "properties": {
+    "from": {
+      "type": "datetime"
+    },
+    "to": {
+      "type": "datetime"
+    },
+    "values": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

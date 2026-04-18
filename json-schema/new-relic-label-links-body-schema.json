@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "servers": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    },
+    "applications": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LabelLinksBody"
+}

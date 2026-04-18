@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-mobile-application-response-type-structure.json",
+  "name": "MobileApplicationResponseType",
+  "description": "MobileApplicationResponseType schema",
+  "type": "object",
+  "properties": {
+    "crash_summary": {
+      "$ref": "#/components/schemas/CrashSummaryResponse"
+    },
+    "health_status": {
+      "type": "string",
+      "example": "active"
+    },
+    "id": {
+      "type": "int32",
+      "example": 100
+    },
+    "mobile_summary": {
+      "$ref": "#/components/schemas/MobileSummaryDataResponse"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "reporting": {
+      "type": "boolean",
+      "example": true
+    }
+  }
+}

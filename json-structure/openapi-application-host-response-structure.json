@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-application-host-response-structure.json",
+  "name": "ApplicationHostResponse",
+  "description": "ApplicationHostResponse schema",
+  "type": "object",
+  "properties": {
+    "application_hosts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationHostResponseType"
+      },
+      "example": [
+        {
+          "host": "example_string",
+          "application_name": "example_string",
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": "active",
+          "id": 100,
+          "language": 100,
+          "links": {}
+        }
+      ]
+    }
+  }
+}

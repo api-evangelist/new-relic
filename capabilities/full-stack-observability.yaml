@@ -1,0 +1,232 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "New Relic Alerting Configuration"
+  description: "Alert policy and condition management workflow for platform admins configuring and maintaining New Relic alerting rules, notification channels, and policy structures."
+  tags:
+    - New Relic
+    - Alerting
+    - Configuration
+    - Platform Administration
+    - Policies
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+
+capability:
+  consumes:
+    - import: rest-api
+      location: ./shared/rest-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8083
+      namespace: alerting-config-api
+      description: "Unified REST API for New Relic alert policy and condition management."
+      resources:
+        - path: /v1/policies
+          name: policies
+          description: "Manage alert policies"
+          operations:
+            - method: GET
+              name: get-alerts-policies
+              description: "List alert policies"
+              call: "rest-api.get-alerts-policies"
+              with:
+                filter[name]: "rest.filter_name"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-alerts-policy
+              description: "Create a new alert policy"
+              call: "rest-api.create-alerts-policy"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/policies/{policyId}
+          name: policy-detail
+          description: "Update or delete an alert policy"
+          operations:
+            - method: PUT
+              name: update-alerts-policy
+              description: "Update an alert policy"
+              call: "rest-api.update-alerts-policy"
+              with:
+                policy_id: "rest.policyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-alerts-policy
+              description: "Delete an alert policy"
+              call: "rest-api.delete-alerts-policy"
+              with:
+                policy_id: "rest.policyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/conditions
+          name: conditions
+          description: "List alert conditions"
+          operations:
+            - method: GET
+              name: get-alerts-conditions
+              description: "List conditions for a policy"
+              call: "rest-api.get-alerts-conditions"
+              with:
+                policy_id: "rest.policy_id"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/incidents
+          name: incidents
+          description: "List alert incidents"
+          operations:
+            - method: GET
+              name: get-alerts-incidents
+              description: "List alert incidents"
+              call: "rest-api.get-alerts-incidents"
+              with:
+                only_open: "rest.only_open"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/violations
+          name: violations
+          description: "List alert violations"
+          operations:
+            - method: GET
+              name: get-alerts-violations
+              description: "List alert violations"
+              call: "rest-api.get-alerts-violations"
+              with:
+                only_open: "rest.only_open"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/alert-events
+          name: alert-events
+          description: "List alert events"
+          operations:
+            - method: GET
+              name: get-alerts-events
+              description: "List alert events"
+              call: "rest-api.get-alerts-events"
+              with:
+                filter[product]: "rest.filter_product"
+                filter[entity_type]: "rest.filter_entity_type"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9093
+      namespace: alerting-config-mcp
+      transport: http
+      description: "MCP server for AI-assisted New Relic alert policy and condition management."
+      tools:
+        - name: get-alerts-policies
+          description: "List all alert policies"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-alerts-policies"
+          with:
+            filter[name]: "tools.filter_name"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-alerts-policy
+          description: "Create a new alert policy"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "rest-api.create-alerts-policy"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-alerts-policy
+          description: "Update an alert policy"
+          hints:
+            readOnly: false
+            idempotent: true
+            openWorld: true
+          call: "rest-api.update-alerts-policy"
+          with:
+            policy_id: "tools.policy_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-alerts-policy
+          description: "Delete an alert policy"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+            openWorld: true
+          call: "rest-api.delete-alerts-policy"
+          with:
+            policy_id: "tools.policy_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-alerts-conditions
+          description: "List alert conditions for a specific policy"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-alerts-conditions"
+          with:
+            policy_id: "tools.policy_id"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-alerts-incidents
+          description: "List alert incidents"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-alerts-incidents"
+          with:
+            only_open: "tools.only_open"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-alerts-violations
+          description: "List alert violations"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-alerts-violations"
+          with:
+            only_open: "tools.only_open"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-alerts-events
+          description: "List alert events filtered by product or entity type"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-alerts-events"
+          with:
+            filter[product]: "tools.filter_product"
+            filter[entity_type]: "tools.filter_entity_type"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."

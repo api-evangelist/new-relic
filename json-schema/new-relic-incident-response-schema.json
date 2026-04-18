@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "incident": {
+      "type": "object",
+      "properties": {
+        "closed_at": {
+          "type": "integer",
+          "example": 100
+        },
+        "id": {
+          "type": "integer",
+          "example": 100
+        },
+        "incident_preference": {
+          "type": "integer",
+          "example": 100
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "policy_id": {
+              "type": "integer",
+              "example": 100
+            },
+            "violations": {
+              "type": "array",
+              "example": [
+                100
+              ],
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "opened_at": {
+          "type": "integer",
+          "example": 100
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IncidentResponse"
+}

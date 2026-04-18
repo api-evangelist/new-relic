@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "description": "Error response body",
+  "name": "ErrorResponse",
+  "properties": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Error type identifier"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error description"
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "description": "List of individual failure details when partial rejection occurs",
+      "items": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "object",
+      "properties": {
+        "configuration": {
+          "type": "object",
+          "example": {},
+          "properties": {}
+        },
+        "id": {
+          "type": "integer",
+          "example": 100
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "policy_ids": {
+              "type": "array",
+              "example": [
+                100
+              ],
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "name": {
+          "type": "string",
+          "example": "example-resource-01"
+        },
+        "type": {
+          "type": "string",
+          "example": "standard"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ChannelResponse"
+}

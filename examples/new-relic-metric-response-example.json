@@ -1,0 +1,10 @@
+{
+  "name": "example-resource-01",
+  "timeslices": [
+    {
+      "from": "2026-04-18T14:30:00Z",
+      "to": "2026-04-18T14:30:00Z",
+      "values": {}
+    }
+  ]
+}

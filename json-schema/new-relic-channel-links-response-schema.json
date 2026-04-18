@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "policy_ids": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ChannelLinksResponse"
+}

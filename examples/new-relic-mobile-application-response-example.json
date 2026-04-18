@@ -1,0 +1,24 @@
+{
+  "application": {
+    "crash_summary": {
+      "crash_count": 42,
+      "crash_rate": 12.3,
+      "supports_crash_data": true,
+      "unresolved_crash_count": 42
+    },
+    "health_status": "active",
+    "id": 100,
+    "mobile_summary": {
+      "active_users": 100,
+      "calls_per_session": 42.5,
+      "failed_call_rate": 12.3,
+      "interaction_time": 42.5,
+      "launch_count": 42,
+      "remote_error_rate": 12.3,
+      "response_time": 42.5,
+      "throughput": 42.5
+    },
+    "name": "example-resource-01",
+    "reporting": true
+  }
+}

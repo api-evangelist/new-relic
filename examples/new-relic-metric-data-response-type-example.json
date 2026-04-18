@@ -1,0 +1,14 @@
+{
+  "from": "2026-04-18T14:30:00Z",
+  "metrics": [
+    {
+      "name": "example-resource-01",
+      "timeslices": [
+        {}
+      ]
+    }
+  ],
+  "metrics_found": "example_string",
+  "metrics_not_found": "example_string",
+  "to": "2026-04-18T14:30:00Z"
+}

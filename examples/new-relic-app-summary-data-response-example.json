@@ -1,0 +1,7 @@
+{
+  "apdex_score": 87.5,
+  "error_rate": 12.3,
+  "instance_count": 42,
+  "response_time": 42.5,
+  "throughput": 42.5
+}

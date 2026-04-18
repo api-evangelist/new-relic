@@ -1,0 +1,602 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nr": "https://docs.newrelic.com/docs/schemas/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AppSettingsBody": "nr:AppSettingsBody",
+    "appApdexThreshold": {
+      "@id": "nr:app_apdex_threshold",
+      "@type": "xsd:decimal"
+    },
+    "enableRealUserMonitoring": {
+      "@id": "nr:enable_real_user_monitoring",
+      "@type": "xsd:boolean"
+    },
+    "endUserApdexThreshold": {
+      "@id": "nr:end_user_apdex_threshold",
+      "@type": "xsd:decimal"
+    },
+    "AppSettingsResponse": "nr:AppSettingsResponse",
+    "useServerSideConfig": {
+      "@id": "nr:use_server_side_config",
+      "@type": "xsd:boolean"
+    },
+    "AppSummaryDataResponse": "nr:AppSummaryDataResponse",
+    "apdexScore": {
+      "@id": "nr:apdex_score",
+      "@type": "xsd:decimal"
+    },
+    "errorRate": {
+      "@id": "nr:error_rate",
+      "@type": "xsd:decimal"
+    },
+    "instanceCount": {
+      "@id": "nr:instance_count",
+      "@type": "xsd:integer"
+    },
+    "responseTime": {
+      "@id": "nr:response_time",
+      "@type": "xsd:decimal"
+    },
+    "throughput": {
+      "@id": "nr:throughput",
+      "@type": "xsd:decimal"
+    },
+    "AppSummaryResponse": "nr:AppSummaryResponse",
+    "apdexTarget": {
+      "@id": "nr:apdex_target",
+      "@type": "xsd:decimal"
+    },
+    "concurrentInstanceCount": {
+      "@id": "nr:concurrent_instance_count",
+      "@type": "xsd:integer"
+    },
+    "hostCount": {
+      "@id": "nr:host_count",
+      "@type": "xsd:integer"
+    },
+    "Application": "nr:Application",
+    "application": {
+      "@id": "nr:application",
+      "@type": "xsd:string"
+    },
+    "ApplicationBody": "nr:ApplicationBody",
+    "name": "schema:name",
+    "settings": {
+      "@id": "nr:settings",
+      "@type": "xsd:string"
+    },
+    "ApplicationHostLinksResponse": "nr:ApplicationHostLinksResponse",
+    "applicationInstances": {
+      "@id": "nr:application_instances",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "server": {
+      "@id": "nr:server",
+      "@type": "xsd:integer"
+    },
+    "ApplicationHostResponse": "nr:ApplicationHostResponse",
+    "applicationHosts": {
+      "@id": "nr:application_hosts",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "ApplicationHostResponseType": "nr:ApplicationHostResponseType",
+    "host": {
+      "@id": "nr:host",
+      "@type": "xsd:string"
+    },
+    "applicationName": {
+      "@id": "nr:application_name",
+      "@type": "xsd:string"
+    },
+    "applicationSummary": {
+      "@id": "nr:application_summary",
+      "@type": "xsd:string"
+    },
+    "endUserSummary": {
+      "@id": "nr:end_user_summary",
+      "@type": "xsd:string"
+    },
+    "healthStatus": {
+      "@id": "nr:health_status",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "nr:id",
+      "@type": "xsd:integer"
+    },
+    "language": {
+      "@id": "nr:language",
+      "@type": "xsd:integer"
+    },
+    "links": {
+      "@id": "nr:links",
+      "@type": "xsd:string"
+    },
+    "ApplicationInstanceLinksResponse": "nr:ApplicationInstanceLinksResponse",
+    "applicationHost": {
+      "@id": "nr:application_host",
+      "@type": "xsd:integer"
+    },
+    "ApplicationInstanceResponse": "nr:ApplicationInstanceResponse",
+    "applicationInstance": {
+      "@id": "nr:application_instance",
+      "@type": "xsd:string"
+    },
+    "ApplicationInstanceResponseType": "nr:ApplicationInstanceResponseType",
+    "port": {
+      "@id": "nr:port",
+      "@type": "xsd:integer"
+    },
+    "ApplicationLinksResponse": "nr:ApplicationLinksResponse",
+    "servers": {
+      "@id": "nr:servers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "ApplicationResponse": "nr:ApplicationResponse",
+    "ApplicationResponseType": "nr:ApplicationResponseType",
+    "lastReportedAt": {
+      "@id": "nr:last_reported_at",
+      "@type": "xsd:string"
+    },
+    "reporting": {
+      "@id": "nr:reporting",
+      "@type": "xsd:boolean"
+    },
+    "BrowserApplication": "nr:BrowserApplication",
+    "browserApplication": {
+      "@id": "nr:browser_application",
+      "@type": "xsd:string"
+    },
+    "BrowserApplicationBody": "nr:BrowserApplicationBody",
+    "BrowserApplicationResponse": "nr:BrowserApplicationResponse",
+    "BrowserApplicationResponseType": "nr:BrowserApplicationResponseType",
+    "browserMonitoringKey": {
+      "@id": "nr:browser_monitoring_key",
+      "@type": "xsd:string"
+    },
+    "loaderScript": {
+      "@id": "nr:loader_script",
+      "@type": "xsd:string"
+    },
+    "Channel": "nr:Channel",
+    "channel": {
+      "@id": "nr:channel",
+      "@type": "xsd:string"
+    },
+    "ChannelBody": "nr:ChannelBody",
+    "configuration": {
+      "@id": "nr:configuration",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "nr:type",
+      "@type": "xsd:string"
+    },
+    "ChannelLinksResponse": "nr:ChannelLinksResponse",
+    "policyIds": {
+      "@id": "nr:policy_ids",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "ChannelResponse": "nr:ChannelResponse",
+    "ChannelResponseType": "nr:ChannelResponseType",
+    "Condition": "nr:Condition",
+    "condition": {
+      "@id": "nr:condition",
+      "@type": "xsd:string"
+    },
+    "ConditionBody": "nr:ConditionBody",
+    "conditionScope": {
+      "@id": "nr:condition_scope",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "nr:enabled",
+      "@type": "xsd:boolean"
+    },
+    "entities": {
+      "@id": "nr:entities",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "gcMetric": {
+      "@id": "nr:gc_metric",
+      "@type": "xsd:string"
+    },
+    "metric": {
+      "@id": "nr:metric",
+      "@type": "xsd:string"
+    },
+    "terms": {
+      "@id": "nr:terms",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "userDefined": {
+      "@id": "nr:user_defined",
+      "@type": "xsd:string"
+    },
+    "violationCloseTimer": {
+      "@id": "nr:violation_close_timer",
+      "@type": "xsd:integer"
+    },
+    "ConditionResponse": "nr:ConditionResponse",
+    "ConditionResponseType": "nr:ConditionResponseType",
+    "runbookUrl": {
+      "@id": "nr:runbook_url",
+      "@type": "xsd:string"
+    },
+    "CrashSummaryResponse": "nr:CrashSummaryResponse",
+    "crashCount": {
+      "@id": "nr:crash_count",
+      "@type": "xsd:integer"
+    },
+    "crashRate": {
+      "@id": "nr:crash_rate",
+      "@type": "xsd:decimal"
+    },
+    "supportsCrashData": {
+      "@id": "nr:supports_crash_data",
+      "@type": "xsd:boolean"
+    },
+    "unresolvedCrashCount": {
+      "@id": "nr:unresolved_crash_count",
+      "@type": "xsd:integer"
+    },
+    "Deployment": "nr:Deployment",
+    "deployment": {
+      "@id": "nr:deployment",
+      "@type": "xsd:string"
+    },
+    "DeploymentBody": "nr:DeploymentBody",
+    "changelog": {
+      "@id": "nr:changelog",
+      "@type": "xsd:string"
+    },
+    "description": "schema:description",
+    "revision": {
+      "@id": "nr:revision",
+      "@type": "xsd:string"
+    },
+    "user": {
+      "@id": "nr:user",
+      "@type": "xsd:string"
+    },
+    "DeploymentLinksResponse": "nr:DeploymentLinksResponse",
+    "DeploymentResponse": "nr:DeploymentResponse",
+    "DeploymentResponseType": "nr:DeploymentResponseType",
+    "timestamp": {
+      "@id": "nr:timestamp",
+      "@type": "xsd:string"
+    },
+    "EndUserSummaryDataResponse": "nr:EndUserSummaryDataResponse",
+    "EndUserSummaryResponse": "nr:EndUserSummaryResponse",
+    "ExternalServiceCondition": "nr:ExternalServiceCondition",
+    "externalServiceCondition": {
+      "@id": "nr:external_service_condition",
+      "@type": "xsd:string"
+    },
+    "ExternalServiceConditionBody": "nr:ExternalServiceConditionBody",
+    "externalServiceUrl": {
+      "@id": "nr:external_service_url",
+      "@type": "xsd:string"
+    },
+    "ExternalServiceConditionResponse": "nr:ExternalServiceConditionResponse",
+    "ExternalServiceConditionResponseType": "nr:ExternalServiceConditionResponseType",
+    "IJKTermsType": "nr:IJKTermsType",
+    "duration": {
+      "@id": "nr:duration",
+      "@type": "xsd:string"
+    },
+    "operator": {
+      "@id": "nr:operator",
+      "@type": "xsd:string"
+    },
+    "priority": {
+      "@id": "nr:priority",
+      "@type": "xsd:string"
+    },
+    "threshold": {
+      "@id": "nr:threshold",
+      "@type": "xsd:string"
+    },
+    "timeFunction": {
+      "@id": "nr:time_function",
+      "@type": "xsd:string"
+    },
+    "IncidentLinksResponse": "nr:IncidentLinksResponse",
+    "policyId": {
+      "@id": "nr:policy_id",
+      "@type": "xsd:integer"
+    },
+    "violations": {
+      "@id": "nr:violations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "IncidentResponse": "nr:IncidentResponse",
+    "incident": {
+      "@id": "nr:incident",
+      "@type": "xsd:string"
+    },
+    "IncidentResponseType": "nr:IncidentResponseType",
+    "closedAt": {
+      "@id": "nr:closed_at",
+      "@type": "xsd:integer"
+    },
+    "incidentPreference": {
+      "@id": "nr:incident_preference",
+      "@type": "xsd:integer"
+    },
+    "openedAt": {
+      "@id": "nr:opened_at",
+      "@type": "xsd:integer"
+    },
+    "KeyTransactionLinksResponse": "nr:KeyTransactionLinksResponse",
+    "KeyTransactionResponse": "nr:KeyTransactionResponse",
+    "keyTransaction": {
+      "@id": "nr:key_transaction",
+      "@type": "xsd:string"
+    },
+    "KeyTransactionResponseType": "nr:KeyTransactionResponseType",
+    "transactionName": {
+      "@id": "nr:transaction_name",
+      "@type": "xsd:string"
+    },
+    "Label": "nr:Label",
+    "label": {
+      "@id": "nr:label",
+      "@type": "xsd:string"
+    },
+    "LabelBody": "nr:LabelBody",
+    "category": {
+      "@id": "nr:category",
+      "@type": "xsd:string"
+    },
+    "LabelLinksBody": "nr:LabelLinksBody",
+    "applications": {
+      "@id": "nr:applications",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "LabelLinksResponse": "nr:LabelLinksResponse",
+    "LabelOriginsResponse": "nr:LabelOriginsResponse",
+    "agents": {
+      "@id": "nr:agents",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "apm": {
+      "@id": "nr:apm",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "synthetics": {
+      "@id": "nr:synthetics",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "LabelResponse": "nr:LabelResponse",
+    "LabelResponseType": "nr:LabelResponseType",
+    "key": {
+      "@id": "nr:key",
+      "@type": "xsd:string"
+    },
+    "origins": {
+      "@id": "nr:origins",
+      "@type": "xsd:string"
+    },
+    "MetricDataResponse": "nr:MetricDataResponse",
+    "metricData": {
+      "@id": "nr:metric_data",
+      "@type": "xsd:string"
+    },
+    "MetricDataResponseType": "nr:MetricDataResponseType",
+    "from": {
+      "@id": "nr:from",
+      "@type": "xsd:string"
+    },
+    "metrics": {
+      "@id": "nr:metrics",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "metricsFound": {
+      "@id": "nr:metrics_found",
+      "@type": "xsd:string"
+    },
+    "metricsNotFound": {
+      "@id": "nr:metrics_not_found",
+      "@type": "xsd:string"
+    },
+    "to": {
+      "@id": "nr:to",
+      "@type": "xsd:string"
+    },
+    "MetricListResponse": "nr:MetricListResponse",
+    "MetricParserResponse": "nr:MetricParserResponse",
+    "MetricParserResponseType": "nr:MetricParserResponseType",
+    "values": {
+      "@id": "nr:values",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "MetricResponse": "nr:MetricResponse",
+    "timeslices": {
+      "@id": "nr:timeslices",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "MobileApplicationResponse": "nr:MobileApplicationResponse",
+    "MobileApplicationResponseType": "nr:MobileApplicationResponseType",
+    "crashSummary": {
+      "@id": "nr:crash_summary",
+      "@type": "xsd:string"
+    },
+    "mobileSummary": {
+      "@id": "nr:mobile_summary",
+      "@type": "xsd:string"
+    },
+    "MobileSummaryDataResponse": "nr:MobileSummaryDataResponse",
+    "activeUsers": {
+      "@id": "nr:active_users",
+      "@type": "xsd:integer"
+    },
+    "callsPerSession": {
+      "@id": "nr:calls_per_session",
+      "@type": "xsd:decimal"
+    },
+    "failedCallRate": {
+      "@id": "nr:failed_call_rate",
+      "@type": "xsd:decimal"
+    },
+    "interactionTime": {
+      "@id": "nr:interaction_time",
+      "@type": "xsd:decimal"
+    },
+    "launchCount": {
+      "@id": "nr:launch_count",
+      "@type": "xsd:integer"
+    },
+    "remoteErrorRate": {
+      "@id": "nr:remote_error_rate",
+      "@type": "xsd:decimal"
+    },
+    "NrqlBody": "nr:NrqlBody",
+    "query": {
+      "@id": "nr:query",
+      "@type": "xsd:string"
+    },
+    "sinceValue": {
+      "@id": "nr:since_value",
+      "@type": "xsd:string"
+    },
+    "NrqlCondition": "nr:NrqlCondition",
+    "nrqlCondition": {
+      "@id": "nr:nrql_condition",
+      "@type": "xsd:string"
+    },
+    "NrqlConditionBody": "nr:NrqlConditionBody",
+    "expectedGroups": {
+      "@id": "nr:expected_groups",
+      "@type": "xsd:integer"
+    },
+    "ignoreOverlap": {
+      "@id": "nr:ignore_overlap",
+      "@type": "xsd:boolean"
+    },
+    "nrql": {
+      "@id": "nr:nrql",
+      "@type": "xsd:string"
+    },
+    "valueFunction": {
+      "@id": "nr:value_function",
+      "@type": "xsd:string"
+    },
+    "NrqlConditionResponse": "nr:NrqlConditionResponse",
+    "NrqlConditionResponseType": "nr:NrqlConditionResponseType",
+    "NrqlResponse": "nr:NrqlResponse",
+    "Policy": "nr:Policy",
+    "policy": {
+      "@id": "nr:policy",
+      "@type": "xsd:string"
+    },
+    "PolicyBody": "nr:PolicyBody",
+    "PolicyChannelsResponse": "nr:PolicyChannelsResponse",
+    "PolicyChannelsResponseType": "nr:PolicyChannelsResponseType",
+    "channelIds": {
+      "@id": "nr:channel_ids",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "PolicyResponse": "nr:PolicyResponse",
+    "PolicyResponseType": "nr:PolicyResponseType",
+    "createdAt": {
+      "@id": "nr:created_at",
+      "@type": "xsd:integer"
+    },
+    "updatedAt": {
+      "@id": "nr:updated_at",
+      "@type": "xsd:integer"
+    },
+    "RecentEventResponse": "nr:RecentEventResponse",
+    "recentEvent": {
+      "@id": "nr:recent_event",
+      "@type": "xsd:string"
+    },
+    "RecentEventResponseType": "nr:RecentEventResponseType",
+    "entityGroupId": {
+      "@id": "nr:entity_group_id",
+      "@type": "xsd:integer"
+    },
+    "entityId": {
+      "@id": "nr:entity_id",
+      "@type": "xsd:integer"
+    },
+    "entityType": {
+      "@id": "nr:entity_type",
+      "@type": "xsd:string"
+    },
+    "eventType": {
+      "@id": "nr:event_type",
+      "@type": "xsd:string"
+    },
+    "incidentId": {
+      "@id": "nr:incident_id",
+      "@type": "xsd:integer"
+    },
+    "product": {
+      "@id": "nr:product",
+      "@type": "xsd:string"
+    },
+    "SyntheticsCondition": "nr:SyntheticsCondition",
+    "syntheticsCondition": {
+      "@id": "nr:synthetics_condition",
+      "@type": "xsd:string"
+    },
+    "SyntheticsConditionBody": "nr:SyntheticsConditionBody",
+    "monitorId": {
+      "@id": "nr:monitor_id",
+      "@type": "xsd:string"
+    },
+    "SyntheticsConditionResponse": "nr:SyntheticsConditionResponse",
+    "SyntheticsConditionResponseType": "nr:SyntheticsConditionResponseType",
+    "TimesliceResponse": "nr:TimesliceResponse",
+    "UserDefinedConditionBody": "nr:UserDefinedConditionBody",
+    "UserDefinedConditionResponse": "nr:UserDefinedConditionResponse",
+    "ViolationEntityResponse": "nr:ViolationEntityResponse",
+    "groupId": {
+      "@id": "nr:group_id",
+      "@type": "xsd:integer"
+    },
+    "ViolationLinksResponse": "nr:ViolationLinksResponse",
+    "conditionId": {
+      "@id": "nr:condition_id",
+      "@type": "xsd:integer"
+    },
+    "ViolationResponse": "nr:ViolationResponse",
+    "violation": {
+      "@id": "nr:violation",
+      "@type": "xsd:string"
+    },
+    "ViolationResponseType": "nr:ViolationResponseType",
+    "conditionName": {
+      "@id": "nr:condition_name",
+      "@type": "xsd:string"
+    },
+    "entity": {
+      "@id": "nr:entity",
+      "@type": "xsd:string"
+    },
+    "policyName": {
+      "@id": "nr:policy_name",
+      "@type": "xsd:string"
+    }
+  }
+}

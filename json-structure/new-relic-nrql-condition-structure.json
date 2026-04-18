@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "name": "NrqlCondition",
+  "properties": {
+    "nrql_condition": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "expected_groups": {
+          "type": "integer"
+        },
+        "ignore_overlap": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nrql": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "since_value": {
+              "type": "string"
+            }
+          }
+        },
+        "runbook_url": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "string"
+              },
+              "operator": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "string"
+              },
+              "threshold": {
+                "type": "string"
+              },
+              "time_function": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "value_function": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

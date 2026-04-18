@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "description": "Response returned when the payload was accepted",
+  "name": "AcceptedResponse",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the accepted request"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

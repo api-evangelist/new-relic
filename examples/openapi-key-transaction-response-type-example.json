@@ -1,0 +1,11 @@
+{
+  "application_summary": "example_string",
+  "end_user_summary": "example_string",
+  "health_status": "active",
+  "id": 100,
+  "last_reported_at": "2026-04-18T14:30:00Z",
+  "links": "example_string",
+  "name": "example-resource-01",
+  "reporting": true,
+  "transaction_name": "example_string"
+}

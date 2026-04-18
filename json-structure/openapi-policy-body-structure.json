@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-policy-body-structure.json",
+  "name": "PolicyBody",
+  "description": "PolicyBody schema",
+  "type": "object",
+  "properties": {
+    "incident_preference": {
+      "type": "string",
+      "example": "500123"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    }
+  }
+}

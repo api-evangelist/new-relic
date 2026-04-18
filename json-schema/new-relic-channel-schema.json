@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "object",
+      "properties": {
+        "configuration": {
+          "type": "object",
+          "example": {},
+          "properties": {}
+        },
+        "name": {
+          "type": "string",
+          "example": "example-resource-01"
+        },
+        "type": {
+          "type": "string",
+          "example": "standard"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Channel"
+}

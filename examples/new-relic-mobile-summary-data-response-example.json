@@ -1,0 +1,10 @@
+{
+  "active_users": 100,
+  "calls_per_session": 42.5,
+  "failed_call_rate": 12.3,
+  "interaction_time": 42.5,
+  "launch_count": 42,
+  "remote_error_rate": 12.3,
+  "response_time": 42.5,
+  "throughput": 42.5
+}

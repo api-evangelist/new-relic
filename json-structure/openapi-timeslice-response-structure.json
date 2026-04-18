@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-timeslice-response-structure.json",
+  "name": "TimesliceResponse",
+  "description": "TimesliceResponse schema",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "datetime",
+      "example": "2026-04-18T14:30:00Z"
+    },
+    "to": {
+      "type": "datetime",
+      "example": "2026-04-18T14:30:00Z"
+    },
+    "values": {
+      "type": "object",
+      "properties": {},
+      "example": {}
+    }
+  }
+}

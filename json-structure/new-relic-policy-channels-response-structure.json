@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "name": "PolicyChannelsResponse",
+  "properties": {
+    "policy": {
+      "type": "object",
+      "properties": {
+        "channel_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "id": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

@@ -1,0 +1,94 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "MetricDataObject": {
+      "@id": "ns:MetricDataObject",
+      "@context": {
+        "common": {
+          "@id": "ns:common",
+          "@type": "xsd:string"
+        },
+        "metrics": "ns:metrics"
+      }
+    },
+    "CommonBlock": {
+      "@id": "ns:CommonBlock",
+      "@context": {
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        },
+        "interval.ms": {
+          "@id": "ns:interval.ms",
+          "@type": "xsd:integer"
+        },
+        "attributes": "ns:attributes"
+      }
+    },
+    "MetricDataPoint": {
+      "@id": "ns:MetricDataPoint",
+      "@context": {
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        },
+        "value": {
+          "@id": "ns:value",
+          "@type": "xsd:string"
+        },
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        },
+        "interval.ms": {
+          "@id": "ns:interval.ms",
+          "@type": "xsd:integer"
+        },
+        "attributes": "ns:attributes"
+      }
+    },
+    "SummaryValue": {
+      "@id": "ns:SummaryValue",
+      "@context": {
+        "count": {
+          "@id": "ns:count",
+          "@type": "xsd:decimal"
+        },
+        "sum": {
+          "@id": "ns:sum",
+          "@type": "xsd:decimal"
+        },
+        "min": {
+          "@id": "ns:min",
+          "@type": "xsd:decimal"
+        },
+        "max": {
+          "@id": "ns:max",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+    "AcceptedResponse": {
+      "@id": "ns:AcceptedResponse",
+      "@context": {
+        "requestId": {
+          "@id": "ns:requestId",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "@id": "ns:ErrorResponse",
+      "@context": {
+        "error": "ns:error",
+        "failures": "ns:failures"
+      }
+    }
+  }
+}

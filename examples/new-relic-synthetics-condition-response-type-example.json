@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "id": 100,
+  "monitor_id": "500123",
+  "name": "example-resource-01",
+  "runbook_url": "https://portal.example.com/path/abc123"
+}

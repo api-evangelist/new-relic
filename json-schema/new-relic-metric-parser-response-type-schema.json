@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "values": {
+      "type": "array",
+      "example": [
+        "example_string"
+      ],
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MetricParserResponseType"
+}

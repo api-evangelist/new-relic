@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-channel-schema.json",
+  "title": "Channel",
+  "description": "Channel schema",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "$ref": "#/components/schemas/ChannelBody"
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "type": "array",
+  "description": "Zipkin JSON v2 format trace payload",
+  "items": {
+    "type": "object",
+    "description": "A single span in Zipkin JSON v2 format",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Span ID (16 hex characters)",
+        "example": "500123"
+      },
+      "traceId": {
+        "type": "string",
+        "description": "Trace ID (32 hex characters)",
+        "example": "500123"
+      },
+      "parentId": {
+        "type": "string",
+        "description": "Parent span ID",
+        "example": "500123"
+      },
+      "name": {
+        "type": "string",
+        "description": "Span name / operation name",
+        "example": "example-resource-01"
+      },
+      "timestamp": {
+        "type": "integer",
+        "description": "Span start time in microseconds since epoch",
+        "example": 1718153645993
+      },
+      "duration": {
+        "type": "integer",
+        "description": "Span duration in microseconds",
+        "example": 100
+      },
+      "kind": {
+        "type": "string",
+        "example": "CLIENT",
+        "enum": [
+          "CLIENT",
+          "SERVER",
+          "PRODUCER",
+          "CONSUMER"
+        ]
+      },
+      "localEndpoint": {
+        "type": "object",
+        "example": {
+          "serviceName": "myService",
+          "ipv4": "example_string",
+          "port": 8080
+        },
+        "properties": {
+          "serviceName": {
+            "type": "string"
+          },
+          "ipv4": {
+            "type": "string"
+          },
+          "port": {
+            "type": "integer"
+          }
+        }
+      },
+      "remoteEndpoint": {
+        "type": "object",
+        "example": {
+          "serviceName": "myService",
+          "ipv4": "example_string",
+          "port": 8080
+        },
+        "properties": {
+          "serviceName": {
+            "type": "string"
+          },
+          "ipv4": {
+            "type": "string"
+          },
+          "port": {
+            "type": "integer"
+          }
+        }
+      },
+      "tags": {
+        "type": "object",
+        "example": {
+          "customAttribute": "example_value"
+        }
+      },
+      "annotations": {
+        "type": "array",
+        "example": [
+          {
+            "timestamp": 1718153645993,
+            "value": "example_string"
+          }
+        ],
+        "items": {
+          "type": "object",
+          "properties": {
+            "timestamp": {
+              "type": "integer"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "id",
+      "traceId"
+    ]
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ZipkinTracePayload"
+}

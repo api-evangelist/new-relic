@@ -1,0 +1,7 @@
+{
+  "duration": "example_string",
+  "operator": "example_string",
+  "priority": "example_string",
+  "threshold": "example_string",
+  "time_function": "example_string"
+}

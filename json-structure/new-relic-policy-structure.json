@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "name": "Policy",
+  "properties": {
+    "policy": {
+      "type": "object",
+      "properties": {
+        "incident_preference": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

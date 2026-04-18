@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "servers": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    },
+    "application_hosts": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    },
+    "application_instances": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplicationLinksResponse"
+}

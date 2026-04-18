@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-deployment-response-type-structure.json",
+  "name": "DeploymentResponseType",
+  "description": "DeploymentResponseType schema",
+  "type": "object",
+  "properties": {
+    "changelog": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "description": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "id": {
+      "type": "int32",
+      "example": 100
+    },
+    "links": {
+      "$ref": "#/components/schemas/DeploymentLinksResponse"
+    },
+    "revision": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "timestamp": {
+      "type": "datetime",
+      "example": "2026-04-18T14:30:00Z"
+    },
+    "user": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

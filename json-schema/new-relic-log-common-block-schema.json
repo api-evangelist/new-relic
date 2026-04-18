@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "description": "Shared attributes applied to all log records in this batch",
+  "properties": {
+    "timestamp": {
+      "type": "integer",
+      "description": "Default Unix timestamp in milliseconds for all logs in the batch",
+      "example": 1718153645993
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Key-value attributes applied to all logs in this batch",
+      "example": {
+        "customAttribute": "example_value"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CommonBlock"
+}

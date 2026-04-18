@@ -1,0 +1,9 @@
+{
+  "policy": {
+    "created_at": 100,
+    "id": 100,
+    "incident_preference": "500123",
+    "name": "example-resource-01",
+    "updated_at": 100
+  }
+}

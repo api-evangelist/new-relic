@@ -1,0 +1,8 @@
+{
+  "crash_summary": "example_string",
+  "health_status": "active",
+  "id": 100,
+  "mobile_summary": "example_string",
+  "name": "example-resource-01",
+  "reporting": true
+}

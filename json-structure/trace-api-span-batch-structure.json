@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/trace-api-span-batch-structure.json",
+  "name": "SpanBatch",
+  "description": "A batch of spans with optional shared attributes",
+  "type": "object",
+  "properties": {
+    "common": {
+      "$ref": "#/components/schemas/CommonBlock"
+    },
+    "spans": {
+      "type": "array",
+      "description": "Array of individual span objects",
+      "items": {
+        "$ref": "#/components/schemas/Span"
+      },
+      "example": [
+        {
+          "id": "500123",
+          "trace.id": "500123",
+          "timestamp": 1718153645993,
+          "attributes": {
+            "name": {},
+            "parent.id": {},
+            "duration.ms": {},
+            "service.name": {},
+            "error": {},
+            "db.statement": {},
+            "http.url": {},
+            "http.method": {},
+            "http.statusCode": {}
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "spans"
+  ]
+}

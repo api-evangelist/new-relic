@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-nrql-condition-body-schema.json",
+  "title": "NrqlConditionBody",
+  "description": "NrqlConditionBody schema",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "expected_groups": {
+      "type": "integer",
+      "example": 100
+    },
+    "ignore_overlap": {
+      "type": "boolean",
+      "example": true
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "nrql": {
+      "$ref": "#/components/schemas/NrqlBody"
+    },
+    "runbook_url": {
+      "type": "string",
+      "example": "https://portal.example.com/path/abc123"
+    },
+    "terms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/IJKTermsType"
+      },
+      "example": [
+        {
+          "duration": "example_string",
+          "operator": "example_string",
+          "priority": "example_string",
+          "threshold": "example_string",
+          "time_function": "example_string"
+        }
+      ]
+    },
+    "value_function": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

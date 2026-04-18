@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-label-origins-response-schema.json",
+  "title": "LabelOriginsResponse",
+  "description": "LabelOriginsResponse schema",
+  "type": "object",
+  "properties": {
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    },
+    "apm": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    },
+    "synthetics": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    }
+  }
+}

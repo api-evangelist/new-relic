@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "synthetics_condition": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "example": true
+        },
+        "id": {
+          "type": "integer",
+          "example": 100
+        },
+        "monitor_id": {
+          "type": "string",
+          "example": "500123"
+        },
+        "name": {
+          "type": "string",
+          "example": "example-resource-01"
+        },
+        "runbook_url": {
+          "type": "string",
+          "example": "https://portal.example.com/path/abc123"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SyntheticsConditionResponse"
+}

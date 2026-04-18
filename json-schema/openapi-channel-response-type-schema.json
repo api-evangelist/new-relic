@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-channel-response-type-schema.json",
+  "title": "ChannelResponseType",
+  "description": "ChannelResponseType schema",
+  "type": "object",
+  "properties": {
+    "configuration": {
+      "type": "object",
+      "properties": {},
+      "example": {}
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "links": {
+      "$ref": "#/components/schemas/ChannelLinksResponse"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "type": {
+      "type": "string",
+      "example": "standard"
+    }
+  }
+}

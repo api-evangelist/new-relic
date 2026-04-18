@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "description": "Error response",
+  "name": "ErrorResponse",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

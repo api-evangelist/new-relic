@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "description": "A single distributed trace span in New Relic format",
+  "name": "Span",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this span (16 hex characters)"
+    },
+    "trace.id": {
+      "type": "string",
+      "description": "Trace ID that groups all spans in a distributed trace"
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix epoch timestamp in milliseconds when the span started"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Span attributes",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the operation represented by this span"
+        },
+        "parent.id": {
+          "type": "string",
+          "description": "The span ID of the parent span"
+        },
+        "duration.ms": {
+          "type": "number",
+          "description": "Duration of the span in milliseconds"
+        },
+        "service.name": {
+          "type": "string",
+          "description": "Name of the service that generated this span"
+        },
+        "error": {
+          "type": "boolean",
+          "description": "Whether the span represents an error"
+        },
+        "db.statement": {
+          "type": "string",
+          "description": "Database query statement if applicable"
+        },
+        "http.url": {
+          "type": "string",
+          "description": "HTTP URL for outbound calls"
+        },
+        "http.method": {
+          "type": "string",
+          "description": "HTTP method for outbound calls"
+        },
+        "http.statusCode": {
+          "type": "integer",
+          "description": "HTTP response status code"
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "trace.id"
+  ],
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

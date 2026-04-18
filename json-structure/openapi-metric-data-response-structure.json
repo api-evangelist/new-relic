@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-metric-data-response-structure.json",
+  "name": "MetricDataResponse",
+  "description": "MetricDataResponse schema",
+  "type": "object",
+  "properties": {
+    "metric_data": {
+      "$ref": "#/components/schemas/MetricDataResponseType"
+    }
+  }
+}

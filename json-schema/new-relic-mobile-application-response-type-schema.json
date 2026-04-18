@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "properties": {
+    "crash_summary": {
+      "type": "object",
+      "properties": {
+        "crash_count": {
+          "type": "integer",
+          "example": 42
+        },
+        "crash_rate": {
+          "type": "number",
+          "format": "float",
+          "example": 12.3
+        },
+        "supports_crash_data": {
+          "type": "boolean",
+          "example": true
+        },
+        "unresolved_crash_count": {
+          "type": "integer",
+          "example": 42
+        }
+      }
+    },
+    "health_status": {
+      "type": "string",
+      "example": "active"
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "mobile_summary": {
+      "type": "object",
+      "properties": {
+        "active_users": {
+          "type": "integer",
+          "example": 100
+        },
+        "calls_per_session": {
+          "type": "number",
+          "format": "float",
+          "example": 42.5
+        },
+        "failed_call_rate": {
+          "type": "number",
+          "format": "float",
+          "example": 12.3
+        },
+        "interaction_time": {
+          "type": "number",
+          "format": "float",
+          "example": 42.5
+        },
+        "launch_count": {
+          "type": "integer",
+          "example": 42
+        },
+        "remote_error_rate": {
+          "type": "number",
+          "format": "float",
+          "example": 12.3
+        },
+        "response_time": {
+          "type": "number",
+          "format": "float",
+          "example": 42.5
+        },
+        "throughput": {
+          "type": "number",
+          "format": "float",
+          "example": 42.5
+        }
+      }
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "reporting": {
+      "type": "boolean",
+      "example": true
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MobileApplicationResponseType"
+}

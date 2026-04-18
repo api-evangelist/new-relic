@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-nrql-body-schema.json",
+  "title": "NrqlBody",
+  "description": "NrqlBody schema",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "since_value": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

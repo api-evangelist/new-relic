@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "description": "Shared attributes applied to all spans in this batch",
+  "name": "CommonBlock",
+  "properties": {
+    "attributes": {
+      "type": "object",
+      "description": "Key-value attributes applied to every span in the batch"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

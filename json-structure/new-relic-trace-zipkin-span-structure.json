@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "description": "A single span in Zipkin JSON v2 format",
+  "name": "ZipkinSpan",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Span ID (16 hex characters)"
+    },
+    "traceId": {
+      "type": "string",
+      "description": "Trace ID (32 hex characters)"
+    },
+    "parentId": {
+      "type": "string",
+      "description": "Parent span ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "Span name / operation name"
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Span start time in microseconds since epoch"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Span duration in microseconds"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "CLIENT",
+        "SERVER",
+        "PRODUCER",
+        "CONSUMER"
+      ]
+    },
+    "localEndpoint": {
+      "type": "object",
+      "properties": {
+        "serviceName": {
+          "type": "string"
+        },
+        "ipv4": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        }
+      }
+    },
+    "remoteEndpoint": {
+      "type": "object",
+      "properties": {
+        "serviceName": {
+          "type": "string"
+        },
+        "ipv4": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        }
+      }
+    },
+    "tags": {
+      "type": "object"
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "traceId"
+  ],
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

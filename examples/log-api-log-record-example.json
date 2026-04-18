@@ -1,0 +1,9 @@
+{
+  "timestamp": 1718153645993,
+  "message": "Operation completed successfully",
+  "level": "FATAL",
+  "logtype": "standard",
+  "attributes": {
+    "customAttribute": "example_value"
+  }
+}

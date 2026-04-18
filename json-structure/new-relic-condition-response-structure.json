@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "name": "ConditionResponse",
+  "properties": {
+    "condition": {
+      "type": "object",
+      "properties": {
+        "condition_scope": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "gc_metric": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "metric": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "runbook_url": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "string"
+              },
+              "operator": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "string"
+              },
+              "threshold": {
+                "type": "string"
+              },
+              "time_function": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "type": {
+          "type": "string"
+        },
+        "user_defined": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string"
+            },
+            "value_function": {
+              "type": "string"
+            }
+          }
+        },
+        "violation_close_timer": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

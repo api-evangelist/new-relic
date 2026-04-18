@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "description": "Response when the payload was accepted",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the accepted ingestion request",
+      "example": "500123"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AcceptedResponse"
+}

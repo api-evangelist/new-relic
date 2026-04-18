@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-label-links-body-structure.json",
+  "name": "LabelLinksBody",
+  "description": "LabelLinksBody schema",
+  "type": "object",
+  "properties": {
+    "servers": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      },
+      "example": [
+        100
+      ]
+    },
+    "applications": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      },
+      "example": [
+        100
+      ]
+    }
+  }
+}

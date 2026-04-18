@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-label-response-schema.json",
+  "title": "LabelResponse",
+  "description": "LabelResponse schema",
+  "type": "object",
+  "properties": {
+    "label": {
+      "$ref": "#/components/schemas/LabelResponseType"
+    }
+  }
+}

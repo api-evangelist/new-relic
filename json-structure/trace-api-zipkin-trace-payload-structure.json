@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/trace-api-zipkin-trace-payload-structure.json",
+  "name": "ZipkinTracePayload",
+  "description": "Zipkin JSON v2 format trace payload",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/ZipkinSpan"
+  }
+}

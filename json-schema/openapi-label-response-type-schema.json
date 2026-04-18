@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-label-response-type-schema.json",
+  "title": "LabelResponseType",
+  "description": "LabelResponseType schema",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "key": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "links": {
+      "$ref": "#/components/schemas/LabelLinksResponse"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "origins": {
+      "$ref": "#/components/schemas/LabelOriginsResponse"
+    }
+  }
+}

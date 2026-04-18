@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "agents": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    },
+    "apm": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    },
+    "synthetics": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LabelOriginsResponse"
+}

@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "name": "IncidentResponseType",
+  "properties": {
+    "closed_at": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "incident_preference": {
+      "type": "integer"
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "integer"
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "opened_at": {
+      "type": "integer"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

@@ -1,0 +1,29 @@
+{
+  "key_transaction": {
+    "application_summary": {
+      "apdex_score": 87.5,
+      "apdex_target": 42.5,
+      "concurrent_instance_count": 42,
+      "error_rate": 12.3,
+      "host_count": 42,
+      "instance_count": 42,
+      "response_time": 42.5,
+      "throughput": 42.5
+    },
+    "end_user_summary": {
+      "apdex_score": 87.5,
+      "apdex_target": 42.5,
+      "response_time": 42.5,
+      "throughput": 42.5
+    },
+    "health_status": "active",
+    "id": 100,
+    "last_reported_at": "2026-04-18T14:30:00Z",
+    "links": {
+      "application": 100
+    },
+    "name": "example-resource-01",
+    "reporting": true,
+    "transaction_name": "example_string"
+  }
+}

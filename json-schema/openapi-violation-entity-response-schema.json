@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-violation-entity-response-schema.json",
+  "title": "ViolationEntityResponse",
+  "description": "ViolationEntityResponse schema",
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "product": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "type": {
+      "type": "string",
+      "example": "standard"
+    }
+  }
+}

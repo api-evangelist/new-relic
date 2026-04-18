@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-policy-channels-response-type-schema.json",
+  "title": "PolicyChannelsResponseType",
+  "description": "PolicyChannelsResponseType schema",
+  "type": "object",
+  "properties": {
+    "channel_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    }
+  }
+}

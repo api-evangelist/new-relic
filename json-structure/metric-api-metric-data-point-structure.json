@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/metric-api-metric-data-point-structure.json",
+  "name": "MetricDataPoint",
+  "description": "A single metric data point",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The metric name (e.g., cpu.usage.percent)",
+      "maxLength": 255,
+      "example": "example-resource-01"
+    },
+    "type": "{'type': 'string', 'description': 'The metric type', 'enum': ['gauge', 'count', 'summary'], 'example': 'gauge'}",
+    "value": {
+      "description": "The metric value. For gauge and count, a number. For summary, an object with count, sum, min, and max fields.",
+      "oneOf": [
+        {
+          "type": "double"
+        },
+        {
+          "$ref": "#/components/schemas/SummaryValue"
+        }
+      ],
+      "example": 42.5
+    },
+    "timestamp": {
+      "type": "int32",
+      "description": "Unix timestamp in milliseconds. Overrides the common timestamp for this metric.",
+      "example": 1718153645993
+    },
+    "interval.ms": {
+      "type": "int32",
+      "description": "Measurement interval in milliseconds. Required for count and summary types.",
+      "example": 100
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Additional key-value attributes for this metric point",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "double"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "example": {
+        "customAttribute": "example_value"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "value"
+  ]
+}

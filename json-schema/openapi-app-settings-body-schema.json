@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-app-settings-body-schema.json",
+  "title": "AppSettingsBody",
+  "description": "AppSettingsBody schema",
+  "type": "object",
+  "properties": {
+    "app_apdex_threshold": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "enable_real_user_monitoring": {
+      "type": "boolean",
+      "example": true
+    },
+    "end_user_apdex_threshold": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    }
+  }
+}

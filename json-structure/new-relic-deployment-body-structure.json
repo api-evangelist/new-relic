@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "name": "DeploymentBody",
+  "properties": {
+    "changelog": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "string"
+    },
+    "user": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/metric-api-metric-payload-structure.json",
+  "name": "MetricPayload",
+  "description": "An array of metric data objects to be ingested",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/MetricDataObject"
+  }
+}

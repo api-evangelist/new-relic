@@ -12,24 +12,25 @@ info:
     name: New Relic Support
     url: https://support.newrelic.com/
   termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
 externalDocs:
   description: New Relic Trace API Documentation
   url: https://docs.newrelic.com/docs/distributed-tracing/trace-api/introduction-trace-api/
 servers:
-  - url: https://trace-api.newrelic.com
-    description: US Production
-  - url: https://trace-api.eu.newrelic.com
-    description: EU Production
+- url: https://trace-api.newrelic.com
+  description: US Production
+- url: https://trace-api.eu.newrelic.com
+  description: EU Production
 tags:
-  - name: Traces
-    description: Distributed trace span ingestion
+- name: Traces
+  description: Distributed trace span ingestion
 security:
-  - apiKey: []
+- apiKey: []
 paths:
   /trace/v1:
     post:
       operationId: sendTraces
-      summary: New Relic Send trace spans
+      summary: New Relic Send Trace Spans
       description: >-
         Sends distributed trace spans to New Relic. Supports New Relic format
         (Content-Type application/json with Data-Format newrelic) and Zipkin
@@ -37,71 +38,75 @@ paths:
         A single request supports up to 10,000 spans and must not exceed
         1 MB compressed.
       tags:
-        - Traces
+      - Traces
       parameters:
-        - name: Data-Format
-          in: header
-          required: true
-          description: The format of the trace data in the request body
-          schema:
-            type: string
-            enum:
-              - newrelic
-              - zipkin
-        - name: Data-Format-Version
-          in: header
-          description: Version of the data format. Use 1 for newrelic format.
-          schema:
-            type: string
-            enum:
-              - '1'
-        - name: Content-Encoding
-          in: header
-          description: Use gzip for compressed payloads
-          schema:
-            type: string
-            enum:
-              - gzip
-        - name: Content-Type
-          in: header
-          required: true
-          schema:
-            type: string
-            enum:
-              - application/json
+      - name: Data-Format
+        in: header
+        required: true
+        description: The format of the trace data in the request body
+        schema:
+          type: string
+          enum:
+          - newrelic
+          - zipkin
+        example: newrelic
+      - name: Data-Format-Version
+        in: header
+        description: Version of the data format. Use 1 for newrelic format.
+        schema:
+          type: string
+          enum:
+          - '1'
+        example: '1'
+      - name: Content-Encoding
+        in: header
+        description: Use gzip for compressed payloads
+        schema:
+          type: string
+          enum:
+          - gzip
+        example: gzip
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/json
+        example: application/json
       requestBody:
         required: true
         content:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/NewRelicTracePayload'
-                - $ref: '#/components/schemas/ZipkinTracePayload'
+              - $ref: '#/components/schemas/NewRelicTracePayload'
+              - $ref: '#/components/schemas/ZipkinTracePayload'
             examples:
               newrelic:
                 summary: New Relic format
                 value:
-                  - common:
-                      attributes:
-                        service.name: myService
-                        host: web01
-                    spans:
-                      - id: 5f5bf6860e3b5208
-                        trace.id: aefb4b81c6eedc5e
-                        attributes:
-                          name: /api/orders
-                          duration.ms: 12
-                          db.statement: SELECT * FROM orders
+                - common:
+                    attributes:
+                      service.name: myService
+                      host: web01
+                  spans:
+                  - id: 5f5bf6860e3b5208
+                    trace.id: aefb4b81c6eedc5e
+                    attributes:
+                      name: /api/orders
+                      duration.ms: 12
+                      db.statement: SELECT * FROM orders
               zipkin:
                 summary: Zipkin v2 format
                 value:
-                  - id: 5f5bf6860e3b5208
-                    traceId: aefb4b81c6eedc5e
-                    name: /api/orders
-                    timestamp: 1645564509000000
-                    duration: 12000
-                    localEndpoint:
-                      serviceName: myService
+                - id: 5f5bf6860e3b5208
+                  traceId: aefb4b81c6eedc5e
+                  name: /api/orders
+                  timestamp: 1645564509000000
+                  duration: 12000
+                  localEndpoint:
+                    serviceName: myService
       responses:
         '202':
           description: Accepted. Trace data was received and queued for processing.
@@ -109,30 +114,69 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AcceptedResponse'
+              examples:
+                Sendtraces202Example:
+                  summary: Default sendTraces 202 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
         '400':
           description: Bad request. Payload is malformed or exceeds limits.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendtraces400Example:
+                  summary: Default sendTraces 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: &id001
+                      type: standard
+                      message: Operation completed successfully
         '403':
           description: Forbidden. The API key is invalid or lacks insert permissions.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendtraces403Example:
+                  summary: Default sendTraces 403 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: *id001
         '413':
           description: Payload too large.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendtraces413Example:
+                  summary: Default sendTraces 413 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: *id001
         '429':
           description: Too many requests. Rate limit exceeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendtraces429Example:
+                  summary: Default sendTraces 429 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: *id001
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     apiKey:
@@ -150,7 +194,7 @@ components:
       type: object
       description: A batch of spans with optional shared attributes
       required:
-        - spans
+      - spans
       properties:
         common:
           $ref: '#/components/schemas/CommonBlock'
@@ -159,6 +203,20 @@ components:
           description: Array of individual span objects
           items:
             $ref: '#/components/schemas/Span'
+          example:
+          - id: '500123'
+            trace.id: '500123'
+            timestamp: 1718153645993
+            attributes:
+              name: {}
+              parent.id: {}
+              duration.ms: {}
+              service.name: {}
+              error: {}
+              db.statement: {}
+              http.url: {}
+              http.method: {}
+              http.statusCode: {}
     CommonBlock:
       type: object
       description: Shared attributes applied to all spans in this batch
@@ -168,25 +226,30 @@ components:
           description: Key-value attributes applied to every span in the batch
           additionalProperties:
             oneOf:
-              - type: string
-              - type: number
-              - type: boolean
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            customAttribute: example_value
     Span:
       type: object
       description: A single distributed trace span in New Relic format
       required:
-        - id
-        - trace.id
+      - id
+      - trace.id
       properties:
         id:
           type: string
           description: Unique identifier for this span (16 hex characters)
+          example: '500123'
         trace.id:
           type: string
           description: Trace ID that groups all spans in a distributed trace
+          example: '500123'
         timestamp:
           type: integer
           description: Unix epoch timestamp in milliseconds when the span started
+          example: 1718153645993
         attributes:
           type: object
           description: Span attributes
@@ -220,9 +283,19 @@ components:
               description: HTTP response status code
           additionalProperties:
             oneOf:
-              - type: string
-              - type: number
-              - type: boolean
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            name: example-resource-01
+            parent.id: '500123'
+            duration.ms: 0.42
+            service.name: myService
+            error: true
+            db.statement: example_string
+            http.url: https://portal.example.com/path/abc123
+            http.method: example_string
+            http.statusCode: 200
     ZipkinTracePayload:
       type: array
       description: Zipkin JSON v2 format trace payload
@@ -232,34 +305,41 @@ components:
       type: object
       description: A single span in Zipkin JSON v2 format
       required:
-        - id
-        - traceId
+      - id
+      - traceId
       properties:
         id:
           type: string
           description: Span ID (16 hex characters)
+          example: '500123'
         traceId:
           type: string
           description: Trace ID (32 hex characters)
+          example: '500123'
         parentId:
           type: string
           description: Parent span ID
+          example: '500123'
         name:
           type: string
           description: Span name / operation name
+          example: example-resource-01
         timestamp:
           type: integer
           description: Span start time in microseconds since epoch
+          example: 1718153645993
         duration:
           type: integer
           description: Span duration in microseconds
+          example: 100
         kind:
           type: string
           enum:
-            - CLIENT
-            - SERVER
-            - PRODUCER
-            - CONSUMER
+          - CLIENT
+          - SERVER
+          - PRODUCER
+          - CONSUMER
+          example: CLIENT
         localEndpoint:
           type: object
           properties:
@@ -269,6 +349,10 @@ components:
               type: string
             port:
               type: integer
+          example:
+            serviceName: myService
+            ipv4: example_string
+            port: 8080
         remoteEndpoint:
           type: object
           properties:
@@ -278,10 +362,16 @@ components:
               type: string
             port:
               type: integer
+          example:
+            serviceName: myService
+            ipv4: example_string
+            port: 8080
         tags:
           type: object
           additionalProperties:
             type: string
+          example:
+            customAttribute: example_value
         annotations:
           type: array
           items:
@@ -291,16 +381,21 @@ components:
                 type: integer
               value:
                 type: string
+          example:
+          - timestamp: 1718153645993
+            value: example_string
     AcceptedResponse:
       type: object
       properties:
         requestId:
           type: string
+          example: '500123'
     ErrorResponse:
       type: object
       properties:
         requestId:
           type: string
+          example: '500123'
         error:
           type: object
           properties:
@@ -308,3 +403,4 @@ components:
               type: string
             message:
               type: string
+          example: *id001

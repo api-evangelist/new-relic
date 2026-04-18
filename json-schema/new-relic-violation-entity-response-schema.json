@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "product": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "type": {
+      "type": "string",
+      "example": "standard"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ViolationEntityResponse"
+}

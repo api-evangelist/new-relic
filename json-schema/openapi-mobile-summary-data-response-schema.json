@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-mobile-summary-data-response-schema.json",
+  "title": "MobileSummaryDataResponse",
+  "description": "MobileSummaryDataResponse schema",
+  "type": "object",
+  "properties": {
+    "active_users": {
+      "type": "integer",
+      "example": 100
+    },
+    "calls_per_session": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "failed_call_rate": {
+      "type": "number",
+      "format": "float",
+      "example": 12.3
+    },
+    "interaction_time": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "launch_count": {
+      "type": "integer",
+      "example": 42
+    },
+    "remote_error_rate": {
+      "type": "number",
+      "format": "float",
+      "example": 12.3
+    },
+    "response_time": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "throughput": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    }
+  }
+}

@@ -12,24 +12,25 @@ info:
     name: New Relic Support
     url: https://support.newrelic.com/
   termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
 externalDocs:
   description: New Relic Event API Documentation
   url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/
 servers:
-  - url: https://insights-collector.newrelic.com
-    description: US Production
-  - url: https://insights-collector.eu01.nr-data.net
-    description: EU Production
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
 tags:
-  - name: Events
-    description: Custom event ingestion endpoints
+- name: Events
+  description: Custom event ingestion endpoints
 security:
-  - apiKey: []
+- apiKey: []
 paths:
   /v1/accounts/{accountId}/events:
     post:
       operationId: sendEvents
-      summary: New Relic Send custom events
+      summary: New Relic Send Custom Events
       description: >-
         Sends one or more custom events to the specified New Relic account.
         The request body must be a JSON array of event objects. Each event must
@@ -38,28 +39,31 @@ paths:
         A single request may contain up to 2000 events and must not exceed 1 MB
         uncompressed.
       tags:
-        - Events
+      - Events
       parameters:
-        - name: accountId
-          in: path
-          required: true
-          description: The New Relic account ID to ingest events into
-          schema:
-            type: integer
-        - name: Content-Encoding
-          in: header
-          description: Use gzip for compressed payloads
-          schema:
-            type: string
-            enum:
-              - gzip
-        - name: Content-Type
-          in: header
-          required: true
-          schema:
-            type: string
-            enum:
-              - application/json
+      - name: accountId
+        in: path
+        required: true
+        description: The New Relic account ID to ingest events into
+        schema:
+          type: integer
+        example: 42
+      - name: Content-Encoding
+        in: header
+        description: Use gzip for compressed payloads
+        schema:
+          type: string
+          enum:
+          - gzip
+        example: gzip
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/json
+        example: application/json
       requestBody:
         required: true
         content:
@@ -67,15 +71,15 @@ paths:
             schema:
               $ref: '#/components/schemas/EventPayload'
             example:
-              - eventType: PurchaseEvent
-                account: 3
-                amount: 259.54
-                success: true
-                userEmail: test@example.com
-              - eventType: PageView
-                uri: /some/page
-                referrer: https://example.com
-                duration: 0.42
+            - eventType: PurchaseEvent
+              account: 3
+              amount: 259.54
+              success: true
+              userEmail: test@example.com
+            - eventType: PageView
+              uri: /some/page
+              referrer: https://example.com
+              duration: 0.42
       responses:
         '200':
           description: Success. All events were accepted.
@@ -83,18 +87,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessResponse'
+              examples:
+                Sendevents200Example:
+                  summary: Default sendEvents 200 response
+                  x-microcks-default: true
+                  value:
+                    success: true
+                    uuid: '500123'
         '400':
           description: Bad request. The payload is malformed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendevents400Example:
+                  summary: Default sendEvents 400 response
+                  x-microcks-default: true
+                  value:
+                    success: false
+                    error: example_string
+                    errors: &id001
+                    - error: example_string
+                      timestamp: example_string
         '403':
           description: Forbidden. The API key is invalid or lacks insert permissions.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendevents403Example:
+                  summary: Default sendEvents 403 response
+                  x-microcks-default: true
+                  value:
+                    success: false
+                    error: example_string
+                    errors: *id001
         '408':
           description: Request timeout. The server did not receive the request in time.
         '413':
@@ -103,12 +132,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendevents413Example:
+                  summary: Default sendEvents 413 response
+                  x-microcks-default: true
+                  value:
+                    success: false
+                    error: example_string
+                    errors: *id001
         '429':
           description: Too many requests. Rate limit exceeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendevents429Example:
+                  summary: Default sendEvents 429 response
+                  x-microcks-default: true
+                  value:
+                    success: false
+                    error: example_string
+                    errors: *id001
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     apiKey:
@@ -130,7 +178,7 @@ components:
         are user-defined key-value pairs. Attribute names must not start with
         nr. (reserved). Values can be strings, numbers, or booleans.
       required:
-        - eventType
+      - eventType
       properties:
         eventType:
           type: string
@@ -138,19 +186,21 @@ components:
             The type of event. Used as the NRDB event table name.
             Must match the pattern [a-zA-Z0-9:_ ]+, max 255 characters.
           maxLength: 255
+          example: standard
         timestamp:
           type: integer
           description: >-
             Unix epoch timestamp in seconds. If omitted, the current time
             is used. Cannot be more than 48 hours in the past or 24 hours
             in the future.
+          example: 1718153645993
       additionalProperties:
         description: Additional user-defined event attributes
         oneOf:
-          - type: string
-            maxLength: 4096
-          - type: number
-          - type: boolean
+        - type: string
+          maxLength: 4096
+        - type: number
+        - type: boolean
     SuccessResponse:
       type: object
       description: Successful ingestion response
@@ -162,6 +212,7 @@ components:
         uuid:
           type: string
           description: Unique request identifier
+          example: '500123'
     ErrorResponse:
       type: object
       description: Error response
@@ -172,6 +223,7 @@ components:
         error:
           type: string
           description: Error message
+          example: example_string
         errors:
           type: array
           description: List of validation errors
@@ -182,3 +234,4 @@ components:
                 type: string
               timestamp:
                 type: string
+          example: *id001

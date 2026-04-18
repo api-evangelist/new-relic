@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "name": "CrashSummaryResponse",
+  "properties": {
+    "crash_count": {
+      "type": "integer"
+    },
+    "crash_rate": {
+      "type": "number"
+    },
+    "supports_crash_data": {
+      "type": "boolean"
+    },
+    "unresolved_crash_count": {
+      "type": "integer"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

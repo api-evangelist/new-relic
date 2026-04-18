@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "name": "ChannelResponse",
+  "properties": {
+    "channel": {
+      "type": "object",
+      "properties": {
+        "configuration": {
+          "type": "object",
+          "properties": {}
+        },
+        "id": {
+          "type": "integer"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "policy_ids": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

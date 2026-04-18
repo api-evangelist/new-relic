@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/event-api-success-response-schema.json",
+  "title": "SuccessResponse",
+  "description": "Successful ingestion response",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the request was accepted",
+      "example": true
+    },
+    "uuid": {
+      "type": "string",
+      "description": "Unique request identifier",
+      "example": "500123"
+    }
+  }
+}

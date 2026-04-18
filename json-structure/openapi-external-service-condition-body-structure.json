@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-external-service-condition-body-structure.json",
+  "name": "ExternalServiceConditionBody",
+  "description": "ExternalServiceConditionBody schema",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      },
+      "example": [
+        100
+      ]
+    },
+    "external_service_url": {
+      "type": "string",
+      "example": "https://portal.example.com/path/abc123"
+    },
+    "metric": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "runbook_url": {
+      "type": "string",
+      "example": "https://portal.example.com/path/abc123"
+    },
+    "terms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/IJKTermsType"
+      },
+      "example": [
+        {
+          "duration": "example_string",
+          "operator": "example_string",
+          "priority": "example_string",
+          "threshold": "example_string",
+          "time_function": "example_string"
+        }
+      ]
+    },
+    "type": "{'type': 'string', 'example': 'standard'}"
+  }
+}

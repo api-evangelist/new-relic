@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-synthetics-condition-structure.json",
+  "name": "SyntheticsCondition",
+  "description": "SyntheticsCondition schema",
+  "type": "object",
+  "properties": {
+    "synthetics_condition": {
+      "$ref": "#/components/schemas/SyntheticsConditionBody"
+    }
+  }
+}

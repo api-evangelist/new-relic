@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "description": "Error response body",
+  "properties": {
+    "error": {
+      "type": "object",
+      "example": {
+        "type": "standard",
+        "message": "Operation completed successfully"
+      },
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Error type identifier"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error description"
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "description": "List of individual failure details when partial rejection occurs",
+      "example": [
+        {
+          "error": {
+            "message": "Operation completed successfully"
+          },
+          "failed": [
+            {}
+          ]
+        }
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ErrorResponse"
+}

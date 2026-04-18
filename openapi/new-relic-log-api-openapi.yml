@@ -12,47 +12,50 @@ info:
     name: New Relic Support
     url: https://support.newrelic.com/
   termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
 externalDocs:
   description: New Relic Log API Documentation
   url: https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/
 servers:
-  - url: https://log-api.newrelic.com
-    description: US Production
-  - url: https://log-api.eu.newrelic.com
-    description: EU Production
+- url: https://log-api.newrelic.com
+  description: US Production
+- url: https://log-api.eu.newrelic.com
+  description: EU Production
 tags:
-  - name: Logs
-    description: Log data ingestion endpoints
+- name: Logs
+  description: Log data ingestion endpoints
 security:
-  - apiKey: []
+- apiKey: []
 paths:
   /log/v1:
     post:
       operationId: sendLogs
-      summary: New Relic Send log data
+      summary: New Relic Send Log Data
       description: >-
         Sends one or more log records to the New Relic Log API. Accepts a JSON
         array of log data objects, each containing a logs array and optional
         common attributes. Payloads must be gzip-compressed. A single request
         may not exceed 1 MB compressed or 10,000 log entries.
       tags:
-        - Logs
+      - Logs
       parameters:
-        - name: Content-Encoding
-          in: header
-          required: true
-          description: Compression encoding. Gzip is required.
-          schema:
-            type: string
-            enum:
-              - gzip
-        - name: Content-Type
-          in: header
-          required: true
-          schema:
-            type: string
-            enum:
-              - application/json
+      - name: Content-Encoding
+        in: header
+        required: true
+        description: Compression encoding. Gzip is required.
+        schema:
+          type: string
+          enum:
+          - gzip
+        example: gzip
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/json
+        example: application/json
       requestBody:
         required: true
         content:
@@ -60,18 +63,18 @@ paths:
             schema:
               $ref: '#/components/schemas/LogPayload'
             example:
-              - common:
-                  attributes:
-                    logtype: nginx
-                    service.name: myService
-                    host.name: web01
-                logs:
-                  - timestamp: 1645564509000
-                    message: 127.0.0.1 - - [01/Jan/2022] "GET /api/health HTTP/1.1" 200 24
-                    level: INFO
-                  - timestamp: 1645564510000
-                    message: 127.0.0.1 - - [01/Jan/2022] "POST /api/orders HTTP/1.1" 500 0
-                    level: ERROR
+            - common:
+                attributes:
+                  logtype: nginx
+                  service.name: myService
+                  host.name: web01
+              logs:
+              - timestamp: 1645564509000
+                message: 127.0.0.1 - - [01/Jan/2022] "GET /api/health HTTP/1.1" 200 24
+                level: INFO
+              - timestamp: 1645564510000
+                message: 127.0.0.1 - - [01/Jan/2022] "POST /api/orders HTTP/1.1" 500 0
+                level: ERROR
       responses:
         '202':
           description: Accepted. Log data was received and queued for processing.
@@ -79,30 +82,69 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AcceptedResponse'
+              examples:
+                Sendlogs202Example:
+                  summary: Default sendLogs 202 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
         '400':
           description: Bad request. Payload is malformed or missing required fields.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendlogs400Example:
+                  summary: Default sendLogs 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: &id001
+                      type: standard
+                      message: Operation completed successfully
         '403':
           description: Forbidden. The API key is invalid or lacks insert permissions.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendlogs403Example:
+                  summary: Default sendLogs 403 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: *id001
         '413':
           description: Payload too large. Exceeds 1 MB compressed limit.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendlogs413Example:
+                  summary: Default sendLogs 413 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: *id001
         '429':
           description: Too many requests. Rate limit exceeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendlogs429Example:
+                  summary: Default sendLogs 429 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
+                    error: *id001
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     apiKey:
@@ -120,7 +162,7 @@ components:
       type: object
       description: A batch of log records with optional shared attributes
       required:
-        - logs
+      - logs
       properties:
         common:
           $ref: '#/components/schemas/CommonBlock'
@@ -129,6 +171,13 @@ components:
           description: Array of individual log records
           items:
             $ref: '#/components/schemas/LogRecord'
+          example:
+          - timestamp: 1718153645993
+            message: Operation completed successfully
+            level: FATAL
+            logtype: standard
+            attributes:
+              customAttribute: example_value
     CommonBlock:
       type: object
       description: Shared attributes applied to all log records in this batch
@@ -136,14 +185,17 @@ components:
         timestamp:
           type: integer
           description: Default Unix timestamp in milliseconds for all logs in the batch
+          example: 1718153645993
         attributes:
           type: object
           description: Key-value attributes applied to all logs in this batch
           additionalProperties:
             oneOf:
-              - type: string
-              - type: number
-              - type: boolean
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            customAttribute: example_value
     LogRecord:
       type: object
       description: A single log record
@@ -151,32 +203,38 @@ components:
         timestamp:
           type: integer
           description: Unix epoch timestamp in milliseconds when the log event occurred
+          example: 1718153645993
         message:
           type: string
           description: The log message text
           maxLength: 32768
+          example: Operation completed successfully
         level:
           type: string
           description: Log severity level
           enum:
-            - FATAL
-            - ERROR
-            - WARN
-            - WARNING
-            - INFO
-            - DEBUG
-            - TRACE
+          - FATAL
+          - ERROR
+          - WARN
+          - WARNING
+          - INFO
+          - DEBUG
+          - TRACE
+          example: FATAL
         logtype:
           type: string
           description: Log format type for automatic parsing (e.g., nginx, apache, syslog)
+          example: standard
         attributes:
           type: object
           description: Additional key-value attributes for this log record
           additionalProperties:
             oneOf:
-              - type: string
-              - type: number
-              - type: boolean
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            customAttribute: example_value
       additionalProperties:
         description: Additional top-level attributes are accepted and stored
     AcceptedResponse:
@@ -186,12 +244,14 @@ components:
         requestId:
           type: string
           description: Unique identifier for the accepted ingestion request
+          example: '500123'
     ErrorResponse:
       type: object
       description: Error response
       properties:
         requestId:
           type: string
+          example: '500123'
         error:
           type: object
           properties:
@@ -199,3 +259,4 @@ components:
               type: string
             message:
               type: string
+          example: *id001

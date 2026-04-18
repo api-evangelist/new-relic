@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-key-transaction-response-type-structure.json",
+  "name": "KeyTransactionResponseType",
+  "description": "KeyTransactionResponseType schema",
+  "type": "object",
+  "properties": {
+    "application_summary": {
+      "$ref": "#/components/schemas/AppSummaryResponse"
+    },
+    "end_user_summary": {
+      "$ref": "#/components/schemas/EndUserSummaryResponse"
+    },
+    "health_status": {
+      "type": "string",
+      "example": "active"
+    },
+    "id": {
+      "type": "int32",
+      "example": 100
+    },
+    "last_reported_at": {
+      "type": "datetime",
+      "example": "2026-04-18T14:30:00Z"
+    },
+    "links": {
+      "$ref": "#/components/schemas/KeyTransactionLinksResponse"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "reporting": {
+      "type": "boolean",
+      "example": true
+    },
+    "transaction_name": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-nrql-condition-structure.json",
+  "name": "NrqlCondition",
+  "description": "NrqlCondition schema",
+  "type": "object",
+  "properties": {
+    "nrql_condition": {
+      "$ref": "#/components/schemas/NrqlConditionBody"
+    }
+  }
+}

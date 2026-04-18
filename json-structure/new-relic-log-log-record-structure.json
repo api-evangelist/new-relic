@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "description": "A single log record",
+  "name": "LogRecord",
+  "properties": {
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix epoch timestamp in milliseconds when the log event occurred"
+    },
+    "message": {
+      "type": "string",
+      "description": "The log message text"
+    },
+    "level": {
+      "type": "string",
+      "description": "Log severity level",
+      "enum": [
+        "FATAL",
+        "ERROR",
+        "WARN",
+        "WARNING",
+        "INFO",
+        "DEBUG",
+        "TRACE"
+      ]
+    },
+    "logtype": {
+      "type": "string",
+      "description": "Log format type for automatic parsing (e.g., nginx, apache, syslog)"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Additional key-value attributes for this log record"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

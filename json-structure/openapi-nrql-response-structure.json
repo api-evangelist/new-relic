@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-nrql-response-structure.json",
+  "name": "NrqlResponse",
+  "description": "NrqlResponse schema",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "since_value": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

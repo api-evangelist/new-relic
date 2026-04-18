@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-channel-response-structure.json",
+  "name": "ChannelResponse",
+  "description": "ChannelResponse schema",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "$ref": "#/components/schemas/ChannelResponseType"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-recent-event-response-structure.json",
+  "name": "RecentEventResponse",
+  "description": "RecentEventResponse schema",
+  "type": "object",
+  "properties": {
+    "recent_event": {
+      "$ref": "#/components/schemas/RecentEventResponseType"
+    }
+  }
+}

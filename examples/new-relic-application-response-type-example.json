@@ -1,0 +1,41 @@
+{
+  "application_summary": {
+    "apdex_score": 87.5,
+    "apdex_target": 42.5,
+    "concurrent_instance_count": 42,
+    "error_rate": 12.3,
+    "host_count": 42,
+    "instance_count": 42,
+    "response_time": 42.5,
+    "throughput": 42.5
+  },
+  "end_user_summary": {
+    "apdex_score": 87.5,
+    "apdex_target": 42.5,
+    "response_time": 42.5,
+    "throughput": 42.5
+  },
+  "health_status": "active",
+  "id": 100,
+  "language": "example_string",
+  "last_reported_at": "2026-04-18T14:30:00Z",
+  "links": {
+    "servers": [
+      100
+    ],
+    "application_hosts": [
+      100
+    ],
+    "application_instances": [
+      100
+    ]
+  },
+  "name": "example-resource-01",
+  "reporting": true,
+  "settings": {
+    "app_apdex_threshold": 42.5,
+    "enable_real_user_monitoring": true,
+    "end_user_apdex_threshold": 42.5,
+    "use_server_side_config": true
+  }
+}

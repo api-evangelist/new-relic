@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "name": "BrowserApplicationResponseType",
+  "properties": {
+    "browser_monitoring_key": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "loader_script": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "name": "ApplicationHostResponseType",
+  "properties": {
+    "host": {
+      "type": "string"
+    },
+    "application_name": {
+      "type": "string"
+    },
+    "application_summary": {
+      "type": "object",
+      "properties": {
+        "apdex_score": {
+          "type": "number"
+        },
+        "error_rate": {
+          "type": "number"
+        },
+        "instance_count": {
+          "type": "integer"
+        },
+        "response_time": {
+          "type": "number"
+        },
+        "throughput": {
+          "type": "number"
+        }
+      }
+    },
+    "end_user_summary": {
+      "type": "object",
+      "properties": {
+        "apdex_score": {
+          "type": "number"
+        },
+        "response_time": {
+          "type": "number"
+        },
+        "throughput": {
+          "type": "number"
+        }
+      }
+    },
+    "health_status": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "language": {
+      "type": "integer"
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "type": "integer"
+        },
+        "application_instances": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "server": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

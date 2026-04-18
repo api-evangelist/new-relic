@@ -1,176 +1,1549 @@
 {
   "@context": {
     "@version": 1.1,
-    "nr": "https://docs.newrelic.com/docs/schemas/",
-    "schema": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dcterms": "http://purl.org/dc/terms/",
-
-    "Application": {
-      "@id": "nr:Application",
+    "schema": "https://schema.org/",
+    "AppSettingsBody": {
+      "@id": "ns:AppSettingsBody",
       "@context": {
-        "id": "@id",
-        "name": "schema:name",
-        "accountId": {
-          "@id": "nr:accountId",
+        "app_apdex_threshold": {
+          "@id": "ns:app_apdex_threshold",
+          "@type": "xsd:decimal"
+        },
+        "enable_real_user_monitoring": {
+          "@id": "ns:enable_real_user_monitoring",
+          "@type": "xsd:boolean"
+        },
+        "end_user_apdex_threshold": {
+          "@id": "ns:end_user_apdex_threshold",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+    "AppSettingsResponse": {
+      "@id": "ns:AppSettingsResponse",
+      "@context": {
+        "app_apdex_threshold": {
+          "@id": "ns:app_apdex_threshold",
+          "@type": "xsd:decimal"
+        },
+        "enable_real_user_monitoring": {
+          "@id": "ns:enable_real_user_monitoring",
+          "@type": "xsd:boolean"
+        },
+        "end_user_apdex_threshold": {
+          "@id": "ns:end_user_apdex_threshold",
+          "@type": "xsd:decimal"
+        },
+        "use_server_side_config": {
+          "@id": "ns:use_server_side_config",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+    "AppSummaryDataResponse": {
+      "@id": "ns:AppSummaryDataResponse",
+      "@context": {
+        "apdex_score": {
+          "@id": "ns:apdex_score",
+          "@type": "xsd:decimal"
+        },
+        "error_rate": {
+          "@id": "ns:error_rate",
+          "@type": "xsd:decimal"
+        },
+        "instance_count": {
+          "@id": "ns:instance_count",
           "@type": "xsd:integer"
         },
-        "language": "nr:language",
-        "health": "nr:healthStatus",
-        "apdexScore": {
-          "@id": "nr:apdexScore",
+        "response_time": {
+          "@id": "ns:response_time",
           "@type": "xsd:decimal"
         },
         "throughput": {
-          "@id": "nr:throughput",
-          "@type": "xsd:decimal"
-        },
-        "errorRate": {
-          "@id": "nr:errorRate",
-          "@type": "xsd:decimal"
-        },
-        "responseTime": {
-          "@id": "nr:responseTime",
+          "@id": "ns:throughput",
           "@type": "xsd:decimal"
         }
       }
     },
-
-    "MetricDataPoint": {
-      "@id": "nr:MetricDataPoint",
+    "AppSummaryResponse": {
+      "@id": "ns:AppSummaryResponse",
       "@context": {
-        "name": "schema:name",
-        "type": "schema:additionalType",
-        "value": "schema:value",
-        "timestamp": {
-          "@id": "dcterms:date",
-          "@type": "xsd:long"
+        "apdex_score": {
+          "@id": "ns:apdex_score",
+          "@type": "xsd:decimal"
         },
-        "intervalMs": {
-          "@id": "nr:intervalMs",
-          "@type": "xsd:long"
+        "apdex_target": {
+          "@id": "ns:apdex_target",
+          "@type": "xsd:decimal"
         },
-        "attributes": {
-          "@id": "schema:additionalProperty",
-          "@container": "@set"
+        "concurrent_instance_count": {
+          "@id": "ns:concurrent_instance_count",
+          "@type": "xsd:integer"
+        },
+        "error_rate": {
+          "@id": "ns:error_rate",
+          "@type": "xsd:decimal"
+        },
+        "host_count": {
+          "@id": "ns:host_count",
+          "@type": "xsd:integer"
+        },
+        "instance_count": {
+          "@id": "ns:instance_count",
+          "@type": "xsd:integer"
+        },
+        "response_time": {
+          "@id": "ns:response_time",
+          "@type": "xsd:decimal"
+        },
+        "throughput": {
+          "@id": "ns:throughput",
+          "@type": "xsd:decimal"
         }
       }
     },
-
-    "CustomEvent": {
-      "@id": "nr:CustomEvent",
+    "Application": {
+      "@id": "ns:Application",
       "@context": {
-        "eventType": "schema:additionalType",
-        "timestamp": {
-          "@id": "dcterms:date",
-          "@type": "xsd:long"
+        "application": {
+          "@id": "ns:application",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ApplicationBody": {
+      "@id": "ns:ApplicationBody",
+      "@context": {
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
         },
-        "accountId": {
-          "@id": "nr:accountId",
+        "settings": {
+          "@id": "ns:settings",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ApplicationHostLinksResponse": {
+      "@id": "ns:ApplicationHostLinksResponse",
+      "@context": {
+        "application": {
+          "@id": "ns:application",
+          "@type": "xsd:integer"
+        },
+        "application_instances": "ns:application_instances",
+        "server": {
+          "@id": "ns:server",
           "@type": "xsd:integer"
         }
       }
     },
-
-    "LogRecord": {
-      "@id": "nr:LogRecord",
+    "ApplicationHostResponse": {
+      "@id": "ns:ApplicationHostResponse",
       "@context": {
-        "message": "schema:text",
-        "level": "nr:logLevel",
-        "timestamp": {
-          "@id": "dcterms:date",
-          "@type": "xsd:long"
+        "application_hosts": "ns:application_hosts"
+      }
+    },
+    "ApplicationHostResponseType": {
+      "@id": "ns:ApplicationHostResponseType",
+      "@context": {
+        "host": {
+          "@id": "ns:host",
+          "@type": "xsd:string"
         },
-        "logtype": "schema:additionalType",
-        "hostname": "schema:name",
-        "serviceName": {
-          "@id": "nr:serviceName",
+        "application_name": {
+          "@id": "ns:application_name",
+          "@type": "xsd:string"
+        },
+        "application_summary": {
+          "@id": "ns:application_summary",
+          "@type": "xsd:string"
+        },
+        "end_user_summary": {
+          "@id": "ns:end_user_summary",
+          "@type": "xsd:string"
+        },
+        "health_status": {
+          "@id": "ns:health_status",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "language": {
+          "@id": "ns:language",
+          "@type": "xsd:integer"
+        },
+        "links": {
+          "@id": "ns:links",
           "@type": "xsd:string"
         }
       }
     },
-
-    "Span": {
-      "@id": "nr:Span",
+    "ApplicationInstanceLinksResponse": {
+      "@id": "ns:ApplicationInstanceLinksResponse",
       "@context": {
-        "id": "@id",
-        "traceId": {
-          "@id": "nr:traceId",
+        "application": {
+          "@id": "ns:application",
+          "@type": "xsd:integer"
+        },
+        "application_host": {
+          "@id": "ns:application_host",
+          "@type": "xsd:integer"
+        },
+        "server": {
+          "@id": "ns:server",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "ApplicationInstanceResponse": {
+      "@id": "ns:ApplicationInstanceResponse",
+      "@context": {
+        "application_instance": {
+          "@id": "ns:application_instance",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ApplicationInstanceResponseType": {
+      "@id": "ns:ApplicationInstanceResponseType",
+      "@context": {
+        "host": {
+          "@id": "ns:host",
           "@type": "xsd:string"
         },
-        "parentId": {
-          "@id": "nr:parentSpanId",
+        "application_name": {
+          "@id": "ns:application_name",
           "@type": "xsd:string"
         },
-        "name": "schema:name",
-        "timestamp": {
-          "@id": "dcterms:date",
-          "@type": "xsd:long"
-        },
-        "durationMs": {
-          "@id": "nr:durationMs",
-          "@type": "xsd:decimal"
-        },
-        "serviceName": {
-          "@id": "nr:serviceName",
+        "application_summary": {
+          "@id": "ns:application_summary",
           "@type": "xsd:string"
         },
-        "isError": {
-          "@id": "nr:isError",
+        "end_user_summary": {
+          "@id": "ns:end_user_summary",
+          "@type": "xsd:string"
+        },
+        "health_status": {
+          "@id": "ns:health_status",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "language": {
+          "@id": "ns:language",
+          "@type": "xsd:integer"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "port": {
+          "@id": "ns:port",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "ApplicationLinksResponse": {
+      "@id": "ns:ApplicationLinksResponse",
+      "@context": {
+        "servers": "ns:servers",
+        "application_hosts": "ns:application_hosts",
+        "application_instances": "ns:application_instances"
+      }
+    },
+    "ApplicationResponse": {
+      "@id": "ns:ApplicationResponse",
+      "@context": {
+        "application": {
+          "@id": "ns:application",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ApplicationResponseType": {
+      "@id": "ns:ApplicationResponseType",
+      "@context": {
+        "application_summary": {
+          "@id": "ns:application_summary",
+          "@type": "xsd:string"
+        },
+        "end_user_summary": {
+          "@id": "ns:end_user_summary",
+          "@type": "xsd:string"
+        },
+        "health_status": {
+          "@id": "ns:health_status",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "language": {
+          "@id": "ns:language",
+          "@type": "xsd:string"
+        },
+        "last_reported_at": {
+          "@id": "ns:last_reported_at",
+          "@type": "xsd:string"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "reporting": {
+          "@id": "ns:reporting",
           "@type": "xsd:boolean"
         },
-        "attributes": {
-          "@id": "schema:additionalProperty",
-          "@container": "@set"
+        "settings": {
+          "@id": "ns:settings",
+          "@type": "xsd:string"
         }
       }
     },
-
-    "Alert": {
-      "@id": "nr:Alert",
+    "BrowserApplication": {
+      "@id": "ns:BrowserApplication",
       "@context": {
-        "id": "@id",
-        "name": "schema:name",
-        "description": "schema:description",
-        "condition": "nr:condition",
-        "priority": "nr:priority",
-        "openedAt": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "closedAt": {
-          "@id": "nr:closedAt",
-          "@type": "xsd:dateTime"
-        },
-        "status": "nr:alertStatus",
-        "entity": {
-          "@id": "schema:about",
-          "@type": "@id"
+        "browser_application": {
+          "@id": "ns:browser_application",
+          "@type": "xsd:string"
         }
       }
     },
-
-    "Entity": {
-      "@id": "nr:Entity",
+    "BrowserApplicationBody": {
+      "@id": "ns:BrowserApplicationBody",
       "@context": {
-        "guid": {
-          "@id": "nr:entityGuid",
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "BrowserApplicationResponse": {
+      "@id": "ns:BrowserApplicationResponse",
+      "@context": {
+        "browser_application": {
+          "@id": "ns:browser_application",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "BrowserApplicationResponseType": {
+      "@id": "ns:BrowserApplicationResponseType",
+      "@context": {
+        "browser_monitoring_key": {
+          "@id": "ns:browser_monitoring_key",
           "@type": "xsd:string"
         },
-        "name": "schema:name",
-        "type": "schema:additionalType",
-        "domain": "nr:domain",
-        "accountId": {
-          "@id": "nr:accountId",
+        "id": {
+          "@id": "ns:id",
           "@type": "xsd:integer"
         },
-        "tags": {
-          "@id": "schema:keywords",
-          "@container": "@set"
+        "loader_script": {
+          "@id": "ns:loader_script",
+          "@type": "xsd:string"
         },
-        "relationships": {
-          "@id": "schema:relatedLink",
-          "@container": "@set"
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "Channel": {
+      "@id": "ns:Channel",
+      "@context": {
+        "channel": {
+          "@id": "ns:channel",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ChannelBody": {
+      "@id": "ns:ChannelBody",
+      "@context": {
+        "configuration": "ns:configuration",
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ChannelLinksResponse": {
+      "@id": "ns:ChannelLinksResponse",
+      "@context": {
+        "policy_ids": "ns:policy_ids"
+      }
+    },
+    "ChannelResponse": {
+      "@id": "ns:ChannelResponse",
+      "@context": {
+        "channel": {
+          "@id": "ns:channel",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ChannelResponseType": {
+      "@id": "ns:ChannelResponseType",
+      "@context": {
+        "configuration": "ns:configuration",
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "Condition": {
+      "@id": "ns:Condition",
+      "@context": {
+        "condition": {
+          "@id": "ns:condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ConditionBody": {
+      "@id": "ns:ConditionBody",
+      "@context": {
+        "condition_scope": {
+          "@id": "ns:condition_scope",
+          "@type": "xsd:string"
+        },
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "entities": "ns:entities",
+        "gc_metric": {
+          "@id": "ns:gc_metric",
+          "@type": "xsd:string"
+        },
+        "metric": {
+          "@id": "ns:metric",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "terms": "ns:terms",
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        },
+        "user_defined": {
+          "@id": "ns:user_defined",
+          "@type": "xsd:string"
+        },
+        "violation_close_timer": {
+          "@id": "ns:violation_close_timer",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "ConditionResponse": {
+      "@id": "ns:ConditionResponse",
+      "@context": {
+        "condition": {
+          "@id": "ns:condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ConditionResponseType": {
+      "@id": "ns:ConditionResponseType",
+      "@context": {
+        "condition_scope": {
+          "@id": "ns:condition_scope",
+          "@type": "xsd:string"
+        },
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "entities": "ns:entities",
+        "gc_metric": {
+          "@id": "ns:gc_metric",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "metric": {
+          "@id": "ns:metric",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "runbook_url": {
+          "@id": "ns:runbook_url",
+          "@type": "xsd:string"
+        },
+        "terms": "ns:terms",
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        },
+        "user_defined": {
+          "@id": "ns:user_defined",
+          "@type": "xsd:string"
+        },
+        "violation_close_timer": {
+          "@id": "ns:violation_close_timer",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "CrashSummaryResponse": {
+      "@id": "ns:CrashSummaryResponse",
+      "@context": {
+        "crash_count": {
+          "@id": "ns:crash_count",
+          "@type": "xsd:integer"
+        },
+        "crash_rate": {
+          "@id": "ns:crash_rate",
+          "@type": "xsd:decimal"
+        },
+        "supports_crash_data": {
+          "@id": "ns:supports_crash_data",
+          "@type": "xsd:boolean"
+        },
+        "unresolved_crash_count": {
+          "@id": "ns:unresolved_crash_count",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "Deployment": {
+      "@id": "ns:Deployment",
+      "@context": {
+        "deployment": {
+          "@id": "ns:deployment",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "DeploymentBody": {
+      "@id": "ns:DeploymentBody",
+      "@context": {
+        "changelog": {
+          "@id": "ns:changelog",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "ns:description",
+          "@type": "xsd:string"
+        },
+        "revision": {
+          "@id": "ns:revision",
+          "@type": "xsd:string"
+        },
+        "user": {
+          "@id": "ns:user",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "DeploymentLinksResponse": {
+      "@id": "ns:DeploymentLinksResponse",
+      "@context": {
+        "application": {
+          "@id": "ns:application",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "DeploymentResponse": {
+      "@id": "ns:DeploymentResponse",
+      "@context": {
+        "deployment": {
+          "@id": "ns:deployment",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "DeploymentResponseType": {
+      "@id": "ns:DeploymentResponseType",
+      "@context": {
+        "changelog": {
+          "@id": "ns:changelog",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "ns:description",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "revision": {
+          "@id": "ns:revision",
+          "@type": "xsd:string"
+        },
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:string"
+        },
+        "user": {
+          "@id": "ns:user",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "EndUserSummaryDataResponse": {
+      "@id": "ns:EndUserSummaryDataResponse",
+      "@context": {
+        "apdex_score": {
+          "@id": "ns:apdex_score",
+          "@type": "xsd:decimal"
+        },
+        "response_time": {
+          "@id": "ns:response_time",
+          "@type": "xsd:decimal"
+        },
+        "throughput": {
+          "@id": "ns:throughput",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+    "EndUserSummaryResponse": {
+      "@id": "ns:EndUserSummaryResponse",
+      "@context": {
+        "apdex_score": {
+          "@id": "ns:apdex_score",
+          "@type": "xsd:decimal"
+        },
+        "apdex_target": {
+          "@id": "ns:apdex_target",
+          "@type": "xsd:decimal"
+        },
+        "response_time": {
+          "@id": "ns:response_time",
+          "@type": "xsd:decimal"
+        },
+        "throughput": {
+          "@id": "ns:throughput",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+    "ExternalServiceCondition": {
+      "@id": "ns:ExternalServiceCondition",
+      "@context": {
+        "external_service_condition": {
+          "@id": "ns:external_service_condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ExternalServiceConditionBody": {
+      "@id": "ns:ExternalServiceConditionBody",
+      "@context": {
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "entities": "ns:entities",
+        "external_service_url": {
+          "@id": "ns:external_service_url",
+          "@type": "xsd:string"
+        },
+        "metric": {
+          "@id": "ns:metric",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "runbook_url": {
+          "@id": "ns:runbook_url",
+          "@type": "xsd:string"
+        },
+        "terms": "ns:terms",
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ExternalServiceConditionResponse": {
+      "@id": "ns:ExternalServiceConditionResponse",
+      "@context": {
+        "external_service_condition": {
+          "@id": "ns:external_service_condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ExternalServiceConditionResponseType": {
+      "@id": "ns:ExternalServiceConditionResponseType",
+      "@context": {
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "entities": "ns:entities",
+        "external_service_url": {
+          "@id": "ns:external_service_url",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "metric": {
+          "@id": "ns:metric",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "runbook_url": {
+          "@id": "ns:runbook_url",
+          "@type": "xsd:string"
+        },
+        "terms": "ns:terms",
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "IJKTermsType": {
+      "@id": "ns:IJKTermsType",
+      "@context": {
+        "duration": {
+          "@id": "ns:duration",
+          "@type": "xsd:string"
+        },
+        "operator": {
+          "@id": "ns:operator",
+          "@type": "xsd:string"
+        },
+        "priority": {
+          "@id": "ns:priority",
+          "@type": "xsd:string"
+        },
+        "threshold": {
+          "@id": "ns:threshold",
+          "@type": "xsd:string"
+        },
+        "time_function": {
+          "@id": "ns:time_function",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "IncidentLinksResponse": {
+      "@id": "ns:IncidentLinksResponse",
+      "@context": {
+        "policy_id": {
+          "@id": "ns:policy_id",
+          "@type": "xsd:integer"
+        },
+        "violations": "ns:violations"
+      }
+    },
+    "IncidentResponse": {
+      "@id": "ns:IncidentResponse",
+      "@context": {
+        "incident": {
+          "@id": "ns:incident",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "IncidentResponseType": {
+      "@id": "ns:IncidentResponseType",
+      "@context": {
+        "closed_at": {
+          "@id": "ns:closed_at",
+          "@type": "xsd:integer"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "incident_preference": {
+          "@id": "ns:incident_preference",
+          "@type": "xsd:integer"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "opened_at": {
+          "@id": "ns:opened_at",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "KeyTransactionLinksResponse": {
+      "@id": "ns:KeyTransactionLinksResponse",
+      "@context": {
+        "application": {
+          "@id": "ns:application",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "KeyTransactionResponse": {
+      "@id": "ns:KeyTransactionResponse",
+      "@context": {
+        "key_transaction": {
+          "@id": "ns:key_transaction",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "KeyTransactionResponseType": {
+      "@id": "ns:KeyTransactionResponseType",
+      "@context": {
+        "application_summary": {
+          "@id": "ns:application_summary",
+          "@type": "xsd:string"
+        },
+        "end_user_summary": {
+          "@id": "ns:end_user_summary",
+          "@type": "xsd:string"
+        },
+        "health_status": {
+          "@id": "ns:health_status",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "last_reported_at": {
+          "@id": "ns:last_reported_at",
+          "@type": "xsd:string"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "reporting": {
+          "@id": "ns:reporting",
+          "@type": "xsd:boolean"
+        },
+        "transaction_name": {
+          "@id": "ns:transaction_name",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "Label": {
+      "@id": "ns:Label",
+      "@context": {
+        "label": {
+          "@id": "ns:label",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "LabelBody": {
+      "@id": "ns:LabelBody",
+      "@context": {
+        "category": {
+          "@id": "ns:category",
+          "@type": "xsd:string"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "LabelLinksBody": {
+      "@id": "ns:LabelLinksBody",
+      "@context": {
+        "servers": "ns:servers",
+        "applications": "ns:applications"
+      }
+    },
+    "LabelLinksResponse": {
+      "@id": "ns:LabelLinksResponse",
+      "@context": {
+        "servers": "ns:servers",
+        "applications": "ns:applications"
+      }
+    },
+    "LabelOriginsResponse": {
+      "@id": "ns:LabelOriginsResponse",
+      "@context": {
+        "agents": "ns:agents",
+        "apm": "ns:apm",
+        "synthetics": "ns:synthetics"
+      }
+    },
+    "LabelResponse": {
+      "@id": "ns:LabelResponse",
+      "@context": {
+        "label": {
+          "@id": "ns:label",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "LabelResponseType": {
+      "@id": "ns:LabelResponseType",
+      "@context": {
+        "category": {
+          "@id": "ns:category",
+          "@type": "xsd:string"
+        },
+        "key": {
+          "@id": "ns:key",
+          "@type": "xsd:string"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "origins": {
+          "@id": "ns:origins",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "MetricDataResponse": {
+      "@id": "ns:MetricDataResponse",
+      "@context": {
+        "metric_data": {
+          "@id": "ns:metric_data",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "MetricDataResponseType": {
+      "@id": "ns:MetricDataResponseType",
+      "@context": {
+        "from": {
+          "@id": "ns:from",
+          "@type": "xsd:string"
+        },
+        "metrics": "ns:metrics",
+        "metrics_found": {
+          "@id": "ns:metrics_found",
+          "@type": "xsd:string"
+        },
+        "metrics_not_found": {
+          "@id": "ns:metrics_not_found",
+          "@type": "xsd:string"
+        },
+        "to": {
+          "@id": "ns:to",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "MetricListResponse": {
+      "@id": "ns:MetricListResponse",
+      "@context": {
+        "metrics": "ns:metrics"
+      }
+    },
+    "MetricParserResponse": {
+      "@id": "ns:MetricParserResponse",
+      "@context": {
+        "metric": {
+          "@id": "ns:metric",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "MetricParserResponseType": {
+      "@id": "ns:MetricParserResponseType",
+      "@context": {
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "values": "ns:values"
+      }
+    },
+    "MetricResponse": {
+      "@id": "ns:MetricResponse",
+      "@context": {
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "timeslices": "ns:timeslices"
+      }
+    },
+    "MobileApplicationResponse": {
+      "@id": "ns:MobileApplicationResponse",
+      "@context": {
+        "application": {
+          "@id": "ns:application",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "MobileApplicationResponseType": {
+      "@id": "ns:MobileApplicationResponseType",
+      "@context": {
+        "crash_summary": {
+          "@id": "ns:crash_summary",
+          "@type": "xsd:string"
+        },
+        "health_status": {
+          "@id": "ns:health_status",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "mobile_summary": {
+          "@id": "ns:mobile_summary",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "reporting": {
+          "@id": "ns:reporting",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+    "MobileSummaryDataResponse": {
+      "@id": "ns:MobileSummaryDataResponse",
+      "@context": {
+        "active_users": {
+          "@id": "ns:active_users",
+          "@type": "xsd:integer"
+        },
+        "calls_per_session": {
+          "@id": "ns:calls_per_session",
+          "@type": "xsd:decimal"
+        },
+        "failed_call_rate": {
+          "@id": "ns:failed_call_rate",
+          "@type": "xsd:decimal"
+        },
+        "interaction_time": {
+          "@id": "ns:interaction_time",
+          "@type": "xsd:decimal"
+        },
+        "launch_count": {
+          "@id": "ns:launch_count",
+          "@type": "xsd:integer"
+        },
+        "remote_error_rate": {
+          "@id": "ns:remote_error_rate",
+          "@type": "xsd:decimal"
+        },
+        "response_time": {
+          "@id": "ns:response_time",
+          "@type": "xsd:decimal"
+        },
+        "throughput": {
+          "@id": "ns:throughput",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+    "NrqlBody": {
+      "@id": "ns:NrqlBody",
+      "@context": {
+        "query": {
+          "@id": "ns:query",
+          "@type": "xsd:string"
+        },
+        "since_value": {
+          "@id": "ns:since_value",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "NrqlCondition": {
+      "@id": "ns:NrqlCondition",
+      "@context": {
+        "nrql_condition": {
+          "@id": "ns:nrql_condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "NrqlConditionBody": {
+      "@id": "ns:NrqlConditionBody",
+      "@context": {
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "expected_groups": {
+          "@id": "ns:expected_groups",
+          "@type": "xsd:integer"
+        },
+        "ignore_overlap": {
+          "@id": "ns:ignore_overlap",
+          "@type": "xsd:boolean"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "nrql": {
+          "@id": "ns:nrql",
+          "@type": "xsd:string"
+        },
+        "runbook_url": {
+          "@id": "ns:runbook_url",
+          "@type": "xsd:string"
+        },
+        "terms": "ns:terms",
+        "value_function": {
+          "@id": "ns:value_function",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "NrqlConditionResponse": {
+      "@id": "ns:NrqlConditionResponse",
+      "@context": {
+        "nrql_condition": {
+          "@id": "ns:nrql_condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "NrqlConditionResponseType": {
+      "@id": "ns:NrqlConditionResponseType",
+      "@context": {
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "expected_groups": {
+          "@id": "ns:expected_groups",
+          "@type": "xsd:integer"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "ignore_overlap": {
+          "@id": "ns:ignore_overlap",
+          "@type": "xsd:boolean"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "nrql": {
+          "@id": "ns:nrql",
+          "@type": "xsd:string"
+        },
+        "runbook_url": {
+          "@id": "ns:runbook_url",
+          "@type": "xsd:string"
+        },
+        "terms": "ns:terms",
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        },
+        "value_function": {
+          "@id": "ns:value_function",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "NrqlResponse": {
+      "@id": "ns:NrqlResponse",
+      "@context": {
+        "query": {
+          "@id": "ns:query",
+          "@type": "xsd:string"
+        },
+        "since_value": {
+          "@id": "ns:since_value",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "Policy": {
+      "@id": "ns:Policy",
+      "@context": {
+        "policy": {
+          "@id": "ns:policy",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "PolicyBody": {
+      "@id": "ns:PolicyBody",
+      "@context": {
+        "incident_preference": {
+          "@id": "ns:incident_preference",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "PolicyChannelsResponse": {
+      "@id": "ns:PolicyChannelsResponse",
+      "@context": {
+        "policy": {
+          "@id": "ns:policy",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "PolicyChannelsResponseType": {
+      "@id": "ns:PolicyChannelsResponseType",
+      "@context": {
+        "channel_ids": "ns:channel_ids",
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "PolicyResponse": {
+      "@id": "ns:PolicyResponse",
+      "@context": {
+        "policy": {
+          "@id": "ns:policy",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "PolicyResponseType": {
+      "@id": "ns:PolicyResponseType",
+      "@context": {
+        "created_at": {
+          "@id": "ns:created_at",
+          "@type": "xsd:integer"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "incident_preference": {
+          "@id": "ns:incident_preference",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "updated_at": {
+          "@id": "ns:updated_at",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "RecentEventResponse": {
+      "@id": "ns:RecentEventResponse",
+      "@context": {
+        "recent_event": {
+          "@id": "ns:recent_event",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "RecentEventResponseType": {
+      "@id": "ns:RecentEventResponseType",
+      "@context": {
+        "description": {
+          "@id": "ns:description",
+          "@type": "xsd:string"
+        },
+        "entity_group_id": {
+          "@id": "ns:entity_group_id",
+          "@type": "xsd:integer"
+        },
+        "entity_id": {
+          "@id": "ns:entity_id",
+          "@type": "xsd:integer"
+        },
+        "entity_type": {
+          "@id": "ns:entity_type",
+          "@type": "xsd:string"
+        },
+        "event_type": {
+          "@id": "ns:event_type",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "incident_id": {
+          "@id": "ns:incident_id",
+          "@type": "xsd:integer"
+        },
+        "priority": {
+          "@id": "ns:priority",
+          "@type": "xsd:string"
+        },
+        "product": {
+          "@id": "ns:product",
+          "@type": "xsd:string"
+        },
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "SyntheticsCondition": {
+      "@id": "ns:SyntheticsCondition",
+      "@context": {
+        "synthetics_condition": {
+          "@id": "ns:synthetics_condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "SyntheticsConditionBody": {
+      "@id": "ns:SyntheticsConditionBody",
+      "@context": {
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "monitor_id": {
+          "@id": "ns:monitor_id",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "runbook_url": {
+          "@id": "ns:runbook_url",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "SyntheticsConditionResponse": {
+      "@id": "ns:SyntheticsConditionResponse",
+      "@context": {
+        "synthetics_condition": {
+          "@id": "ns:synthetics_condition",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "SyntheticsConditionResponseType": {
+      "@id": "ns:SyntheticsConditionResponseType",
+      "@context": {
+        "enabled": {
+          "@id": "ns:enabled",
+          "@type": "xsd:boolean"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "monitor_id": {
+          "@id": "ns:monitor_id",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "runbook_url": {
+          "@id": "ns:runbook_url",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "TimesliceResponse": {
+      "@id": "ns:TimesliceResponse",
+      "@context": {
+        "from": {
+          "@id": "ns:from",
+          "@type": "xsd:string"
+        },
+        "to": {
+          "@id": "ns:to",
+          "@type": "xsd:string"
+        },
+        "values": "ns:values"
+      }
+    },
+    "UserDefinedConditionBody": {
+      "@id": "ns:UserDefinedConditionBody",
+      "@context": {
+        "metric": {
+          "@id": "ns:metric",
+          "@type": "xsd:string"
+        },
+        "value_function": {
+          "@id": "ns:value_function",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "UserDefinedConditionResponse": {
+      "@id": "ns:UserDefinedConditionResponse",
+      "@context": {
+        "metric": {
+          "@id": "ns:metric",
+          "@type": "xsd:string"
+        },
+        "value_function": {
+          "@id": "ns:value_function",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ViolationEntityResponse": {
+      "@id": "ns:ViolationEntityResponse",
+      "@context": {
+        "group_id": {
+          "@id": "ns:group_id",
+          "@type": "xsd:integer"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "product": {
+          "@id": "ns:product",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "ns:type",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ViolationLinksResponse": {
+      "@id": "ns:ViolationLinksResponse",
+      "@context": {
+        "condition_id": {
+          "@id": "ns:condition_id",
+          "@type": "xsd:integer"
+        },
+        "incident_id": {
+          "@id": "ns:incident_id",
+          "@type": "xsd:integer"
+        },
+        "policy_id": {
+          "@id": "ns:policy_id",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "ViolationResponse": {
+      "@id": "ns:ViolationResponse",
+      "@context": {
+        "violation": {
+          "@id": "ns:violation",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ViolationResponseType": {
+      "@id": "ns:ViolationResponseType",
+      "@context": {
+        "closed_at": {
+          "@id": "ns:closed_at",
+          "@type": "xsd:integer"
+        },
+        "condition_name": {
+          "@id": "ns:condition_name",
+          "@type": "xsd:string"
+        },
+        "duration": {
+          "@id": "ns:duration",
+          "@type": "xsd:integer"
+        },
+        "entity": {
+          "@id": "ns:entity",
+          "@type": "xsd:string"
+        },
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:integer"
+        },
+        "label": {
+          "@id": "ns:label",
+          "@type": "xsd:string"
+        },
+        "links": {
+          "@id": "ns:links",
+          "@type": "xsd:string"
+        },
+        "opened_at": {
+          "@id": "ns:opened_at",
+          "@type": "xsd:integer"
+        },
+        "policy_name": {
+          "@id": "ns:policy_name",
+          "@type": "xsd:string"
+        },
+        "priority": {
+          "@id": "ns:priority",
+          "@type": "xsd:string"
         }
       }
     }

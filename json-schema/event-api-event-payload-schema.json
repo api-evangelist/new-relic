@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/event-api-event-payload-schema.json",
+  "title": "EventPayload",
+  "description": "An array of custom event objects to ingest",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/CustomEvent"
+  },
+  "maxItems": 2000
+}

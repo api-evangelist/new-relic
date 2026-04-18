@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-violation-response-structure.json",
+  "name": "ViolationResponse",
+  "description": "ViolationResponse schema",
+  "type": "object",
+  "properties": {
+    "violation": {
+      "$ref": "#/components/schemas/ViolationResponseType"
+    }
+  }
+}

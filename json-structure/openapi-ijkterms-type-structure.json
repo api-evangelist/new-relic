@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-ijkterms-type-structure.json",
+  "name": "IJKTermsType",
+  "description": "IJKTermsType schema",
+  "type": "object",
+  "properties": {
+    "duration": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "operator": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "priority": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "threshold": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "time_function": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

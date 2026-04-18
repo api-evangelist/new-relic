@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nr": "https://docs.newrelic.com/docs/schemas/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CustomEvent": "nr:CustomEvent",
+    "eventType": {
+      "@id": "nr:eventType",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "nr:timestamp",
+      "@type": "xsd:integer"
+    },
+    "SuccessResponse": "nr:SuccessResponse",
+    "success": {
+      "@id": "nr:success",
+      "@type": "xsd:boolean"
+    },
+    "uuid": {
+      "@id": "nr:uuid",
+      "@type": "xsd:string"
+    }
+  }
+}

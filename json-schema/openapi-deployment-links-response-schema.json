@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-deployment-links-response-schema.json",
+  "title": "DeploymentLinksResponse",
+  "description": "DeploymentLinksResponse schema",
+  "type": "object",
+  "properties": {
+    "application": {
+      "type": "integer",
+      "example": 100
+    }
+  }
+}

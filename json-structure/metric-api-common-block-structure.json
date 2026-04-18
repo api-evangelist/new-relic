@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/metric-api-common-block-structure.json",
+  "name": "CommonBlock",
+  "description": "Shared attributes applied to all metrics in this data object unless overridden at the metric level",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "int32",
+      "description": "Unix timestamp in milliseconds for all metrics in this batch",
+      "example": 1718153645993
+    },
+    "interval.ms": {
+      "type": "int32",
+      "description": "Default measurement interval in milliseconds for count and summary metrics",
+      "example": 100
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Key-value pairs applied to all metrics in the batch. Values can be strings, numbers, or booleans.",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "double"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "example": {
+        "customAttribute": "example_value"
+      }
+    }
+  }
+}

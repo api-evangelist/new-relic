@@ -1,0 +1,14 @@
+{
+  "recent_event": {
+    "description": "example_string",
+    "entity_group_id": 100,
+    "entity_id": 100,
+    "entity_type": "standard",
+    "event_type": "standard",
+    "id": 100,
+    "incident_id": 100,
+    "priority": "example_string",
+    "product": "example_string",
+    "timestamp": 1718153645993
+  }
+}

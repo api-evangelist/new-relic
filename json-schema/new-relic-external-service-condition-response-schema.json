@@ -1,0 +1,86 @@
+{
+  "type": "object",
+  "properties": {
+    "external_service_condition": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "example": true
+        },
+        "entities": {
+          "type": "array",
+          "example": [
+            100
+          ],
+          "items": {
+            "type": "integer"
+          }
+        },
+        "external_service_url": {
+          "type": "string",
+          "example": "https://portal.example.com/path/abc123"
+        },
+        "id": {
+          "type": "integer",
+          "example": 100
+        },
+        "metric": {
+          "type": "string",
+          "example": "example_string"
+        },
+        "name": {
+          "type": "string",
+          "example": "example-resource-01"
+        },
+        "runbook_url": {
+          "type": "string",
+          "example": "https://portal.example.com/path/abc123"
+        },
+        "terms": {
+          "type": "array",
+          "example": [
+            {
+              "duration": "example_string",
+              "operator": "example_string",
+              "priority": "example_string",
+              "threshold": "example_string",
+              "time_function": "example_string"
+            }
+          ],
+          "items": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "operator": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "priority": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "threshold": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "time_function": {
+                "type": "string",
+                "example": "example_string"
+              }
+            }
+          }
+        },
+        "type": {
+          "type": "string",
+          "example": "standard"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExternalServiceConditionResponse"
+}

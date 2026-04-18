@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "name": "AppSettingsResponse",
+  "properties": {
+    "app_apdex_threshold": {
+      "type": "number"
+    },
+    "enable_real_user_monitoring": {
+      "type": "boolean"
+    },
+    "end_user_apdex_threshold": {
+      "type": "number"
+    },
+    "use_server_side_config": {
+      "type": "boolean"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

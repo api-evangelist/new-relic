@@ -1,0 +1,99 @@
+{
+  "type": "object",
+  "properties": {
+    "condition": {
+      "type": "object",
+      "properties": {
+        "condition_scope": {
+          "type": "string",
+          "example": "example_string"
+        },
+        "enabled": {
+          "type": "boolean",
+          "example": true
+        },
+        "entities": {
+          "type": "array",
+          "example": [
+            100
+          ],
+          "items": {
+            "type": "integer"
+          }
+        },
+        "gc_metric": {
+          "type": "string",
+          "example": "example_string"
+        },
+        "metric": {
+          "type": "string",
+          "example": "example_string"
+        },
+        "name": {
+          "type": "string",
+          "example": "example-resource-01"
+        },
+        "terms": {
+          "type": "array",
+          "example": [
+            {
+              "duration": "example_string",
+              "operator": "example_string",
+              "priority": "example_string",
+              "threshold": "example_string",
+              "time_function": "example_string"
+            }
+          ],
+          "items": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "operator": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "priority": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "threshold": {
+                "type": "string",
+                "example": "example_string"
+              },
+              "time_function": {
+                "type": "string",
+                "example": "example_string"
+              }
+            }
+          }
+        },
+        "type": {
+          "type": "string",
+          "example": "standard"
+        },
+        "user_defined": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string",
+              "example": "example_string"
+            },
+            "value_function": {
+              "type": "string",
+              "example": "example_string"
+            }
+          }
+        },
+        "violation_close_timer": {
+          "type": "integer",
+          "example": 1718153645993
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Condition"
+}

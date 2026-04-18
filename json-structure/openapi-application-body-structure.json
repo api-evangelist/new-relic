@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-application-body-structure.json",
+  "name": "ApplicationBody",
+  "description": "ApplicationBody schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "settings": {
+      "$ref": "#/components/schemas/AppSettingsBody"
+    }
+  }
+}

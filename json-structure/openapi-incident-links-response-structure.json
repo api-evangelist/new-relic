@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-incident-links-response-structure.json",
+  "name": "IncidentLinksResponse",
+  "description": "IncidentLinksResponse schema",
+  "type": "object",
+  "properties": {
+    "policy_id": {
+      "type": "int32",
+      "example": 100
+    },
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      },
+      "example": [
+        100
+      ]
+    }
+  }
+}

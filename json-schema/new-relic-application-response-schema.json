@@ -1,0 +1,159 @@
+{
+  "type": "object",
+  "properties": {
+    "application": {
+      "type": "object",
+      "properties": {
+        "application_summary": {
+          "type": "object",
+          "properties": {
+            "apdex_score": {
+              "type": "number",
+              "format": "float",
+              "example": 87.5
+            },
+            "apdex_target": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            },
+            "concurrent_instance_count": {
+              "type": "integer",
+              "example": 42
+            },
+            "error_rate": {
+              "type": "number",
+              "format": "float",
+              "example": 12.3
+            },
+            "host_count": {
+              "type": "integer",
+              "example": 42
+            },
+            "instance_count": {
+              "type": "integer",
+              "example": 42
+            },
+            "response_time": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            },
+            "throughput": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            }
+          }
+        },
+        "end_user_summary": {
+          "type": "object",
+          "properties": {
+            "apdex_score": {
+              "type": "number",
+              "format": "float",
+              "example": 87.5
+            },
+            "apdex_target": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            },
+            "response_time": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            },
+            "throughput": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            }
+          }
+        },
+        "health_status": {
+          "type": "string",
+          "example": "active"
+        },
+        "id": {
+          "type": "integer",
+          "example": 100
+        },
+        "language": {
+          "type": "string",
+          "example": "example_string"
+        },
+        "last_reported_at": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2026-04-18T14:30:00Z"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "servers": {
+              "type": "array",
+              "example": [
+                100
+              ],
+              "items": {
+                "type": "integer"
+              }
+            },
+            "application_hosts": {
+              "type": "array",
+              "example": [
+                100
+              ],
+              "items": {
+                "type": "integer"
+              }
+            },
+            "application_instances": {
+              "type": "array",
+              "example": [
+                100
+              ],
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "name": {
+          "type": "string",
+          "example": "example-resource-01"
+        },
+        "reporting": {
+          "type": "boolean",
+          "example": true
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "app_apdex_threshold": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            },
+            "enable_real_user_monitoring": {
+              "type": "boolean",
+              "example": true
+            },
+            "end_user_apdex_threshold": {
+              "type": "number",
+              "format": "float",
+              "example": 42.5
+            },
+            "use_server_side_config": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplicationResponse"
+}

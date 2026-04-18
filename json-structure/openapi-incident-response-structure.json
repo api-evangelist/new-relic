@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-incident-response-structure.json",
+  "name": "IncidentResponse",
+  "description": "IncidentResponse schema",
+  "type": "object",
+  "properties": {
+    "incident": {
+      "$ref": "#/components/schemas/IncidentResponseType"
+    }
+  }
+}

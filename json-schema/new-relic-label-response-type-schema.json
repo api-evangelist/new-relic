@@ -1,0 +1,74 @@
+{
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "key": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "servers": {
+          "type": "array",
+          "example": [
+            100
+          ],
+          "items": {
+            "type": "integer"
+          }
+        },
+        "applications": {
+          "type": "array",
+          "example": [
+            100
+          ],
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "origins": {
+      "type": "object",
+      "properties": {
+        "agents": {
+          "type": "array",
+          "example": [
+            100
+          ],
+          "items": {
+            "type": "integer"
+          }
+        },
+        "apm": {
+          "type": "array",
+          "example": [
+            100
+          ],
+          "items": {
+            "type": "integer"
+          }
+        },
+        "synthetics": {
+          "type": "array",
+          "example": [
+            100
+          ],
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LabelResponseType"
+}

@@ -1,0 +1,86 @@
+{
+  "type": "object",
+  "description": "A batch of log records with optional shared attributes",
+  "properties": {
+    "common": {
+      "type": "object",
+      "description": "Shared attributes applied to all log records in this batch",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Default Unix timestamp in milliseconds for all logs in the batch",
+          "example": 1718153645993
+        },
+        "attributes": {
+          "type": "object",
+          "description": "Key-value attributes applied to all logs in this batch",
+          "example": {
+            "customAttribute": "example_value"
+          }
+        }
+      }
+    },
+    "logs": {
+      "type": "array",
+      "description": "Array of individual log records",
+      "example": [
+        {
+          "timestamp": 1718153645993,
+          "message": "Operation completed successfully",
+          "level": "FATAL",
+          "logtype": "standard",
+          "attributes": {
+            "customAttribute": "example_value"
+          }
+        }
+      ],
+      "items": {
+        "type": "object",
+        "description": "A single log record",
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix epoch timestamp in milliseconds when the log event occurred",
+            "example": 1718153645993
+          },
+          "message": {
+            "type": "string",
+            "description": "The log message text",
+            "example": "Operation completed successfully"
+          },
+          "level": {
+            "type": "string",
+            "description": "Log severity level",
+            "example": "FATAL",
+            "enum": [
+              "FATAL",
+              "ERROR",
+              "WARN",
+              "WARNING",
+              "INFO",
+              "DEBUG",
+              "TRACE"
+            ]
+          },
+          "logtype": {
+            "type": "string",
+            "description": "Log format type for automatic parsing (e.g., nginx, apache, syslog)",
+            "example": "standard"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Additional key-value attributes for this log record",
+            "example": {
+              "customAttribute": "example_value"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "logs"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LogDataObject"
+}

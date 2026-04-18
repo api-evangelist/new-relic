@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/trace-api-common-block-structure.json",
+  "name": "CommonBlock",
+  "description": "Shared attributes applied to all spans in this batch",
+  "type": "object",
+  "properties": {
+    "attributes": {
+      "type": "object",
+      "description": "Key-value attributes applied to every span in the batch",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "double"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "example": {
+        "customAttribute": "example_value"
+      }
+    }
+  }
+}

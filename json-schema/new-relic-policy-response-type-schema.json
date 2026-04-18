@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "integer",
+      "example": 100
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "incident_preference": {
+      "type": "string",
+      "example": "500123"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "updated_at": {
+      "type": "integer",
+      "example": 100
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PolicyResponseType"
+}

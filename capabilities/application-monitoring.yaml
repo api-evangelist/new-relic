@@ -1,0 +1,299 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "New Relic Application Monitoring"
+  description: "Application performance monitoring workflow combining application metrics, deployments, hosts, and custom events for developers tracking application health and release impact."
+  tags:
+    - New Relic
+    - Application Monitoring
+    - Developer
+    - APM
+    - Deployments
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+      NEW_RELIC_INSERT_KEY: NEW_RELIC_INSERT_KEY
+
+capability:
+  consumes:
+    - import: rest-api
+      location: ./shared/rest-api.yaml
+    - import: event-api
+      location: ./shared/event-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8082
+      namespace: application-monitoring-api
+      description: "Unified REST API for New Relic application performance monitoring."
+      resources:
+        - path: /v1/applications
+          name: applications
+          description: "List applications"
+          operations:
+            - method: GET
+              name: get-applications
+              description: "List all monitored applications"
+              call: "rest-api.get-applications"
+              with:
+                filter[name]: "rest.filter_name"
+                filter[host]: "rest.filter_host"
+                filter[language]: "rest.filter_language"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/applications/{id}
+          name: application-detail
+          description: "Get or update an application"
+          operations:
+            - method: GET
+              name: get-application
+              description: "Get application details"
+              call: "rest-api.get-application"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: update-application
+              description: "Update application settings"
+              call: "rest-api.update-application"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/deployments/{applicationId}
+          name: deployments
+          description: "Manage deployments"
+          operations:
+            - method: GET
+              name: get-deployments
+              description: "List deployments for an application"
+              call: "rest-api.get-deployments"
+              with:
+                application_id: "rest.applicationId"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-deployment
+              description: "Record a new deployment"
+              call: "rest-api.create-deployment"
+              with:
+                application_id: "rest.applicationId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/hosts/{applicationId}
+          name: hosts
+          description: "List application hosts"
+          operations:
+            - method: GET
+              name: get-application-hosts
+              description: "List hosts for an application"
+              call: "rest-api.get-application-hosts"
+              with:
+                application_id: "rest.applicationId"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/metrics/{applicationId}
+          name: application-metrics
+          description: "List application metrics"
+          operations:
+            - method: GET
+              name: get-application-metrics
+              description: "List available metric names"
+              call: "rest-api.get-application-metrics"
+              with:
+                application_id: "rest.applicationId"
+                name: "rest.name"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/metrics/{applicationId}/data
+          name: application-metrics-data
+          description: "Query metric data"
+          operations:
+            - method: GET
+              name: get-application-metrics-data
+              description: "Query metric data for an application"
+              call: "rest-api.get-application-metrics-data"
+              with:
+                application_id: "rest.applicationId"
+                names[]: "rest.names"
+                from: "rest.from"
+                to: "rest.to"
+                period: "rest.period"
+                summarize: "rest.summarize"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/key-transactions
+          name: key-transactions
+          description: "List key transactions"
+          operations:
+            - method: GET
+              name: get-key-transactions
+              description: "List key transactions"
+              call: "rest-api.get-key-transactions"
+              with:
+                filter[name]: "rest.filter_name"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/events/{accountId}
+          name: custom-events
+          description: "Send custom events"
+          operations:
+            - method: POST
+              name: send-events
+              description: "Send custom events for application tracking"
+              call: "event-api.send-events"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9092
+      namespace: application-monitoring-mcp
+      transport: http
+      description: "MCP server for AI-assisted New Relic application performance monitoring."
+      tools:
+        - name: get-applications
+          description: "List all monitored applications"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-applications"
+          with:
+            filter[name]: "tools.filter_name"
+            filter[host]: "tools.filter_host"
+            filter[language]: "tools.filter_language"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-application
+          description: "Get details of a specific application"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-application"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-application
+          description: "Update application settings"
+          hints:
+            readOnly: false
+            idempotent: true
+            openWorld: true
+          call: "rest-api.update-application"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-deployments
+          description: "List deployment records for an application"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-deployments"
+          with:
+            application_id: "tools.application_id"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-deployment
+          description: "Record a new deployment for an application"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "rest-api.create-deployment"
+          with:
+            application_id: "tools.application_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-application-hosts
+          description: "List hosts for an application"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-application-hosts"
+          with:
+            application_id: "tools.application_id"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-application-metrics
+          description: "List available metric names for an application"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-application-metrics"
+          with:
+            application_id: "tools.application_id"
+            name: "tools.name"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-application-metrics-data
+          description: "Query metric data points for an application"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-application-metrics-data"
+          with:
+            application_id: "tools.application_id"
+            names[]: "tools.names"
+            from: "tools.from"
+            to: "tools.to"
+            period: "tools.period"
+            summarize: "tools.summarize"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-key-transactions
+          description: "List key transactions"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rest-api.get-key-transactions"
+          with:
+            filter[name]: "tools.filter_name"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-events
+          description: "Send custom events for application tracking"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "event-api.send-events"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."

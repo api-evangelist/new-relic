@@ -1,0 +1,10 @@
+{
+  "application": {
+    "name": "example-resource-01",
+    "settings": {
+      "app_apdex_threshold": 42.5,
+      "enable_real_user_monitoring": true,
+      "end_user_apdex_threshold": 42.5
+    }
+  }
+}

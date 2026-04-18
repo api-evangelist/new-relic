@@ -1,0 +1,8 @@
+{
+  "synthetics_condition": {
+    "enabled": true,
+    "monitor_id": "500123",
+    "name": "example-resource-01",
+    "runbook_url": "https://portal.example.com/path/abc123"
+  }
+}

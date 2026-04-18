@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "description": "A single metric data point",
+  "name": "MetricDataPoint",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The metric name (e.g., cpu.usage.percent)"
+    },
+    "type": {
+      "type": "string",
+      "description": "The metric type",
+      "enum": [
+        "gauge",
+        "count",
+        "summary"
+      ]
+    },
+    "value": {
+      "type": "object",
+      "description": "The metric value. For gauge and count, a number. For summary, an object with count, sum, min, and max fields."
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds. Overrides the common timestamp for this metric."
+    },
+    "interval.ms": {
+      "type": "integer",
+      "description": "Measurement interval in milliseconds. Required for count and summary types."
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Additional key-value attributes for this metric point"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "value"
+  ],
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

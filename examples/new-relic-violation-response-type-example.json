@@ -1,0 +1,22 @@
+{
+  "closed_at": 100,
+  "condition_name": "example_string",
+  "duration": 100,
+  "entity": {
+    "group_id": 100,
+    "id": 100,
+    "name": "example-resource-01",
+    "product": "example_string",
+    "type": "standard"
+  },
+  "id": 100,
+  "label": "example_string",
+  "links": {
+    "condition_id": 100,
+    "incident_id": 100,
+    "policy_id": 100
+  },
+  "opened_at": 100,
+  "policy_name": "example_string",
+  "priority": "example_string"
+}

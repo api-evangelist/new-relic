@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "name": "PolicyResponseType",
+  "properties": {
+    "created_at": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "incident_preference": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "integer"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

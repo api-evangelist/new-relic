@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "name": "KeyTransactionLinksResponse",
+  "properties": {
+    "application": {
+      "type": "integer",
+      "description": "Application from which this key transaction originated"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

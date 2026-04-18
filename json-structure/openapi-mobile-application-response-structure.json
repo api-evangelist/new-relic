@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-mobile-application-response-structure.json",
+  "name": "MobileApplicationResponse",
+  "description": "MobileApplicationResponse schema",
+  "type": "object",
+  "properties": {
+    "application": {
+      "$ref": "#/components/schemas/MobileApplicationResponseType"
+    }
+  }
+}

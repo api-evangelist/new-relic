@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-violation-response-type-structure.json",
+  "name": "ViolationResponseType",
+  "description": "ViolationResponseType schema",
+  "type": "object",
+  "properties": {
+    "closed_at": {
+      "type": "int32",
+      "example": 100
+    },
+    "condition_name": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "duration": {
+      "type": "int32",
+      "example": 100
+    },
+    "entity": {
+      "$ref": "#/components/schemas/ViolationEntityResponse"
+    },
+    "id": {
+      "type": "int32",
+      "example": 100
+    },
+    "label": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "links": {
+      "$ref": "#/components/schemas/ViolationLinksResponse"
+    },
+    "opened_at": {
+      "type": "int32",
+      "example": 100
+    },
+    "policy_name": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "priority": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

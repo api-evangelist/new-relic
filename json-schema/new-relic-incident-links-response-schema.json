@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "policy_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "violations": {
+      "type": "array",
+      "example": [
+        100
+      ],
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IncidentLinksResponse"
+}

@@ -1,0 +1,11 @@
+{
+  "host": "example_string",
+  "application_name": "example_string",
+  "application_summary": "example_string",
+  "end_user_summary": "example_string",
+  "health_status": "active",
+  "id": 100,
+  "language": 100,
+  "links": "example_string",
+  "port": 8080
+}

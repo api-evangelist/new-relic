@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-application-instance-response-type-schema.json",
+  "title": "ApplicationInstanceResponseType",
+  "description": "ApplicationInstanceResponseType schema",
+  "type": "object",
+  "properties": {
+    "host": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "application_name": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "application_summary": {
+      "$ref": "#/components/schemas/AppSummaryDataResponse"
+    },
+    "end_user_summary": {
+      "$ref": "#/components/schemas/EndUserSummaryDataResponse"
+    },
+    "health_status": {
+      "type": "string",
+      "example": "active"
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "language": {
+      "type": "integer",
+      "example": 100
+    },
+    "links": {
+      "$ref": "#/components/schemas/ApplicationInstanceLinksResponse"
+    },
+    "port": {
+      "type": "integer",
+      "example": 8080
+    }
+  }
+}

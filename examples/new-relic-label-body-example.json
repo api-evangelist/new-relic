@@ -1,0 +1,12 @@
+{
+  "category": "example_string",
+  "links": {
+    "servers": [
+      100
+    ],
+    "applications": [
+      100
+    ]
+  },
+  "name": "example-resource-01"
+}

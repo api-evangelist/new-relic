@@ -1,0 +1,46 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nr": "https://docs.newrelic.com/docs/schemas/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "LogDataObject": "nr:LogDataObject",
+    "common": {
+      "@id": "nr:common",
+      "@type": "xsd:string"
+    },
+    "logs": {
+      "@id": "nr:logs",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "CommonBlock": "nr:CommonBlock",
+    "timestamp": {
+      "@id": "nr:timestamp",
+      "@type": "xsd:integer"
+    },
+    "attributes": {
+      "@id": "nr:attributes",
+      "@type": "@id"
+    },
+    "LogRecord": "nr:LogRecord",
+    "message": {
+      "@id": "nr:message",
+      "@type": "xsd:string"
+    },
+    "level": {
+      "@id": "nr:level",
+      "@type": "xsd:string"
+    },
+    "logtype": {
+      "@id": "nr:logtype",
+      "@type": "xsd:string"
+    },
+    "AcceptedResponse": "nr:AcceptedResponse",
+    "requestId": {
+      "@id": "nr:requestId",
+      "@type": "xsd:string"
+    }
+  }
+}

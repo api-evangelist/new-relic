@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-condition-response-structure.json",
+  "name": "ConditionResponse",
+  "description": "ConditionResponse schema",
+  "type": "object",
+  "properties": {
+    "condition": {
+      "$ref": "#/components/schemas/ConditionResponseType"
+    }
+  }
+}

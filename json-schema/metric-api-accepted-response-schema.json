@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/metric-api-accepted-response-schema.json",
+  "title": "AcceptedResponse",
+  "description": "Response returned when the payload was accepted",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the accepted request",
+      "example": "500123"
+    }
+  }
+}

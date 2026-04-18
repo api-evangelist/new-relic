@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "timeslices": {
+      "type": "array",
+      "example": [
+        {
+          "from": "2026-04-18T14:30:00Z",
+          "to": "2026-04-18T14:30:00Z",
+          "values": {}
+        }
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-04-18T14:30:00Z"
+          },
+          "to": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-04-18T14:30:00Z"
+          },
+          "values": {
+            "type": "object",
+            "example": {},
+            "properties": {}
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MetricResponse"
+}

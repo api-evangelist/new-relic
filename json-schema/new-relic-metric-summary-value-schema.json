@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "description": "Summary metric value containing statistical aggregations",
+  "properties": {
+    "count": {
+      "type": "number",
+      "description": "The number of measurements in this summary",
+      "example": 42.5
+    },
+    "sum": {
+      "type": "number",
+      "description": "The sum of all measurement values",
+      "example": 42.5
+    },
+    "min": {
+      "type": "number",
+      "description": "The minimum measurement value",
+      "example": 42.5
+    },
+    "max": {
+      "type": "number",
+      "description": "The maximum measurement value",
+      "example": 42.5
+    }
+  },
+  "required": [
+    "count",
+    "sum",
+    "min",
+    "max"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SummaryValue"
+}

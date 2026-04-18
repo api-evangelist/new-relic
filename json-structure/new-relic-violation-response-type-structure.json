@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "name": "ViolationResponseType",
+  "properties": {
+    "closed_at": {
+      "type": "integer"
+    },
+    "condition_name": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "product": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "id": {
+      "type": "integer"
+    },
+    "label": {
+      "type": "string"
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "condition_id": {
+          "type": "integer"
+        },
+        "incident_id": {
+          "type": "integer"
+        },
+        "policy_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "opened_at": {
+      "type": "integer"
+    },
+    "policy_name": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

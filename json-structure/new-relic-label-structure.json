@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "name": "Label",
+  "properties": {
+    "label": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "servers": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "applications": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

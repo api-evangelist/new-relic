@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-mobile-summary-data-response-structure.json",
+  "name": "MobileSummaryDataResponse",
+  "description": "MobileSummaryDataResponse schema",
+  "type": "object",
+  "properties": {
+    "active_users": {
+      "type": "int32",
+      "example": 100
+    },
+    "calls_per_session": {
+      "type": "float",
+      "example": 42.5
+    },
+    "failed_call_rate": {
+      "type": "float",
+      "example": 12.3
+    },
+    "interaction_time": {
+      "type": "float",
+      "example": 42.5
+    },
+    "launch_count": {
+      "type": "int32",
+      "example": 42
+    },
+    "remote_error_rate": {
+      "type": "float",
+      "example": 12.3
+    },
+    "response_time": {
+      "type": "float",
+      "example": 42.5
+    },
+    "throughput": {
+      "type": "float",
+      "example": 42.5
+    }
+  }
+}

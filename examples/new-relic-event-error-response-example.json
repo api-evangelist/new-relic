@@ -1,0 +1,10 @@
+{
+  "success": false,
+  "error": "example_string",
+  "errors": [
+    {
+      "error": "example_string",
+      "timestamp": "example_string"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "description": "A single log record",
+  "properties": {
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix epoch timestamp in milliseconds when the log event occurred",
+      "example": 1718153645993
+    },
+    "message": {
+      "type": "string",
+      "description": "The log message text",
+      "example": "Operation completed successfully"
+    },
+    "level": {
+      "type": "string",
+      "description": "Log severity level",
+      "example": "FATAL",
+      "enum": [
+        "FATAL",
+        "ERROR",
+        "WARN",
+        "WARNING",
+        "INFO",
+        "DEBUG",
+        "TRACE"
+      ]
+    },
+    "logtype": {
+      "type": "string",
+      "description": "Log format type for automatic parsing (e.g., nginx, apache, syslog)",
+      "example": "standard"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Additional key-value attributes for this log record",
+      "example": {
+        "customAttribute": "example_value"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LogRecord"
+}

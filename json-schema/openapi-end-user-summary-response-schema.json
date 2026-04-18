@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-end-user-summary-response-schema.json",
+  "title": "EndUserSummaryResponse",
+  "description": "EndUserSummaryResponse schema",
+  "type": "object",
+  "properties": {
+    "apdex_score": {
+      "type": "number",
+      "format": "float",
+      "example": 87.5
+    },
+    "apdex_target": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "response_time": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "throughput": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    }
+  }
+}

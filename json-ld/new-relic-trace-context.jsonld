@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "SpanBatch": {
+      "@id": "ns:SpanBatch",
+      "@context": {
+        "common": {
+          "@id": "ns:common",
+          "@type": "xsd:string"
+        },
+        "spans": "ns:spans"
+      }
+    },
+    "CommonBlock": {
+      "@id": "ns:CommonBlock",
+      "@context": {
+        "attributes": "ns:attributes"
+      }
+    },
+    "Span": {
+      "@id": "ns:Span",
+      "@context": {
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:string"
+        },
+        "trace.id": {
+          "@id": "ns:trace.id",
+          "@type": "xsd:string"
+        },
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        },
+        "attributes": "ns:attributes"
+      }
+    },
+    "ZipkinSpan": {
+      "@id": "ns:ZipkinSpan",
+      "@context": {
+        "id": {
+          "@id": "ns:id",
+          "@type": "xsd:string"
+        },
+        "traceId": {
+          "@id": "ns:traceId",
+          "@type": "xsd:string"
+        },
+        "parentId": {
+          "@id": "ns:parentId",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "ns:name",
+          "@type": "xsd:string"
+        },
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        },
+        "duration": {
+          "@id": "ns:duration",
+          "@type": "xsd:integer"
+        },
+        "kind": {
+          "@id": "ns:kind",
+          "@type": "xsd:string"
+        },
+        "localEndpoint": "ns:localEndpoint",
+        "remoteEndpoint": "ns:remoteEndpoint",
+        "tags": "ns:tags",
+        "annotations": "ns:annotations"
+      }
+    },
+    "AcceptedResponse": {
+      "@id": "ns:AcceptedResponse",
+      "@context": {
+        "requestId": {
+          "@id": "ns:requestId",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "@id": "ns:ErrorResponse",
+      "@context": {
+        "requestId": {
+          "@id": "ns:requestId",
+          "@type": "xsd:string"
+        },
+        "error": "ns:error"
+      }
+    }
+  }
+}

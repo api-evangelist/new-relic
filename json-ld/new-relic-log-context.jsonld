@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "LogDataObject": {
+      "@id": "ns:LogDataObject",
+      "@context": {
+        "common": {
+          "@id": "ns:common",
+          "@type": "xsd:string"
+        },
+        "logs": "ns:logs"
+      }
+    },
+    "CommonBlock": {
+      "@id": "ns:CommonBlock",
+      "@context": {
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        },
+        "attributes": "ns:attributes"
+      }
+    },
+    "LogRecord": {
+      "@id": "ns:LogRecord",
+      "@context": {
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        },
+        "message": {
+          "@id": "ns:message",
+          "@type": "xsd:string"
+        },
+        "level": {
+          "@id": "ns:level",
+          "@type": "xsd:string"
+        },
+        "logtype": {
+          "@id": "ns:logtype",
+          "@type": "xsd:string"
+        },
+        "attributes": "ns:attributes"
+      }
+    },
+    "AcceptedResponse": {
+      "@id": "ns:AcceptedResponse",
+      "@context": {
+        "requestId": {
+          "@id": "ns:requestId",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "@id": "ns:ErrorResponse",
+      "@context": {
+        "requestId": {
+          "@id": "ns:requestId",
+          "@type": "xsd:string"
+        },
+        "error": "ns:error"
+      }
+    }
+  }
+}

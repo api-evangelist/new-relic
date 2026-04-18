@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-policy-channels-response-structure.json",
+  "name": "PolicyChannelsResponse",
+  "description": "PolicyChannelsResponse schema",
+  "type": "object",
+  "properties": {
+    "policy": {
+      "$ref": "#/components/schemas/PolicyChannelsResponseType"
+    }
+  }
+}

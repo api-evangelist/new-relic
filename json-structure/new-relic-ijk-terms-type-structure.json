@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "name": "IJKTermsType",
+  "properties": {
+    "duration": {
+      "type": "string"
+    },
+    "operator": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string"
+    },
+    "threshold": {
+      "type": "string"
+    },
+    "time_function": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

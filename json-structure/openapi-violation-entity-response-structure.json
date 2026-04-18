@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-violation-entity-response-structure.json",
+  "name": "ViolationEntityResponse",
+  "description": "ViolationEntityResponse schema",
+  "type": "object",
+  "properties": {
+    "group_id": {
+      "type": "int32",
+      "example": 100
+    },
+    "id": {
+      "type": "int32",
+      "example": 100
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "product": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "type": "{'type': 'string', 'example': 'standard'}"
+  }
+}

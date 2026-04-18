@@ -1,0 +1,27 @@
+{
+  "condition_scope": "example_string",
+  "enabled": true,
+  "entities": [
+    100
+  ],
+  "gc_metric": "example_string",
+  "id": 100,
+  "metric": "example_string",
+  "name": "example-resource-01",
+  "runbook_url": "https://portal.example.com/path/abc123",
+  "terms": [
+    {
+      "duration": "example_string",
+      "operator": "example_string",
+      "priority": "example_string",
+      "threshold": "example_string",
+      "time_function": "example_string"
+    }
+  ],
+  "type": "standard",
+  "user_defined": {
+    "metric": "example_string",
+    "value_function": "example_string"
+  },
+  "violation_close_timer": 1718153645993
+}

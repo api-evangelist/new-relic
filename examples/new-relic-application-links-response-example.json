@@ -1,0 +1,11 @@
+{
+  "servers": [
+    100
+  ],
+  "application_hosts": [
+    100
+  ],
+  "application_instances": [
+    100
+  ]
+}

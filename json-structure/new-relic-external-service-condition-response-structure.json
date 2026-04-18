@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "name": "ExternalServiceConditionResponse",
+  "properties": {
+    "external_service_condition": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "external_service_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "metric": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "runbook_url": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "string"
+              },
+              "operator": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "string"
+              },
+              "threshold": {
+                "type": "string"
+              },
+              "time_function": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

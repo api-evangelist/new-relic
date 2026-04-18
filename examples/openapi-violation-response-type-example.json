@@ -1,0 +1,12 @@
+{
+  "closed_at": 100,
+  "condition_name": "example_string",
+  "duration": 100,
+  "entity": "example_string",
+  "id": 100,
+  "label": "example_string",
+  "links": "example_string",
+  "opened_at": 100,
+  "policy_name": "example_string",
+  "priority": "example_string"
+}

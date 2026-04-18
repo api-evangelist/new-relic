@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/log-api-log-record-structure.json",
+  "name": "LogRecord",
+  "description": "A single log record",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "int32",
+      "description": "Unix epoch timestamp in milliseconds when the log event occurred",
+      "example": 1718153645993
+    },
+    "message": {
+      "type": "string",
+      "description": "The log message text",
+      "maxLength": 32768,
+      "example": "Operation completed successfully"
+    },
+    "level": {
+      "type": "string",
+      "description": "Log severity level",
+      "enum": [
+        "FATAL",
+        "ERROR",
+        "WARN",
+        "WARNING",
+        "INFO",
+        "DEBUG",
+        "TRACE"
+      ],
+      "example": "FATAL"
+    },
+    "logtype": {
+      "type": "string",
+      "description": "Log format type for automatic parsing (e.g., nginx, apache, syslog)",
+      "example": "standard"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Additional key-value attributes for this log record",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "double"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "example": {
+        "customAttribute": "example_value"
+      }
+    }
+  },
+  "additionalProperties": {
+    "description": "Additional top-level attributes are accepted and stored"
+  }
+}

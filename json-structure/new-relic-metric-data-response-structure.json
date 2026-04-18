@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "name": "MetricDataResponse",
+  "properties": {
+    "metric_data": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "datetime"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "timeslices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "object"
+                    },
+                    "to": {
+                      "type": "object"
+                    },
+                    "values": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "metrics_found": {
+          "type": "string"
+        },
+        "metrics_not_found": {
+          "type": "string"
+        },
+        "to": {
+          "type": "datetime"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

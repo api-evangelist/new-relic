@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "name": "BrowserApplicationBody",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

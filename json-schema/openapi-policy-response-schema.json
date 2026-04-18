@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-policy-response-schema.json",
+  "title": "PolicyResponse",
+  "description": "PolicyResponse schema",
+  "type": "object",
+  "properties": {
+    "policy": {
+      "$ref": "#/components/schemas/PolicyResponseType"
+    }
+  }
+}

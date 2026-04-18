@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "name": "NrqlResponse",
+  "properties": {
+    "query": {
+      "type": "string"
+    },
+    "since_value": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-incident-response-type-structure.json",
+  "name": "IncidentResponseType",
+  "description": "IncidentResponseType schema",
+  "type": "object",
+  "properties": {
+    "closed_at": {
+      "type": "int32",
+      "example": 100
+    },
+    "id": {
+      "type": "int32",
+      "example": 100
+    },
+    "incident_preference": {
+      "type": "int32",
+      "example": 100
+    },
+    "links": {
+      "$ref": "#/components/schemas/IncidentLinksResponse"
+    },
+    "opened_at": {
+      "type": "int32",
+      "example": 100
+    }
+  }
+}

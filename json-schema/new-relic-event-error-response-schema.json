@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "description": "Error response",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "example": false
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message",
+      "example": "example_string"
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of validation errors",
+      "example": [
+        {
+          "error": "example_string",
+          "timestamp": "example_string"
+        }
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ErrorResponse"
+}

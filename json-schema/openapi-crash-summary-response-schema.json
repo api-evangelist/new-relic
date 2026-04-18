@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-crash-summary-response-schema.json",
+  "title": "CrashSummaryResponse",
+  "description": "CrashSummaryResponse schema",
+  "type": "object",
+  "properties": {
+    "crash_count": {
+      "type": "integer",
+      "example": 42
+    },
+    "crash_rate": {
+      "type": "number",
+      "format": "float",
+      "example": 12.3
+    },
+    "supports_crash_data": {
+      "type": "boolean",
+      "example": true
+    },
+    "unresolved_crash_count": {
+      "type": "integer",
+      "example": 42
+    }
+  }
+}

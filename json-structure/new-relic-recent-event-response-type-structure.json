@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "name": "RecentEventResponseType",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "entity_group_id": {
+      "type": "integer"
+    },
+    "entity_id": {
+      "type": "integer"
+    },
+    "entity_type": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "incident_id": {
+      "type": "integer"
+    },
+    "priority": {
+      "type": "string"
+    },
+    "product": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "integer"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

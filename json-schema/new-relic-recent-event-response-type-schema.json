@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "entity_group_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "entity_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "entity_type": {
+      "type": "string",
+      "example": "standard"
+    },
+    "event_type": {
+      "type": "string",
+      "example": "standard"
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "incident_id": {
+      "type": "integer",
+      "example": 100
+    },
+    "priority": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "product": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "timestamp": {
+      "type": "integer",
+      "example": 1718153645993
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RecentEventResponseType"
+}

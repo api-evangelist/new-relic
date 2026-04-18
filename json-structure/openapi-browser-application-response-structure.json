@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-browser-application-response-structure.json",
+  "name": "BrowserApplicationResponse",
+  "description": "BrowserApplicationResponse schema",
+  "type": "object",
+  "properties": {
+    "browser_application": {
+      "$ref": "#/components/schemas/BrowserApplicationResponseType"
+    }
+  }
+}

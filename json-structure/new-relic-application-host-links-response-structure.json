@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "name": "ApplicationHostLinksResponse",
+  "properties": {
+    "application": {
+      "type": "integer"
+    },
+    "application_instances": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "server": {
+      "type": "integer"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

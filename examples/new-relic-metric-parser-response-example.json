@@ -1,0 +1,8 @@
+{
+  "metric": {
+    "name": "example-resource-01",
+    "values": [
+      "example_string"
+    ]
+  }
+}

@@ -12,24 +12,25 @@ info:
     name: New Relic Support
     url: https://support.newrelic.com/
   termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
 externalDocs:
   description: New Relic Metric API Documentation
   url: https://docs.newrelic.com/docs/data-apis/ingest-apis/metric-api/introduction-metric-api/
 servers:
-  - url: https://metric-api.newrelic.com
-    description: US Production
-  - url: https://metric-api.eu.newrelic.com
-    description: EU Production
+- url: https://metric-api.newrelic.com
+  description: US Production
+- url: https://metric-api.eu.newrelic.com
+  description: EU Production
 tags:
-  - name: Metrics
-    description: Metric data ingestion endpoints
+- name: Metrics
+  description: Metric data ingestion endpoints
 security:
-  - apiKey: []
+- apiKey: []
 paths:
   /metric/v1:
     post:
       operationId: sendMetrics
-      summary: New Relic Send metric data
+      summary: New Relic Send Metric Data
       description: >-
         Sends an array of metric data points to the New Relic Metric API. The
         request body must be a JSON array of metric data objects, each containing
@@ -37,23 +38,25 @@ paths:
         gzip-compressed for best performance. The API supports count, gauge,
         and summary metric types.
       tags:
-        - Metrics
+      - Metrics
       parameters:
-        - $ref: '#/components/parameters/ApiKey'
-        - name: Content-Encoding
-          in: header
-          description: Compression encoding. Use gzip for compressed payloads.
-          schema:
-            type: string
-            enum:
-              - gzip
-        - name: Content-Type
-          in: header
-          required: true
-          schema:
-            type: string
-            enum:
-              - application/json
+      - $ref: '#/components/parameters/ApiKey'
+      - name: Content-Encoding
+        in: header
+        description: Compression encoding. Use gzip for compressed payloads.
+        schema:
+          type: string
+          enum:
+          - gzip
+        example: gzip
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/json
+        example: application/json
       requestBody:
         required: true
         content:
@@ -61,20 +64,20 @@ paths:
             schema:
               $ref: '#/components/schemas/MetricPayload'
             example:
-              - common:
-                  timestamp: 1531414060739
-                  interval.ms: 10000
-                  attributes:
-                    host.name: host1
-                    service.name: myService
-                metrics:
-                  - name: cpu.usage.percent
-                    type: gauge
-                    value: 12.3
-                  - name: http.requests
-                    type: count
-                    value: 420
-                    interval.ms: 10000
+            - common:
+                timestamp: 1531414060739
+                interval.ms: 10000
+                attributes:
+                  host.name: host1
+                  service.name: myService
+              metrics:
+              - name: cpu.usage.percent
+                type: gauge
+                value: 12.3
+              - name: http.requests
+                type: count
+                value: 420
+                interval.ms: 10000
       responses:
         '202':
           description: Accepted. The data was received and queued for processing.
@@ -82,30 +85,73 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AcceptedResponse'
+              examples:
+                Sendmetrics202Example:
+                  summary: Default sendMetrics 202 response
+                  x-microcks-default: true
+                  value:
+                    requestId: '500123'
         '400':
           description: Bad request. The payload is malformed or exceeds size limits.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendmetrics400Example:
+                  summary: Default sendMetrics 400 response
+                  x-microcks-default: true
+                  value:
+                    error: &id001
+                      type: standard
+                      message: Operation completed successfully
+                    failures: &id002
+                    - error:
+                        message: Operation completed successfully
+                      failed:
+                      - {}
         '403':
           description: Forbidden. The API key is invalid or does not have insert permissions.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendmetrics403Example:
+                  summary: Default sendMetrics 403 response
+                  x-microcks-default: true
+                  value:
+                    error: *id001
+                    failures: *id002
         '413':
           description: Payload too large. The request body exceeds the 1 MB limit.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendmetrics413Example:
+                  summary: Default sendMetrics 413 response
+                  x-microcks-default: true
+                  value:
+                    error: *id001
+                    failures: *id002
         '429':
           description: Too many requests. The rate limit has been exceeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Sendmetrics429Example:
+                  summary: Default sendMetrics 429 response
+                  x-microcks-default: true
+                  value:
+                    error: *id001
+                    failures: *id002
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     apiKey:
@@ -138,8 +184,16 @@ components:
           description: Array of individual metric data points
           items:
             $ref: '#/components/schemas/MetricDataPoint'
+          example:
+          - name: example-resource-01
+            type: gauge
+            value: 42.5
+            timestamp: 1718153645993
+            interval.ms: 100
+            attributes:
+              customAttribute: example_value
       required:
-        - metrics
+      - metrics
     CommonBlock:
       type: object
       description: >-
@@ -149,9 +203,11 @@ components:
         timestamp:
           type: integer
           description: Unix timestamp in milliseconds for all metrics in this batch
+          example: 1718153645993
         interval.ms:
           type: integer
           description: Default measurement interval in milliseconds for count and summary metrics
+          example: 100
         attributes:
           type: object
           description: >-
@@ -159,72 +215,85 @@ components:
             strings, numbers, or booleans.
           additionalProperties:
             oneOf:
-              - type: string
-              - type: number
-              - type: boolean
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            customAttribute: example_value
     MetricDataPoint:
       type: object
       description: A single metric data point
       required:
-        - name
-        - type
-        - value
+      - name
+      - type
+      - value
       properties:
         name:
           type: string
           description: The metric name (e.g., cpu.usage.percent)
           maxLength: 255
+          example: example-resource-01
         type:
           type: string
           description: The metric type
           enum:
-            - gauge
-            - count
-            - summary
+          - gauge
+          - count
+          - summary
+          example: gauge
         value:
           description: >-
             The metric value. For gauge and count, a number. For summary, an
             object with count, sum, min, and max fields.
           oneOf:
-            - type: number
-            - $ref: '#/components/schemas/SummaryValue'
+          - type: number
+          - $ref: '#/components/schemas/SummaryValue'
+          example: 42.5
         timestamp:
           type: integer
           description: >-
             Unix timestamp in milliseconds. Overrides the common timestamp
             for this metric.
+          example: 1718153645993
         interval.ms:
           type: integer
           description: Measurement interval in milliseconds. Required for count and summary types.
+          example: 100
         attributes:
           type: object
           description: Additional key-value attributes for this metric point
           additionalProperties:
             oneOf:
-              - type: string
-              - type: number
-              - type: boolean
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            customAttribute: example_value
     SummaryValue:
       type: object
       description: Summary metric value containing statistical aggregations
       required:
-        - count
-        - sum
-        - min
-        - max
+      - count
+      - sum
+      - min
+      - max
       properties:
         count:
           type: number
           description: The number of measurements in this summary
+          example: 42.5
         sum:
           type: number
           description: The sum of all measurement values
+          example: 42.5
         min:
           type: number
           description: The minimum measurement value
+          example: 42.5
         max:
           type: number
           description: The maximum measurement value
+          example: 42.5
     AcceptedResponse:
       type: object
       description: Response returned when the payload was accepted
@@ -232,6 +301,7 @@ components:
         requestId:
           type: string
           description: Unique identifier for the accepted request
+          example: '500123'
     ErrorResponse:
       type: object
       description: Error response body
@@ -245,6 +315,7 @@ components:
             message:
               type: string
               description: Human-readable error description
+          example: *id001
         failures:
           type: array
           description: List of individual failure details when partial rejection occurs
@@ -260,3 +331,4 @@ components:
                 type: array
                 items:
                   type: object
+          example: *id002

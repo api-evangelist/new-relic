@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/metric-api-summary-value-schema.json",
+  "title": "SummaryValue",
+  "description": "Summary metric value containing statistical aggregations",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "number",
+      "description": "The number of measurements in this summary",
+      "example": 42.5
+    },
+    "sum": {
+      "type": "number",
+      "description": "The sum of all measurement values",
+      "example": 42.5
+    },
+    "min": {
+      "type": "number",
+      "description": "The minimum measurement value",
+      "example": 42.5
+    },
+    "max": {
+      "type": "number",
+      "description": "The maximum measurement value",
+      "example": 42.5
+    }
+  },
+  "required": [
+    "count",
+    "sum",
+    "min",
+    "max"
+  ]
+}

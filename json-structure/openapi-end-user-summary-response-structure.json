@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-end-user-summary-response-structure.json",
+  "name": "EndUserSummaryResponse",
+  "description": "EndUserSummaryResponse schema",
+  "type": "object",
+  "properties": {
+    "apdex_score": {
+      "type": "float",
+      "example": 87.5
+    },
+    "apdex_target": {
+      "type": "float",
+      "example": 42.5
+    },
+    "response_time": {
+      "type": "float",
+      "example": 42.5
+    },
+    "throughput": {
+      "type": "float",
+      "example": 42.5
+    }
+  }
+}

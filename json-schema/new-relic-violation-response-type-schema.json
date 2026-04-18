@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "properties": {
+    "closed_at": {
+      "type": "integer",
+      "example": 100
+    },
+    "condition_name": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "duration": {
+      "type": "integer",
+      "example": 100
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "integer",
+          "example": 100
+        },
+        "id": {
+          "type": "integer",
+          "example": 100
+        },
+        "name": {
+          "type": "string",
+          "example": "example-resource-01"
+        },
+        "product": {
+          "type": "string",
+          "example": "example_string"
+        },
+        "type": {
+          "type": "string",
+          "example": "standard"
+        }
+      }
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "label": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "condition_id": {
+          "type": "integer",
+          "example": 100
+        },
+        "incident_id": {
+          "type": "integer",
+          "example": 100
+        },
+        "policy_id": {
+          "type": "integer",
+          "example": 100
+        }
+      }
+    },
+    "opened_at": {
+      "type": "integer",
+      "example": 100
+    },
+    "policy_name": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "priority": {
+      "type": "string",
+      "example": "example_string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ViolationResponseType"
+}

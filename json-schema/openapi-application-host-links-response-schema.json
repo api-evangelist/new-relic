@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-application-host-links-response-schema.json",
+  "title": "ApplicationHostLinksResponse",
+  "description": "ApplicationHostLinksResponse schema",
+  "type": "object",
+  "properties": {
+    "application": {
+      "type": "integer",
+      "example": 100
+    },
+    "application_instances": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    },
+    "server": {
+      "type": "integer",
+      "example": 100
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nr": "https://docs.newrelic.com/docs/schemas/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "SpanBatch": "nr:SpanBatch",
+    "common": {
+      "@id": "nr:common",
+      "@type": "xsd:string"
+    },
+    "spans": {
+      "@id": "nr:spans",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "CommonBlock": "nr:CommonBlock",
+    "attributes": {
+      "@id": "nr:attributes",
+      "@type": "@id"
+    },
+    "Span": "nr:Span",
+    "id": {
+      "@id": "nr:id",
+      "@type": "xsd:string"
+    },
+    "trace.id": {
+      "@id": "nr:trace.id",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "nr:timestamp",
+      "@type": "xsd:integer"
+    },
+    "ZipkinSpan": "nr:ZipkinSpan",
+    "traceId": {
+      "@id": "nr:traceId",
+      "@type": "xsd:string"
+    },
+    "parentId": {
+      "@id": "nr:parentId",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "duration": {
+      "@id": "nr:duration",
+      "@type": "xsd:integer"
+    },
+    "kind": {
+      "@id": "nr:kind",
+      "@type": "xsd:string"
+    },
+    "localEndpoint": {
+      "@id": "nr:localEndpoint",
+      "@type": "@id"
+    },
+    "remoteEndpoint": {
+      "@id": "nr:remoteEndpoint",
+      "@type": "@id"
+    },
+    "tags": {
+      "@id": "nr:tags",
+      "@type": "@id"
+    },
+    "annotations": {
+      "@id": "nr:annotations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "AcceptedResponse": "nr:AcceptedResponse",
+    "requestId": {
+      "@id": "nr:requestId",
+      "@type": "xsd:string"
+    }
+  }
+}

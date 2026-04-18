@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/trace-api-accepted-response-structure.json",
+  "name": "AcceptedResponse",
+  "description": "AcceptedResponse schema",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "example": "500123"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-schema/openapi-application-instance-response-schema.json",
+  "title": "ApplicationInstanceResponse",
+  "description": "ApplicationInstanceResponse schema",
+  "type": "object",
+  "properties": {
+    "application_instance": {
+      "$ref": "#/components/schemas/ApplicationInstanceResponseType"
+    }
+  }
+}

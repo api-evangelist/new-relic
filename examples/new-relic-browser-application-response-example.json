@@ -1,0 +1,8 @@
+{
+  "browser_application": {
+    "browser_monitoring_key": "example_string",
+    "id": 100,
+    "loader_script": "example_string",
+    "name": "example-resource-01"
+  }
+}

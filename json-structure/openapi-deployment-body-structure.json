@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-deployment-body-structure.json",
+  "name": "DeploymentBody",
+  "description": "DeploymentBody schema",
+  "type": "object",
+  "properties": {
+    "changelog": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "description": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "revision": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "user": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

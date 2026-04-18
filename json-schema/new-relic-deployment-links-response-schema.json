@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "application": {
+      "type": "integer",
+      "example": 100
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DeploymentLinksResponse"
+}

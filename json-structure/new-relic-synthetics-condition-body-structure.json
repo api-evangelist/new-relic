@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "name": "SyntheticsConditionBody",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "monitor_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "runbook_url": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

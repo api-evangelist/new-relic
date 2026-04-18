@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "app_apdex_threshold": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "enable_real_user_monitoring": {
+      "type": "boolean",
+      "example": true
+    },
+    "end_user_apdex_threshold": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "use_server_side_config": {
+      "type": "boolean",
+      "example": true
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AppSettingsResponse"
+}

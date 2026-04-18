@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "expected_groups": 100,
+  "ignore_overlap": true,
+  "name": "example-resource-01",
+  "nrql": {
+    "query": "example_string",
+    "since_value": "example_string"
+  },
+  "runbook_url": "https://portal.example.com/path/abc123",
+  "terms": [
+    {
+      "duration": "example_string",
+      "operator": "example_string",
+      "priority": "example_string",
+      "threshold": "example_string",
+      "time_function": "example_string"
+    }
+  ],
+  "value_function": "example_string"
+}

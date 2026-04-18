@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "CustomEvent": {
+      "@id": "ns:CustomEvent",
+      "@context": {
+        "eventType": {
+          "@id": "ns:eventType",
+          "@type": "xsd:string"
+        },
+        "timestamp": {
+          "@id": "ns:timestamp",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "SuccessResponse": {
+      "@id": "ns:SuccessResponse",
+      "@context": {
+        "success": {
+          "@id": "ns:success",
+          "@type": "xsd:boolean"
+        },
+        "uuid": {
+          "@id": "ns:uuid",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "@id": "ns:ErrorResponse",
+      "@context": {
+        "success": {
+          "@id": "ns:success",
+          "@type": "xsd:boolean"
+        },
+        "error": {
+          "@id": "ns:error",
+          "@type": "xsd:string"
+        },
+        "errors": "ns:errors"
+      }
+    }
+  }
+}

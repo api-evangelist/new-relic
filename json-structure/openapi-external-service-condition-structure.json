@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-external-service-condition-structure.json",
+  "name": "ExternalServiceCondition",
+  "description": "ExternalServiceCondition schema",
+  "type": "object",
+  "properties": {
+    "external_service_condition": {
+      "$ref": "#/components/schemas/ExternalServiceConditionBody"
+    }
+  }
+}

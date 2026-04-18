@@ -1,0 +1,48 @@
+name: new-relic API Vocabulary
+provider: new-relic
+created: '2026-04-18'
+modified: '2026-04-18'
+apis:
+- name: New Relic Event API
+  version: '1'
+- name: New Relic Log API
+  version: '1'
+- name: New Relic Metric API
+  version: '1'
+- name: New Relic
+  version: v2
+- name: New Relic Trace API
+  version: '1'
+resources: 28
+operations: 62
+schemas: 106
+tags:
+- Alerts
+- Applications
+- Channel
+- Channels
+- Condition
+- Conditions
+- Data
+- Delete
+- Deployments
+- Entity
+- Events
+- External
+- Failure
+- Get
+- Hosts
+- Identifiers
+- Instance
+- Instances
+- Keys
+- Location
+- Logs
+- Metrics
+- Mobile
+- Policies
+- Post
+- Put
+- Traces
+- Transactions
+- Violations

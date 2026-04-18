@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "description": "Error response",
+  "name": "ErrorResponse",
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message"
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of validation errors",
+      "items": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

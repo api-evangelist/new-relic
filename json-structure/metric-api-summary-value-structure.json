@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/metric-api-summary-value-structure.json",
+  "name": "SummaryValue",
+  "description": "Summary metric value containing statistical aggregations",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "double",
+      "description": "The number of measurements in this summary",
+      "example": 42.5
+    },
+    "sum": {
+      "type": "double",
+      "description": "The sum of all measurement values",
+      "example": 42.5
+    },
+    "min": {
+      "type": "double",
+      "description": "The minimum measurement value",
+      "example": 42.5
+    },
+    "max": {
+      "type": "double",
+      "description": "The maximum measurement value",
+      "example": 42.5
+    }
+  },
+  "required": [
+    "count",
+    "sum",
+    "min",
+    "max"
+  ]
+}

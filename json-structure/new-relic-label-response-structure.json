@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "name": "LabelResponse",
+  "properties": {
+    "label": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "servers": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "applications": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "origins": {
+          "type": "object",
+          "properties": {
+            "agents": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "apm": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "synthetics": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

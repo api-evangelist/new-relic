@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nr": "https://docs.newrelic.com/docs/schemas/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "MetricDataObject": "nr:MetricDataObject",
+    "common": {
+      "@id": "nr:common",
+      "@type": "xsd:string"
+    },
+    "metrics": {
+      "@id": "nr:metrics",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "CommonBlock": "nr:CommonBlock",
+    "timestamp": {
+      "@id": "nr:timestamp",
+      "@type": "xsd:integer"
+    },
+    "interval.ms": {
+      "@id": "nr:interval.ms",
+      "@type": "xsd:integer"
+    },
+    "attributes": {
+      "@id": "nr:attributes",
+      "@type": "@id"
+    },
+    "MetricDataPoint": "nr:MetricDataPoint",
+    "name": "schema:name",
+    "type": {
+      "@id": "nr:type",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "nr:value",
+      "@type": "xsd:string"
+    },
+    "SummaryValue": "nr:SummaryValue",
+    "count": {
+      "@id": "nr:count",
+      "@type": "xsd:decimal"
+    },
+    "sum": {
+      "@id": "nr:sum",
+      "@type": "xsd:decimal"
+    },
+    "min": {
+      "@id": "nr:min",
+      "@type": "xsd:decimal"
+    },
+    "max": {
+      "@id": "nr:max",
+      "@type": "xsd:decimal"
+    },
+    "AcceptedResponse": "nr:AcceptedResponse",
+    "requestId": {
+      "@id": "nr:requestId",
+      "@type": "xsd:string"
+    }
+  }
+}

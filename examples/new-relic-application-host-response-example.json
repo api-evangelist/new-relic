@@ -1,0 +1,14 @@
+{
+  "application_hosts": [
+    {
+      "host": "example_string",
+      "application_name": "example_string",
+      "application_summary": {},
+      "end_user_summary": {},
+      "health_status": "active",
+      "id": 100,
+      "language": 100,
+      "links": {}
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "name": "AppSummaryDataResponse",
+  "properties": {
+    "apdex_score": {
+      "type": "number"
+    },
+    "error_rate": {
+      "type": "number"
+    },
+    "instance_count": {
+      "type": "integer"
+    },
+    "response_time": {
+      "type": "number"
+    },
+    "throughput": {
+      "type": "number"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

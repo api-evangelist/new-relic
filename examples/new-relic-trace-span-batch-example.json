@@ -1,0 +1,25 @@
+{
+  "common": {
+    "attributes": {
+      "customAttribute": "example_value"
+    }
+  },
+  "spans": [
+    {
+      "id": "500123",
+      "trace.id": "500123",
+      "timestamp": 1718153645993,
+      "attributes": {
+        "name": {},
+        "parent.id": {},
+        "duration.ms": {},
+        "service.name": {},
+        "error": {},
+        "db.statement": {},
+        "http.url": {},
+        "http.method": {},
+        "http.statusCode": {}
+      }
+    }
+  ]
+}

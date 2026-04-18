@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-app-summary-response-structure.json",
+  "name": "AppSummaryResponse",
+  "description": "AppSummaryResponse schema",
+  "type": "object",
+  "properties": {
+    "apdex_score": {
+      "type": "float",
+      "example": 87.5
+    },
+    "apdex_target": {
+      "type": "float",
+      "example": 42.5
+    },
+    "concurrent_instance_count": {
+      "type": "int32",
+      "example": 42
+    },
+    "error_rate": {
+      "type": "float",
+      "example": 12.3
+    },
+    "host_count": {
+      "type": "int32",
+      "example": 42
+    },
+    "instance_count": {
+      "type": "int32",
+      "example": 42
+    },
+    "response_time": {
+      "type": "float",
+      "example": 42.5
+    },
+    "throughput": {
+      "type": "float",
+      "example": 42.5
+    }
+  }
+}

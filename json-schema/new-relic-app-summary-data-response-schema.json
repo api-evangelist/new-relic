@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "apdex_score": {
+      "type": "number",
+      "format": "float",
+      "example": 87.5
+    },
+    "error_rate": {
+      "type": "number",
+      "format": "float",
+      "example": 12.3
+    },
+    "instance_count": {
+      "type": "integer",
+      "example": 42
+    },
+    "response_time": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "throughput": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AppSummaryDataResponse"
+}

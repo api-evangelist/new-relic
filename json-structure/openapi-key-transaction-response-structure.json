@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-key-transaction-response-structure.json",
+  "name": "KeyTransactionResponse",
+  "description": "KeyTransactionResponse schema",
+  "type": "object",
+  "properties": {
+    "key_transaction": {
+      "$ref": "#/components/schemas/KeyTransactionResponseType"
+    }
+  }
+}

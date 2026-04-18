@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-label-structure.json",
+  "name": "Label",
+  "description": "Label schema",
+  "type": "object",
+  "properties": {
+    "label": {
+      "$ref": "#/components/schemas/LabelBody"
+    }
+  }
+}

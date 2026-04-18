@@ -1,0 +1,133 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "New Relic Telemetry Ingestion"
+  description: "Telemetry data ingestion workflow combining event, log, metric, and trace APIs for ops engineers sending observability data to New Relic from external sources."
+  tags:
+    - New Relic
+    - Telemetry
+    - Data Ingestion
+    - Ops Engineering
+    - Observability
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      NEW_RELIC_INSERT_KEY: NEW_RELIC_INSERT_KEY
+
+capability:
+  consumes:
+    - import: event-api
+      location: ./shared/event-api.yaml
+    - import: log-api
+      location: ./shared/log-api.yaml
+    - import: metric-api
+      location: ./shared/metric-api.yaml
+    - import: trace-api
+      location: ./shared/trace-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: telemetry-ingestion-api
+      description: "Unified REST API for New Relic telemetry data ingestion."
+      resources:
+        - path: /v1/events/{accountId}
+          name: events
+          description: "Send custom events"
+          operations:
+            - method: POST
+              name: send-events
+              description: "Send custom events to New Relic"
+              call: "event-api.send-events"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/logs
+          name: logs
+          description: "Send log data"
+          operations:
+            - method: POST
+              name: send-logs
+              description: "Send log records to New Relic"
+              call: "log-api.send-logs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/metrics
+          name: metrics
+          description: "Send metric data"
+          operations:
+            - method: POST
+              name: send-metrics
+              description: "Send metric data to New Relic"
+              call: "metric-api.send-metrics"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/traces
+          name: traces
+          description: "Send trace spans"
+          operations:
+            - method: POST
+              name: send-traces
+              description: "Send distributed trace spans to New Relic"
+              call: "trace-api.send-traces"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: telemetry-ingestion-mcp
+      transport: http
+      description: "MCP server for AI-assisted New Relic telemetry data ingestion."
+      tools:
+        - name: send-events
+          description: "Send custom events to a New Relic account"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "event-api.send-events"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-logs
+          description: "Send log records to New Relic"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "log-api.send-logs"
+          with:
+            log_data: "tools.log_data"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-metrics
+          description: "Send dimensional metric data to New Relic"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "metric-api.send-metrics"
+          with:
+            metric_data: "tools.metric_data"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-traces
+          description: "Send distributed trace spans to New Relic"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "trace-api.send-traces"
+          with:
+            trace_data: "tools.trace_data"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-deployment-response-structure.json",
+  "name": "DeploymentResponse",
+  "description": "DeploymentResponse schema",
+  "type": "object",
+  "properties": {
+    "deployment": {
+      "$ref": "#/components/schemas/DeploymentResponseType"
+    }
+  }
+}

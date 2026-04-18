@@ -1,0 +1,6 @@
+{
+  "apdex_score": 87.5,
+  "apdex_target": 42.5,
+  "response_time": 42.5,
+  "throughput": 42.5
+}

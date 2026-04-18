@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "name": "ChannelBody",
+  "properties": {
+    "configuration": {
+      "type": "object",
+      "properties": {}
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "description": "A container for a batch of metrics with optional shared attributes",
+  "name": "MetricDataObject",
+  "properties": {
+    "common": {
+      "type": "object",
+      "description": "Shared attributes applied to all metrics in this data object unless overridden at the metric level",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Unix timestamp in milliseconds for all metrics in this batch"
+        },
+        "interval.ms": {
+          "type": "integer",
+          "description": "Default measurement interval in milliseconds for count and summary metrics"
+        },
+        "attributes": {
+          "type": "object",
+          "description": "Key-value pairs applied to all metrics in the batch. Values can be strings, numbers, or booleans."
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "description": "Array of individual metric data points",
+      "items": {
+        "type": "object",
+        "description": "A single metric data point",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The metric name (e.g., cpu.usage.percent)"
+          },
+          "type": {
+            "type": "string",
+            "description": "The metric type",
+            "enum": [
+              "gauge",
+              "count",
+              "summary"
+            ]
+          },
+          "value": {
+            "type": "object",
+            "description": "The metric value. For gauge and count, a number. For summary, an object with count, sum, min, and max fields."
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp in milliseconds. Overrides the common timestamp for this metric."
+          },
+          "interval.ms": {
+            "type": "integer",
+            "description": "Measurement interval in milliseconds. Required for count and summary types."
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Additional key-value attributes for this metric point"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "value"
+        ]
+      }
+    }
+  },
+  "required": [
+    "metrics"
+  ],
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

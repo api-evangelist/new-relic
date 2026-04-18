@@ -1,0 +1,87 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "New Relic Event API"
+  description: "The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST for querying and visualization using NRQL."
+  tags:
+    - New Relic
+    - Events
+    - Custom Events
+    - Data Ingestion
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      NEW_RELIC_INSERT_KEY: NEW_RELIC_INSERT_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: event-api
+      baseUri: https://insights-collector.newrelic.com
+      description: "New Relic Event API for ingesting custom events."
+      authentication:
+        type: apikey
+        key: Api-Key
+        value: "{{NEW_RELIC_INSERT_KEY}}"
+        placement: header
+      resources:
+        - name: events
+          path: /v1/accounts/{accountId}/events
+          description: "Send custom events"
+          operations:
+            - name: send-events
+              method: POST
+              description: "Sends one or more custom events to a New Relic account."
+              inputParameters:
+                - name: accountId
+                  in: path
+                  type: integer
+                  required: true
+                  description: "The New Relic account ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data: "{{tools.events}}"
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: event-api-expose
+      resources:
+        - path: /v1/events/{accountId}
+          name: events
+          description: "Send custom events"
+          operations:
+            - method: POST
+              name: send-events
+              description: "Send custom events to New Relic"
+              call: "event-api.send-events"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: event-api-mcp
+      transport: http
+      tools:
+        - name: send-events
+          description: "Send custom events to a New Relic account"
+          hints:
+            readOnly: false
+            openWorld: true
+          call: "event-api.send-events"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."

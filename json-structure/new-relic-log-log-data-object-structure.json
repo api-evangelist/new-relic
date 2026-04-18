@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "description": "A batch of log records with optional shared attributes",
+  "name": "LogDataObject",
+  "properties": {
+    "common": {
+      "type": "object",
+      "description": "Shared attributes applied to all log records in this batch",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Default Unix timestamp in milliseconds for all logs in the batch"
+        },
+        "attributes": {
+          "type": "object",
+          "description": "Key-value attributes applied to all logs in this batch"
+        }
+      }
+    },
+    "logs": {
+      "type": "array",
+      "description": "Array of individual log records",
+      "items": {
+        "type": "object",
+        "description": "A single log record",
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix epoch timestamp in milliseconds when the log event occurred"
+          },
+          "message": {
+            "type": "string",
+            "description": "The log message text"
+          },
+          "level": {
+            "type": "string",
+            "description": "Log severity level",
+            "enum": [
+              "FATAL",
+              "ERROR",
+              "WARN",
+              "WARNING",
+              "INFO",
+              "DEBUG",
+              "TRACE"
+            ]
+          },
+          "logtype": {
+            "type": "string",
+            "description": "Log format type for automatic parsing (e.g., nginx, apache, syslog)"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Additional key-value attributes for this log record"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "logs"
+  ],
+  "$schema": "https://json-structure.org/draft/2020-12/schema"
+}

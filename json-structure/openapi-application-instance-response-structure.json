@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/json-structure/openapi-application-instance-response-structure.json",
+  "name": "ApplicationInstanceResponse",
+  "description": "ApplicationInstanceResponse schema",
+  "type": "object",
+  "properties": {
+    "application_instance": {
+      "$ref": "#/components/schemas/ApplicationInstanceResponseType"
+    }
+  }
+}

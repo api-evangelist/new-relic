@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "description": "Shared attributes applied to all metrics in this data object unless overridden at the metric level",
+  "properties": {
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds for all metrics in this batch",
+      "example": 1718153645993
+    },
+    "interval.ms": {
+      "type": "integer",
+      "description": "Default measurement interval in milliseconds for count and summary metrics",
+      "example": 100
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Key-value pairs applied to all metrics in the batch. Values can be strings, numbers, or booleans.",
+      "example": {
+        "customAttribute": "example_value"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CommonBlock"
+}
