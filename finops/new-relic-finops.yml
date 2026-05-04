@@ -1,0 +1,60 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: New Relic
+providerId: new-relic
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Observability
+description: FOCUS-aligned FinOps for New Relic.
+sources:
+  - https://newrelic.com/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: New Relic
+serviceCategory: Observability
+billingModel:
+  pricingCategory: Per-User + Per-GB Ingest
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: New Relic
+  ServiceCategory: Observability
+  ProviderName: New Relic
+  PublisherName: New Relic
+  BillingCurrency: USD
+meters:
+  - name: data_ingest
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - data_type
+      - account
+  - name: full_platform_users
+    unit: user-month
+    aggregation: max
+    dimensions:
+      - edition
+  - name: basic_users
+    unit: user-month
+    aggregation: max
+  - name: synthetics_checks
+    unit: check
+    aggregation: sum
+principles:
+  - name: Visibility
+    description: Track New Relic consumption monthly via admin/billing exports.
+  - name: Allocation
+    description: Tag seats/usage to teams or cost centers for chargeback.
+  - name: Optimization
+    description: Right-size tier and seat count quarterly; reclaim inactive seats.
+  - name: Accountability
+    description: Set spend alerts and renew at observed active utilization.

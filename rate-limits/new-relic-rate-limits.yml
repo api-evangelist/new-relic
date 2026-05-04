@@ -1,0 +1,39 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: New Relic
+providerId: new-relic
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Observability
+description: New Relic NerdGraph and Insights API rate limits.
+sources:
+  - https://newrelic.com/pricing
+  - https://docs.newrelic.com/docs/data-apis/manage-data/manage-data-coming-apis/
+headers: {}
+responseCodes:
+  throttled: 429
+limits:
+  - name: NerdGraph API
+    scope: user-key
+    metric: requests_per_minute
+    limit: 3000
+    timeFrame: minute
+  - name: Insights query
+    scope: account
+    metric: queries_per_minute
+    limit: 1000
+    timeFrame: minute
+  - name: Insights insert (events)
+    scope: account
+    metric: events_per_minute
+    limit: 100000
+    timeFrame: minute
+  - name: Metric API
+    scope: account
+    metric: requests_per_minute
+    limit: 100000
+    timeFrame: minute

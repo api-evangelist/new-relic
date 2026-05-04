@@ -1,0 +1,168 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: New Relic
+providerId: new-relic
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Observability
+  - APM
+  - Logs
+description: 'New Relic usage-based pricing: $0.40/GB ingest + per-user pricing tiers.'
+sources:
+  - https://newrelic.com/pricing
+plans:
+  - id: newrelic-free
+    name: Free
+    type: freemium
+    description: 100 GB/mo ingest free; 1 full-platform user; unlimited basic users.
+    entries:
+      - label: Ingest free
+        name: ingest_free
+        type: quota
+        metric: GB
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Full-platform users
+        name: fp_users
+        type: quota
+        metric: user
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Basic users
+        name: basic_users
+        type: quota
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 50+ platform capabilities
+      - name: Default 8+ day retention
+      - name: No credit card required
+  - id: newrelic-standard
+    name: Standard
+    type: paid
+    description: $10 first user, $99 each additional (max 5 full-platform users); $0.40/GB beyond 100
+      GB.
+    entries:
+      - label: First full-platform user
+        name: user_first
+        type: subscription
+        metric: user
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '10.00'
+        userMultiplied: false
+      - label: Additional users (max 5)
+        name: user_extra
+        type: subscription
+        metric: user
+        limit: 4
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '99.00'
+        userMultiplied: false
+      - label: Ingest overage
+        name: ingest_overage
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.40'
+        userMultiplied: false
+    elements:
+      - name: Up to 5 full-platform users
+      - name: Unlimited basic
+      - name: Ticketed support
+      - name: 2-day response SLA
+  - id: newrelic-pro
+    name: Pro
+    type: paid
+    description: $349/user annual ($418.80 monthly); unlimited full-platform users.
+    entries:
+      - label: Per user (annual)
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '349.00'
+        userMultiplied: true
+      - label: Per user (monthly)
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '418.80'
+        userMultiplied: true
+      - label: Ingest (Original)
+        name: ingest_orig
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.40'
+        userMultiplied: false
+      - label: Ingest (Data Plus)
+        name: ingest_plus
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.60'
+        userMultiplied: false
+    elements:
+      - name: Unlimited full-platform users
+      - name: Commitment options
+      - name: 2-hour critical response SLA
+      - name: Data Plus eligibility
+      - name: Advanced admin
+  - id: newrelic-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom pricing.
+    entries:
+      - label: Annual (custom)
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: true
+    elements:
+      - name: Unlimited full-platform users
+      - name: FedRAMP Moderate + HIPAA
+      - name: 1-hour critical SLA
+      - name: Priority support routing
+      - name: Data Plus + advanced security
