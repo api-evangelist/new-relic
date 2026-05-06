@@ -1,133 +1,240 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "New Relic Telemetry Ingestion"
-  description: "Telemetry data ingestion workflow combining event, log, metric, and trace APIs for ops engineers sending observability data to New Relic from external sources."
+  label: New Relic Telemetry Ingestion
+  description: Telemetry data ingestion workflow combining event, log, metric, and trace APIs for ops engineers sending observability
+    data to New Relic from external sources.
   tags:
-    - New Relic
-    - Telemetry
-    - Data Ingestion
-    - Ops Engineering
-    - Observability
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - New Relic
+  - Telemetry
+  - Data Ingestion
+  - Ops Engineering
+  - Observability
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      NEW_RELIC_INSERT_KEY: NEW_RELIC_INSERT_KEY
-
+- namespace: env
+  keys:
+    NEW_RELIC_INSERT_KEY: NEW_RELIC_INSERT_KEY
 capability:
   consumes:
-    - import: event-api
-      location: ./shared/event-api.yaml
-    - import: log-api
-      location: ./shared/log-api.yaml
-    - import: metric-api
-      location: ./shared/metric-api.yaml
-    - import: trace-api
-      location: ./shared/trace-api.yaml
-
+  - type: http
+    namespace: event-api
+    baseUri: https://insights-collector.newrelic.com
+    description: New Relic Event API for ingesting custom events.
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{NEW_RELIC_INSERT_KEY}}'
+      placement: header
+    resources:
+    - name: events
+      path: /v1/accounts/{accountId}/events
+      description: Send custom events
+      operations:
+      - name: send-events
+        method: POST
+        description: Sends one or more custom events to a New Relic account.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: integer
+          required: true
+          description: The New Relic account ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: '{{tools.events}}'
+  - type: http
+    namespace: log-api
+    baseUri: https://log-api.newrelic.com
+    description: New Relic Log API for ingesting log data.
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{NEW_RELIC_INSERT_KEY}}'
+      placement: header
+    resources:
+    - name: logs
+      path: /log/v1
+      description: Send log data
+      operations:
+      - name: send-logs
+        method: POST
+        description: Sends one or more log records to New Relic.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: '{{tools.log_data}}'
+  - type: http
+    namespace: metric-api
+    baseUri: https://metric-api.newrelic.com
+    description: New Relic Metric API for ingesting dimensional metric data.
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{NEW_RELIC_INSERT_KEY}}'
+      placement: header
+    resources:
+    - name: metrics
+      path: /metric/v1
+      description: Send metric data
+      operations:
+      - name: send-metrics
+        method: POST
+        description: Sends metric data points to New Relic.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: '{{tools.metric_data}}'
+  - type: http
+    namespace: trace-api
+    baseUri: https://trace-api.newrelic.com
+    description: New Relic Trace API for ingesting distributed trace spans.
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{NEW_RELIC_INSERT_KEY}}'
+      placement: header
+    resources:
+    - name: traces
+      path: /trace/v1
+      description: Send trace spans
+      operations:
+      - name: send-traces
+        method: POST
+        description: Sends distributed trace spans to New Relic.
+        inputParameters:
+        - name: Data-Format
+          in: header
+          type: string
+          required: true
+          description: The format of the trace data (newrelic or zipkin).
+        - name: Data-Format-Version
+          in: header
+          type: string
+          required: false
+          description: Version of the data format.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: '{{tools.trace_data}}'
   exposes:
-    - type: rest
-      port: 8081
-      namespace: telemetry-ingestion-api
-      description: "Unified REST API for New Relic telemetry data ingestion."
-      resources:
-        - path: /v1/events/{accountId}
-          name: events
-          description: "Send custom events"
-          operations:
-            - method: POST
-              name: send-events
-              description: "Send custom events to New Relic"
-              call: "event-api.send-events"
-              with:
-                accountId: "rest.accountId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/logs
-          name: logs
-          description: "Send log data"
-          operations:
-            - method: POST
-              name: send-logs
-              description: "Send log records to New Relic"
-              call: "log-api.send-logs"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/metrics
-          name: metrics
-          description: "Send metric data"
-          operations:
-            - method: POST
-              name: send-metrics
-              description: "Send metric data to New Relic"
-              call: "metric-api.send-metrics"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/traces
-          name: traces
-          description: "Send trace spans"
-          operations:
-            - method: POST
-              name: send-traces
-              description: "Send distributed trace spans to New Relic"
-              call: "trace-api.send-traces"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9091
-      namespace: telemetry-ingestion-mcp
-      transport: http
-      description: "MCP server for AI-assisted New Relic telemetry data ingestion."
-      tools:
-        - name: send-events
-          description: "Send custom events to a New Relic account"
-          hints:
-            readOnly: false
-            openWorld: true
-          call: "event-api.send-events"
-          with:
-            accountId: "tools.accountId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: send-logs
-          description: "Send log records to New Relic"
-          hints:
-            readOnly: false
-            openWorld: true
-          call: "log-api.send-logs"
-          with:
-            log_data: "tools.log_data"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: send-metrics
-          description: "Send dimensional metric data to New Relic"
-          hints:
-            readOnly: false
-            openWorld: true
-          call: "metric-api.send-metrics"
-          with:
-            metric_data: "tools.metric_data"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: send-traces
-          description: "Send distributed trace spans to New Relic"
-          hints:
-            readOnly: false
-            openWorld: true
-          call: "trace-api.send-traces"
-          with:
-            trace_data: "tools.trace_data"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: telemetry-ingestion-api
+    description: Unified REST API for New Relic telemetry data ingestion.
+    resources:
+    - path: /v1/events/{accountId}
+      name: events
+      description: Send custom events
+      operations:
+      - method: POST
+        name: send-events
+        description: Send custom events to New Relic
+        call: event-api.send-events
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/logs
+      name: logs
+      description: Send log data
+      operations:
+      - method: POST
+        name: send-logs
+        description: Send log records to New Relic
+        call: log-api.send-logs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metrics
+      name: metrics
+      description: Send metric data
+      operations:
+      - method: POST
+        name: send-metrics
+        description: Send metric data to New Relic
+        call: metric-api.send-metrics
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/traces
+      name: traces
+      description: Send trace spans
+      operations:
+      - method: POST
+        name: send-traces
+        description: Send distributed trace spans to New Relic
+        call: trace-api.send-traces
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9091
+    namespace: telemetry-ingestion-mcp
+    transport: http
+    description: MCP server for AI-assisted New Relic telemetry data ingestion.
+    tools:
+    - name: send-events
+      description: Send custom events to a New Relic account
+      hints:
+        readOnly: false
+        openWorld: true
+      call: event-api.send-events
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-logs
+      description: Send log records to New Relic
+      hints:
+        readOnly: false
+        openWorld: true
+      call: log-api.send-logs
+      with:
+        log_data: tools.log_data
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-metrics
+      description: Send dimensional metric data to New Relic
+      hints:
+        readOnly: false
+        openWorld: true
+      call: metric-api.send-metrics
+      with:
+        metric_data: tools.metric_data
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-traces
+      description: Send distributed trace spans to New Relic
+      hints:
+        readOnly: false
+        openWorld: true
+      call: trace-api.send-traces
+      with:
+        trace_data: tools.trace_data
+      outputParameters:
+      - type: object
+        mapping: $.

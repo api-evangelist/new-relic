@@ -1,299 +1,747 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "New Relic Application Monitoring"
-  description: "Application performance monitoring workflow combining application metrics, deployments, hosts, and custom events for developers tracking application health and release impact."
+  label: New Relic Application Monitoring
+  description: Application performance monitoring workflow combining application metrics, deployments, hosts, and custom events
+    for developers tracking application health and release impact.
   tags:
-    - New Relic
-    - Application Monitoring
-    - Developer
-    - APM
-    - Deployments
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - New Relic
+  - Application Monitoring
+  - Developer
+  - APM
+  - Deployments
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
-      NEW_RELIC_INSERT_KEY: NEW_RELIC_INSERT_KEY
-
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+    NEW_RELIC_INSERT_KEY: NEW_RELIC_INSERT_KEY
 capability:
   consumes:
-    - import: rest-api
-      location: ./shared/rest-api.yaml
-    - import: event-api
-      location: ./shared/event-api.yaml
-
+  - type: http
+    namespace: rest-api
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic REST API v2 for managing applications, alerts, and retrieving monitoring data.
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{NEW_RELIC_API_KEY}}'
+      placement: header
+    resources:
+    - name: applications
+      path: /applications.json
+      description: Manage monitored applications
+      operations:
+      - name: get-applications
+        method: GET
+        description: Retrieves a paginated list of all applications.
+        inputParameters:
+        - name: filter[name]
+          in: query
+          type: string
+          required: false
+          description: Filter by application name.
+        - name: filter[host]
+          in: query
+          type: string
+          required: false
+          description: Filter by application host.
+        - name: filter[ids]
+          in: query
+          type: array
+          required: false
+          description: Filter by application IDs.
+        - name: filter[language]
+          in: query
+          type: string
+          required: false
+          description: Filter by application language.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: application-detail
+      path: /applications/{id}.json
+      description: Get, update, or delete a specific application
+      operations:
+      - name: get-application
+        method: GET
+        description: Retrieves a specific application by ID.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-application
+        method: PUT
+        description: Updates an application's settings.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            application: '{{tools.application}}'
+      - name: delete-application
+        method: DELETE
+        description: Removes an application from New Relic.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: application-deployments
+      path: /applications/{application_id}/deployments.json
+      description: Manage application deployments
+      operations:
+      - name: get-deployments
+        method: GET
+        description: Retrieves deployment records for an application.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-deployment
+        method: POST
+        description: Records a new deployment for an application.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            deployment: '{{tools.deployment}}'
+    - name: application-hosts
+      path: /applications/{application_id}/hosts.json
+      description: List application hosts
+      operations:
+      - name: get-application-hosts
+        method: GET
+        description: Retrieves a list of hosts for an application.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: application-metrics
+      path: /applications/{application_id}/metrics.json
+      description: List application metrics
+      operations:
+      - name: get-application-metrics
+        method: GET
+        description: Retrieves available metric names for an application.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: Filter by metric name.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: application-metrics-data
+      path: /applications/{application_id}/metrics/data.json
+      description: Query application metric data
+      operations:
+      - name: get-application-metrics-data
+        method: GET
+        description: Retrieves metric data for an application.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          required: true
+          description: Application ID.
+        - name: names[]
+          in: query
+          type: array
+          required: true
+          description: Metric names to retrieve.
+        - name: from
+          in: query
+          type: string
+          required: false
+          description: Start of the time range.
+        - name: to
+          in: query
+          type: string
+          required: false
+          description: End of the time range.
+        - name: period
+          in: query
+          type: integer
+          required: false
+          description: Period in seconds for data point aggregation.
+        - name: summarize
+          in: query
+          type: boolean
+          required: false
+          description: Whether to return a single summarized data point.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: key-transactions
+      path: /key_transactions.json
+      description: List key transactions
+      operations:
+      - name: get-key-transactions
+        method: GET
+        description: Retrieves a list of key transactions.
+        inputParameters:
+        - name: filter[name]
+          in: query
+          type: string
+          required: false
+          description: Filter by key transaction name.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-policies
+      path: /alerts_policies.json
+      description: Manage alert policies
+      operations:
+      - name: get-alerts-policies
+        method: GET
+        description: Retrieves a list of alert policies.
+        inputParameters:
+        - name: filter[name]
+          in: query
+          type: string
+          required: false
+          description: Filter by policy name.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-alerts-policy
+        method: POST
+        description: Creates a new alert policy.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            policy: '{{tools.policy}}'
+    - name: alerts-policy-detail
+      path: /alerts_policies/{policy_id}.json
+      description: Update or delete an alert policy
+      operations:
+      - name: update-alerts-policy
+        method: PUT
+        description: Updates an alert policy.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          required: true
+          description: Policy ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            policy: '{{tools.policy}}'
+      - name: delete-alerts-policy
+        method: DELETE
+        description: Deletes an alert policy.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          required: true
+          description: Policy ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-conditions
+      path: /alerts_conditions.json
+      description: List alert conditions
+      operations:
+      - name: get-alerts-conditions
+        method: GET
+        description: Retrieves a list of alert conditions.
+        inputParameters:
+        - name: policy_id
+          in: query
+          type: integer
+          required: true
+          description: Policy ID to filter conditions.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-incidents
+      path: /alerts_incidents.json
+      description: List alert incidents
+      operations:
+      - name: get-alerts-incidents
+        method: GET
+        description: Retrieves a list of alert incidents.
+        inputParameters:
+        - name: only_open
+          in: query
+          type: boolean
+          required: false
+          description: Filter for only open incidents.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-violations
+      path: /alerts_violations.json
+      description: List alert violations
+      operations:
+      - name: get-alerts-violations
+        method: GET
+        description: Retrieves a list of alert violations.
+        inputParameters:
+        - name: only_open
+          in: query
+          type: boolean
+          required: false
+          description: Filter for only open violations.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-events
+      path: /alerts_events.json
+      description: List alert events
+      operations:
+      - name: get-alerts-events
+        method: GET
+        description: Retrieves a list of alert events.
+        inputParameters:
+        - name: filter[product]
+          in: query
+          type: string
+          required: false
+          description: Filter by product type.
+        - name: filter[entity_type]
+          in: query
+          type: string
+          required: false
+          description: Filter by entity type.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Pagination index.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: event-api
+    baseUri: https://insights-collector.newrelic.com
+    description: New Relic Event API for ingesting custom events.
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{NEW_RELIC_INSERT_KEY}}'
+      placement: header
+    resources:
+    - name: events
+      path: /v1/accounts/{accountId}/events
+      description: Send custom events
+      operations:
+      - name: send-events
+        method: POST
+        description: Sends one or more custom events to a New Relic account.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: integer
+          required: true
+          description: The New Relic account ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: '{{tools.events}}'
   exposes:
-    - type: rest
-      port: 8082
-      namespace: application-monitoring-api
-      description: "Unified REST API for New Relic application performance monitoring."
-      resources:
-        - path: /v1/applications
-          name: applications
-          description: "List applications"
-          operations:
-            - method: GET
-              name: get-applications
-              description: "List all monitored applications"
-              call: "rest-api.get-applications"
-              with:
-                filter[name]: "rest.filter_name"
-                filter[host]: "rest.filter_host"
-                filter[language]: "rest.filter_language"
-                page: "rest.page"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/applications/{id}
-          name: application-detail
-          description: "Get or update an application"
-          operations:
-            - method: GET
-              name: get-application
-              description: "Get application details"
-              call: "rest-api.get-application"
-              with:
-                id: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-application
-              description: "Update application settings"
-              call: "rest-api.update-application"
-              with:
-                id: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/deployments/{applicationId}
-          name: deployments
-          description: "Manage deployments"
-          operations:
-            - method: GET
-              name: get-deployments
-              description: "List deployments for an application"
-              call: "rest-api.get-deployments"
-              with:
-                application_id: "rest.applicationId"
-                page: "rest.page"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-deployment
-              description: "Record a new deployment"
-              call: "rest-api.create-deployment"
-              with:
-                application_id: "rest.applicationId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/hosts/{applicationId}
-          name: hosts
-          description: "List application hosts"
-          operations:
-            - method: GET
-              name: get-application-hosts
-              description: "List hosts for an application"
-              call: "rest-api.get-application-hosts"
-              with:
-                application_id: "rest.applicationId"
-                page: "rest.page"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/metrics/{applicationId}
-          name: application-metrics
-          description: "List application metrics"
-          operations:
-            - method: GET
-              name: get-application-metrics
-              description: "List available metric names"
-              call: "rest-api.get-application-metrics"
-              with:
-                application_id: "rest.applicationId"
-                name: "rest.name"
-                page: "rest.page"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/metrics/{applicationId}/data
-          name: application-metrics-data
-          description: "Query metric data"
-          operations:
-            - method: GET
-              name: get-application-metrics-data
-              description: "Query metric data for an application"
-              call: "rest-api.get-application-metrics-data"
-              with:
-                application_id: "rest.applicationId"
-                names[]: "rest.names"
-                from: "rest.from"
-                to: "rest.to"
-                period: "rest.period"
-                summarize: "rest.summarize"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/key-transactions
-          name: key-transactions
-          description: "List key transactions"
-          operations:
-            - method: GET
-              name: get-key-transactions
-              description: "List key transactions"
-              call: "rest-api.get-key-transactions"
-              with:
-                filter[name]: "rest.filter_name"
-                page: "rest.page"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/events/{accountId}
-          name: custom-events
-          description: "Send custom events"
-          operations:
-            - method: POST
-              name: send-events
-              description: "Send custom events for application tracking"
-              call: "event-api.send-events"
-              with:
-                accountId: "rest.accountId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9092
-      namespace: application-monitoring-mcp
-      transport: http
-      description: "MCP server for AI-assisted New Relic application performance monitoring."
-      tools:
-        - name: get-applications
-          description: "List all monitored applications"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rest-api.get-applications"
-          with:
-            filter[name]: "tools.filter_name"
-            filter[host]: "tools.filter_host"
-            filter[language]: "tools.filter_language"
-            page: "tools.page"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-application
-          description: "Get details of a specific application"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rest-api.get-application"
-          with:
-            id: "tools.id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-application
-          description: "Update application settings"
-          hints:
-            readOnly: false
-            idempotent: true
-            openWorld: true
-          call: "rest-api.update-application"
-          with:
-            id: "tools.id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-deployments
-          description: "List deployment records for an application"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rest-api.get-deployments"
-          with:
-            application_id: "tools.application_id"
-            page: "tools.page"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-deployment
-          description: "Record a new deployment for an application"
-          hints:
-            readOnly: false
-            openWorld: true
-          call: "rest-api.create-deployment"
-          with:
-            application_id: "tools.application_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-application-hosts
-          description: "List hosts for an application"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rest-api.get-application-hosts"
-          with:
-            application_id: "tools.application_id"
-            page: "tools.page"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-application-metrics
-          description: "List available metric names for an application"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rest-api.get-application-metrics"
-          with:
-            application_id: "tools.application_id"
-            name: "tools.name"
-            page: "tools.page"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-application-metrics-data
-          description: "Query metric data points for an application"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rest-api.get-application-metrics-data"
-          with:
-            application_id: "tools.application_id"
-            names[]: "tools.names"
-            from: "tools.from"
-            to: "tools.to"
-            period: "tools.period"
-            summarize: "tools.summarize"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-key-transactions
-          description: "List key transactions"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rest-api.get-key-transactions"
-          with:
-            filter[name]: "tools.filter_name"
-            page: "tools.page"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: send-events
-          description: "Send custom events for application tracking"
-          hints:
-            readOnly: false
-            openWorld: true
-          call: "event-api.send-events"
-          with:
-            accountId: "tools.accountId"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8082
+    namespace: application-monitoring-api
+    description: Unified REST API for New Relic application performance monitoring.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: List applications
+      operations:
+      - method: GET
+        name: get-applications
+        description: List all monitored applications
+        call: rest-api.get-applications
+        with:
+          filter[name]: rest.filter_name
+          filter[host]: rest.filter_host
+          filter[language]: rest.filter_language
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{id}
+      name: application-detail
+      description: Get or update an application
+      operations:
+      - method: GET
+        name: get-application
+        description: Get application details
+        call: rest-api.get-application
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-application
+        description: Update application settings
+        call: rest-api.update-application
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deployments/{applicationId}
+      name: deployments
+      description: Manage deployments
+      operations:
+      - method: GET
+        name: get-deployments
+        description: List deployments for an application
+        call: rest-api.get-deployments
+        with:
+          application_id: rest.applicationId
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-deployment
+        description: Record a new deployment
+        call: rest-api.create-deployment
+        with:
+          application_id: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hosts/{applicationId}
+      name: hosts
+      description: List application hosts
+      operations:
+      - method: GET
+        name: get-application-hosts
+        description: List hosts for an application
+        call: rest-api.get-application-hosts
+        with:
+          application_id: rest.applicationId
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metrics/{applicationId}
+      name: application-metrics
+      description: List application metrics
+      operations:
+      - method: GET
+        name: get-application-metrics
+        description: List available metric names
+        call: rest-api.get-application-metrics
+        with:
+          application_id: rest.applicationId
+          name: rest.name
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metrics/{applicationId}/data
+      name: application-metrics-data
+      description: Query metric data
+      operations:
+      - method: GET
+        name: get-application-metrics-data
+        description: Query metric data for an application
+        call: rest-api.get-application-metrics-data
+        with:
+          application_id: rest.applicationId
+          names[]: rest.names
+          from: rest.from
+          to: rest.to
+          period: rest.period
+          summarize: rest.summarize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/key-transactions
+      name: key-transactions
+      description: List key transactions
+      operations:
+      - method: GET
+        name: get-key-transactions
+        description: List key transactions
+        call: rest-api.get-key-transactions
+        with:
+          filter[name]: rest.filter_name
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events/{accountId}
+      name: custom-events
+      description: Send custom events
+      operations:
+      - method: POST
+        name: send-events
+        description: Send custom events for application tracking
+        call: event-api.send-events
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9092
+    namespace: application-monitoring-mcp
+    transport: http
+    description: MCP server for AI-assisted New Relic application performance monitoring.
+    tools:
+    - name: get-applications
+      description: List all monitored applications
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rest-api.get-applications
+      with:
+        filter[name]: tools.filter_name
+        filter[host]: tools.filter_host
+        filter[language]: tools.filter_language
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-application
+      description: Get details of a specific application
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rest-api.get-application
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-application
+      description: Update application settings
+      hints:
+        readOnly: false
+        idempotent: true
+        openWorld: true
+      call: rest-api.update-application
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-deployments
+      description: List deployment records for an application
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rest-api.get-deployments
+      with:
+        application_id: tools.application_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-deployment
+      description: Record a new deployment for an application
+      hints:
+        readOnly: false
+        openWorld: true
+      call: rest-api.create-deployment
+      with:
+        application_id: tools.application_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-application-hosts
+      description: List hosts for an application
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rest-api.get-application-hosts
+      with:
+        application_id: tools.application_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-application-metrics
+      description: List available metric names for an application
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rest-api.get-application-metrics
+      with:
+        application_id: tools.application_id
+        name: tools.name
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-application-metrics-data
+      description: Query metric data points for an application
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rest-api.get-application-metrics-data
+      with:
+        application_id: tools.application_id
+        names[]: tools.names
+        from: tools.from
+        to: tools.to
+        period: tools.period
+        summarize: tools.summarize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-key-transactions
+      description: List key transactions
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rest-api.get-key-transactions
+      with:
+        filter[name]: tools.filter_name
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-events
+      description: Send custom events for application tracking
+      hints:
+        readOnly: false
+        openWorld: true
+      call: event-api.send-events
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
