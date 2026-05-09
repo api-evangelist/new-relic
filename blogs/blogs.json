@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://newrelic.com/blog",
-      "feed_url": "https://newrelic.com/blog/feed.rss",
-      "saved": 10,
-      "title": "Observatory | The New Relic Blog"
+      "feed_url": "https://newrelic.com/blog/feed/",
+      "title": "Observatory | The New Relic Blog",
+      "saved": 9
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:32:41Z"
+  "post_count": 19,
+  "fetched": "2026-05-09T20:17:51Z"
 }
