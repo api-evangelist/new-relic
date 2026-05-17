@@ -716,7 +716,7 @@ common:
     type: YouTube
   - url: json-ld/new-relic-context.jsonld
     name: New Relic JSON-LD Context
-    type: JSON-LD
+    type: JSONLD
   - url: json-schema/new-relic-metric-payload-schema.json
     name: New Relic Metric Payload Schema
     type: JSONSchema
