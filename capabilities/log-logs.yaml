@@ -1,0 +1,95 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic Log API — Logs
+  description: 'New Relic Log API — Logs. 1 operations. Lead operation: New Relic Send Log Data. Self-contained Naftiko capability
+    covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Logs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: log-logs
+    baseUri: https://log-api.newrelic.com
+    description: New Relic Log API — Logs business capability. Self-contained, no shared references.
+    resources:
+    - name: log-v1
+      path: /log/v1
+      operations:
+      - name: sendlogs
+        method: POST
+        description: New Relic Send Log Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Encoding
+          in: header
+          type: string
+          description: Compression encoding. Gzip is required.
+          required: true
+        - name: Content-Type
+          in: header
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: log-logs-rest
+    port: 8080
+    description: REST adapter for New Relic Log API — Logs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/log/v1
+      name: log-v1
+      description: REST surface for log-v1.
+      operations:
+      - method: POST
+        name: sendlogs
+        description: New Relic Send Log Data
+        call: log-logs.sendlogs
+        with:
+          Content-Encoding: rest.Content-Encoding
+          Content-Type: rest.Content-Type
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: log-logs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic Log API — Logs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-send-log-data
+      description: New Relic Send Log Data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: log-logs.sendlogs
+      with:
+        Content-Encoding: tools.Content-Encoding
+        Content-Type: tools.Content-Type
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

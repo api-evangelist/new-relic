@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic — Instance
+  description: 'New Relic — Instance. 2 operations. Lead operation: New Relic Get Applications Instances Instance Metrics.
+    Self-contained Naftiko capability covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Instance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-relic-instance
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic — Instance business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-application_id-instances-instance_id-metrics.json
+      path: /applications/{application_id}/instances/{instance_id}/metrics.json
+      operations:
+      - name: getapplicationsidinstancesinstanceidmetrics
+        method: GET
+        description: New Relic Get Applications Instances Instance Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: instance_id
+          in: path
+          type: integer
+          description: Application Instance ID
+          required: true
+        - name: name
+          in: query
+          type: string
+          description: Filter metrics by name
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index (will be deprecated)
+        - name: cursor
+          in: query
+          type: string
+          description: Cursor for next page (replacing page param)
+    - name: applications-application_id-instances-instance_id-metrics-data.json
+      path: /applications/{application_id}/instances/{instance_id}/metrics/data.json
+      operations:
+      - name: getapplicationsidinstancesinstanceidmetricsdata
+        method: GET
+        description: New Relic Get Applications Instances Instance Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: instance_id
+          in: path
+          type: integer
+          description: Application Instance ID
+          required: true
+        - name: names
+          in: query
+          type: array
+          description: Retrieve specific metrics by name
+          required: true
+        - name: values
+          in: query
+          type: array
+          description: Retrieve specific metric values
+        - name: from
+          in: query
+          type: string
+          description: Retrieve metrics after this time
+        - name: to
+          in: query
+          type: string
+          description: Retrieve metrics before this time
+        - name: period
+          in: query
+          type: integer
+          description: Period of timeslices in seconds
+        - name: summarize
+          in: query
+          type: boolean
+          description: Summarize the data
+        - name: raw
+          in: query
+          type: boolean
+          description: Return unformatted raw values
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: new-relic-instance-rest
+    port: 8080
+    description: REST adapter for New Relic — Instance. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/applications/{application-id}/instances/{instance-id}/metrics-json
+      name: applications-application-id-instances-instance-id-metrics-json
+      description: REST surface for applications-application_id-instances-instance_id-metrics.json.
+      operations:
+      - method: GET
+        name: getapplicationsidinstancesinstanceidmetrics
+        description: New Relic Get Applications Instances Instance Metrics
+        call: new-relic-instance.getapplicationsidinstancesinstanceidmetrics
+        with:
+          application_id: rest.application_id
+          instance_id: rest.instance_id
+          name: rest.name
+          page: rest.page
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/instances/{instance-id}/metrics/data-json
+      name: applications-application-id-instances-instance-id-metrics-data-json
+      description: REST surface for applications-application_id-instances-instance_id-metrics-data.json.
+      operations:
+      - method: GET
+        name: getapplicationsidinstancesinstanceidmetricsdata
+        description: New Relic Get Applications Instances Instance Metrics Data
+        call: new-relic-instance.getapplicationsidinstancesinstanceidmetricsdata
+        with:
+          application_id: rest.application_id
+          instance_id: rest.instance_id
+          names: rest.names
+          values: rest.values
+          from: rest.from
+          to: rest.to
+          period: rest.period
+          summarize: rest.summarize
+          raw: rest.raw
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-relic-instance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic — Instance. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-get-applications-instances
+      description: New Relic Get Applications Instances Instance Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-instance.getapplicationsidinstancesinstanceidmetrics
+      with:
+        application_id: tools.application_id
+        instance_id: tools.instance_id
+        name: tools.name
+        page: tools.page
+        cursor: tools.cursor
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-applications-instances-2
+      description: New Relic Get Applications Instances Instance Metrics Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-instance.getapplicationsidinstancesinstanceidmetricsdata
+      with:
+        application_id: tools.application_id
+        instance_id: tools.instance_id
+        names: tools.names
+        values: tools.values
+        from: tools.from
+        to: tools.to
+        period: tools.period
+        summarize: tools.summarize
+        raw: tools.raw
+      outputParameters:
+      - type: object
+        mapping: $.

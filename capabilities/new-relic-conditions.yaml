@@ -1,0 +1,1092 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic — Conditions
+  description: 'New Relic — Conditions. 23 operations. Lead operation: New Relic Get Alerts Conditions. Self-contained Naftiko
+    capability covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Conditions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-relic-conditions
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic — Conditions business capability. Self-contained, no shared references.
+    resources:
+    - name: alerts_conditions.json
+      path: /alerts_conditions.json
+      operations:
+      - name: getalertsconditions
+        method: GET
+        description: New Relic Get Alerts Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: query
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+    - name: alerts_conditions-policies-policy_id}.json
+      path: /alerts_conditions/policies/{policy_id}.json
+      operations:
+      - name: postalertsconditionspoliciespolicyid
+        method: POST
+        description: New Relic Post Alerts Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: alerts_conditions-condition_id}.json
+      path: /alerts_conditions/{condition_id}.json
+      operations:
+      - name: putalertsconditionsconditionid
+        method: PUT
+        description: New Relic Put Alerts Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletealertsconditionsconditionid
+        method: DELETE
+        description: New Relic Delete Alerts Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition ID
+          required: true
+    - name: alerts_entity_conditions-entity_id}.json
+      path: /alerts_entity_conditions/{entity_id}.json
+      operations:
+      - name: getalertsentityconditionsentityid
+        method: GET
+        description: New Relic Get Alerts Entity Conditions Entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entity_id
+          in: path
+          type: integer
+          description: Entity ID
+          required: true
+        - name: entity_type
+          in: query
+          type: string
+          description: Entity Type
+          required: true
+      - name: putalertsentityconditionsentityid
+        method: PUT
+        description: New Relic Put Alerts Entity Conditions Entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entity_id
+          in: path
+          type: integer
+          description: Entity to add
+          required: true
+        - name: entity_type
+          in: query
+          type: string
+          description: Entity Type
+          required: true
+        - name: condition_id
+          in: query
+          type: integer
+          description: Alerts condition ID
+          required: true
+      - name: deletealertsentityconditionsentityid
+        method: DELETE
+        description: New Relic Delete Alerts Entity Conditions Entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entity_id
+          in: path
+          type: integer
+          description: Entity to remove
+          required: true
+        - name: entity_type
+          in: query
+          type: string
+          description: Entity Type
+          required: true
+        - name: condition_id
+          in: query
+          type: integer
+          description: Alerts condition ID
+          required: true
+    - name: alerts_external_service_conditions.json
+      path: /alerts_external_service_conditions.json
+      operations:
+      - name: getalertsexternalserviceconditions
+        method: GET
+        description: New Relic Get Alerts External Service Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: query
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+    - name: alerts_external_service_conditions-policies-policy_id}.json
+      path: /alerts_external_service_conditions/policies/{policy_id}.json
+      operations:
+      - name: postalertsexternalserviceconditionspoliciespolicyid
+        method: POST
+        description: New Relic Post Alerts External Service Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: alerts_external_service_conditions-condition_id}.json
+      path: /alerts_external_service_conditions/{condition_id}.json
+      operations:
+      - name: putalertsexternalserviceconditionsconditionid
+        method: PUT
+        description: New Relic Put Alerts External Service Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletealertsexternalserviceconditionsconditionid
+        method: DELETE
+        description: New Relic Delete Alerts External Service Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition ID
+          required: true
+    - name: alerts_location_failure_conditions-policies-policy_id}.json
+      path: /alerts_location_failure_conditions/policies/{policy_id}.json
+      operations:
+      - name: getalertslocationfailureconditionspoliciespolicyid
+        method: GET
+        description: New Relic Get Alerts Location Failure Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+      - name: postalertslocationfailureconditionspoliciespolicyid
+        method: POST
+        description: New Relic Post Alerts Location Failure Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy failure condition
+          required: true
+        - name: location_failure_condition
+          in: path
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: alerts_location_failure_conditions-condition_id}.json
+      path: /alerts_location_failure_conditions/{condition_id}.json
+      operations:
+      - name: putalertslocationfailureconditionsconditionid
+        method: PUT
+        description: New Relic Put Alerts Location Failure Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletealertslocationfailureconditionsconditionid
+        method: DELETE
+        description: New Relic Delete Alerts Location Failure Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition ID
+          required: true
+    - name: alerts_nrql_conditions.json
+      path: /alerts_nrql_conditions.json
+      operations:
+      - name: getalertsnrqlconditions
+        method: GET
+        description: New Relic Get Alerts Nrql Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: query
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+    - name: alerts_nrql_conditions-policies-policy_id}.json
+      path: /alerts_nrql_conditions/policies/{policy_id}.json
+      operations:
+      - name: postalertsnrqlconditionspoliciespolicyid
+        method: POST
+        description: New Relic Post Alerts Nrql Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: alerts_nrql_conditions-condition_id}.json
+      path: /alerts_nrql_conditions/{condition_id}.json
+      operations:
+      - name: putalertsnrqlconditionsconditionid
+        method: PUT
+        description: New Relic Put Alerts Nrql Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletealertsnrqlconditionsconditionid
+        method: DELETE
+        description: New Relic Delete Alerts Nrql Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition ID
+          required: true
+    - name: alerts_synthetics_conditions.json
+      path: /alerts_synthetics_conditions.json
+      operations:
+      - name: getalertssyntheticsconditions
+        method: GET
+        description: New Relic Get Alerts Synthetics Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: query
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+    - name: alerts_synthetics_conditions-policies-policy_id}.json
+      path: /alerts_synthetics_conditions/policies/{policy_id}.json
+      operations:
+      - name: postalertssyntheticsconditionspoliciespolicyid
+        method: POST
+        description: New Relic Post Alerts Synthetics Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: alerts_synthetics_conditions-condition_id}.json
+      path: /alerts_synthetics_conditions/{condition_id}.json
+      operations:
+      - name: putalertssyntheticsconditionsconditionid
+        method: PUT
+        description: New Relic Put Alerts Synthetics Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletealertssyntheticsconditionsconditionid
+        method: DELETE
+        description: New Relic Delete Alerts Synthetics Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition ID
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: new-relic-conditions-rest
+    port: 8080
+    description: REST adapter for New Relic — Conditions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/alerts-conditions-json
+      name: alerts-conditions-json
+      description: REST surface for alerts_conditions.json.
+      operations:
+      - method: GET
+        name: getalertsconditions
+        description: New Relic Get Alerts Conditions
+        call: new-relic-conditions.getalertsconditions
+        with:
+          policy_id: rest.policy_id
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-conditions/policies/policy-id-json
+      name: alerts-conditions-policies-policy-id-json
+      description: REST surface for alerts_conditions-policies-policy_id}.json.
+      operations:
+      - method: POST
+        name: postalertsconditionspoliciespolicyid
+        description: New Relic Post Alerts Conditions Policies
+        call: new-relic-conditions.postalertsconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-conditions/condition-id-json
+      name: alerts-conditions-condition-id-json
+      description: REST surface for alerts_conditions-condition_id}.json.
+      operations:
+      - method: PUT
+        name: putalertsconditionsconditionid
+        description: New Relic Put Alerts Conditions
+        call: new-relic-conditions.putalertsconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealertsconditionsconditionid
+        description: New Relic Delete Alerts Conditions
+        call: new-relic-conditions.deletealertsconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-entity-conditions/entity-id-json
+      name: alerts-entity-conditions-entity-id-json
+      description: REST surface for alerts_entity_conditions-entity_id}.json.
+      operations:
+      - method: GET
+        name: getalertsentityconditionsentityid
+        description: New Relic Get Alerts Entity Conditions Entity
+        call: new-relic-conditions.getalertsentityconditionsentityid
+        with:
+          entity_id: rest.entity_id
+          entity_type: rest.entity_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putalertsentityconditionsentityid
+        description: New Relic Put Alerts Entity Conditions Entity
+        call: new-relic-conditions.putalertsentityconditionsentityid
+        with:
+          entity_id: rest.entity_id
+          entity_type: rest.entity_type
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealertsentityconditionsentityid
+        description: New Relic Delete Alerts Entity Conditions Entity
+        call: new-relic-conditions.deletealertsentityconditionsentityid
+        with:
+          entity_id: rest.entity_id
+          entity_type: rest.entity_type
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-external-service-conditions-json
+      name: alerts-external-service-conditions-json
+      description: REST surface for alerts_external_service_conditions.json.
+      operations:
+      - method: GET
+        name: getalertsexternalserviceconditions
+        description: New Relic Get Alerts External Service Conditions
+        call: new-relic-conditions.getalertsexternalserviceconditions
+        with:
+          policy_id: rest.policy_id
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-external-service-conditions/policies/policy-id-json
+      name: alerts-external-service-conditions-policies-policy-id-json
+      description: REST surface for alerts_external_service_conditions-policies-policy_id}.json.
+      operations:
+      - method: POST
+        name: postalertsexternalserviceconditionspoliciespolicyid
+        description: New Relic Post Alerts External Service Conditions Policies
+        call: new-relic-conditions.postalertsexternalserviceconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-external-service-conditions/condition-id-json
+      name: alerts-external-service-conditions-condition-id-json
+      description: REST surface for alerts_external_service_conditions-condition_id}.json.
+      operations:
+      - method: PUT
+        name: putalertsexternalserviceconditionsconditionid
+        description: New Relic Put Alerts External Service Conditions
+        call: new-relic-conditions.putalertsexternalserviceconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealertsexternalserviceconditionsconditionid
+        description: New Relic Delete Alerts External Service Conditions
+        call: new-relic-conditions.deletealertsexternalserviceconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-location-failure-conditions/policies/policy-id-json
+      name: alerts-location-failure-conditions-policies-policy-id-json
+      description: REST surface for alerts_location_failure_conditions-policies-policy_id}.json.
+      operations:
+      - method: GET
+        name: getalertslocationfailureconditionspoliciespolicyid
+        description: New Relic Get Alerts Location Failure Conditions Policies
+        call: new-relic-conditions.getalertslocationfailureconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postalertslocationfailureconditionspoliciespolicyid
+        description: New Relic Post Alerts Location Failure Conditions Policies
+        call: new-relic-conditions.postalertslocationfailureconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          location_failure_condition: rest.location_failure_condition
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-location-failure-conditions/condition-id-json
+      name: alerts-location-failure-conditions-condition-id-json
+      description: REST surface for alerts_location_failure_conditions-condition_id}.json.
+      operations:
+      - method: PUT
+        name: putalertslocationfailureconditionsconditionid
+        description: New Relic Put Alerts Location Failure Conditions
+        call: new-relic-conditions.putalertslocationfailureconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealertslocationfailureconditionsconditionid
+        description: New Relic Delete Alerts Location Failure Conditions
+        call: new-relic-conditions.deletealertslocationfailureconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-nrql-conditions-json
+      name: alerts-nrql-conditions-json
+      description: REST surface for alerts_nrql_conditions.json.
+      operations:
+      - method: GET
+        name: getalertsnrqlconditions
+        description: New Relic Get Alerts Nrql Conditions
+        call: new-relic-conditions.getalertsnrqlconditions
+        with:
+          policy_id: rest.policy_id
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-nrql-conditions/policies/policy-id-json
+      name: alerts-nrql-conditions-policies-policy-id-json
+      description: REST surface for alerts_nrql_conditions-policies-policy_id}.json.
+      operations:
+      - method: POST
+        name: postalertsnrqlconditionspoliciespolicyid
+        description: New Relic Post Alerts Nrql Conditions Policies
+        call: new-relic-conditions.postalertsnrqlconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-nrql-conditions/condition-id-json
+      name: alerts-nrql-conditions-condition-id-json
+      description: REST surface for alerts_nrql_conditions-condition_id}.json.
+      operations:
+      - method: PUT
+        name: putalertsnrqlconditionsconditionid
+        description: New Relic Put Alerts Nrql Conditions
+        call: new-relic-conditions.putalertsnrqlconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealertsnrqlconditionsconditionid
+        description: New Relic Delete Alerts Nrql Conditions
+        call: new-relic-conditions.deletealertsnrqlconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-synthetics-conditions-json
+      name: alerts-synthetics-conditions-json
+      description: REST surface for alerts_synthetics_conditions.json.
+      operations:
+      - method: GET
+        name: getalertssyntheticsconditions
+        description: New Relic Get Alerts Synthetics Conditions
+        call: new-relic-conditions.getalertssyntheticsconditions
+        with:
+          policy_id: rest.policy_id
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-synthetics-conditions/policies/policy-id-json
+      name: alerts-synthetics-conditions-policies-policy-id-json
+      description: REST surface for alerts_synthetics_conditions-policies-policy_id}.json.
+      operations:
+      - method: POST
+        name: postalertssyntheticsconditionspoliciespolicyid
+        description: New Relic Post Alerts Synthetics Conditions Policies
+        call: new-relic-conditions.postalertssyntheticsconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-synthetics-conditions/condition-id-json
+      name: alerts-synthetics-conditions-condition-id-json
+      description: REST surface for alerts_synthetics_conditions-condition_id}.json.
+      operations:
+      - method: PUT
+        name: putalertssyntheticsconditionsconditionid
+        description: New Relic Put Alerts Synthetics Conditions
+        call: new-relic-conditions.putalertssyntheticsconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealertssyntheticsconditionsconditionid
+        description: New Relic Delete Alerts Synthetics Conditions
+        call: new-relic-conditions.deletealertssyntheticsconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-relic-conditions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic — Conditions. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-get-alerts-conditions
+      description: New Relic Get Alerts Conditions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.getalertsconditions
+      with:
+        policy_id: tools.policy_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-post-alerts-conditions
+      description: New Relic Post Alerts Conditions Policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: new-relic-conditions.postalertsconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-put-alerts-conditions
+      description: New Relic Put Alerts Conditions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.putalertsconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-alerts-conditions
+      description: New Relic Delete Alerts Conditions
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-conditions.deletealertsconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-alerts-entity
+      description: New Relic Get Alerts Entity Conditions Entity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.getalertsentityconditionsentityid
+      with:
+        entity_id: tools.entity_id
+        entity_type: tools.entity_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-put-alerts-entity
+      description: New Relic Put Alerts Entity Conditions Entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.putalertsentityconditionsentityid
+      with:
+        entity_id: tools.entity_id
+        entity_type: tools.entity_type
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-alerts-entity
+      description: New Relic Delete Alerts Entity Conditions Entity
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-conditions.deletealertsentityconditionsentityid
+      with:
+        entity_id: tools.entity_id
+        entity_type: tools.entity_type
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-alerts-external
+      description: New Relic Get Alerts External Service Conditions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.getalertsexternalserviceconditions
+      with:
+        policy_id: tools.policy_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-post-alerts-external
+      description: New Relic Post Alerts External Service Conditions Policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: new-relic-conditions.postalertsexternalserviceconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-put-alerts-external
+      description: New Relic Put Alerts External Service Conditions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.putalertsexternalserviceconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-alerts-external
+      description: New Relic Delete Alerts External Service Conditions
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-conditions.deletealertsexternalserviceconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-alerts-location
+      description: New Relic Get Alerts Location Failure Conditions Policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.getalertslocationfailureconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-post-alerts-location
+      description: New Relic Post Alerts Location Failure Conditions Policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: new-relic-conditions.postalertslocationfailureconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        location_failure_condition: tools.location_failure_condition
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-put-alerts-location
+      description: New Relic Put Alerts Location Failure Conditions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.putalertslocationfailureconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-alerts-location
+      description: New Relic Delete Alerts Location Failure Conditions
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-conditions.deletealertslocationfailureconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-alerts-nrql
+      description: New Relic Get Alerts Nrql Conditions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.getalertsnrqlconditions
+      with:
+        policy_id: tools.policy_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-post-alerts-nrql
+      description: New Relic Post Alerts Nrql Conditions Policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: new-relic-conditions.postalertsnrqlconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-put-alerts-nrql
+      description: New Relic Put Alerts Nrql Conditions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.putalertsnrqlconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-alerts-nrql
+      description: New Relic Delete Alerts Nrql Conditions
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-conditions.deletealertsnrqlconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-alerts-synthetics
+      description: New Relic Get Alerts Synthetics Conditions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.getalertssyntheticsconditions
+      with:
+        policy_id: tools.policy_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-post-alerts-synthetics
+      description: New Relic Post Alerts Synthetics Conditions Policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: new-relic-conditions.postalertssyntheticsconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-put-alerts-synthetics
+      description: New Relic Put Alerts Synthetics Conditions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: new-relic-conditions.putalertssyntheticsconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-alerts-synthetics
+      description: New Relic Delete Alerts Synthetics Conditions
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-conditions.deletealertssyntheticsconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.

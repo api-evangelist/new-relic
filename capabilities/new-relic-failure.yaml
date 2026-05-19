@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic — Failure
+  description: 'New Relic — Failure. 4 operations. Lead operation: New Relic Get Alerts Location Failure Conditions Policies.
+    Self-contained Naftiko capability covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Failure
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-relic-failure
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic — Failure business capability. Self-contained, no shared references.
+    resources:
+    - name: alerts_location_failure_conditions-policies-policy_id}.json
+      path: /alerts_location_failure_conditions/policies/{policy_id}.json
+      operations:
+      - name: getalertslocationfailureconditionspoliciespolicyid
+        method: GET
+        description: New Relic Get Alerts Location Failure Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+      - name: postalertslocationfailureconditionspoliciespolicyid
+        method: POST
+        description: New Relic Post Alerts Location Failure Conditions Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: integer
+          description: Alerts policy failure condition
+          required: true
+        - name: location_failure_condition
+          in: path
+          type: integer
+          description: Alerts policy ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: alerts_location_failure_conditions-condition_id}.json
+      path: /alerts_location_failure_conditions/{condition_id}.json
+      operations:
+      - name: putalertslocationfailureconditionsconditionid
+        method: PUT
+        description: New Relic Put Alerts Location Failure Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletealertslocationfailureconditionsconditionid
+        method: DELETE
+        description: New Relic Delete Alerts Location Failure Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: condition_id
+          in: path
+          type: integer
+          description: Alerts condition ID
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: new-relic-failure-rest
+    port: 8080
+    description: REST adapter for New Relic — Failure. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/alerts-location-failure-conditions/policies/policy-id-json
+      name: alerts-location-failure-conditions-policies-policy-id-json
+      description: REST surface for alerts_location_failure_conditions-policies-policy_id}.json.
+      operations:
+      - method: GET
+        name: getalertslocationfailureconditionspoliciespolicyid
+        description: New Relic Get Alerts Location Failure Conditions Policies
+        call: new-relic-failure.getalertslocationfailureconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postalertslocationfailureconditionspoliciespolicyid
+        description: New Relic Post Alerts Location Failure Conditions Policies
+        call: new-relic-failure.postalertslocationfailureconditionspoliciespolicyid
+        with:
+          policy_id: rest.policy_id
+          location_failure_condition: rest.location_failure_condition
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts-location-failure-conditions/condition-id-json
+      name: alerts-location-failure-conditions-condition-id-json
+      description: REST surface for alerts_location_failure_conditions-condition_id}.json.
+      operations:
+      - method: PUT
+        name: putalertslocationfailureconditionsconditionid
+        description: New Relic Put Alerts Location Failure Conditions
+        call: new-relic-failure.putalertslocationfailureconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealertslocationfailureconditionsconditionid
+        description: New Relic Delete Alerts Location Failure Conditions
+        call: new-relic-failure.deletealertslocationfailureconditionsconditionid
+        with:
+          condition_id: rest.condition_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-relic-failure-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic — Failure. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-get-alerts-location
+      description: New Relic Get Alerts Location Failure Conditions Policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-failure.getalertslocationfailureconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-post-alerts-location
+      description: New Relic Post Alerts Location Failure Conditions Policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: new-relic-failure.postalertslocationfailureconditionspoliciespolicyid
+      with:
+        policy_id: tools.policy_id
+        location_failure_condition: tools.location_failure_condition
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-put-alerts-location
+      description: New Relic Put Alerts Location Failure Conditions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: new-relic-failure.putalertslocationfailureconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-alerts-location
+      description: New Relic Delete Alerts Location Failure Conditions
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-failure.deletealertslocationfailureconditionsconditionid
+      with:
+        condition_id: tools.condition_id
+      outputParameters:
+      - type: object
+        mapping: $.

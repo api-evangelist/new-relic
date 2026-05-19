@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic Trace API — Traces
+  description: 'New Relic Trace API — Traces. 1 operations. Lead operation: New Relic Send Trace Spans. Self-contained Naftiko
+    capability covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Traces
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trace-traces
+    baseUri: https://trace-api.newrelic.com
+    description: New Relic Trace API — Traces business capability. Self-contained, no shared references.
+    resources:
+    - name: trace-v1
+      path: /trace/v1
+      operations:
+      - name: sendtraces
+        method: POST
+        description: New Relic Send Trace Spans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Data-Format
+          in: header
+          type: string
+          description: The format of the trace data in the request body
+          required: true
+        - name: Data-Format-Version
+          in: header
+          type: string
+          description: Version of the data format. Use 1 for newrelic format.
+        - name: Content-Encoding
+          in: header
+          type: string
+          description: Use gzip for compressed payloads
+        - name: Content-Type
+          in: header
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: trace-traces-rest
+    port: 8080
+    description: REST adapter for New Relic Trace API — Traces. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/trace/v1
+      name: trace-v1
+      description: REST surface for trace-v1.
+      operations:
+      - method: POST
+        name: sendtraces
+        description: New Relic Send Trace Spans
+        call: trace-traces.sendtraces
+        with:
+          Data-Format: rest.Data-Format
+          Data-Format-Version: rest.Data-Format-Version
+          Content-Encoding: rest.Content-Encoding
+          Content-Type: rest.Content-Type
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trace-traces-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic Trace API — Traces. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: new-relic-send-trace-spans
+      description: New Relic Send Trace Spans
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: trace-traces.sendtraces
+      with:
+        Data-Format: tools.Data-Format
+        Data-Format-Version: tools.Data-Format-Version
+        Content-Encoding: tools.Content-Encoding
+        Content-Type: tools.Content-Type
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,179 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic — Deployments
+  description: 'New Relic — Deployments. 3 operations. Lead operation: New Relic Get Applications Deployments. Self-contained
+    Naftiko capability covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Deployments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-relic-deployments
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic — Deployments business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-application_id-deployments.json
+      path: /applications/{application_id}/deployments.json
+      operations:
+      - name: getapplicationsiddeployments
+        method: GET
+        description: New Relic Get Applications Deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+      - name: postapplicationsiddeployments
+        method: POST
+        description: New Relic Post Applications Deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-deployments-id}.json
+      path: /applications/{application_id}/deployments/{id}.json
+      operations:
+      - name: deleteapplicationsiddeploymentsid
+        method: DELETE
+        description: New Relic Delete Applications Deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: id
+          in: path
+          type: integer
+          description: Deployment ID
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: new-relic-deployments-rest
+    port: 8080
+    description: REST adapter for New Relic — Deployments. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/applications/{application-id}/deployments-json
+      name: applications-application-id-deployments-json
+      description: REST surface for applications-application_id-deployments.json.
+      operations:
+      - method: GET
+        name: getapplicationsiddeployments
+        description: New Relic Get Applications Deployments
+        call: new-relic-deployments.getapplicationsiddeployments
+        with:
+          application_id: rest.application_id
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationsiddeployments
+        description: New Relic Post Applications Deployments
+        call: new-relic-deployments.postapplicationsiddeployments
+        with:
+          application_id: rest.application_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/deployments/id-json
+      name: applications-application-id-deployments-id-json
+      description: REST surface for applications-application_id-deployments-id}.json.
+      operations:
+      - method: DELETE
+        name: deleteapplicationsiddeploymentsid
+        description: New Relic Delete Applications Deployments
+        call: new-relic-deployments.deleteapplicationsiddeploymentsid
+        with:
+          application_id: rest.application_id
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-relic-deployments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic — Deployments. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-get-applications-deployments
+      description: New Relic Get Applications Deployments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-deployments.getapplicationsiddeployments
+      with:
+        application_id: tools.application_id
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-post-applications-deployments
+      description: New Relic Post Applications Deployments
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: new-relic-deployments.postapplicationsiddeployments
+      with:
+        application_id: tools.application_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-delete-applications-deployments
+      description: New Relic Delete Applications Deployments
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: new-relic-deployments.deleteapplicationsiddeploymentsid
+      with:
+        application_id: tools.application_id
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

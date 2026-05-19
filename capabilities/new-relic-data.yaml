@@ -1,0 +1,394 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic — Data
+  description: 'New Relic — Data. 4 operations. Lead operation: New Relic Get Applications Hosts Host Metrics Data. Self-contained
+    Naftiko capability covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-relic-data
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic — Data business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-application_id-hosts-host_id-metrics-data.json
+      path: /applications/{application_id}/hosts/{host_id}/metrics/data.json
+      operations:
+      - name: getapplicationsidhostshostidmetricsdata
+        method: GET
+        description: New Relic Get Applications Hosts Host Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: host_id
+          in: path
+          type: integer
+          description: Application Host ID
+          required: true
+        - name: names
+          in: query
+          type: array
+          description: Retrieve specific metrics by name
+          required: true
+        - name: values
+          in: query
+          type: array
+          description: Retrieve specific metric values
+        - name: from
+          in: query
+          type: string
+          description: Retrieve metrics after this time
+        - name: to
+          in: query
+          type: string
+          description: Retrieve metrics before this time
+        - name: period
+          in: query
+          type: integer
+          description: Period of timeslices in seconds
+        - name: summarize
+          in: query
+          type: boolean
+          description: Summarize the data
+        - name: raw
+          in: query
+          type: boolean
+          description: Return unformatted raw values
+    - name: applications-application_id-instances-instance_id-metrics-data.json
+      path: /applications/{application_id}/instances/{instance_id}/metrics/data.json
+      operations:
+      - name: getapplicationsidinstancesinstanceidmetricsdata
+        method: GET
+        description: New Relic Get Applications Instances Instance Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: instance_id
+          in: path
+          type: integer
+          description: Application Instance ID
+          required: true
+        - name: names
+          in: query
+          type: array
+          description: Retrieve specific metrics by name
+          required: true
+        - name: values
+          in: query
+          type: array
+          description: Retrieve specific metric values
+        - name: from
+          in: query
+          type: string
+          description: Retrieve metrics after this time
+        - name: to
+          in: query
+          type: string
+          description: Retrieve metrics before this time
+        - name: period
+          in: query
+          type: integer
+          description: Period of timeslices in seconds
+        - name: summarize
+          in: query
+          type: boolean
+          description: Summarize the data
+        - name: raw
+          in: query
+          type: boolean
+          description: Return unformatted raw values
+    - name: applications-application_id-metrics-data.json
+      path: /applications/{application_id}/metrics/data.json
+      operations:
+      - name: getapplicationsidmetricsdata
+        method: GET
+        description: New Relic Get Applications Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: names
+          in: query
+          type: array
+          description: Retrieve specific metrics by name
+          required: true
+        - name: values
+          in: query
+          type: array
+          description: Retrieve specific metric values
+        - name: from
+          in: query
+          type: string
+          description: Retrieve metrics after this time
+        - name: to
+          in: query
+          type: string
+          description: Retrieve metrics before this time
+        - name: period
+          in: query
+          type: integer
+          description: Period of timeslices in seconds
+        - name: summarize
+          in: query
+          type: boolean
+          description: Summarize the data
+        - name: raw
+          in: query
+          type: boolean
+          description: Return unformatted raw values
+    - name: mobile_applications-mobile_application_id-metrics-data.json
+      path: /mobile_applications/{mobile_application_id}/metrics/data.json
+      operations:
+      - name: getmobileapplicationsmobileapplicationidmetricsdata
+        method: GET
+        description: New Relic Get Mobile Applications Mobile Application Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: mobile_application_id
+          in: path
+          type: integer
+          description: Mobile application ID
+          required: true
+        - name: names
+          in: query
+          type: array
+          description: Retrieve specific metrics by name
+          required: true
+        - name: values
+          in: query
+          type: array
+          description: Retrieve specific metric values
+        - name: from
+          in: query
+          type: string
+          description: Retrieve metrics after this time
+        - name: to
+          in: query
+          type: string
+          description: Retrieve metrics before this time
+        - name: period
+          in: query
+          type: integer
+          description: Period of timeslices in seconds
+        - name: summarize
+          in: query
+          type: boolean
+          description: Summarize the data
+        - name: raw
+          in: query
+          type: boolean
+          description: Return unformatted raw values
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: new-relic-data-rest
+    port: 8080
+    description: REST adapter for New Relic — Data. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/applications/{application-id}/hosts/{host-id}/metrics/data-json
+      name: applications-application-id-hosts-host-id-metrics-data-json
+      description: REST surface for applications-application_id-hosts-host_id-metrics-data.json.
+      operations:
+      - method: GET
+        name: getapplicationsidhostshostidmetricsdata
+        description: New Relic Get Applications Hosts Host Metrics Data
+        call: new-relic-data.getapplicationsidhostshostidmetricsdata
+        with:
+          application_id: rest.application_id
+          host_id: rest.host_id
+          names: rest.names
+          values: rest.values
+          from: rest.from
+          to: rest.to
+          period: rest.period
+          summarize: rest.summarize
+          raw: rest.raw
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/instances/{instance-id}/metrics/data-json
+      name: applications-application-id-instances-instance-id-metrics-data-json
+      description: REST surface for applications-application_id-instances-instance_id-metrics-data.json.
+      operations:
+      - method: GET
+        name: getapplicationsidinstancesinstanceidmetricsdata
+        description: New Relic Get Applications Instances Instance Metrics Data
+        call: new-relic-data.getapplicationsidinstancesinstanceidmetricsdata
+        with:
+          application_id: rest.application_id
+          instance_id: rest.instance_id
+          names: rest.names
+          values: rest.values
+          from: rest.from
+          to: rest.to
+          period: rest.period
+          summarize: rest.summarize
+          raw: rest.raw
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/metrics/data-json
+      name: applications-application-id-metrics-data-json
+      description: REST surface for applications-application_id-metrics-data.json.
+      operations:
+      - method: GET
+        name: getapplicationsidmetricsdata
+        description: New Relic Get Applications Metrics Data
+        call: new-relic-data.getapplicationsidmetricsdata
+        with:
+          application_id: rest.application_id
+          names: rest.names
+          values: rest.values
+          from: rest.from
+          to: rest.to
+          period: rest.period
+          summarize: rest.summarize
+          raw: rest.raw
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mobile-applications/{mobile-application-id}/metrics/data-json
+      name: mobile-applications-mobile-application-id-metrics-data-json
+      description: REST surface for mobile_applications-mobile_application_id-metrics-data.json.
+      operations:
+      - method: GET
+        name: getmobileapplicationsmobileapplicationidmetricsdata
+        description: New Relic Get Mobile Applications Mobile Application Metrics Data
+        call: new-relic-data.getmobileapplicationsmobileapplicationidmetricsdata
+        with:
+          mobile_application_id: rest.mobile_application_id
+          names: rest.names
+          values: rest.values
+          from: rest.from
+          to: rest.to
+          period: rest.period
+          summarize: rest.summarize
+          raw: rest.raw
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-relic-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic — Data. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-get-applications-hosts
+      description: New Relic Get Applications Hosts Host Metrics Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-data.getapplicationsidhostshostidmetricsdata
+      with:
+        application_id: tools.application_id
+        host_id: tools.host_id
+        names: tools.names
+        values: tools.values
+        from: tools.from
+        to: tools.to
+        period: tools.period
+        summarize: tools.summarize
+        raw: tools.raw
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-applications-instances
+      description: New Relic Get Applications Instances Instance Metrics Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-data.getapplicationsidinstancesinstanceidmetricsdata
+      with:
+        application_id: tools.application_id
+        instance_id: tools.instance_id
+        names: tools.names
+        values: tools.values
+        from: tools.from
+        to: tools.to
+        period: tools.period
+        summarize: tools.summarize
+        raw: tools.raw
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-applications-metrics
+      description: New Relic Get Applications Metrics Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-data.getapplicationsidmetricsdata
+      with:
+        application_id: tools.application_id
+        names: tools.names
+        values: tools.values
+        from: tools.from
+        to: tools.to
+        period: tools.period
+        summarize: tools.summarize
+        raw: tools.raw
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-mobile-applications
+      description: New Relic Get Mobile Applications Mobile Application Metrics Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-data.getmobileapplicationsmobileapplicationidmetricsdata
+      with:
+        mobile_application_id: tools.mobile_application_id
+        names: tools.names
+        values: tools.values
+        from: tools.from
+        to: tools.to
+        period: tools.period
+        summarize: tools.summarize
+        raw: tools.raw
+      outputParameters:
+      - type: object
+        mapping: $.

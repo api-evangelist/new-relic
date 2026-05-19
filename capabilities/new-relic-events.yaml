@@ -1,0 +1,117 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic — Events
+  description: 'New Relic — Events. 1 operations. Lead operation: New Relic Get Alerts Events. Self-contained Naftiko capability
+    covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-relic-events
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: alerts_events.json
+      path: /alerts_events.json
+      operations:
+      - name: getalertsevents
+        method: GET
+        description: New Relic Get Alerts Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter[product]
+          in: query
+          type: string
+          description: Filter by New Relic product
+        - name: filter[entity_type]
+          in: query
+          type: string
+          description: Filter by entity type
+        - name: filter[entity_group_id]
+          in: query
+          type: integer
+          description: Filter by entity group ID
+        - name: filter[entity_id]
+          in: query
+          type: integer
+          description: Filter by entity ID
+        - name: filter[event_type]
+          in: query
+          type: string
+          description: Filter by event type
+        - name: filter[incident_id]
+          in: query
+          type: integer
+          description: Filter by incident id
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: new-relic-events-rest
+    port: 8080
+    description: REST adapter for New Relic — Events. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/alerts-events-json
+      name: alerts-events-json
+      description: REST surface for alerts_events.json.
+      operations:
+      - method: GET
+        name: getalertsevents
+        description: New Relic Get Alerts Events
+        call: new-relic-events.getalertsevents
+        with:
+          filter[product]: rest.filter[product]
+          filter[entity_type]: rest.filter[entity_type]
+          filter[entity_group_id]: rest.filter[entity_group_id]
+          filter[entity_id]: rest.filter[entity_id]
+          filter[event_type]: rest.filter[event_type]
+          filter[incident_id]: rest.filter[incident_id]
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-relic-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic — Events. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-get-alerts-events
+      description: New Relic Get Alerts Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-events.getalertsevents
+      with:
+        filter[product]: tools.filter[product]
+        filter[entity_type]: tools.filter[entity_type]
+        filter[entity_group_id]: tools.filter[entity_group_id]
+        filter[entity_id]: tools.filter[entity_id]
+        filter[event_type]: tools.filter[event_type]
+        filter[incident_id]: tools.filter[incident_id]
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.

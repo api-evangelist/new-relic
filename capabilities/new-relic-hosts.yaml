@@ -1,0 +1,308 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: New Relic — Hosts
+  description: 'New Relic — Hosts. 4 operations. Lead operation: New Relic Get Applications Hosts. Self-contained Naftiko
+    capability covering one New Relic business surface.'
+  tags:
+  - New Relic
+  - Hosts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_RELIC_API_KEY: NEW_RELIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-relic-hosts
+    baseUri: https://api.newrelic.com/v2
+    description: New Relic — Hosts business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-application_id-hosts.json
+      path: /applications/{application_id}/hosts.json
+      operations:
+      - name: getapplicationsidhosts
+        method: GET
+        description: New Relic Get Applications Hosts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: filter[hostname]
+          in: query
+          type: string
+          description: Filter by server hostname
+        - name: filter[ids]
+          in: query
+          type: array
+          description: Filter by application host ids
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index
+    - name: applications-application_id-hosts-host_id-metrics.json
+      path: /applications/{application_id}/hosts/{host_id}/metrics.json
+      operations:
+      - name: getapplicationsidhostshostidmetrics
+        method: GET
+        description: New Relic Get Applications Hosts Host Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: host_id
+          in: path
+          type: integer
+          description: Application Host ID
+          required: true
+        - name: name
+          in: query
+          type: string
+          description: Filter metrics by name
+        - name: page
+          in: query
+          type: integer
+          description: Pagination index (will be deprecated)
+        - name: cursor
+          in: query
+          type: string
+          description: Cursor for next page (replacing page param)
+    - name: applications-application_id-hosts-host_id-metrics-data.json
+      path: /applications/{application_id}/hosts/{host_id}/metrics/data.json
+      operations:
+      - name: getapplicationsidhostshostidmetricsdata
+        method: GET
+        description: New Relic Get Applications Hosts Host Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: host_id
+          in: path
+          type: integer
+          description: Application Host ID
+          required: true
+        - name: names
+          in: query
+          type: array
+          description: Retrieve specific metrics by name
+          required: true
+        - name: values
+          in: query
+          type: array
+          description: Retrieve specific metric values
+        - name: from
+          in: query
+          type: string
+          description: Retrieve metrics after this time
+        - name: to
+          in: query
+          type: string
+          description: Retrieve metrics before this time
+        - name: period
+          in: query
+          type: integer
+          description: Period of timeslices in seconds
+        - name: summarize
+          in: query
+          type: boolean
+          description: Summarize the data
+        - name: raw
+          in: query
+          type: boolean
+          description: Return unformatted raw values
+    - name: applications-application_id-hosts-id}.json
+      path: /applications/{application_id}/hosts/{id}.json
+      operations:
+      - name: getapplicationsidhostsid
+        method: GET
+        description: New Relic Get Applications Hosts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: integer
+          description: Application ID
+          required: true
+        - name: id
+          in: path
+          type: integer
+          description: Application host ID
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Key
+      value: '{{env.NEW_RELIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: new-relic-hosts-rest
+    port: 8080
+    description: REST adapter for New Relic — Hosts. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/applications/{application-id}/hosts-json
+      name: applications-application-id-hosts-json
+      description: REST surface for applications-application_id-hosts.json.
+      operations:
+      - method: GET
+        name: getapplicationsidhosts
+        description: New Relic Get Applications Hosts
+        call: new-relic-hosts.getapplicationsidhosts
+        with:
+          application_id: rest.application_id
+          filter[hostname]: rest.filter[hostname]
+          filter[ids]: rest.filter[ids]
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/hosts/{host-id}/metrics-json
+      name: applications-application-id-hosts-host-id-metrics-json
+      description: REST surface for applications-application_id-hosts-host_id-metrics.json.
+      operations:
+      - method: GET
+        name: getapplicationsidhostshostidmetrics
+        description: New Relic Get Applications Hosts Host Metrics
+        call: new-relic-hosts.getapplicationsidhostshostidmetrics
+        with:
+          application_id: rest.application_id
+          host_id: rest.host_id
+          name: rest.name
+          page: rest.page
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/hosts/{host-id}/metrics/data-json
+      name: applications-application-id-hosts-host-id-metrics-data-json
+      description: REST surface for applications-application_id-hosts-host_id-metrics-data.json.
+      operations:
+      - method: GET
+        name: getapplicationsidhostshostidmetricsdata
+        description: New Relic Get Applications Hosts Host Metrics Data
+        call: new-relic-hosts.getapplicationsidhostshostidmetricsdata
+        with:
+          application_id: rest.application_id
+          host_id: rest.host_id
+          names: rest.names
+          values: rest.values
+          from: rest.from
+          to: rest.to
+          period: rest.period
+          summarize: rest.summarize
+          raw: rest.raw
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/hosts/id-json
+      name: applications-application-id-hosts-id-json
+      description: REST surface for applications-application_id-hosts-id}.json.
+      operations:
+      - method: GET
+        name: getapplicationsidhostsid
+        description: New Relic Get Applications Hosts
+        call: new-relic-hosts.getapplicationsidhostsid
+        with:
+          application_id: rest.application_id
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-relic-hosts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for New Relic — Hosts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: new-relic-get-applications-hosts
+      description: New Relic Get Applications Hosts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-hosts.getapplicationsidhosts
+      with:
+        application_id: tools.application_id
+        filter[hostname]: tools.filter[hostname]
+        filter[ids]: tools.filter[ids]
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-applications-hosts-2
+      description: New Relic Get Applications Hosts Host Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-hosts.getapplicationsidhostshostidmetrics
+      with:
+        application_id: tools.application_id
+        host_id: tools.host_id
+        name: tools.name
+        page: tools.page
+        cursor: tools.cursor
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-applications-hosts-3
+      description: New Relic Get Applications Hosts Host Metrics Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-hosts.getapplicationsidhostshostidmetricsdata
+      with:
+        application_id: tools.application_id
+        host_id: tools.host_id
+        names: tools.names
+        values: tools.values
+        from: tools.from
+        to: tools.to
+        period: tools.period
+        summarize: tools.summarize
+        raw: tools.raw
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: new-relic-get-applications-hosts-4
+      description: New Relic Get Applications Hosts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-relic-hosts.getapplicationsidhostsid
+      with:
+        application_id: tools.application_id
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
