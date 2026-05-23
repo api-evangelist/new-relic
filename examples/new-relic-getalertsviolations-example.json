@@ -1,0 +1,47 @@
+{
+  "operationId": "getAlertsViolations",
+  "method": "GET",
+  "path": "/alerts_violations.json",
+  "summary": "New Relic Get Alerts Violations",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertsviolations200Example",
+      "example": {
+        "violation": {
+          "closed_at": {},
+          "condition_name": {},
+          "duration": {},
+          "entity": {},
+          "id": {},
+          "label": {},
+          "links": {},
+          "opened_at": {},
+          "policy_name": {},
+          "priority": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertsviolations200Example",
+      "example": {
+        "violation": {
+          "closed_at": {},
+          "condition_name": {},
+          "duration": {},
+          "entity": {},
+          "id": {},
+          "label": {},
+          "links": {},
+          "opened_at": {},
+          "policy_name": {},
+          "priority": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "operationId": "getApplicationsIdHosts",
+  "method": "GET",
+  "path": "/applications/{application_id}/hosts.json",
+  "summary": "New Relic Get Applications Hosts",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getapplicationsidhosts200Example",
+      "example": {
+        "application_hosts": [
+          {
+            "host": "example_string",
+            "application_name": "example_string",
+            "application_summary": {},
+            "end_user_summary": {},
+            "health_status": "active",
+            "id": 100,
+            "language": 100,
+            "links": {}
+          }
+        ]
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getapplicationsidhosts200Example",
+      "example": {
+        "application_hosts": [
+          {
+            "host": "example_string",
+            "application_name": "example_string",
+            "application_summary": {},
+            "end_user_summary": {},
+            "health_status": "active",
+            "id": 100,
+            "language": 100,
+            "links": {}
+          }
+        ]
+      }
+    }
+  ]
+}

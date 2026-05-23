@@ -1,0 +1,51 @@
+{
+  "operationId": "deleteAlertsConditionsConditionId",
+  "method": "DELETE",
+  "path": "/alerts_conditions/{condition_id}.json",
+  "summary": "New Relic Delete Alerts Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deletealertsconditionsconditionid200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deletealertsconditionsconditionid200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    }
+  ]
+}

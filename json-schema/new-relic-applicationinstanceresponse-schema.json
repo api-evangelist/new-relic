@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationInstanceResponse",
+  "title": "ApplicationInstanceResponse",
+  "type": "object",
+  "properties": {
+    "application_instance": {
+      "$ref": "#/components/schemas/ApplicationInstanceResponseType"
+    }
+  }
+}

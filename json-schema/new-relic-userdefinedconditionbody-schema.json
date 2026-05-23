@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserDefinedConditionBody",
+  "title": "UserDefinedConditionBody",
+  "type": "object",
+  "properties": {
+    "metric": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "value_function": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

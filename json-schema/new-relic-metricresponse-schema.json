@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricResponse",
+  "title": "MetricResponse",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "timeslices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TimesliceResponse"
+      },
+      "example": [
+        {
+          "from": "2026-04-18T14:30:00Z",
+          "to": "2026-04-18T14:30:00Z",
+          "values": {}
+        }
+      ]
+    }
+  }
+}

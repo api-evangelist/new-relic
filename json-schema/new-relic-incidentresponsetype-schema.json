@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IncidentResponseType",
+  "title": "IncidentResponseType",
+  "type": "object",
+  "properties": {
+    "closed_at": {
+      "type": "integer",
+      "example": 100
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "incident_preference": {
+      "type": "integer",
+      "example": 100
+    },
+    "links": {
+      "$ref": "#/components/schemas/IncidentLinksResponse"
+    },
+    "opened_at": {
+      "type": "integer",
+      "example": 100
+    }
+  }
+}

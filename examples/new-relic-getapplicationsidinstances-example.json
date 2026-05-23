@@ -1,0 +1,45 @@
+{
+  "operationId": "getApplicationsIdInstances",
+  "method": "GET",
+  "path": "/applications/{application_id}/instances.json",
+  "summary": "New Relic Get Applications Instances",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getapplicationsidinstances200Example",
+      "example": {
+        "application_instance": {
+          "host": {},
+          "application_name": {},
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "links": {},
+          "port": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getapplicationsidinstances200Example",
+      "example": {
+        "application_instance": {
+          "host": {},
+          "application_name": {},
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "links": {},
+          "port": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventPayload",
+  "title": "EventPayload",
+  "type": "array",
+  "description": "An array of custom event objects to ingest",
+  "maxItems": 2000,
+  "items": {
+    "$ref": "#/components/schemas/CustomEvent"
+  }
+}

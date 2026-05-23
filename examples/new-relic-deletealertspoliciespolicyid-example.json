@@ -1,0 +1,37 @@
+{
+  "operationId": "deleteAlertsPoliciesPolicyId",
+  "method": "DELETE",
+  "path": "/alerts_policies/{policy_id}.json",
+  "summary": "New Relic Delete Alerts Policies",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deletealertspoliciespolicyid200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deletealertspoliciespolicyid200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    }
+  ]
+}

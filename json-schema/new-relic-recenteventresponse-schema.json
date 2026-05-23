@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecentEventResponse",
+  "title": "RecentEventResponse",
+  "type": "object",
+  "properties": {
+    "recent_event": {
+      "$ref": "#/components/schemas/RecentEventResponseType"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "operationId": "getMobileApplicationsId",
+  "method": "GET",
+  "path": "/mobile_applications/{id}.json",
+  "summary": "New Relic Get Mobile Applications",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getmobileapplicationsid200Example",
+      "example": {
+        "application": {
+          "crash_summary": {},
+          "health_status": {},
+          "id": {},
+          "mobile_summary": {},
+          "name": {},
+          "reporting": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getmobileapplicationsid200Example",
+      "example": {
+        "application": {
+          "crash_summary": {},
+          "health_status": {},
+          "id": {},
+          "mobile_summary": {},
+          "name": {},
+          "reporting": {}
+        }
+      }
+    }
+  ]
+}

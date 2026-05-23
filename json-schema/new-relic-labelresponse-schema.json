@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LabelResponse",
+  "title": "LabelResponse",
+  "type": "object",
+  "properties": {
+    "label": {
+      "$ref": "#/components/schemas/LabelResponseType"
+    }
+  }
+}

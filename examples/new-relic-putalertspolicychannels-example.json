@@ -1,0 +1,31 @@
+{
+  "operationId": "putAlertsPolicyChannels",
+  "method": "PUT",
+  "path": "/alerts_policy_channels.json",
+  "summary": "New Relic Put Alerts Policy Channels",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Putalertspolicychannels200Example",
+      "example": {
+        "policy": {
+          "channel_ids": {},
+          "id": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Putalertspolicychannels200Example",
+      "example": {
+        "policy": {
+          "channel_ids": {},
+          "id": {}
+        }
+      }
+    }
+  ]
+}

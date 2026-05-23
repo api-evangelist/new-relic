@@ -1,0 +1,62 @@
+{
+  "operationId": "putAlertsSyntheticsConditionsConditionId",
+  "method": "PUT",
+  "path": "/alerts_synthetics_conditions/{condition_id}.json",
+  "summary": "New Relic Put Alerts Synthetics Conditions",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PutalertssyntheticsconditionsconditionidRequestExample",
+      "example": {
+        "synthetics_condition": {
+          "enabled": true,
+          "monitor_id": "500123",
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PutalertssyntheticsconditionsconditionidRequestExample",
+      "example": {
+        "synthetics_condition": {
+          "enabled": true,
+          "monitor_id": "500123",
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Putalertssyntheticsconditionsconditionid200Example",
+      "example": {
+        "synthetics_condition": {
+          "enabled": {},
+          "id": {},
+          "monitor_id": {},
+          "name": {},
+          "runbook_url": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Putalertssyntheticsconditionsconditionid200Example",
+      "example": {
+        "synthetics_condition": {
+          "enabled": {},
+          "id": {},
+          "monitor_id": {},
+          "name": {},
+          "runbook_url": {}
+        }
+      }
+    }
+  ]
+}

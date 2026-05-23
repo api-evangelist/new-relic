@@ -1,0 +1,45 @@
+{
+  "operationId": "getAlertsExternalServiceConditions",
+  "method": "GET",
+  "path": "/alerts_external_service_conditions.json",
+  "summary": "New Relic Get Alerts External Service Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertsexternalserviceconditions200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertsexternalserviceconditions200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    }
+  ]
+}

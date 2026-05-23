@@ -1,0 +1,86 @@
+{
+  "operationId": "putAlertsExternalServiceConditionsConditionId",
+  "method": "PUT",
+  "path": "/alerts_external_service_conditions/{condition_id}.json",
+  "summary": "New Relic Put Alerts External Service Conditions",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PutalertsexternalserviceconditionsconditionidRequestExample",
+      "example": {
+        "external_service_condition": {
+          "enabled": true,
+          "entities": [
+            {}
+          ],
+          "external_service_url": "https://www.example.com",
+          "metric": "example_value",
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "type": "example_value"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PutalertsexternalserviceconditionsconditionidRequestExample",
+      "example": {
+        "external_service_condition": {
+          "enabled": true,
+          "entities": [
+            {}
+          ],
+          "external_service_url": "https://www.example.com",
+          "metric": "example_value",
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "type": "example_value"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Putalertsexternalserviceconditionsconditionid200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Putalertsexternalserviceconditionsconditionid200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "operationId": "sendMetrics",
+  "method": "POST",
+  "path": "/metric/v1",
+  "summary": "New Relic Send Metric Data",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": [
+        {
+          "common": {
+            "timestamp": 1531414060739,
+            "interval.ms": 10000,
+            "attributes": {
+              "host.name": "host1",
+              "service.name": "myService"
+            }
+          },
+          "metrics": [
+            {
+              "name": "cpu.usage.percent",
+              "type": "gauge",
+              "value": 12.3
+            },
+            {
+              "name": "http.requests",
+              "type": "count",
+              "value": 420,
+              "interval.ms": 10000
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "202",
+      "contentType": "application/json",
+      "name": "Sendmetrics202Example",
+      "example": {
+        "requestId": "500123"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Sendmetrics400Example",
+      "example": {
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        },
+        "failures": [
+          {
+            "error": {
+              "message": "Operation completed successfully"
+            },
+            "failed": [
+              {}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Sendmetrics403Example",
+      "example": {
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        },
+        "failures": [
+          {
+            "error": {
+              "message": "Operation completed successfully"
+            },
+            "failed": [
+              {}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "status": "413",
+      "contentType": "application/json",
+      "name": "Sendmetrics413Example",
+      "example": {
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        },
+        "failures": [
+          {
+            "error": {
+              "message": "Operation completed successfully"
+            },
+            "failed": [
+              {}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Sendmetrics429Example",
+      "example": {
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        },
+        "failures": [
+          {
+            "error": {
+              "message": "Operation completed successfully"
+            },
+            "failed": [
+              {}
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

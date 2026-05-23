@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationHostResponse",
+  "title": "ApplicationHostResponse",
+  "type": "object",
+  "properties": {
+    "application_hosts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationHostResponseType"
+      },
+      "example": [
+        {
+          "host": "example_string",
+          "application_name": "example_string",
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": "active",
+          "id": 100,
+          "language": 100,
+          "links": {}
+        }
+      ]
+    }
+  }
+}

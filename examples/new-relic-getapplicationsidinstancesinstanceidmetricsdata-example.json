@@ -1,0 +1,37 @@
+{
+  "operationId": "getApplicationsIdInstancesInstanceIdMetricsData",
+  "method": "GET",
+  "path": "/applications/{application_id}/instances/{instance_id}/metrics/data.json",
+  "summary": "New Relic Get Applications Instances Instance Metrics Data",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getapplicationsidinstancesinstanceidmetricsdata200Example",
+      "example": {
+        "metric_data": {
+          "from": {},
+          "metrics": {},
+          "metrics_found": {},
+          "metrics_not_found": {},
+          "to": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getapplicationsidinstancesinstanceidmetricsdata200Example",
+      "example": {
+        "metric_data": {
+          "from": {},
+          "metrics": {},
+          "metrics_found": {},
+          "metrics_not_found": {},
+          "to": {}
+        }
+      }
+    }
+  ]
+}

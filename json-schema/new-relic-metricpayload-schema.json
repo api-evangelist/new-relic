@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricPayload",
+  "title": "MetricPayload",
+  "type": "array",
+  "description": "An array of metric data objects to be ingested",
+  "items": {
+    "$ref": "#/components/schemas/MetricDataObject"
+  }
+}

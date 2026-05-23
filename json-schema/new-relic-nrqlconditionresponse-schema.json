@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NrqlConditionResponse",
+  "title": "NrqlConditionResponse",
+  "type": "object",
+  "properties": {
+    "nrql_condition": {
+      "$ref": "#/components/schemas/NrqlConditionResponseType"
+    }
+  }
+}

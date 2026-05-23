@@ -1,0 +1,41 @@
+{
+  "operationId": "deleteApplicationsIdDeploymentsId",
+  "method": "DELETE",
+  "path": "/applications/{application_id}/deployments/{id}.json",
+  "summary": "New Relic Delete Applications Deployments",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deleteapplicationsiddeploymentsid200Example",
+      "example": {
+        "deployment": {
+          "changelog": {},
+          "description": {},
+          "id": {},
+          "links": {},
+          "revision": {},
+          "timestamp": {},
+          "user": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deleteapplicationsiddeploymentsid200Example",
+      "example": {
+        "deployment": {
+          "changelog": {},
+          "description": {},
+          "id": {},
+          "links": {},
+          "revision": {},
+          "timestamp": {},
+          "user": {}
+        }
+      }
+    }
+  ]
+}

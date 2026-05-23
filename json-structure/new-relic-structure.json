@@ -1,0 +1,1261 @@
+{
+  "provider": "New Relic",
+  "providerId": "new-relic",
+  "kind": "json-structure",
+  "description": "Structural overview of the New Relic API surface; extracted from openapi/.",
+  "schemaCount": 88,
+  "operationCount": 58,
+  "schemas": [
+    {
+      "name": "AppSettingsBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AppSettingsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AppSummaryDataResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "AppSummaryResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "Application",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ApplicationBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ApplicationHostLinksResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ApplicationHostResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ApplicationHostResponseType",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "ApplicationInstanceLinksResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ApplicationInstanceResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ApplicationInstanceResponseType",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ApplicationLinksResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ApplicationResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ApplicationResponseType",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "BrowserApplication",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BrowserApplicationBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BrowserApplicationResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BrowserApplicationResponseType",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Channel",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ChannelBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ChannelLinksResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ChannelResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ChannelResponseType",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Condition",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ConditionBody",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ConditionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ConditionResponseType",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "CrashSummaryResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Deployment",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DeploymentBody",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "DeploymentLinksResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DeploymentResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DeploymentResponseType",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "EndUserSummaryDataResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "EndUserSummaryResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ExternalServiceCondition",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ExternalServiceConditionBody",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "ExternalServiceConditionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ExternalServiceConditionResponseType",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "IJKTermsType",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "IncidentLinksResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IncidentResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "IncidentResponseType",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "KeyTransactionLinksResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "KeyTransactionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "KeyTransactionResponseType",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Label",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LabelBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LabelLinksBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LabelLinksResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LabelOriginsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LabelResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LabelResponseType",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "MetricDataResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "MetricDataResponseType",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "MetricListResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "MetricParserResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "MetricParserResponseType",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "MetricResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "MobileApplicationResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "MobileApplicationResponseType",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "MobileSummaryDataResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "NrqlBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "NrqlCondition",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "NrqlConditionBody",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "NrqlConditionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "NrqlConditionResponseType",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "NrqlResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Policy",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PolicyBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PolicyChannelsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PolicyChannelsResponseType",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PolicyResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PolicyResponseType",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RecentEventResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RecentEventResponseType",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "SyntheticsCondition",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SyntheticsConditionBody",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "SyntheticsConditionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SyntheticsConditionResponseType",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "TimesliceResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "UserDefinedConditionBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "UserDefinedConditionResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ViolationEntityResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ViolationLinksResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ViolationResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ViolationResponseType",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/applications.json",
+      "operationId": "getApplications",
+      "summary": "New Relic Get Applications",
+      "tags": [
+        "Applications",
+        "Get"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/deployments.json",
+      "operationId": "getApplicationsIdDeployments",
+      "summary": "New Relic Get Applications Deployments",
+      "tags": [
+        "Applications",
+        "Deployments",
+        "Get",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{application_id}/deployments.json",
+      "operationId": "postApplicationsIdDeployments",
+      "summary": "New Relic Post Applications Deployments",
+      "tags": [
+        "Applications",
+        "Deployments",
+        "Identifiers",
+        "Post"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{application_id}/deployments/{id}.json",
+      "operationId": "deleteApplicationsIdDeploymentsId",
+      "summary": "New Relic Delete Applications Deployments",
+      "tags": [
+        "Applications",
+        "Delete",
+        "Deployments",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/hosts.json",
+      "operationId": "getApplicationsIdHosts",
+      "summary": "New Relic Get Applications Hosts",
+      "tags": [
+        "Applications",
+        "Get",
+        "Hosts",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/hosts/{host_id}/metrics.json",
+      "operationId": "getApplicationsIdHostsHostIdMetrics",
+      "summary": "New Relic Get Applications Hosts Host Metrics",
+      "tags": [
+        "Applications",
+        "Get",
+        "Hosts",
+        "Identifiers",
+        "Metrics"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/hosts/{host_id}/metrics/data.json",
+      "operationId": "getApplicationsIdHostsHostIdMetricsData",
+      "summary": "New Relic Get Applications Hosts Host Metrics Data",
+      "tags": [
+        "Applications",
+        "Data",
+        "Get",
+        "Hosts",
+        "Identifiers",
+        "Metrics"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/hosts/{id}.json",
+      "operationId": "getApplicationsIdHostsId",
+      "summary": "New Relic Get Applications Hosts",
+      "tags": [
+        "Applications",
+        "Get",
+        "Hosts",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/instances.json",
+      "operationId": "getApplicationsIdInstances",
+      "summary": "New Relic Get Applications Instances",
+      "tags": [
+        "Applications",
+        "Get",
+        "Identifiers",
+        "Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/instances/{id}.json",
+      "operationId": "getApplicationsIdInstancesId",
+      "summary": "New Relic Get Applications Instances",
+      "tags": [
+        "Applications",
+        "Get",
+        "Identifiers",
+        "Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/instances/{instance_id}/metrics.json",
+      "operationId": "getApplicationsIdInstancesInstanceIdMetrics",
+      "summary": "New Relic Get Applications Instances Instance Metrics",
+      "tags": [
+        "Applications",
+        "Get",
+        "Identifiers",
+        "Instance",
+        "Instances",
+        "Metrics"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/instances/{instance_id}/metrics/data.json",
+      "operationId": "getApplicationsIdInstancesInstanceIdMetricsData",
+      "summary": "New Relic Get Applications Instances Instance Metrics Data",
+      "tags": [
+        "Applications",
+        "Data",
+        "Get",
+        "Identifiers",
+        "Instance",
+        "Instances",
+        "Metrics"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/metrics.json",
+      "operationId": "getApplicationsIdMetrics",
+      "summary": "New Relic Get Applications Metrics",
+      "tags": [
+        "Applications",
+        "Get",
+        "Identifiers",
+        "Metrics"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/metrics/data.json",
+      "operationId": "getApplicationsIdMetricsData",
+      "summary": "New Relic Get Applications Metrics Data",
+      "tags": [
+        "Applications",
+        "Data",
+        "Get",
+        "Identifiers",
+        "Metrics"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{id}.json",
+      "operationId": "getApplicationsId",
+      "summary": "New Relic Get Applications",
+      "tags": [
+        "Applications",
+        "Get",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{id}.json",
+      "operationId": "putApplicationsId",
+      "summary": "New Relic Put Applications",
+      "tags": [
+        "Applications",
+        "Identifiers",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{id}.json",
+      "operationId": "deleteApplicationsId",
+      "summary": "New Relic Delete Applications",
+      "tags": [
+        "Applications",
+        "Delete",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/key_transactions.json",
+      "operationId": "getKeyTransactions",
+      "summary": "New Relic Get Key Transactions",
+      "tags": [
+        "Get",
+        "Keys",
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/key_transactions/{id}.json",
+      "operationId": "getKeyTransactionsId",
+      "summary": "New Relic Get Key Transactions",
+      "tags": [
+        "Get",
+        "Identifiers",
+        "Keys",
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/mobile_applications.json",
+      "operationId": "getMobileApplications",
+      "summary": "New Relic Get Mobile Applications",
+      "tags": [
+        "Applications",
+        "Get",
+        "Mobile"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/mobile_applications/{id}.json",
+      "operationId": "getMobileApplicationsId",
+      "summary": "New Relic Get Mobile Applications",
+      "tags": [
+        "Applications",
+        "Get",
+        "Identifiers",
+        "Mobile"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/mobile_applications/{mobile_application_id}/metrics.json",
+      "operationId": "getMobileApplicationsMobileApplicationIdMetrics",
+      "summary": "New Relic Get Mobile Applications Mobile Application Metrics",
+      "tags": [
+        "Applications",
+        "Get",
+        "Identifiers",
+        "Metrics",
+        "Mobile"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/mobile_applications/{mobile_application_id}/metrics/data.json",
+      "operationId": "getMobileApplicationsMobileApplicationIdMetricsData",
+      "summary": "New Relic Get Mobile Applications Mobile Application Metrics Data",
+      "tags": [
+        "Applications",
+        "Data",
+        "Get",
+        "Identifiers",
+        "Metrics",
+        "Mobile"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_channels.json",
+      "operationId": "getAlertsChannels",
+      "summary": "New Relic Get Alerts Channels",
+      "tags": [
+        "Alerts",
+        "Channels",
+        "Get"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/alerts_channels.json",
+      "operationId": "postAlertsChannels",
+      "summary": "New Relic Post Alerts Channels",
+      "tags": [
+        "Alerts",
+        "Channels",
+        "Post"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_channels/{channel_id}.json",
+      "operationId": "deleteAlertsChannelsChannelId",
+      "summary": "New Relic Delete Alerts Channels Channel",
+      "tags": [
+        "Alerts",
+        "Channel",
+        "Channels",
+        "Delete",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_conditions.json",
+      "operationId": "getAlertsConditions",
+      "summary": "New Relic Get Alerts Conditions",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Get"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/alerts_conditions/policies/{policy_id}.json",
+      "operationId": "postAlertsConditionsPoliciesPolicyId",
+      "summary": "New Relic Post Alerts Conditions Policies",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Identifiers",
+        "Policies",
+        "Post"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_conditions/{condition_id}.json",
+      "operationId": "putAlertsConditionsConditionId",
+      "summary": "New Relic Put Alerts Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Identifiers",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_conditions/{condition_id}.json",
+      "operationId": "deleteAlertsConditionsConditionId",
+      "summary": "New Relic Delete Alerts Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Delete",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_entity_conditions/{entity_id}.json",
+      "operationId": "getAlertsEntityConditionsEntityId",
+      "summary": "New Relic Get Alerts Entity Conditions Entity",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Entity",
+        "Get",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_entity_conditions/{entity_id}.json",
+      "operationId": "putAlertsEntityConditionsEntityId",
+      "summary": "New Relic Put Alerts Entity Conditions Entity",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Entity",
+        "Identifiers",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_entity_conditions/{entity_id}.json",
+      "operationId": "deleteAlertsEntityConditionsEntityId",
+      "summary": "New Relic Delete Alerts Entity Conditions Entity",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Delete",
+        "Entity",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_events.json",
+      "operationId": "getAlertsEvents",
+      "summary": "New Relic Get Alerts Events",
+      "tags": [
+        "Alerts",
+        "Events",
+        "Get"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_external_service_conditions.json",
+      "operationId": "getAlertsExternalServiceConditions",
+      "summary": "New Relic Get Alerts External Service Conditions",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "External",
+        "Get"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/alerts_external_service_conditions/policies/{policy_id}.json",
+      "operationId": "postAlertsExternalServiceConditionsPoliciesPolicyId",
+      "summary": "New Relic Post Alerts External Service Conditions Policies",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "External",
+        "Identifiers",
+        "Policies",
+        "Post"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_external_service_conditions/{condition_id}.json",
+      "operationId": "putAlertsExternalServiceConditionsConditionId",
+      "summary": "New Relic Put Alerts External Service Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "External",
+        "Identifiers",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_external_service_conditions/{condition_id}.json",
+      "operationId": "deleteAlertsExternalServiceConditionsConditionId",
+      "summary": "New Relic Delete Alerts External Service Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Delete",
+        "External",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_incidents.json",
+      "operationId": "getAlertsIncidents",
+      "summary": "New Relic Get Alerts Incidents",
+      "tags": [
+        "Alerts",
+        "Get"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_location_failure_conditions/policies/{policy_id}.json",
+      "operationId": "getAlertsLocationFailureConditionsPoliciesPolicyId",
+      "summary": "New Relic Get Alerts Location Failure Conditions Policies",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Failure",
+        "Get",
+        "Identifiers",
+        "Location",
+        "Policies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/alerts_location_failure_conditions/policies/{policy_id}.json",
+      "operationId": "postAlertsLocationFailureConditionsPoliciesPolicyId",
+      "summary": "New Relic Post Alerts Location Failure Conditions Policies",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Failure",
+        "Identifiers",
+        "Location",
+        "Policies",
+        "Post"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_location_failure_conditions/{condition_id}.json",
+      "operationId": "putAlertsLocationFailureConditionsConditionId",
+      "summary": "New Relic Put Alerts Location Failure Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Failure",
+        "Identifiers",
+        "Location",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_location_failure_conditions/{condition_id}.json",
+      "operationId": "deleteAlertsLocationFailureConditionsConditionId",
+      "summary": "New Relic Delete Alerts Location Failure Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Delete",
+        "Failure",
+        "Identifiers",
+        "Location"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_nrql_conditions.json",
+      "operationId": "getAlertsNrqlConditions",
+      "summary": "New Relic Get Alerts Nrql Conditions",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Get"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/alerts_nrql_conditions/policies/{policy_id}.json",
+      "operationId": "postAlertsNrqlConditionsPoliciesPolicyId",
+      "summary": "New Relic Post Alerts Nrql Conditions Policies",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Identifiers",
+        "Policies",
+        "Post"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_nrql_conditions/{condition_id}.json",
+      "operationId": "putAlertsNrqlConditionsConditionId",
+      "summary": "New Relic Put Alerts Nrql Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Identifiers",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_nrql_conditions/{condition_id}.json",
+      "operationId": "deleteAlertsNrqlConditionsConditionId",
+      "summary": "New Relic Delete Alerts Nrql Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Delete",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_policies.json",
+      "operationId": "getAlertsPolicies",
+      "summary": "New Relic Get Alerts Policies",
+      "tags": [
+        "Alerts",
+        "Get",
+        "Policies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/alerts_policies.json",
+      "operationId": "postAlertsPolicies",
+      "summary": "New Relic Post Alerts Policies",
+      "tags": [
+        "Alerts",
+        "Policies",
+        "Post"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_policies/{policy_id}.json",
+      "operationId": "putAlertsPoliciesPolicyId",
+      "summary": "New Relic Put Alerts Policies",
+      "tags": [
+        "Alerts",
+        "Identifiers",
+        "Policies",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_policies/{policy_id}.json",
+      "operationId": "deleteAlertsPoliciesPolicyId",
+      "summary": "New Relic Delete Alerts Policies",
+      "tags": [
+        "Alerts",
+        "Delete",
+        "Identifiers",
+        "Policies"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_policy_channels.json",
+      "operationId": "putAlertsPolicyChannels",
+      "summary": "New Relic Put Alerts Policy Channels",
+      "tags": [
+        "Alerts",
+        "Channels",
+        "Policies",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_policy_channels.json",
+      "operationId": "deleteAlertsPolicyChannels",
+      "summary": "New Relic Delete Alerts Policy Channels",
+      "tags": [
+        "Alerts",
+        "Channels",
+        "Delete",
+        "Policies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_synthetics_conditions.json",
+      "operationId": "getAlertsSyntheticsConditions",
+      "summary": "New Relic Get Alerts Synthetics Conditions",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Get"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/alerts_synthetics_conditions/policies/{policy_id}.json",
+      "operationId": "postAlertsSyntheticsConditionsPoliciesPolicyId",
+      "summary": "New Relic Post Alerts Synthetics Conditions Policies",
+      "tags": [
+        "Alerts",
+        "Conditions",
+        "Identifiers",
+        "Policies",
+        "Post"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/alerts_synthetics_conditions/{condition_id}.json",
+      "operationId": "putAlertsSyntheticsConditionsConditionId",
+      "summary": "New Relic Put Alerts Synthetics Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Identifiers",
+        "Put"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/alerts_synthetics_conditions/{condition_id}.json",
+      "operationId": "deleteAlertsSyntheticsConditionsConditionId",
+      "summary": "New Relic Delete Alerts Synthetics Conditions",
+      "tags": [
+        "Alerts",
+        "Condition",
+        "Conditions",
+        "Delete",
+        "Identifiers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts_violations.json",
+      "operationId": "getAlertsViolations",
+      "summary": "New Relic Get Alerts Violations",
+      "tags": [
+        "Alerts",
+        "Get",
+        "Violations"
+      ]
+    }
+  ]
+}

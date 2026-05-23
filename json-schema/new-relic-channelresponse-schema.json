@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelResponse",
+  "title": "ChannelResponse",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "$ref": "#/components/schemas/ChannelResponseType"
+    }
+  }
+}

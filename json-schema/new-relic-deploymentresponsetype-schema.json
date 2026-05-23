@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeploymentResponseType",
+  "title": "DeploymentResponseType",
+  "type": "object",
+  "properties": {
+    "changelog": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "description": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "links": {
+      "$ref": "#/components/schemas/DeploymentLinksResponse"
+    },
+    "revision": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T14:30:00Z"
+    },
+    "user": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

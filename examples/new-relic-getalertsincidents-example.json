@@ -1,0 +1,37 @@
+{
+  "operationId": "getAlertsIncidents",
+  "method": "GET",
+  "path": "/alerts_incidents.json",
+  "summary": "New Relic Get Alerts Incidents",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertsincidents200Example",
+      "example": {
+        "incident": {
+          "closed_at": {},
+          "id": {},
+          "incident_preference": {},
+          "links": {},
+          "opened_at": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertsincidents200Example",
+      "example": {
+        "incident": {
+          "closed_at": {},
+          "id": {},
+          "incident_preference": {},
+          "links": {},
+          "opened_at": {}
+        }
+      }
+    }
+  ]
+}

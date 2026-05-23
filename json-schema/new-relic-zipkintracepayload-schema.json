@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ZipkinTracePayload",
+  "title": "ZipkinTracePayload",
+  "type": "array",
+  "description": "Zipkin JSON v2 format trace payload",
+  "items": {
+    "$ref": "#/components/schemas/ZipkinSpan"
+  }
+}

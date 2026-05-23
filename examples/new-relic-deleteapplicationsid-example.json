@@ -1,0 +1,47 @@
+{
+  "operationId": "deleteApplicationsId",
+  "method": "DELETE",
+  "path": "/applications/{id}.json",
+  "summary": "New Relic Delete Applications",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deleteapplicationsid200Example",
+      "example": {
+        "application": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "settings": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deleteapplicationsid200Example",
+      "example": {
+        "application": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "settings": {}
+        }
+      }
+    }
+  ]
+}

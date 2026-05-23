@@ -1,0 +1,58 @@
+{
+  "operationId": "putAlertsPoliciesPolicyId",
+  "method": "PUT",
+  "path": "/alerts_policies/{policy_id}.json",
+  "summary": "New Relic Put Alerts Policies",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PutalertspoliciespolicyidRequestExample",
+      "example": {
+        "policy": {
+          "incident_preference": "example_value",
+          "name": "Example Title"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PutalertspoliciespolicyidRequestExample",
+      "example": {
+        "policy": {
+          "incident_preference": "example_value",
+          "name": "Example Title"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Putalertspoliciespolicyid200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Putalertspoliciespolicyid200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    }
+  ]
+}

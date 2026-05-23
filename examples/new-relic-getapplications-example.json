@@ -1,0 +1,47 @@
+{
+  "operationId": "getApplications",
+  "method": "GET",
+  "path": "/applications.json",
+  "summary": "New Relic Get Applications",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getapplications200Example",
+      "example": {
+        "application": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "settings": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getapplications200Example",
+      "example": {
+        "application": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "settings": {}
+        }
+      }
+    }
+  ]
+}

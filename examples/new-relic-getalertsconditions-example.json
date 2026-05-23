@@ -1,0 +1,51 @@
+{
+  "operationId": "getAlertsConditions",
+  "method": "GET",
+  "path": "/alerts_conditions.json",
+  "summary": "New Relic Get Alerts Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertsconditions200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertsconditions200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    }
+  ]
+}

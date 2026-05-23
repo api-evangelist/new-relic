@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LabelBody",
+  "title": "LabelBody",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "links": {
+      "$ref": "#/components/schemas/LabelLinksBody"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    }
+  }
+}

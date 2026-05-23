@@ -1,0 +1,41 @@
+{
+  "operationId": "getApplicationsIdDeployments",
+  "method": "GET",
+  "path": "/applications/{application_id}/deployments.json",
+  "summary": "New Relic Get Applications Deployments",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getapplicationsiddeployments200Example",
+      "example": {
+        "deployment": {
+          "changelog": {},
+          "description": {},
+          "id": {},
+          "links": {},
+          "revision": {},
+          "timestamp": {},
+          "user": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getapplicationsiddeployments200Example",
+      "example": {
+        "deployment": {
+          "changelog": {},
+          "description": {},
+          "id": {},
+          "links": {},
+          "revision": {},
+          "timestamp": {},
+          "user": {}
+        }
+      }
+    }
+  ]
+}

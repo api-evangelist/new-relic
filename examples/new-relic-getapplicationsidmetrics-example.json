@@ -1,0 +1,31 @@
+{
+  "operationId": "getApplicationsIdMetrics",
+  "method": "GET",
+  "path": "/applications/{application_id}/metrics.json",
+  "summary": "New Relic Get Applications Metrics",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getapplicationsidmetrics200Example",
+      "example": {
+        "metric": {
+          "name": {},
+          "values": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getapplicationsidmetrics200Example",
+      "example": {
+        "metric": {
+          "name": {},
+          "values": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "operationId": "getAlertsLocationFailureConditionsPoliciesPolicyId",
+  "method": "GET",
+  "path": "/alerts_location_failure_conditions/policies/{policy_id}.json",
+  "summary": "New Relic Get Alerts Location Failure Conditions Policies",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertslocationfailureconditionspoliciespolicyid200Example",
+      "example": [
+        {
+          "condition": {}
+        }
+      ]
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertslocationfailureconditionspoliciespolicyid200Example",
+      "example": [
+        {
+          "condition": {}
+        }
+      ]
+    }
+  ]
+}

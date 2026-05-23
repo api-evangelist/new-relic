@@ -1,0 +1,60 @@
+{
+  "operationId": "postAlertsChannels",
+  "method": "POST",
+  "path": "/alerts_channels.json",
+  "summary": "New Relic Post Alerts Channels",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostalertschannelsRequestExample",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "name": "Example Title",
+          "type": "example_value"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PostalertschannelsRequestExample",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "name": "Example Title",
+          "type": "example_value"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postalertschannels200Example",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "id": {},
+          "links": {},
+          "name": {},
+          "type": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Postalertschannels200Example",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "id": {},
+          "links": {},
+          "name": {},
+          "type": {}
+        }
+      }
+    }
+  ]
+}

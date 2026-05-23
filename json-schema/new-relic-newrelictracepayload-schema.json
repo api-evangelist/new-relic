@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NewRelicTracePayload",
+  "title": "NewRelicTracePayload",
+  "type": "array",
+  "description": "New Relic format trace payload \u2014 array of span batch objects",
+  "items": {
+    "$ref": "#/components/schemas/SpanBatch"
+  }
+}

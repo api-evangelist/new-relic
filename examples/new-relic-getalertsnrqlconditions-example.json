@@ -1,0 +1,47 @@
+{
+  "operationId": "getAlertsNrqlConditions",
+  "method": "GET",
+  "path": "/alerts_nrql_conditions.json",
+  "summary": "New Relic Get Alerts Nrql Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertsnrqlconditions200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertsnrqlconditions200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    }
+  ]
+}

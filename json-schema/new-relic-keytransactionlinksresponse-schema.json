@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyTransactionLinksResponse",
+  "title": "KeyTransactionLinksResponse",
+  "type": "object",
+  "properties": {
+    "application": {
+      "type": "integer",
+      "description": "Application from which this key transaction originated",
+      "example": 100
+    }
+  }
+}

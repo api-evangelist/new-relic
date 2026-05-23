@@ -1,0 +1,86 @@
+{
+  "operationId": "postAlertsExternalServiceConditionsPoliciesPolicyId",
+  "method": "POST",
+  "path": "/alerts_external_service_conditions/policies/{policy_id}.json",
+  "summary": "New Relic Post Alerts External Service Conditions Policies",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostalertsexternalserviceconditionspoliciespolicyidRequestExample",
+      "example": {
+        "external_service_condition": {
+          "enabled": true,
+          "entities": [
+            {}
+          ],
+          "external_service_url": "https://www.example.com",
+          "metric": "example_value",
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "type": "example_value"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PostalertsexternalserviceconditionspoliciespolicyidRequestExample",
+      "example": {
+        "external_service_condition": {
+          "enabled": true,
+          "entities": [
+            {}
+          ],
+          "external_service_url": "https://www.example.com",
+          "metric": "example_value",
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "type": "example_value"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postalertsexternalserviceconditionspoliciespolicyid200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Postalertsexternalserviceconditionspoliciespolicyid200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    }
+  ]
+}

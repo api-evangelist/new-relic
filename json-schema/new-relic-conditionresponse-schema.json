@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConditionResponse",
+  "title": "ConditionResponse",
+  "type": "object",
+  "properties": {
+    "condition": {
+      "$ref": "#/components/schemas/ConditionResponseType"
+    }
+  }
+}

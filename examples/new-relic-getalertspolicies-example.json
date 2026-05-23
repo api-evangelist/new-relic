@@ -1,0 +1,37 @@
+{
+  "operationId": "getAlertsPolicies",
+  "method": "GET",
+  "path": "/alerts_policies.json",
+  "summary": "New Relic Get Alerts Policies",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertspolicies200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertspolicies200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    }
+  ]
+}

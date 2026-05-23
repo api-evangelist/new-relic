@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BrowserApplicationBody",
+  "title": "BrowserApplicationBody",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    }
+  }
+}

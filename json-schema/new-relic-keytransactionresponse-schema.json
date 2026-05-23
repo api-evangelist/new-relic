@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyTransactionResponse",
+  "title": "KeyTransactionResponse",
+  "type": "object",
+  "properties": {
+    "key_transaction": {
+      "$ref": "#/components/schemas/KeyTransactionResponseType"
+    }
+  }
+}

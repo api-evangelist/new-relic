@@ -1,0 +1,51 @@
+{
+  "operationId": "getAlertsEntityConditionsEntityId",
+  "method": "GET",
+  "path": "/alerts_entity_conditions/{entity_id}.json",
+  "summary": "New Relic Get Alerts Entity Conditions Entity",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertsentityconditionsentityid200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertsentityconditionsentityid200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    }
+  ]
+}

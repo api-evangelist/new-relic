@@ -1,0 +1,94 @@
+{
+  "operationId": "postAlertsConditionsPoliciesPolicyId",
+  "method": "POST",
+  "path": "/alerts_conditions/policies/{policy_id}.json",
+  "summary": "New Relic Post Alerts Conditions Policies",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostalertsconditionspoliciespolicyidRequestExample",
+      "example": {
+        "condition": {
+          "condition_scope": "example_value",
+          "enabled": true,
+          "entities": [
+            {}
+          ],
+          "gc_metric": "example_value",
+          "metric": "example_value",
+          "name": "Example Title",
+          "terms": [
+            {}
+          ],
+          "type": "example_value",
+          "violation_close_timer": 10
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PostalertsconditionspoliciespolicyidRequestExample",
+      "example": {
+        "condition": {
+          "condition_scope": "example_value",
+          "enabled": true,
+          "entities": [
+            {}
+          ],
+          "gc_metric": "example_value",
+          "metric": "example_value",
+          "name": "Example Title",
+          "terms": [
+            {}
+          ],
+          "type": "example_value",
+          "violation_close_timer": 10
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postalertsconditionspoliciespolicyid200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Postalertsconditionspoliciespolicyid200Example",
+      "example": {
+        "condition": {
+          "condition_scope": {},
+          "enabled": {},
+          "entities": {},
+          "gc_metric": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "user_defined": {},
+          "violation_close_timer": {}
+        }
+      }
+    }
+  ]
+}

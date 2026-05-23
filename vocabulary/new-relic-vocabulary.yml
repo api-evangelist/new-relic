@@ -1,0 +1,32 @@
+name: New Relic Domain Vocabulary
+provider: New Relic
+providerId: new-relic
+description: Tag-derived vocabulary for the New Relic API surface; sourced from openapi/ tags.
+terms:
+- term: Alerts
+- term: Applications
+- term: Channel
+- term: Channels
+- term: Condition
+- term: Conditions
+- term: Data
+- term: Delete
+- term: Deployments
+- term: Entity
+- term: Events
+- term: External
+- term: Failure
+- term: Get
+- term: Hosts
+- term: Identifiers
+- term: Instance
+- term: Instances
+- term: Keys
+- term: Location
+- term: Metrics
+- term: Mobile
+- term: Policies
+- term: Post
+- term: Put
+- term: Transactions
+- term: Violations

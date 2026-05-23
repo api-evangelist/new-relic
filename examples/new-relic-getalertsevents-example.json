@@ -1,0 +1,47 @@
+{
+  "operationId": "getAlertsEvents",
+  "method": "GET",
+  "path": "/alerts_events.json",
+  "summary": "New Relic Get Alerts Events",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertsevents200Example",
+      "example": {
+        "recent_event": {
+          "description": {},
+          "entity_group_id": {},
+          "entity_id": {},
+          "entity_type": {},
+          "event_type": {},
+          "id": {},
+          "incident_id": {},
+          "priority": {},
+          "product": {},
+          "timestamp": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertsevents200Example",
+      "example": {
+        "recent_event": {
+          "description": {},
+          "entity_group_id": {},
+          "entity_id": {},
+          "entity_type": {},
+          "event_type": {},
+          "id": {},
+          "incident_id": {},
+          "priority": {},
+          "product": {},
+          "timestamp": {}
+        }
+      }
+    }
+  ]
+}

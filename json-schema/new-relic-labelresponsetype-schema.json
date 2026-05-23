@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LabelResponseType",
+  "title": "LabelResponseType",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "key": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "links": {
+      "$ref": "#/components/schemas/LabelLinksResponse"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "origins": {
+      "$ref": "#/components/schemas/LabelOriginsResponse"
+    }
+  }
+}

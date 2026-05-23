@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuccessResponse",
+  "title": "SuccessResponse",
+  "type": "object",
+  "description": "Successful ingestion response",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the request was accepted",
+      "example": true
+    },
+    "uuid": {
+      "type": "string",
+      "description": "Unique request identifier",
+      "example": "500123"
+    }
+  }
+}

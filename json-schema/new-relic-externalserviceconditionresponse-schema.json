@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExternalServiceConditionResponse",
+  "title": "ExternalServiceConditionResponse",
+  "type": "object",
+  "properties": {
+    "external_service_condition": {
+      "$ref": "#/components/schemas/ExternalServiceConditionResponseType"
+    }
+  }
+}

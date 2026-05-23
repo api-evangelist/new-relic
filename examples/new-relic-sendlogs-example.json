@@ -1,0 +1,92 @@
+{
+  "operationId": "sendLogs",
+  "method": "POST",
+  "path": "/log/v1",
+  "summary": "New Relic Send Log Data",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": [
+        {
+          "common": {
+            "attributes": {
+              "logtype": "nginx",
+              "service.name": "myService",
+              "host.name": "web01"
+            }
+          },
+          "logs": [
+            {
+              "timestamp": 1645564509000,
+              "message": "127.0.0.1 - - [01/Jan/2022] \"GET /api/health HTTP/1.1\" 200 24",
+              "level": "INFO"
+            },
+            {
+              "timestamp": 1645564510000,
+              "message": "127.0.0.1 - - [01/Jan/2022] \"POST /api/orders HTTP/1.1\" 500 0",
+              "level": "ERROR"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "202",
+      "contentType": "application/json",
+      "name": "Sendlogs202Example",
+      "example": {
+        "requestId": "500123"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Sendlogs400Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Sendlogs403Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    },
+    {
+      "status": "413",
+      "contentType": "application/json",
+      "name": "Sendlogs413Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Sendlogs429Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    }
+  ]
+}

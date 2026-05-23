@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeploymentBody",
+  "title": "DeploymentBody",
+  "type": "object",
+  "properties": {
+    "changelog": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "description": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "revision": {
+      "type": "string",
+      "example": "example_string"
+    },
+    "user": {
+      "type": "string",
+      "example": "example_string"
+    }
+  }
+}

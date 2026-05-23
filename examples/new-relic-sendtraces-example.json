@@ -1,0 +1,107 @@
+{
+  "operationId": "sendTraces",
+  "method": "POST",
+  "path": "/trace/v1",
+  "summary": "New Relic Send Trace Spans",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "newrelic",
+      "example": [
+        {
+          "common": {
+            "attributes": {
+              "service.name": "myService",
+              "host": "web01"
+            }
+          },
+          "spans": [
+            {
+              "id": "5f5bf6860e3b5208",
+              "trace.id": "aefb4b81c6eedc5e",
+              "attributes": {
+                "name": "/api/orders",
+                "duration.ms": 12,
+                "db.statement": "SELECT * FROM orders"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentType": "application/json",
+      "name": "zipkin",
+      "example": [
+        {
+          "id": "5f5bf6860e3b5208",
+          "traceId": "aefb4b81c6eedc5e",
+          "name": "/api/orders",
+          "timestamp": 1645564509000000,
+          "duration": 12000,
+          "localEndpoint": {
+            "serviceName": "myService"
+          }
+        }
+      ]
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "202",
+      "contentType": "application/json",
+      "name": "Sendtraces202Example",
+      "example": {
+        "requestId": "500123"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Sendtraces400Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Sendtraces403Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    },
+    {
+      "status": "413",
+      "contentType": "application/json",
+      "name": "Sendtraces413Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Sendtraces429Example",
+      "example": {
+        "requestId": "500123",
+        "error": {
+          "type": "standard",
+          "message": "Operation completed successfully"
+        }
+      }
+    }
+  ]
+}

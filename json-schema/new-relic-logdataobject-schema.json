@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LogDataObject",
+  "title": "LogDataObject",
+  "type": "object",
+  "description": "A batch of log records with optional shared attributes",
+  "required": [
+    "logs"
+  ],
+  "properties": {
+    "common": {
+      "$ref": "#/components/schemas/CommonBlock"
+    },
+    "logs": {
+      "type": "array",
+      "description": "Array of individual log records",
+      "items": {
+        "$ref": "#/components/schemas/LogRecord"
+      },
+      "example": [
+        {
+          "timestamp": 1718153645993,
+          "message": "Operation completed successfully",
+          "level": "FATAL",
+          "logtype": "standard",
+          "attributes": {
+            "customAttribute": "example_value"
+          }
+        }
+      ]
+    }
+  }
+}

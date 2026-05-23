@@ -1,0 +1,37 @@
+{
+  "operationId": "getAlertsSyntheticsConditions",
+  "method": "GET",
+  "path": "/alerts_synthetics_conditions.json",
+  "summary": "New Relic Get Alerts Synthetics Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertssyntheticsconditions200Example",
+      "example": {
+        "synthetics_condition": {
+          "enabled": {},
+          "id": {},
+          "monitor_id": {},
+          "name": {},
+          "runbook_url": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertssyntheticsconditions200Example",
+      "example": {
+        "synthetics_condition": {
+          "enabled": {},
+          "id": {},
+          "monitor_id": {},
+          "name": {},
+          "runbook_url": {}
+        }
+      }
+    }
+  ]
+}

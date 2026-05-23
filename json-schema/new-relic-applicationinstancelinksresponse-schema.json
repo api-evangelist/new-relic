@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationInstanceLinksResponse",
+  "title": "ApplicationInstanceLinksResponse",
+  "type": "object",
+  "properties": {
+    "application": {
+      "type": "integer",
+      "example": 100
+    },
+    "application_host": {
+      "type": "integer",
+      "example": 100
+    },
+    "server": {
+      "type": "integer",
+      "example": 100
+    }
+  }
+}

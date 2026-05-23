@@ -1,0 +1,45 @@
+{
+  "operationId": "getKeyTransactionsId",
+  "method": "GET",
+  "path": "/key_transactions/{id}.json",
+  "summary": "New Relic Get Key Transactions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getkeytransactionsid200Example",
+      "example": {
+        "key_transaction": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "transaction_name": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getkeytransactionsid200Example",
+      "example": {
+        "key_transaction": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "transaction_name": {}
+        }
+      }
+    }
+  ]
+}

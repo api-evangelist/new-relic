@@ -1,0 +1,82 @@
+{
+  "operationId": "putAlertsNrqlConditionsConditionId",
+  "method": "PUT",
+  "path": "/alerts_nrql_conditions/{condition_id}.json",
+  "summary": "New Relic Put Alerts Nrql Conditions",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PutalertsnrqlconditionsconditionidRequestExample",
+      "example": {
+        "nrql_condition": {
+          "enabled": true,
+          "expected_groups": 10,
+          "ignore_overlap": true,
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "value_function": "example_value"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PutalertsnrqlconditionsconditionidRequestExample",
+      "example": {
+        "nrql_condition": {
+          "enabled": true,
+          "expected_groups": 10,
+          "ignore_overlap": true,
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "value_function": "example_value"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Putalertsnrqlconditionsconditionid200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Putalertsnrqlconditionsconditionid200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    }
+  ]
+}

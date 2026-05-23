@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobileApplicationResponseType",
+  "title": "MobileApplicationResponseType",
+  "type": "object",
+  "properties": {
+    "crash_summary": {
+      "$ref": "#/components/schemas/CrashSummaryResponse"
+    },
+    "health_status": {
+      "type": "string",
+      "example": "active"
+    },
+    "id": {
+      "type": "integer",
+      "example": 100
+    },
+    "mobile_summary": {
+      "$ref": "#/components/schemas/MobileSummaryDataResponse"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "reporting": {
+      "type": "boolean",
+      "example": true
+    }
+  }
+}

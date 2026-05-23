@@ -1,0 +1,66 @@
+{
+  "operationId": "postApplicationsIdDeployments",
+  "method": "POST",
+  "path": "/applications/{application_id}/deployments.json",
+  "summary": "New Relic Post Applications Deployments",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostapplicationsiddeploymentsRequestExample",
+      "example": {
+        "deployment": {
+          "changelog": "example_value",
+          "description": "A sample description.",
+          "revision": "example_value",
+          "user": "example_value"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PostapplicationsiddeploymentsRequestExample",
+      "example": {
+        "deployment": {
+          "changelog": "example_value",
+          "description": "A sample description.",
+          "revision": "example_value",
+          "user": "example_value"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postapplicationsiddeployments200Example",
+      "example": {
+        "deployment": {
+          "changelog": {},
+          "description": {},
+          "id": {},
+          "links": {},
+          "revision": {},
+          "timestamp": {},
+          "user": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Postapplicationsiddeployments200Example",
+      "example": {
+        "deployment": {
+          "changelog": {},
+          "description": {},
+          "id": {},
+          "links": {},
+          "revision": {},
+          "timestamp": {},
+          "user": {}
+        }
+      }
+    }
+  ]
+}

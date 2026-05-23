@@ -1,0 +1,97 @@
+{
+  "operationId": "sendEvents",
+  "method": "POST",
+  "path": "/v1/accounts/{accountId}/events",
+  "summary": "New Relic Send Custom Events",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": [
+        {
+          "eventType": "PurchaseEvent",
+          "account": 3,
+          "amount": 259.54,
+          "success": true,
+          "userEmail": "test@example.com"
+        },
+        {
+          "eventType": "PageView",
+          "uri": "/some/page",
+          "referrer": "https://example.com",
+          "duration": 0.42
+        }
+      ]
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Sendevents200Example",
+      "example": {
+        "success": true,
+        "uuid": "500123"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Sendevents400Example",
+      "example": {
+        "success": false,
+        "error": "example_string",
+        "errors": [
+          {
+            "error": "example_string",
+            "timestamp": "example_string"
+          }
+        ]
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Sendevents403Example",
+      "example": {
+        "success": false,
+        "error": "example_string",
+        "errors": [
+          {
+            "error": "example_string",
+            "timestamp": "example_string"
+          }
+        ]
+      }
+    },
+    {
+      "status": "413",
+      "contentType": "application/json",
+      "name": "Sendevents413Example",
+      "example": {
+        "success": false,
+        "error": "example_string",
+        "errors": [
+          {
+            "error": "example_string",
+            "timestamp": "example_string"
+          }
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "name": "Sendevents429Example",
+      "example": {
+        "success": false,
+        "error": "example_string",
+        "errors": [
+          {
+            "error": "example_string",
+            "timestamp": "example_string"
+          }
+        ]
+      }
+    }
+  ]
+}

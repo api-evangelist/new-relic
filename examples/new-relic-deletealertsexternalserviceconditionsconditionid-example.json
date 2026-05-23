@@ -1,0 +1,45 @@
+{
+  "operationId": "deleteAlertsExternalServiceConditionsConditionId",
+  "method": "DELETE",
+  "path": "/alerts_external_service_conditions/{condition_id}.json",
+  "summary": "New Relic Delete Alerts External Service Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deletealertsexternalserviceconditionsconditionid200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deletealertsexternalserviceconditionsconditionid200Example",
+      "example": {
+        "external_service_condition": {
+          "enabled": {},
+          "entities": {},
+          "external_service_url": {},
+          "id": {},
+          "metric": {},
+          "name": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {}
+        }
+      }
+    }
+  ]
+}

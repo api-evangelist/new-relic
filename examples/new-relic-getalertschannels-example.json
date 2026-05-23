@@ -1,0 +1,37 @@
+{
+  "operationId": "getAlertsChannels",
+  "method": "GET",
+  "path": "/alerts_channels.json",
+  "summary": "New Relic Get Alerts Channels",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getalertschannels200Example",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "id": {},
+          "links": {},
+          "name": {},
+          "type": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getalertschannels200Example",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "id": {},
+          "links": {},
+          "name": {},
+          "type": {}
+        }
+      }
+    }
+  ]
+}

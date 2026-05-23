@@ -1,0 +1,66 @@
+{
+  "operationId": "putApplicationsId",
+  "method": "PUT",
+  "path": "/applications/{id}.json",
+  "summary": "New Relic Put Applications",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PutapplicationsidRequestExample",
+      "example": {
+        "application": {
+          "name": "Example Title"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PutapplicationsidRequestExample",
+      "example": {
+        "application": {
+          "name": "Example Title"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Putapplicationsid200Example",
+      "example": {
+        "application": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "settings": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Putapplicationsid200Example",
+      "example": {
+        "application": {
+          "application_summary": {},
+          "end_user_summary": {},
+          "health_status": {},
+          "id": {},
+          "language": {},
+          "last_reported_at": {},
+          "links": {},
+          "name": {},
+          "reporting": {},
+          "settings": {}
+        }
+      }
+    }
+  ]
+}

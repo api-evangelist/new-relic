@@ -1,0 +1,47 @@
+{
+  "operationId": "deleteAlertsNrqlConditionsConditionId",
+  "method": "DELETE",
+  "path": "/alerts_nrql_conditions/{condition_id}.json",
+  "summary": "New Relic Delete Alerts Nrql Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deletealertsnrqlconditionsconditionid200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deletealertsnrqlconditionsconditionid200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    }
+  ]
+}

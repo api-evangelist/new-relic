@@ -1,0 +1,37 @@
+{
+  "operationId": "getApplicationsIdHostsHostIdMetricsData",
+  "method": "GET",
+  "path": "/applications/{application_id}/hosts/{host_id}/metrics/data.json",
+  "summary": "New Relic Get Applications Hosts Host Metrics Data",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getapplicationsidhostshostidmetricsdata200Example",
+      "example": {
+        "metric_data": {
+          "from": {},
+          "metrics": {},
+          "metrics_found": {},
+          "metrics_not_found": {},
+          "to": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getapplicationsidhostshostidmetricsdata200Example",
+      "example": {
+        "metric_data": {
+          "from": {},
+          "metrics": {},
+          "metrics_found": {},
+          "metrics_not_found": {},
+          "to": {}
+        }
+      }
+    }
+  ]
+}

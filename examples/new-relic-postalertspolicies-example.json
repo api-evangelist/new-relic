@@ -1,0 +1,58 @@
+{
+  "operationId": "postAlertsPolicies",
+  "method": "POST",
+  "path": "/alerts_policies.json",
+  "summary": "New Relic Post Alerts Policies",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostalertspoliciesRequestExample",
+      "example": {
+        "policy": {
+          "incident_preference": "example_value",
+          "name": "Example Title"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PostalertspoliciesRequestExample",
+      "example": {
+        "policy": {
+          "incident_preference": "example_value",
+          "name": "Example Title"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postalertspolicies200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Postalertspolicies200Example",
+      "example": {
+        "policy": {
+          "created_at": {},
+          "id": {},
+          "incident_preference": {},
+          "name": {},
+          "updated_at": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "operationId": "postAlertsNrqlConditionsPoliciesPolicyId",
+  "method": "POST",
+  "path": "/alerts_nrql_conditions/policies/{policy_id}.json",
+  "summary": "New Relic Post Alerts Nrql Conditions Policies",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostalertsnrqlconditionspoliciespolicyidRequestExample",
+      "example": {
+        "nrql_condition": {
+          "enabled": true,
+          "expected_groups": 10,
+          "ignore_overlap": true,
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "value_function": "example_value"
+        }
+      }
+    },
+    {
+      "contentType": "application/xml",
+      "name": "PostalertsnrqlconditionspoliciespolicyidRequestExample",
+      "example": {
+        "nrql_condition": {
+          "enabled": true,
+          "expected_groups": 10,
+          "ignore_overlap": true,
+          "name": "Example Title",
+          "runbook_url": "https://www.example.com",
+          "terms": [
+            {}
+          ],
+          "value_function": "example_value"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postalertsnrqlconditionspoliciespolicyid200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Postalertsnrqlconditionspoliciespolicyid200Example",
+      "example": {
+        "nrql_condition": {
+          "enabled": {},
+          "expected_groups": {},
+          "id": {},
+          "ignore_overlap": {},
+          "name": {},
+          "nrql": {},
+          "runbook_url": {},
+          "terms": {},
+          "type": {},
+          "value_function": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "operationId": "getMobileApplicationsMobileApplicationIdMetricsData",
+  "method": "GET",
+  "path": "/mobile_applications/{mobile_application_id}/metrics/data.json",
+  "summary": "New Relic Get Mobile Applications Mobile Application Metrics Data",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getmobileapplicationsmobileapplicationidmetricsdata200Example",
+      "example": {
+        "metric_data": {
+          "from": {},
+          "metrics": {},
+          "metrics_found": {},
+          "metrics_not_found": {},
+          "to": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Getmobileapplicationsmobileapplicationidmetricsdata200Example",
+      "example": {
+        "metric_data": {
+          "from": {},
+          "metrics": {},
+          "metrics_found": {},
+          "metrics_not_found": {},
+          "to": {}
+        }
+      }
+    }
+  ]
+}

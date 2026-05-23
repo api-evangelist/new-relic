@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationLinksResponse",
+  "title": "ApplicationLinksResponse",
+  "type": "object",
+  "properties": {
+    "servers": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    },
+    "application_hosts": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    },
+    "application_instances": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "operationId": "deleteAlertsSyntheticsConditionsConditionId",
+  "method": "DELETE",
+  "path": "/alerts_synthetics_conditions/{condition_id}.json",
+  "summary": "New Relic Delete Alerts Synthetics Conditions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deletealertssyntheticsconditionsconditionid200Example",
+      "example": {
+        "synthetics_condition": {
+          "enabled": {},
+          "id": {},
+          "monitor_id": {},
+          "name": {},
+          "runbook_url": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deletealertssyntheticsconditionsconditionid200Example",
+      "example": {
+        "synthetics_condition": {
+          "enabled": {},
+          "id": {},
+          "monitor_id": {},
+          "name": {},
+          "runbook_url": {}
+        }
+      }
+    }
+  ]
+}

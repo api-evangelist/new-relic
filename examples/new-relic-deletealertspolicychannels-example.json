@@ -1,0 +1,37 @@
+{
+  "operationId": "deleteAlertsPolicyChannels",
+  "method": "DELETE",
+  "path": "/alerts_policy_channels.json",
+  "summary": "New Relic Delete Alerts Policy Channels",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Deletealertspolicychannels200Example",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "id": {},
+          "links": {},
+          "name": {},
+          "type": {}
+        }
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "Deletealertspolicychannels200Example",
+      "example": {
+        "channel": {
+          "configuration": {},
+          "id": {},
+          "links": {},
+          "name": {},
+          "type": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LabelLinksBody",
+  "title": "LabelLinksBody",
+  "type": "object",
+  "properties": {
+    "servers": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    },
+    "applications": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": [
+        100
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationBody",
+  "title": "ApplicationBody",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-resource-01"
+    },
+    "settings": {
+      "$ref": "#/components/schemas/AppSettingsBody"
+    }
+  }
+}

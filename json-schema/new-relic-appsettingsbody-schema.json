@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppSettingsBody",
+  "title": "AppSettingsBody",
+  "type": "object",
+  "properties": {
+    "app_apdex_threshold": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    },
+    "enable_real_user_monitoring": {
+      "type": "boolean",
+      "example": true
+    },
+    "end_user_apdex_threshold": {
+      "type": "number",
+      "format": "float",
+      "example": 42.5
+    }
+  }
+}

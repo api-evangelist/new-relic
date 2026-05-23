@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LogPayload",
+  "title": "LogPayload",
+  "type": "array",
+  "description": "Array of log data batch objects",
+  "items": {
+    "$ref": "#/components/schemas/LogDataObject"
+  }
+}
