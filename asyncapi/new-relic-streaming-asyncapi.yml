@@ -1,0 +1,682 @@
+asyncapi: 2.6.0
+info:
+  title: New Relic Streaming and Event-Driven Surfaces
+  description: >-
+    Describes New Relic's documented event-driven and streaming surfaces. New
+    Relic does not publish a customer-facing WebSocket or Server-Sent Events
+    streaming endpoint, and the NerdGraph GraphQL API does not document a
+    public subscriptions operation. The documented event-driven surfaces are:
+    (1) outbound HTTP webhook notifications produced by Alerts and Workflows
+    when issues change state, (2) outbound HTTP webhook notifications produced
+    by Change Tracking when a deployment is recorded for an APM application,
+    and (3) the Streaming Data Export feature (Data Plus) which streams
+    selected telemetry in real time to AWS Kinesis Data Firehose, Azure Event
+    Hubs, or GCP Pub/Sub. Export destinations are configured through NerdGraph
+    mutations; the destination cloud streaming service then delivers JSON
+    records to subscribers.
+  version: '1.0.0'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  license:
+    name: Proprietary
+  externalDocs:
+    description: New Relic Documentation
+    url: https://docs.newrelic.com/
+defaultContentType: application/json
+servers:
+  workflowWebhook:
+    url: '{webhookUrl}'
+    protocol: https
+    description: >-
+      Customer-controlled HTTPS endpoint that receives webhook notifications
+      from a New Relic Alerts Workflow when issues are created, activated,
+      acknowledged, closed, or otherwise updated.
+    variables:
+      webhookUrl:
+        description: >-
+          The full URL of the receiving webhook endpoint, configured in the
+          workflow's Webhook destination.
+    security:
+      - workflowCustomHeader: []
+  changeTrackingWebhook:
+    url: '{webhookUrl}'
+    protocol: https
+    description: >-
+      Customer-controlled HTTPS endpoint that receives webhook notifications
+      from New Relic Change Tracking when a deployment is recorded against an
+      APM application entity.
+    variables:
+      webhookUrl:
+        description: >-
+          The full URL of the receiving webhook endpoint, configured on the
+          Change Tracking notification channel.
+    security:
+      - changeTrackingCustomHeader: []
+  awsKinesisFirehose:
+    url: 'firehose.{region}.amazonaws.com'
+    protocol: https
+    description: >-
+      AWS Kinesis Data Firehose delivery stream owned by the customer and
+      configured as a Streaming Data Export destination through the NerdGraph
+      mutation streamingExportCreateRule with awsParameters. New Relic
+      publishes records into the delivery stream in real time; subscribers
+      consume records from the configured downstream sink (for example S3,
+      Redshift, or OpenSearch).
+    variables:
+      region:
+        description: AWS region of the destination Kinesis Firehose delivery stream
+        examples:
+          - us-east-1
+          - us-west-2
+          - eu-west-1
+  azureEventHub:
+    url: '{eventHubNamespace}.servicebus.windows.net'
+    protocol: amqps
+    description: >-
+      Azure Event Hub destination owned by the customer and configured as a
+      Streaming Data Export destination through the NerdGraph mutation
+      streamingExportCreateRule with azureParameters. New Relic publishes
+      records into the configured Event Hub using the supplied connection
+      string.
+    variables:
+      eventHubNamespace:
+        description: The Event Hubs namespace hosting the destination Event Hub
+  gcpPubSub:
+    url: 'pubsub.googleapis.com'
+    protocol: https
+    description: >-
+      Google Cloud Pub/Sub topic owned by the customer and configured as a
+      Streaming Data Export destination through the NerdGraph mutation
+      streamingExportCreateRule with gcpParameters. New Relic publishes
+      records into the configured Pub/Sub topic in real time.
+channels:
+  workflow/webhook:
+    description: >-
+      Webhook destination that receives Alerts Workflow notifications when an
+      issue changes state. The HTTP request is a POST with a JSON body whose
+      shape is fully controlled by the workflow's message template. The
+      template uses Handlebars expressions over the documented set of
+      notification variables. The schema below reflects the standard variables
+      documented at docs.newrelic.com.
+    servers:
+      - workflowWebhook
+    publish:
+      operationId: receiveWorkflowWebhook
+      summary: Receive an Alerts Workflow webhook notification
+      description: >-
+        New Relic sends an HTTP POST to the configured webhook URL whenever a
+        workflow is triggered by an issue. The payload body is rendered from a
+        Handlebars message template at delivery time; the fields below are the
+        documented variables available to that template.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/IssueActivated'
+          - $ref: '#/components/messages/IssueAcknowledged'
+          - $ref: '#/components/messages/IssueClosed'
+          - $ref: '#/components/messages/IssueUpdated'
+  change-tracking/webhook:
+    description: >-
+      Webhook destination that receives Change Tracking notifications when a
+      deployment is recorded for an APM application entity. The HTTP request
+      is a POST with a body encoded as application/x-www-form-urlencoded; the
+      documented keys are listed in the DeploymentRecorded message.
+    servers:
+      - changeTrackingWebhook
+    publish:
+      operationId: receiveChangeTrackingWebhook
+      summary: Receive a Change Tracking deployment webhook
+      description: >-
+        New Relic sends an HTTP POST with a form-encoded body to the configured
+        webhook URL when a deployment is recorded for an APM application
+        entity.
+      message:
+        $ref: '#/components/messages/DeploymentRecorded'
+  streaming-export/aws-kinesis-firehose:
+    description: >-
+      Real-time export channel that delivers selected NRDB telemetry records
+      into a customer-owned AWS Kinesis Data Firehose delivery stream. The
+      exported NRQL must be a flat query (no aggregation, no FACET, no LOOKUP,
+      no COMPARE WITH, no subqueries). Records are JSON; payloads can
+      optionally be GZIP-compressed when payloadCompression is set to GZIP.
+    servers:
+      - awsKinesisFirehose
+    subscribe:
+      operationId: streamToAwsKinesisFirehose
+      summary: Consume streaming-exported telemetry records from AWS Kinesis Firehose
+      description: >-
+        New Relic publishes telemetry records selected by the configured
+        Streaming Data Export rule into the customer's Kinesis Firehose
+        delivery stream. Subscribers consume records from the delivery
+        stream's configured downstream destination.
+      message:
+        $ref: '#/components/messages/StreamingExportRecord'
+  streaming-export/azure-event-hub:
+    description: >-
+      Real-time export channel that delivers selected NRDB telemetry records
+      into a customer-owned Azure Event Hub. NRQL filter rules and payload
+      shape are the same as for the AWS Kinesis Firehose destination.
+    servers:
+      - azureEventHub
+    subscribe:
+      operationId: streamToAzureEventHub
+      summary: Consume streaming-exported telemetry records from Azure Event Hub
+      description: >-
+        New Relic publishes telemetry records selected by the configured
+        Streaming Data Export rule into the customer's Azure Event Hub.
+      message:
+        $ref: '#/components/messages/StreamingExportRecord'
+  streaming-export/gcp-pubsub:
+    description: >-
+      Real-time export channel that delivers selected NRDB telemetry records
+      into a customer-owned Google Cloud Pub/Sub topic. NRQL filter rules and
+      payload shape are the same as for the AWS Kinesis Firehose destination.
+    servers:
+      - gcpPubSub
+    subscribe:
+      operationId: streamToGcpPubSub
+      summary: Consume streaming-exported telemetry records from GCP Pub/Sub
+      description: >-
+        New Relic publishes telemetry records selected by the configured
+        Streaming Data Export rule into the customer's GCP Pub/Sub topic.
+      message:
+        $ref: '#/components/messages/StreamingExportRecord'
+components:
+  securitySchemes:
+    workflowCustomHeader:
+      type: httpApiKey
+      in: header
+      name: X-Custom-Header
+      description: >-
+        Optional custom HTTP headers configured on the workflow's Webhook
+        destination. New Relic does not sign webhook payloads; receivers
+        typically verify a shared secret carried in a custom header.
+    changeTrackingCustomHeader:
+      type: httpApiKey
+      in: header
+      name: X-Custom-Header
+      description: >-
+        Optional custom HTTP header carrying a shared secret configured on the
+        Change Tracking webhook channel.
+  messages:
+    IssueActivated:
+      name: issueActivated
+      title: Issue Activated
+      summary: >-
+        Sent when a New Relic Alerts issue transitions to the ACTIVATED state.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/IssuePayload'
+    IssueAcknowledged:
+      name: issueAcknowledged
+      title: Issue Acknowledged
+      summary: >-
+        Sent when a New Relic Alerts issue is acknowledged by a user.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/IssuePayload'
+    IssueClosed:
+      name: issueClosed
+      title: Issue Closed
+      summary: >-
+        Sent when a New Relic Alerts issue transitions to the CLOSED state.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/IssuePayload'
+    IssueUpdated:
+      name: issueUpdated
+      title: Issue Updated
+      summary: >-
+        Sent when a New Relic Alerts issue is updated (for example when a new
+        correlated incident is added, priority changes, or muting state
+        changes).
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/IssuePayload'
+    DeploymentRecorded:
+      name: deploymentRecorded
+      title: Deployment Recorded
+      summary: >-
+        Sent when New Relic Change Tracking records a deployment for an APM
+        application entity and notifications are enabled on the channel.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/ChangeTrackingDeploymentPayload'
+    StreamingExportRecord:
+      name: streamingExportRecord
+      title: Streaming Data Export Record
+      summary: >-
+        A single NRDB row exported in real time by a Streaming Data Export
+        rule. The record fields match the columns selected by the export
+        rule's flat NRQL query.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/StreamingExportRecord'
+  schemas:
+    IssuePayload:
+      type: object
+      description: >-
+        Documented variables available when rendering a workflow webhook
+        message template. The actual JSON body delivered to a webhook is
+        whatever the message template produces; this schema describes the
+        full set of standard variables a template can reference.
+      properties:
+        issueId:
+          type: string
+          description: The unique ID of the issue.
+        issueTitle:
+          type: string
+          description: The title of the issue, usually the title of the first alert event.
+        state:
+          type: string
+          description: Issue lifecycle state.
+          enum:
+            - CREATED
+            - ACTIVATED
+            - CLOSED
+        stateText:
+          type: string
+          description: Issue lifecycle state in lowercase form (for example active, closed).
+        status:
+          type: string
+          description: The correlation status of the issue.
+        priority:
+          type: string
+          description: Issue priority level.
+          enum:
+            - CRITICAL
+            - HIGH
+            - MEDIUM
+            - LOW
+        priorityText:
+          type: string
+          description: Issue priority in lowercase form (Critical, High, Medium, Low).
+        isCorrelated:
+          type: boolean
+          description: Whether the issue is correlated.
+        isAcknowledged:
+          type: boolean
+          description: Whether the issue is acknowledged.
+        mutingState:
+          type: string
+          description: The calculated muting state.
+          enum:
+            - MUTED
+            - NOT_MUTED
+        createdAt:
+          type: integer
+          format: int64
+          description: Epoch millisecond timestamp of issue creation.
+        activatedAt:
+          type: integer
+          format: int64
+          description: Epoch millisecond timestamp of issue activation.
+        updatedAt:
+          type: integer
+          format: int64
+          description: Epoch millisecond timestamp when the issue was last updated.
+        closedAt:
+          type: integer
+          format: int64
+          description: Epoch millisecond timestamp of issue closure. Null if the issue is not closed.
+        triggeredAt:
+          type: integer
+          format: int64
+          description: Epoch millisecond timestamp of the notification trigger event.
+        issueCreatedAtUtc:
+          type: string
+          description: String formatted issue creation timestamp in UTC.
+        issueActivatedAtUtc:
+          type: string
+          description: String formatted issue activation timestamp in UTC.
+        issueUpdatedAt:
+          type: string
+          description: String formatted issue update timestamp in UTC.
+        issueAcknowledgedAt:
+          type: string
+          description: String formatted issue acknowledged timestamp in UTC.
+        issueClosedAt:
+          type: string
+          description: String formatted issue closure timestamp in UTC.
+        issueClosedAtUtc:
+          type: string
+          description: String formatted issue closure timestamp in UTC.
+        issueDurationMs:
+          type: integer
+          format: int64
+          description: The number of milliseconds since the issue opened.
+        issueDurationText:
+          type: string
+          description: Human-friendly representation of the issue duration.
+        triggerEvent:
+          type: string
+          description: The notification trigger event.
+          examples:
+            - STATE_CHANGE
+            - INCIDENT_ADDED
+        acknowledgedBy:
+          type: string
+          description: The user that acknowledged the issue.
+        closedBy:
+          type: string
+          description: The ID of the user that closed the issue.
+        owner:
+          type: string
+          description: The person that acknowledged the issue.
+        nrAccountId:
+          type: integer
+          format: int64
+          description: New Relic account ID associated with the issue.
+        workflowName:
+          type: string
+          description: The name of the workflow that was triggered.
+        realIssueCount:
+          type: integer
+          description: Issue count.
+        totalIncidents:
+          type: integer
+          description: The number of alert events aggregated or correlated on this issue.
+        openIncidentsCount:
+          type: integer
+          description: The total number of open alert events on this issue.
+        closedIncidentsCount:
+          type: integer
+          description: The total number of closed alert events on this issue.
+        incidentIds:
+          type: array
+          description: A list of all the issue's aggregated alert events.
+          items:
+            type: string
+        impactedEntitiesCount:
+          type: integer
+          description: The number of impacted entities for this issue.
+        issuePageUrl:
+          type: string
+          format: uri
+          description: A direct link to the relevant issue page.
+        issueAckUrl:
+          type: string
+          format: uri
+          description: A direct link to acknowledge the issue.
+        issueCloseUrl:
+          type: string
+          format: uri
+          description: A direct link to close the issue.
+        policyUrl:
+          type: string
+          format: uri
+          description: Alert policy URL.
+        violationChartUrl:
+          type: string
+          format: uri
+          description: Link to the violation chart image.
+        accumulations:
+          $ref: '#/components/schemas/IssueAccumulations'
+        entitiesData:
+          $ref: '#/components/schemas/EntitiesData'
+        annotations:
+          $ref: '#/components/schemas/IssueAnnotations'
+        labels:
+          $ref: '#/components/schemas/IssueLabels'
+        dataMLModules:
+          $ref: '#/components/schemas/DataMLModules'
+    IssueAccumulations:
+      type: object
+      description: >-
+        List-typed accumulators that hold the values from each alert event
+        aggregated into the issue.
+      properties:
+        conditionName:
+          type: array
+          description: New Relic breached condition names.
+          items:
+            type: string
+        conditionDescription:
+          type: array
+          description: A list of the custom violation descriptions.
+          items:
+            type: string
+        conditionFamilyId:
+          type: array
+          description: List of the condition IDs.
+          items:
+            type: string
+        conditionProduct:
+          type: array
+          description: New Relic condition types.
+          items:
+            type: string
+        policyName:
+          type: array
+          description: List of policy names.
+          items:
+            type: string
+        nrqlQuery:
+          type: array
+          description: NRQL queries of the conditions.
+          items:
+            type: string
+        deepLinkUrl:
+          type: array
+          description: Direct links to the relevant violation callbacks.
+          items:
+            type: string
+            format: uri
+        runbookUrl:
+          type: array
+          description: A list of runbook URLs.
+          items:
+            type: string
+            format: uri
+        origins:
+          type: array
+          description: New Relic or third party source(s) that created the alert event(s).
+          items:
+            type: string
+        sources:
+          type: array
+          description: The system(s) reporting the alert event(s).
+          items:
+            type: string
+        evaluation:
+          type: object
+          description: Evaluation metadata for the underlying alert events.
+          properties:
+            name:
+              type: array
+              description: APM condition metric names.
+              items:
+                type: string
+            metricValueFunction:
+              type: array
+              description: Custom metric value functions.
+              items:
+                type: string
+        tag:
+          type: object
+          description: >-
+            Aggregated tags surfaced on the issue. Customer-defined tags appear
+            as additional properties.
+          properties:
+            account:
+              type: array
+              description: New Relic accounts.
+              items:
+                type: string
+            affectedService:
+              type: array
+              description: A list of affected services.
+              items:
+                type: string
+            assignmentGroup:
+              type: array
+              description: A list of assignment groups.
+              items:
+                type: string
+            causeService:
+              type: array
+              description: A list of cause services.
+              items:
+                type: string
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    EntitiesData:
+      type: object
+      description: Impacted entity data aggregated on the issue.
+      properties:
+        entities:
+          type: array
+          description: A list of objects describing the impacted entity name, ID, type, and kind.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              type:
+                type: string
+              kind:
+                type: string
+        ids:
+          type: array
+          description: A set of all impacted entity IDs.
+          items:
+            type: string
+        names:
+          type: array
+          description: A set of all impacted entity names.
+          items:
+            type: string
+        types:
+          type: array
+          description: A set of all impacted entity types.
+          items:
+            type: string
+        kinds:
+          type: array
+          description: A set of all impacted entity kinds.
+          items:
+            type: string
+    IssueAnnotations:
+      type: object
+      description: Aggregated annotation data for the issue.
+      properties:
+        title:
+          type: array
+          description: List of issue titles.
+          items:
+            type: string
+        description:
+          type: array
+          description: List of issue descriptions.
+          items:
+            type: string
+        wildcard:
+          type: object
+          description: Alert facets surfaced as annotations.
+          additionalProperties: true
+    IssueLabels:
+      type: object
+      description: Internal label fields surfaced by Alerts on the issue.
+      properties:
+        accountIds:
+          type: array
+          description: New Relic Alerts environment associated account IDs.
+          items:
+            type: string
+        originalAccountIds:
+          type: array
+          description: Alert event detection policy's account IDs.
+          items:
+            type: string
+        policyIds:
+          type: array
+          description: Alert event detection policy IDs that generated the violation.
+          items:
+            type: string
+        aggregationKeys:
+          type: array
+          description: Alert event detection original incident IDs.
+          items:
+            type: string
+        targetId:
+          type: array
+          description: Target IDs.
+          items:
+            type: string
+    DataMLModules:
+      type: object
+      description: Machine-learning derived signals attached to the issue, when available.
+      properties:
+        components:
+          type: array
+          description: A list of New Relic Alerts machine learning components.
+          items:
+            type: string
+        goldenSignals:
+          type: array
+          description: A list of New Relic Alerts machine learning golden signals.
+          items:
+            type: string
+        suggestedResponders:
+          type: array
+          description: Deprecated. A list of machine-learning suggested responders.
+          items:
+            type: string
+    ChangeTrackingDeploymentPayload:
+      type: object
+      description: >-
+        Documented application/x-www-form-urlencoded payload sent by Change
+        Tracking deployment webhooks. Non-alphanumeric characters in keys and
+        values are URL-encoded.
+      properties:
+        created_at:
+          type: string
+          description: The timestamp of the deployment in ISO 8601 format.
+        application_name:
+          type: string
+          description: The name of the APM application entity.
+        account_name:
+          type: string
+          description: The name of the account that owns the APM application entity.
+        changelog:
+          type: string
+          description: A list of changes included in the deployment.
+        description:
+          type: string
+          description: A description of the deployment.
+        revision:
+          type: string
+          description: The version of the deployed software.
+        deployment_url:
+          type: string
+          format: uri
+          description: A link to the deployments UI for the APM application entity.
+        deployed_by:
+          type: string
+          description: The user who deployed the application.
+    StreamingExportRecord:
+      type: object
+      description: >-
+        A single NRDB row exported in real time by a Streaming Data Export
+        rule. The exact attributes vary by the rule's flat NRQL SELECT clause
+        and the underlying event type (for example Transaction, Log, Metric,
+        SystemSample, Span, or any custom event type). Records always include
+        the standard NRDB framing fields shown below; all other attributes
+        appear as additional properties.
+      properties:
+        eventType:
+          type: string
+          description: The NRDB event type the row was selected from.
+        timestamp:
+          type: integer
+          format: int64
+          description: Epoch millisecond timestamp of the underlying event.
+        accountId:
+          type: integer
+          format: int64
+          description: New Relic account ID that owns the data.
+      additionalProperties: true

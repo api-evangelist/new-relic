@@ -2,12 +2,20 @@
   "repo": "new-relic",
   "feeds": [
     {
+      "source": "https://newrelic.com/blog/feed/",
+      "feed_url": "https://newrelic.com/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://newrelic.com/blog",
       "feed_url": "https://newrelic.com/blog/feed/",
-      "title": "Observatory | The New Relic Blog",
-      "saved": 1
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 20,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 23,
+  "fetched": "2026-06-01T23:35:02Z"
 }
