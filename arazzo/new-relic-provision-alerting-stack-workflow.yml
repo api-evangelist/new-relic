@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Provision Alerting Stack
+  summary: Create a policy, attach a NRQL condition, and wire a notification channel.
+  description: >-
+    A complete greenfield alerting setup in one pass. The workflow creates an
+    alert policy, attaches a NRQL alert condition to it, creates a notification
+    channel, and finally associates that channel with the policy so the new
+    policy both evaluates a signal and notifies a destination. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-alerting-stack
+  summary: Stand up policy, NRQL condition, and channel association together.
+  description: >-
+    Chains policy creation, NRQL condition creation, channel creation, and
+    channel association so a single run produces a fully wired alerting setup.
+  inputs:
+    type: object
+    required:
+    - policyName
+    - incidentPreference
+    - conditionName
+    - channelName
+    - channelType
+    properties:
+      policyName:
+        type: string
+        description: The name of the new alert policy.
+      incidentPreference:
+        type: string
+        description: Incident rollup strategy (PER_POLICY, PER_CONDITION, PER_CONDITION_AND_TARGET).
+      conditionName:
+        type: string
+        description: A title for the NRQL alert condition.
+      channelName:
+        type: string
+        description: The name of the new notification channel.
+      channelType:
+        type: string
+        description: The channel type (e.g. email, slack, webhook, pagerduty).
+  steps:
+  - stepId: createPolicy
+    description: Create the alert policy and capture its generated id.
+    operationId: postAlertsPolicies
+    requestBody:
+      contentType: application/json
+      payload:
+        policy:
+          name: $inputs.policyName
+          incident_preference: $inputs.incidentPreference
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      policyId: $response.body#/policy/id
+  - stepId: createNrqlCondition
+    description: Attach a NRQL alert condition to the new policy.
+    operationId: postAlertsNrqlConditionsPoliciesPolicyId
+    parameters:
+    - name: policy_id
+      in: path
+      value: $steps.createPolicy.outputs.policyId
+    requestBody:
+      contentType: application/json
+      payload:
+        nrql_condition:
+          name: $inputs.conditionName
+          enabled: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conditionId: $response.body#/nrql_condition/id
+  - stepId: createChannel
+    description: Create the notification channel that will receive policy notifications.
+    operationId: postAlertsChannels
+    requestBody:
+      contentType: application/json
+      payload:
+        channel:
+          name: $inputs.channelName
+          type: $inputs.channelType
+          configuration: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      channelId: $response.body#/channel/id
+  - stepId: associateChannel
+    description: >-
+      Associate the channel with the policy so violations are routed to the new
+      channel, completing the alerting stack.
+    operationId: putAlertsPolicyChannels
+    parameters:
+    - name: policy_id
+      in: query
+      value: $steps.createPolicy.outputs.policyId
+    - name: channel_ids
+      in: query
+      value: $steps.createChannel.outputs.channelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      associatedPolicyId: $response.body#/policy/id
+  outputs:
+    policyId: $steps.createPolicy.outputs.policyId
+    conditionId: $steps.createNrqlCondition.outputs.conditionId
+    channelId: $steps.createChannel.outputs.channelId

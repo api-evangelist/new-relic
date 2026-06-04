@@ -1,0 +1,79 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Rename Application
+  summary: Resolve an application by name and update its display alias.
+  description: >-
+    A lightweight administration pattern. The workflow resolves an application by
+    its current name to obtain its id, updates the application's alias to the new
+    name, and reads the application back to confirm the rename took effect. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rename-application
+  summary: Resolve an app by name, rename it, and confirm the change.
+  description: >-
+    Looks up the application id by its current name, updates the alias to the new
+    name, and reads the application detail back to confirm.
+  inputs:
+    type: object
+    required:
+    - currentName
+    - newName
+    properties:
+      currentName:
+        type: string
+        description: The current exact name of the application.
+      newName:
+        type: string
+        description: The new display alias to apply to the application.
+  steps:
+  - stepId: resolveApplication
+    description: Resolve the application id by its current exact name.
+    operationId: getApplications
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.currentName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/application/id
+  - stepId: renameApplication
+    description: >-
+      Update the application's alias to the new name; only the name is changed
+      and other settings are left intact.
+    operationId: putApplicationsId
+    parameters:
+    - name: id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        application:
+          name: $inputs.newName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedApplicationId: $response.body#/application/id
+  - stepId: confirmRename
+    description: >-
+      Read the application detail back to confirm the alias now reflects the new
+      name.
+    operationId: getApplicationsId
+    parameters:
+    - name: id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationName: $response.body#/application/name
+  outputs:
+    applicationId: $steps.resolveApplication.outputs.applicationId
+    applicationName: $steps.confirmRename.outputs.applicationName

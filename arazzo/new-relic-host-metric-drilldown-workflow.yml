@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Host Metric Drilldown
+  summary: Resolve an app, pick a host, list its metric names, and pull metric data.
+  description: >-
+    A drilldown pattern for inspecting a single host. The workflow resolves an
+    application by name, lists its hosts to select one, enumerates the metric
+    names available on that host, and then retrieves data for those metrics.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: host-metric-drilldown
+  summary: Drill from an app to a host to its metric data.
+  description: >-
+    Resolves the application id by name, selects a host from the application's
+    host list, lists the metric names on that host, and retrieves metric data
+    for the requested names.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    - metricNames
+    properties:
+      applicationName:
+        type: string
+        description: The exact name of the application to drill into.
+      metricNames:
+        type: array
+        items:
+          type: string
+        description: The metric names to retrieve data for on the selected host.
+  steps:
+  - stepId: resolveApplication
+    description: Resolve the application id by exact name.
+    operationId: getApplications
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.applicationName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/application/id
+  - stepId: listHosts
+    description: >-
+      List the application's hosts and capture the first host id to drill into.
+    operationId: getApplicationsIdHosts
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      hostId: $response.body#/application_hosts/0/id
+  - stepId: listHostMetrics
+    description: >-
+      List the metric names available on the selected host so the caller can see
+      what is measurable before requesting data.
+    operationId: getApplicationsIdHostsHostIdMetrics
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    - name: host_id
+      in: path
+      value: $steps.listHosts.outputs.hostId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metrics: $response.body#/metrics
+  - stepId: getHostMetricData
+    description: >-
+      Retrieve summarized metric data for the requested metric names on the
+      selected host.
+    operationId: getApplicationsIdHostsHostIdMetricsData
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    - name: host_id
+      in: path
+      value: $steps.listHosts.outputs.hostId
+    - name: names
+      in: query
+      value: $inputs.metricNames
+    - name: summarize
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metricData: $response.body#/metric_data
+  outputs:
+    applicationId: $steps.resolveApplication.outputs.applicationId
+    hostId: $steps.listHosts.outputs.hostId
+    metricData: $steps.getHostMetricData.outputs.metricData

@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Ingest Deployment Telemetry
+  summary: Record a deployment marker then emit a matching custom deployment event.
+  description: >-
+    Correlates a REST deployment marker with queryable telemetry. The workflow
+    resolves an application by name, records a deployment marker against it, and
+    then sends a matching custom event to the Event API so the deployment is also
+    available for NRQL querying alongside the marker. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+- name: newRelicEventApi
+  url: ../openapi/new-relic-event-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: ingest-deployment-telemetry
+  summary: Record a deployment marker then mirror it as a custom event.
+  description: >-
+    Resolves the application id by name, posts a deployment marker, and sends a
+    matching custom deployment event into the account for NRQL analysis.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    - revision
+    - accountId
+    properties:
+      applicationName:
+        type: string
+        description: The exact name of the application to mark a deployment on.
+      revision:
+        type: string
+        description: The revision or version identifier for the deployment.
+      changelog:
+        type: string
+        description: A summary of what changed in this deployment.
+      accountId:
+        type: integer
+        description: The New Relic account id to ingest the custom event into.
+  steps:
+  - stepId: resolveApplication
+    description: Resolve the application id by exact name.
+    operationId: getApplications
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.applicationName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/application/id
+  - stepId: recordDeployment
+    description: >-
+      Record the deployment marker against the resolved application capturing the
+      revision and changelog.
+    operationId: postApplicationsIdDeployments
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        deployment:
+          revision: $inputs.revision
+          changelog: $inputs.changelog
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deploymentId: $response.body#/deployment/id
+  - stepId: emitDeploymentEvent
+    description: >-
+      Send a custom deployment event into the account so the deployment is
+      queryable via NRQL alongside the recorded marker.
+    operationId: sendEvents
+    parameters:
+    - name: accountId
+      in: path
+      value: $inputs.accountId
+    - name: Content-Type
+      in: header
+      value: application/json
+    requestBody:
+      contentType: application/json
+      payload:
+      - eventType: Deployment
+        revision: $inputs.revision
+        applicationId: $steps.resolveApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      eventUuid: $response.body#/uuid
+  outputs:
+    applicationId: $steps.resolveApplication.outputs.applicationId
+    deploymentId: $steps.recordDeployment.outputs.deploymentId
+    eventUuid: $steps.emitDeploymentEvent.outputs.eventUuid

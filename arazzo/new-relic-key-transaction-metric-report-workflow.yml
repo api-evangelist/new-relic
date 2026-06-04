@@ -1,0 +1,59 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Key Transaction Metric Report
+  summary: Resolve a key transaction by name and read its detail record.
+  description: >-
+    A reporting pattern for business-critical transactions. The workflow resolves
+    a key transaction by name to obtain its id and then reads the full key
+    transaction detail record so its application summary and end-user metrics can
+    be reported. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: key-transaction-metric-report
+  summary: Resolve a key transaction by name then read its detail.
+  description: >-
+    Filters key transactions by name, captures the matched id, and reads the
+    full key transaction record for reporting.
+  inputs:
+    type: object
+    required:
+    - transactionName
+    properties:
+      transactionName:
+        type: string
+        description: The exact name of the key transaction to resolve.
+  steps:
+  - stepId: findKeyTransaction
+    description: >-
+      Resolve the key transaction by name and capture its id used to fetch the
+      detailed record.
+    operationId: getKeyTransactions
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.transactionName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      keyTransactionId: $response.body#/key_transaction/id
+  - stepId: getKeyTransaction
+    description: >-
+      Read the full key transaction detail record including its application and
+      end-user summaries for reporting.
+    operationId: getKeyTransactionsId
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findKeyTransaction.outputs.keyTransactionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      keyTransaction: $response.body#/key_transaction
+  outputs:
+    keyTransactionId: $steps.findKeyTransaction.outputs.keyTransactionId
+    keyTransaction: $steps.getKeyTransaction.outputs.keyTransaction

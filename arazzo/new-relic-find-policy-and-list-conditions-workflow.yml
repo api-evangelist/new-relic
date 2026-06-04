@@ -1,0 +1,60 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Find Policy And List Conditions
+  summary: Resolve an alert policy by name and list its metric conditions.
+  description: >-
+    An audit pattern for reviewing what an alert policy evaluates. The workflow
+    looks up a policy by its exact name, reads the resolved policy id, and lists
+    the APM metric conditions attached to that policy. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-policy-and-list-conditions
+  summary: Resolve a policy by name then enumerate its conditions.
+  description: >-
+    Filters alert policies by exact name, captures the policy id from the match,
+    and lists the conditions scoped to that policy for review.
+  inputs:
+    type: object
+    required:
+    - policyName
+    properties:
+      policyName:
+        type: string
+        description: The exact name of the alert policy to resolve.
+  steps:
+  - stepId: findPolicy
+    description: >-
+      Look up the alert policy by its exact name and capture the resolved policy
+      id used to query its conditions.
+    operationId: getAlertsPolicies
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.policyName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      policyId: $response.body#/policy/id
+      policyName: $response.body#/policy/name
+  - stepId: listConditions
+    description: >-
+      List the APM metric conditions attached to the resolved policy so the
+      caller can review what the policy evaluates.
+    operationId: getAlertsConditions
+    parameters:
+    - name: policy_id
+      in: query
+      value: $steps.findPolicy.outputs.policyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conditions: $response.body#/condition
+  outputs:
+    policyId: $steps.findPolicy.outputs.policyId
+    conditions: $steps.listConditions.outputs.conditions

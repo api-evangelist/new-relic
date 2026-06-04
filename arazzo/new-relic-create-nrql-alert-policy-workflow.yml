@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Create NRQL Alert Policy
+  summary: Create an alert policy and attach a NRQL alert condition to it.
+  description: >-
+    Stands up a NRQL-based alerting setup. The workflow creates an alert policy,
+    reads the generated policy id, and creates a NRQL alert condition on that
+    policy so a custom query begins driving incidents. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-nrql-alert-policy
+  summary: Create a policy then attach a NRQL alert condition to it.
+  description: >-
+    Creates an alert policy and chains a NRQL condition onto the returned policy
+    id so a custom NRQL signal drives the new policy.
+  inputs:
+    type: object
+    required:
+    - policyName
+    - incidentPreference
+    - conditionName
+    properties:
+      policyName:
+        type: string
+        description: The name of the new alert policy.
+      incidentPreference:
+        type: string
+        description: Incident rollup strategy (PER_POLICY, PER_CONDITION, PER_CONDITION_AND_TARGET).
+      conditionName:
+        type: string
+        description: A title for the NRQL alert condition.
+      runbookUrl:
+        type: string
+        description: Runbook URL to display in notifications.
+      valueFunction:
+        type: string
+        description: The value function applied to the NRQL result (e.g. single_value, sum).
+  steps:
+  - stepId: createPolicy
+    description: >-
+      Create the alert policy that will own the NRQL condition, returning the
+      generated policy id.
+    operationId: postAlertsPolicies
+    requestBody:
+      contentType: application/json
+      payload:
+        policy:
+          name: $inputs.policyName
+          incident_preference: $inputs.incidentPreference
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      policyId: $response.body#/policy/id
+  - stepId: createNrqlCondition
+    description: >-
+      Create a NRQL alert condition on the new policy so a custom query begins
+      evaluating against the configured terms.
+    operationId: postAlertsNrqlConditionsPoliciesPolicyId
+    parameters:
+    - name: policy_id
+      in: path
+      value: $steps.createPolicy.outputs.policyId
+    requestBody:
+      contentType: application/json
+      payload:
+        nrql_condition:
+          name: $inputs.conditionName
+          runbook_url: $inputs.runbookUrl
+          value_function: $inputs.valueFunction
+          enabled: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conditionId: $response.body#/nrql_condition/id
+      conditionName: $response.body#/nrql_condition/name
+  outputs:
+    policyId: $steps.createPolicy.outputs.policyId
+    conditionId: $steps.createNrqlCondition.outputs.conditionId

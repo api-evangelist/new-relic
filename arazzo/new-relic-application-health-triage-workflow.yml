@@ -1,0 +1,106 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Application Health Triage
+  summary: Resolve an app, branch on health status, and pull recent metric data.
+  description: >-
+    A triage pattern for investigating an application's state. The workflow
+    resolves an application by name, reads its health status, and branches: when
+    the application is reporting it pulls recent metric data, and when it is not
+    reporting it lists the application's hosts to diagnose the gap. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: application-health-triage
+  summary: Resolve an app and branch on whether it is reporting.
+  description: >-
+    Looks up the application by name, captures its id and reporting state, and
+    either retrieves metric data when reporting or enumerates hosts when not
+    reporting.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    - metricNames
+    properties:
+      applicationName:
+        type: string
+        description: The exact name of the application to triage.
+      metricNames:
+        type: array
+        items:
+          type: string
+        description: The metric names to retrieve when the application is reporting.
+  steps:
+  - stepId: resolveApplication
+    description: >-
+      Resolve the application by exact name to obtain its id and reporting
+      status for branching.
+    operationId: getApplications
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.applicationName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/application/id
+      reporting: $response.body#/application/reporting
+    onSuccess:
+    - name: isReporting
+      type: goto
+      stepId: getMetricData
+      criteria:
+      - context: $response.body
+        condition: $.application.reporting == true
+        type: jsonpath
+    - name: notReporting
+      type: goto
+      stepId: listHosts
+      criteria:
+      - context: $response.body
+        condition: $.application.reporting == false
+        type: jsonpath
+  - stepId: getMetricData
+    description: >-
+      Retrieve recent metric data for the reporting application to assess
+      current performance.
+    operationId: getApplicationsIdMetricsData
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    - name: names
+      in: query
+      value: $inputs.metricNames
+    - name: summarize
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metricData: $response.body#/metric_data
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: listHosts
+    description: >-
+      List the application's hosts to diagnose why the application is not
+      reporting any data.
+    operationId: getApplicationsIdHosts
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      hosts: $response.body#/application_hosts
+  outputs:
+    applicationId: $steps.resolveApplication.outputs.applicationId
+    metricData: $steps.getMetricData.outputs.metricData
+    hosts: $steps.listHosts.outputs.hosts

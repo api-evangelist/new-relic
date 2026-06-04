@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Rollback Deployment Marker
+  summary: Resolve an app, find its latest deployment marker, and delete it.
+  description: >-
+    A cleanup pattern for correcting deployment history. The workflow resolves an
+    application by name, lists its deployment markers to identify the most recent
+    one, and deletes that marker so an erroneous deployment entry is removed from
+    the application timeline. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rollback-deployment-marker
+  summary: Resolve an app, locate its latest deployment, and delete it.
+  description: >-
+    Looks up the application id by name, reads its deployment markers to capture
+    the most recent deployment id, and deletes that marker to roll back the
+    deployment record.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    properties:
+      applicationName:
+        type: string
+        description: The exact name of the application whose deployment marker to remove.
+  steps:
+  - stepId: resolveApplication
+    description: >-
+      Resolve the application by exact name to obtain the application id used to
+      read and delete deployment markers.
+    operationId: getApplications
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.applicationName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/application/id
+  - stepId: findLatestDeployment
+    description: >-
+      List the application's deployment markers and capture the latest
+      deployment id to be removed.
+    operationId: getApplicationsIdDeployments
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deploymentId: $response.body#/deployment/id
+  - stepId: deleteDeployment
+    description: >-
+      Delete the identified deployment marker from the application's deployment
+      history.
+    operationId: deleteApplicationsIdDeploymentsId
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    - name: id
+      in: path
+      value: $steps.findLatestDeployment.outputs.deploymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deletedDeployment: $response.body#/deployment
+  outputs:
+    applicationId: $steps.resolveApplication.outputs.applicationId
+    deletedDeploymentId: $steps.findLatestDeployment.outputs.deploymentId

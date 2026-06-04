@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Create Alert Policy With Condition
+  summary: Create an alert policy and attach an APM metric condition to it.
+  description: >-
+    A foundational New Relic Alerts setup pattern. The workflow creates a new
+    alert policy, captures the generated policy id, and then creates an APM
+    application metric condition scoped to that policy so the policy begins
+    evaluating signals immediately. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-alert-policy-with-condition
+  summary: Create an alert policy then attach a metric condition to it.
+  description: >-
+    Creates an alert policy with the supplied incident preference, reads the
+    new policy id from the response, and creates an APM metric condition on that
+    policy in a single chained flow.
+  inputs:
+    type: object
+    required:
+    - policyName
+    - incidentPreference
+    - conditionName
+    - conditionType
+    - metric
+    properties:
+      policyName:
+        type: string
+        description: The name of the new alert policy.
+      incidentPreference:
+        type: string
+        description: Incident rollup strategy (PER_POLICY, PER_CONDITION, PER_CONDITION_AND_TARGET).
+      conditionName:
+        type: string
+        description: A title for the alert condition.
+      conditionType:
+        type: string
+        description: Condition type (e.g. apm_app_metric, apm_kt_metric, browser_metric).
+      metric:
+        type: string
+        description: The metric the condition evaluates (e.g. apdex, error_percentage).
+      conditionScope:
+        type: string
+        description: Condition scope, either application or instance.
+  steps:
+  - stepId: createPolicy
+    description: >-
+      Create the alert policy with the supplied name and incident preference,
+      returning the generated policy id used to scope conditions.
+    operationId: postAlertsPolicies
+    requestBody:
+      contentType: application/json
+      payload:
+        policy:
+          name: $inputs.policyName
+          incident_preference: $inputs.incidentPreference
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      policyId: $response.body#/policy/id
+      policyName: $response.body#/policy/name
+  - stepId: createCondition
+    description: >-
+      Create an APM metric condition on the newly created policy so it begins
+      evaluating the chosen metric immediately after creation.
+    operationId: postAlertsConditionsPoliciesPolicyId
+    parameters:
+    - name: policy_id
+      in: path
+      value: $steps.createPolicy.outputs.policyId
+    requestBody:
+      contentType: application/json
+      payload:
+        condition:
+          name: $inputs.conditionName
+          type: $inputs.conditionType
+          metric: $inputs.metric
+          condition_scope: $inputs.conditionScope
+          enabled: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conditionId: $response.body#/condition/id
+      conditionName: $response.body#/condition/name
+  outputs:
+    policyId: $steps.createPolicy.outputs.policyId
+    conditionId: $steps.createCondition.outputs.conditionId

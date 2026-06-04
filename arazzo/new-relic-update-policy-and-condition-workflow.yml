@@ -1,0 +1,106 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Update Policy And Condition
+  summary: Resolve a policy by name, update it, then update one of its conditions.
+  description: >-
+    A maintenance pattern for tuning alerting. The workflow resolves a policy by
+    name, updates the policy's incident preference, lists the policy's conditions
+    to select one, and updates that condition's threshold settings. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-policy-and-condition
+  summary: Resolve a policy, update it, then update one of its conditions.
+  description: >-
+    Filters policies by name, updates the matched policy, reads its conditions,
+    and updates the first condition with new settings.
+  inputs:
+    type: object
+    required:
+    - policyName
+    - incidentPreference
+    - conditionName
+    - metric
+    properties:
+      policyName:
+        type: string
+        description: The exact name of the alert policy to update.
+      incidentPreference:
+        type: string
+        description: The new incident rollup strategy for the policy.
+      conditionName:
+        type: string
+        description: The new name to apply to the selected condition.
+      metric:
+        type: string
+        description: The metric the updated condition should evaluate.
+  steps:
+  - stepId: findPolicy
+    description: Resolve the alert policy id by exact name.
+    operationId: getAlertsPolicies
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.policyName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      policyId: $response.body#/policy/id
+  - stepId: updatePolicy
+    description: >-
+      Update the resolved policy's name and incident preference.
+    operationId: putAlertsPoliciesPolicyId
+    parameters:
+    - name: policy_id
+      in: path
+      value: $steps.findPolicy.outputs.policyId
+    requestBody:
+      contentType: application/json
+      payload:
+        policy:
+          name: $inputs.policyName
+          incident_preference: $inputs.incidentPreference
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedPolicyId: $response.body#/policy/id
+  - stepId: listConditions
+    description: >-
+      List the policy's conditions and capture the first condition id to tune.
+    operationId: getAlertsConditions
+    parameters:
+    - name: policy_id
+      in: query
+      value: $steps.findPolicy.outputs.policyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conditionId: $response.body#/condition/id
+  - stepId: updateCondition
+    description: >-
+      Update the selected condition with a new name and metric so the policy
+      evaluates the tuned signal.
+    operationId: putAlertsConditionsConditionId
+    parameters:
+    - name: condition_id
+      in: path
+      value: $steps.listConditions.outputs.conditionId
+    requestBody:
+      contentType: application/json
+      payload:
+        condition:
+          name: $inputs.conditionName
+          metric: $inputs.metric
+          enabled: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedConditionId: $response.body#/condition/id
+  outputs:
+    policyId: $steps.findPolicy.outputs.policyId
+    updatedConditionId: $steps.updateCondition.outputs.updatedConditionId

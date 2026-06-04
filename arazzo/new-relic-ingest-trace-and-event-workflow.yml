@@ -1,0 +1,105 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Ingest Trace And Event
+  summary: Send a distributed trace then emit a correlated custom event.
+  description: >-
+    A distributed-tracing ingestion pattern. The workflow sends a New Relic
+    format trace payload to the Trace API and then emits a correlated custom
+    event to the Event API carrying the same trace id, so the trace and the
+    business event can be linked during analysis. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicTraceApi
+  url: ../openapi/new-relic-trace-api-openapi.yml
+  type: openapi
+- name: newRelicEventApi
+  url: ../openapi/new-relic-event-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: ingest-trace-and-event
+  summary: Send a trace then emit a correlated custom event.
+  description: >-
+    Sends a New Relic format span to the Trace API, then sends a custom event to
+    the Event API carrying the same trace id for correlation.
+  inputs:
+    type: object
+    required:
+    - serviceName
+    - spanId
+    - traceId
+    - spanName
+    - accountId
+    properties:
+      serviceName:
+        type: string
+        description: The service.name attribute for the span and event.
+      spanId:
+        type: string
+        description: The id of the span being sent.
+      traceId:
+        type: string
+        description: The trace id shared by the span and the correlated event.
+      spanName:
+        type: string
+        description: The human-readable name of the span.
+      accountId:
+        type: integer
+        description: The New Relic account id to ingest the custom event into.
+  steps:
+  - stepId: sendTrace
+    description: >-
+      Send a New Relic format span to the Trace API; the API accepts the payload
+      and queues it for processing.
+    operationId: sendTraces
+    parameters:
+    - name: Data-Format
+      in: header
+      value: newrelic
+    - name: Data-Format-Version
+      in: header
+      value: '1'
+    - name: Content-Type
+      in: header
+      value: application/json
+    requestBody:
+      contentType: application/json
+      payload:
+      - common:
+          attributes:
+            service.name: $inputs.serviceName
+        spans:
+        - id: $inputs.spanId
+          trace.id: $inputs.traceId
+          attributes:
+            name: $inputs.spanName
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      traceRequestId: $response.body#/requestId
+  - stepId: emitCorrelatedEvent
+    description: >-
+      Send a custom event carrying the same trace id so the business event is
+      linkable to the distributed trace during analysis.
+    operationId: sendEvents
+    parameters:
+    - name: accountId
+      in: path
+      value: $inputs.accountId
+    - name: Content-Type
+      in: header
+      value: application/json
+    requestBody:
+      contentType: application/json
+      payload:
+      - eventType: TraceCorrelation
+        traceId: $inputs.traceId
+        service: $inputs.serviceName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      eventUuid: $response.body#/uuid
+  outputs:
+    traceRequestId: $steps.sendTrace.outputs.traceRequestId
+    eventUuid: $steps.emitCorrelatedEvent.outputs.eventUuid

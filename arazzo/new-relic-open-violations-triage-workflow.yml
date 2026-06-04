@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Open Violations Triage
+  summary: List open violations and branch into incident or event detail.
+  description: >-
+    An incident-response triage pattern. The workflow lists currently open
+    alerts violations, and branches: when at least one open violation exists it
+    pulls open incidents for correlation, and when none are open it lists recent
+    alerts events for context. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: open-violations-triage
+  summary: List open violations then branch on whether any are open.
+  description: >-
+    Reads open violations and either pulls open incidents when violations exist
+    or lists recent events when the system is quiet.
+  inputs:
+    type: object
+    required:
+    - startDate
+    - endDate
+    properties:
+      startDate:
+        type: string
+        description: The start of the violation window (ISO 8601).
+      endDate:
+        type: string
+        description: The end of the violation window (ISO 8601).
+  steps:
+  - stepId: listOpenViolations
+    description: >-
+      List the currently open alerts violations within the supplied window for
+      triage.
+    operationId: getAlertsViolations
+    parameters:
+    - name: start_date
+      in: query
+      value: $inputs.startDate
+    - name: end_date
+      in: query
+      value: $inputs.endDate
+    - name: only_open
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      violation: $response.body#/violation
+    onSuccess:
+    - name: hasViolations
+      type: goto
+      stepId: listOpenIncidents
+      criteria:
+      - context: $response.body
+        condition: $.violation.id != null
+        type: jsonpath
+    - name: noViolations
+      type: goto
+      stepId: listRecentEvents
+      criteria:
+      - context: $response.body
+        condition: $.violation.id == null
+        type: jsonpath
+  - stepId: listOpenIncidents
+    description: >-
+      List the open alerts incidents so violations can be correlated to the
+      incidents they rolled up into.
+    operationId: getAlertsIncidents
+    parameters:
+    - name: only_open
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      incidents: $response.body#/incident
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: listRecentEvents
+    description: >-
+      List recent alerts events to provide context when no violations are
+      currently open.
+    operationId: getAlertsEvents
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      events: $response.body#/recent_event
+  outputs:
+    violation: $steps.listOpenViolations.outputs.violation
+    incidents: $steps.listOpenIncidents.outputs.incidents
+    events: $steps.listRecentEvents.outputs.events

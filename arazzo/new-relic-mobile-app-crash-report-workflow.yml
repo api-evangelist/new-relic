@@ -1,0 +1,63 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Mobile App Crash Report
+  summary: List mobile applications, select one, and pull its crash metric data.
+  description: >-
+    A mobile observability pattern. The workflow lists the mobile applications in
+    the account, selects one by id, and retrieves crash-related metric data for
+    that mobile application so crash rates can be reported. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: mobile-app-crash-report
+  summary: Select a mobile app then pull its crash metric data.
+  description: >-
+    Lists mobile applications, captures the first mobile application id, and
+    retrieves the requested crash metric data for it.
+  inputs:
+    type: object
+    required:
+    - metricNames
+    properties:
+      metricNames:
+        type: array
+        items:
+          type: string
+        description: The crash-related metric names to retrieve for the mobile application.
+  steps:
+  - stepId: listMobileApplications
+    description: >-
+      List the mobile applications in the account and capture a mobile
+      application id to report on.
+    operationId: getMobileApplications
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      mobileApplicationId: $response.body#/application/id
+  - stepId: getMobileMetricData
+    description: >-
+      Retrieve summarized crash metric data for the selected mobile application
+      across the chosen metric names.
+    operationId: getMobileApplicationsMobileApplicationIdMetricsData
+    parameters:
+    - name: mobile_application_id
+      in: path
+      value: $steps.listMobileApplications.outputs.mobileApplicationId
+    - name: names
+      in: query
+      value: $inputs.metricNames
+    - name: summarize
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metricData: $response.body#/metric_data
+  outputs:
+    mobileApplicationId: $steps.listMobileApplications.outputs.mobileApplicationId
+    metricData: $steps.getMobileMetricData.outputs.metricData

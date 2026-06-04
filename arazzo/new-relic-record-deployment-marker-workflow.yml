@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Record Deployment Marker
+  summary: Resolve an application by name and record a deployment marker on it.
+  description: >-
+    The canonical release-tracking pattern. The workflow resolves an application
+    by name to obtain its id, records a deployment marker against that
+    application capturing the revision and changelog, and reads back the
+    deployment history to confirm the marker landed. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: record-deployment-marker
+  summary: Resolve an app by name, post a deployment marker, and confirm it.
+  description: >-
+    Looks up the application id by name, posts a deployment marker with the
+    supplied revision and changelog, then lists deployments to confirm the new
+    marker is present.
+  inputs:
+    type: object
+    required:
+    - applicationName
+    - revision
+    properties:
+      applicationName:
+        type: string
+        description: The exact name of the application to mark a deployment on.
+      revision:
+        type: string
+        description: The revision, build, or version identifier for the deployment.
+      changelog:
+        type: string
+        description: A summary of what changed in this deployment.
+      description:
+        type: string
+        description: A human-readable description of the deployment.
+      user:
+        type: string
+        description: The user who performed the deployment.
+  steps:
+  - stepId: resolveApplication
+    description: >-
+      Resolve the application by exact name to obtain the application id used to
+      record the deployment marker.
+    operationId: getApplications
+    parameters:
+    - name: filter[name]
+      in: query
+      value: $inputs.applicationName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/application/id
+  - stepId: recordDeployment
+    description: >-
+      Record a deployment marker against the resolved application capturing the
+      revision, changelog, description, and user.
+    operationId: postApplicationsIdDeployments
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        deployment:
+          revision: $inputs.revision
+          changelog: $inputs.changelog
+          description: $inputs.description
+          user: $inputs.user
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deploymentId: $response.body#/deployment/id
+  - stepId: confirmDeployment
+    description: >-
+      List the application's deployments to confirm the new marker was recorded
+      and is part of the deployment history.
+    operationId: getApplicationsIdDeployments
+    parameters:
+    - name: application_id
+      in: path
+      value: $steps.resolveApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deployments: $response.body#/deployment
+  outputs:
+    applicationId: $steps.resolveApplication.outputs.applicationId
+    deploymentId: $steps.recordDeployment.outputs.deploymentId

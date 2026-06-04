@@ -1,0 +1,76 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Attach Notification Channel To Policy
+  summary: Create a notification channel and associate it with an alert policy.
+  description: >-
+    Wires alert notifications end to end. The workflow creates a notification
+    channel, captures its id, and then associates that channel with an existing
+    alert policy so violations on the policy are routed to the channel. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicApi
+  url: ../openapi/new-relic-openapi.yml
+  type: openapi
+workflows:
+- workflowId: attach-notification-channel-to-policy
+  summary: Create a channel and associate it with an alert policy.
+  description: >-
+    Creates a notification channel, reads the generated channel id, and updates
+    the policy/channel association so the supplied policy notifies through the
+    new channel.
+  inputs:
+    type: object
+    required:
+    - channelName
+    - channelType
+    - policyId
+    properties:
+      channelName:
+        type: string
+        description: The name of the new notification channel.
+      channelType:
+        type: string
+        description: The channel type (e.g. email, slack, webhook, pagerduty).
+      policyId:
+        type: integer
+        description: The id of the alert policy to associate the channel with.
+  steps:
+  - stepId: createChannel
+    description: >-
+      Create the notification channel of the requested type, returning the
+      generated channel id used for the policy association.
+    operationId: postAlertsChannels
+    requestBody:
+      contentType: application/json
+      payload:
+        channel:
+          name: $inputs.channelName
+          type: $inputs.channelType
+          configuration: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      channelId: $response.body#/channel/id
+      channelName: $response.body#/channel/name
+  - stepId: associateChannel
+    description: >-
+      Associate the newly created channel with the target alert policy so the
+      policy routes its notifications to the channel.
+    operationId: putAlertsPolicyChannels
+    parameters:
+    - name: policy_id
+      in: query
+      value: $inputs.policyId
+    - name: channel_ids
+      in: query
+      value: $steps.createChannel.outputs.channelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      associatedPolicyId: $response.body#/policy/id
+      associatedChannelIds: $response.body#/policy/channel_ids
+  outputs:
+    channelId: $steps.createChannel.outputs.channelId
+    associatedPolicyId: $steps.associateChannel.outputs.associatedPolicyId

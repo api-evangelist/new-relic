@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: New Relic Ingest Metrics And Logs
+  summary: Send a metric batch then send a correlated log batch in one flow.
+  description: >-
+    A dual telemetry ingestion pattern. The workflow sends a batch of dimensional
+    metrics to the Metric API and then sends a correlated batch of logs to the
+    Log API, sharing common attributes so the two signals can be joined in NRDB.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: newRelicMetricApi
+  url: ../openapi/new-relic-metric-api-openapi.yml
+  type: openapi
+- name: newRelicLogApi
+  url: ../openapi/new-relic-log-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: ingest-metrics-and-logs
+  summary: Send a metric batch followed by a correlated log batch.
+  description: >-
+    Sends dimensional metrics to the Metric API, captures the request id, and
+    then sends correlated logs to the Log API sharing the same service and host
+    attributes.
+  inputs:
+    type: object
+    required:
+    - serviceName
+    - hostName
+    - metricName
+    - metricValue
+    - logMessage
+    properties:
+      serviceName:
+        type: string
+        description: The service.name attribute shared by the metrics and logs.
+      hostName:
+        type: string
+        description: The host.name attribute shared by the metrics and logs.
+      metricName:
+        type: string
+        description: The name of the metric to send.
+      metricValue:
+        type: number
+        description: The gauge value of the metric.
+      logMessage:
+        type: string
+        description: The log message to send.
+  steps:
+  - stepId: sendMetricBatch
+    description: >-
+      Send a dimensional metric batch tagged with the shared service and host
+      attributes; the Metric API accepts the batch and queues it for processing.
+    operationId: sendMetrics
+    parameters:
+    - name: Content-Type
+      in: header
+      value: application/json
+    requestBody:
+      contentType: application/json
+      payload:
+      - common:
+          attributes:
+            service.name: $inputs.serviceName
+            host.name: $inputs.hostName
+        metrics:
+        - name: $inputs.metricName
+          type: gauge
+          value: $inputs.metricValue
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      metricRequestId: $response.body#/requestId
+  - stepId: sendLogBatch
+    description: >-
+      Send a correlated log batch sharing the same service and host attributes so
+      the logs can be joined with the metrics in NRDB.
+    operationId: sendLogs
+    parameters:
+    - name: Content-Type
+      in: header
+      value: application/json
+    requestBody:
+      contentType: application/json
+      payload:
+      - common:
+          attributes:
+            service.name: $inputs.serviceName
+            host.name: $inputs.hostName
+        logs:
+        - message: $inputs.logMessage
+          level: INFO
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      logRequestId: $response.body#/requestId
+  outputs:
+    metricRequestId: $steps.sendMetricBatch.outputs.metricRequestId
+    logRequestId: $steps.sendLogBatch.outputs.logRequestId
