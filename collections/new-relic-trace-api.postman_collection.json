@@ -1,0 +1,496 @@
+{
+  "item": [
+    {
+      "id": "1747ca89-5374-4490-bac7-7bbeb12e413f",
+      "name": "Traces",
+      "description": {
+        "content": "Distributed trace span ingestion",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0eee40b-c376-47d6-b019-ae2ba24f5eda",
+          "name": "New Relic Send Trace Spans",
+          "request": {
+            "name": "New Relic Send Trace Spans",
+            "description": {
+              "content": "Sends distributed trace spans to New Relic. Supports New Relic format (Content-Type application/json with Data-Format newrelic) and Zipkin JSON v2 format (Data-Format zipkin). Payloads can be gzip-compressed. A single request supports up to 10,000 spans and must not exceed 1 MB compressed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trace",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The format of the trace data in the request body",
+                "key": "Data-Format",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Version of the data format. Use 1 for newrelic format.",
+                "key": "Data-Format-Version",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Use gzip for compressed payloads",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\",\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\",\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3877b4e9-78e3-4f6b-b94d-3540acf57c7a",
+              "name": "Accepted. Trace data was received and queued for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trace",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The format of the trace data in the request body",
+                    "key": "Data-Format",
+                    "value": "newrelic"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Version of the data format. Use 1 for newrelic format.",
+                    "key": "Data-Format-Version",
+                    "value": "1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"service.name\": \"myService\",\n        \"host\": \"web01\"\n      }\n    },\n    \"spans\": [\n      {\n        \"id\": \"5f5bf6860e3b5208\",\n        \"trace.id\": \"aefb4b81c6eedc5e\",\n        \"attributes\": {\n          \"name\": \"/api/orders\",\n          \"duration.ms\": 12,\n          \"db.statement\": \"SELECT * FROM orders\"\n        }\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4da249de-5e7f-4ba7-b79c-96af3316b8eb",
+              "name": "Bad request. Payload is malformed or exceeds limits.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trace",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The format of the trace data in the request body",
+                    "key": "Data-Format",
+                    "value": "newrelic"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Version of the data format. Use 1 for newrelic format.",
+                    "key": "Data-Format-Version",
+                    "value": "1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"service.name\": \"myService\",\n        \"host\": \"web01\"\n      }\n    },\n    \"spans\": [\n      {\n        \"id\": \"5f5bf6860e3b5208\",\n        \"trace.id\": \"aefb4b81c6eedc5e\",\n        \"attributes\": {\n          \"name\": \"/api/orders\",\n          \"duration.ms\": 12,\n          \"db.statement\": \"SELECT * FROM orders\"\n        }\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aea2b275-5e41-4244-9e57-fbdcbfd739df",
+              "name": "Forbidden. The API key is invalid or lacks insert permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trace",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The format of the trace data in the request body",
+                    "key": "Data-Format",
+                    "value": "newrelic"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Version of the data format. Use 1 for newrelic format.",
+                    "key": "Data-Format-Version",
+                    "value": "1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"service.name\": \"myService\",\n        \"host\": \"web01\"\n      }\n    },\n    \"spans\": [\n      {\n        \"id\": \"5f5bf6860e3b5208\",\n        \"trace.id\": \"aefb4b81c6eedc5e\",\n        \"attributes\": {\n          \"name\": \"/api/orders\",\n          \"duration.ms\": 12,\n          \"db.statement\": \"SELECT * FROM orders\"\n        }\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6904fd0d-67d4-4106-9368-1171dc5424a3",
+              "name": "Payload too large.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trace",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The format of the trace data in the request body",
+                    "key": "Data-Format",
+                    "value": "newrelic"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Version of the data format. Use 1 for newrelic format.",
+                    "key": "Data-Format-Version",
+                    "value": "1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"service.name\": \"myService\",\n        \"host\": \"web01\"\n      }\n    },\n    \"spans\": [\n      {\n        \"id\": \"5f5bf6860e3b5208\",\n        \"trace.id\": \"aefb4b81c6eedc5e\",\n        \"attributes\": {\n          \"name\": \"/api/orders\",\n          \"duration.ms\": 12,\n          \"db.statement\": \"SELECT * FROM orders\"\n        }\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b5e2d40-d560-44a7-84e8-a30b70aa008d",
+              "name": "Too many requests. Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trace",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The format of the trace data in the request body",
+                    "key": "Data-Format",
+                    "value": "newrelic"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Version of the data format. Use 1 for newrelic format.",
+                    "key": "Data-Format-Version",
+                    "value": "1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"service.name\": \"myService\",\n        \"host\": \"web01\"\n      }\n    },\n    \"spans\": [\n      {\n        \"id\": \"5f5bf6860e3b5208\",\n        \"trace.id\": \"aefb4b81c6eedc5e\",\n        \"attributes\": {\n          \"name\": \"/api/orders\",\n          \"duration.ms\": 12,\n          \"db.statement\": \"SELECT * FROM orders\"\n        }\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trace-api.newrelic.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1f1cf3bd-f34b-40db-a4a7-6668122faa33",
+    "name": "New Relic Trace API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Trace API allows distributed tracing data to be sent directly to New Relic in either New Relic format or Zipkin JSON v2 format. It is used by Telemetry SDKs, open source integrations, and custom tracing implementations that need to report span data without a full APM agent. Traces appear in the New Relic Distributed Tracing UI after processing.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,554 @@
+{
+  "item": [
+    {
+      "id": "53673ac0-7a72-4257-80da-c9bea941da8d",
+      "name": "Events",
+      "description": {
+        "content": "Custom event ingestion endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35084265-701f-40ea-91da-c80e43f19366",
+          "name": "New Relic Send Custom Events",
+          "request": {
+            "name": "New Relic Send Custom Events",
+            "description": {
+              "content": "Sends one or more custom events to the specified New Relic account. The request body must be a JSON array of event objects. Each event must include an eventType attribute. Payloads may be gzip-compressed. Events are immediately available for querying via NRQL after processing. A single request may contain up to 2000 events and must not exceed 1 MB uncompressed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "accountId",
+                  "description": "(Required) The New Relic account ID to ingest events into"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use gzip for compressed payloads",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"eventType\": \"<string>\",\n    \"timestamp\": \"<integer>\"\n  },\n  {\n    \"eventType\": \"<string>\",\n    \"timestamp\": \"<integer>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f441ee3a-6d3c-47ed-8640-83882cfed13a",
+              "name": "Success. All events were accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The New Relic account ID to ingest events into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventType\": \"PurchaseEvent\",\n    \"account\": 3,\n    \"amount\": 259.54,\n    \"success\": true,\n    \"userEmail\": \"test@example.com\"\n  },\n  {\n    \"eventType\": \"PageView\",\n    \"uri\": \"/some/page\",\n    \"referrer\": \"https://example.com\",\n    \"duration\": 0.42\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"uuid\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0d620b8-fd1c-4753-bf1d-572bcc18296f",
+              "name": "Bad request. The payload is malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The New Relic account ID to ingest events into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventType\": \"PurchaseEvent\",\n    \"account\": 3,\n    \"amount\": 259.54,\n    \"success\": true,\n    \"userEmail\": \"test@example.com\"\n  },\n  {\n    \"eventType\": \"PageView\",\n    \"uri\": \"/some/page\",\n    \"referrer\": \"https://example.com\",\n    \"duration\": 0.42\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"example_string\",\n  \"errors\": [\n    {\n      \"error\": \"example_string\",\n      \"timestamp\": \"example_string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32ce49c4-814d-49c2-b85e-d84fe128e6c2",
+              "name": "Forbidden. The API key is invalid or lacks insert permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The New Relic account ID to ingest events into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventType\": \"PurchaseEvent\",\n    \"account\": 3,\n    \"amount\": 259.54,\n    \"success\": true,\n    \"userEmail\": \"test@example.com\"\n  },\n  {\n    \"eventType\": \"PageView\",\n    \"uri\": \"/some/page\",\n    \"referrer\": \"https://example.com\",\n    \"duration\": 0.42\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"example_string\",\n  \"errors\": [\n    {\n      \"error\": \"example_string\",\n      \"timestamp\": \"example_string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81f41898-dad4-4e65-88b1-c9a24a3b5106",
+              "name": "Request timeout. The server did not receive the request in time.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The New Relic account ID to ingest events into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventType\": \"PurchaseEvent\",\n    \"account\": 3,\n    \"amount\": 259.54,\n    \"success\": true,\n    \"userEmail\": \"test@example.com\"\n  },\n  {\n    \"eventType\": \"PageView\",\n    \"uri\": \"/some/page\",\n    \"referrer\": \"https://example.com\",\n    \"duration\": 0.42\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21cb7465-1eb0-4c05-a575-118277e07cef",
+              "name": "Payload too large. The request body exceeds 1 MB.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The New Relic account ID to ingest events into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventType\": \"PurchaseEvent\",\n    \"account\": 3,\n    \"amount\": 259.54,\n    \"success\": true,\n    \"userEmail\": \"test@example.com\"\n  },\n  {\n    \"eventType\": \"PageView\",\n    \"uri\": \"/some/page\",\n    \"referrer\": \"https://example.com\",\n    \"duration\": 0.42\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"example_string\",\n  \"errors\": [\n    {\n      \"error\": \"example_string\",\n      \"timestamp\": \"example_string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30f40955-22ef-4d76-8bf0-5d2e50404aab",
+              "name": "Too many requests. Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The New Relic account ID to ingest events into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"eventType\": \"PurchaseEvent\",\n    \"account\": 3,\n    \"amount\": 259.54,\n    \"success\": true,\n    \"userEmail\": \"test@example.com\"\n  },\n  {\n    \"eventType\": \"PageView\",\n    \"uri\": \"/some/page\",\n    \"referrer\": \"https://example.com\",\n    \"duration\": 0.42\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"example_string\",\n  \"errors\": [\n    {\n      \"error\": \"example_string\",\n      \"timestamp\": \"example_string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://insights-collector.newrelic.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "95be9d8c-3875-4ea6-a2bf-c4923f40d625",
+    "name": "New Relic Event API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

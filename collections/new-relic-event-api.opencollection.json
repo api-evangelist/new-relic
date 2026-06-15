@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Send Custom Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/v1/accounts/:accountId/events",
+            "headers": [
+              {
+                "name": "Content-Encoding",
+                "value": "gzip"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "42",
+                "type": "path",
+                "description": "The New Relic account ID to ingest events into"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends one or more custom events to the specified New Relic account. The request body must be a JSON array of event objects. Each event must include an eventType attribute. Payloads may be gzip-compressed. Events are immediately available for querying via NRQL after processing. A single request may contain up to 2000 events and must not exceed 1 MB uncompressed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

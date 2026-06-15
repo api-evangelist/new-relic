@@ -1,0 +1,479 @@
+{
+  "info": {
+    "_postman_id": "d43971bf-0f51-4796-96b8-cba89c480803",
+    "name": "New Relic Trace API",
+    "description": "The New Relic Trace API allows distributed tracing data to be sent directly to New Relic in either New Relic format or Zipkin JSON v2 format. It is used by Telemetry SDKs, open source integrations, and custom tracing implementations that need to report span data without a full APM agent. Traces appear in the New Relic Distributed Tracing UI after processing.\n\nContact Support:\n Name: New Relic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:03:00.000Z",
+    "updatedAt": "2026-06-05T13:03:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d43971bf-0f51-4796-96b8-cba89c480803"
+  },
+  "item": [
+    {
+      "name": "trace",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "New Relic Send Trace Spans",
+              "id": "3125017e-2bbc-479e-9dea-b7e54f875506",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The format of the trace data in the request body",
+                    "key": "Data-Format",
+                    "value": "zipkin"
+                  },
+                  {
+                    "description": "Version of the data format. Use 1 for newrelic format.",
+                    "key": "Data-Format-Version",
+                    "value": "1"
+                  },
+                  {
+                    "description": "Use gzip for compressed payloads",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_73\": \"<string>\",\n        \"sint442\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_2db\": \"<string>\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/trace/v1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "trace",
+                    "v1"
+                  ]
+                },
+                "description": "Sends distributed trace spans to New Relic. Supports New Relic format (Content-Type application/json with Data-Format newrelic) and Zipkin JSON v2 format (Data-Format zipkin). Payloads can be gzip-compressed. A single request supports up to 10,000 spans and must not exceed 1 MB compressed."
+              },
+              "response": [
+                {
+                  "id": "e3742152-7f5a-43be-9780-2ecfaf8d7ed5",
+                  "name": "Accepted. Trace data was received and queued for processing.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The format of the trace data in the request body",
+                        "key": "Data-Format",
+                        "value": "zipkin"
+                      },
+                      {
+                        "description": "Version of the data format. Use 1 for newrelic format.",
+                        "key": "Data-Format-Version",
+                        "value": "1"
+                      },
+                      {
+                        "description": "Use gzip for compressed payloads",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_73\": \"<string>\",\n        \"sint442\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_2db\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/trace/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "trace",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:03:01.000Z",
+                  "updatedAt": "2026-06-05T13:03:01.000Z",
+                  "uid": "35240-e3742152-7f5a-43be-9780-2ecfaf8d7ed5"
+                },
+                {
+                  "id": "1e3768f2-a350-4d18-83a1-2b965ae52dd1",
+                  "name": "Bad request. Payload is malformed or exceeds limits.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The format of the trace data in the request body",
+                        "key": "Data-Format",
+                        "value": "zipkin"
+                      },
+                      {
+                        "description": "Version of the data format. Use 1 for newrelic format.",
+                        "key": "Data-Format-Version",
+                        "value": "1"
+                      },
+                      {
+                        "description": "Use gzip for compressed payloads",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_73\": \"<string>\",\n        \"sint442\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_2db\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/trace/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "trace",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:03:01.000Z",
+                  "updatedAt": "2026-06-05T13:03:01.000Z",
+                  "uid": "35240-1e3768f2-a350-4d18-83a1-2b965ae52dd1"
+                },
+                {
+                  "id": "cea45234-eb26-4234-b3d3-5fdb9966ed52",
+                  "name": "Forbidden. The API key is invalid or lacks insert permissions.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The format of the trace data in the request body",
+                        "key": "Data-Format",
+                        "value": "zipkin"
+                      },
+                      {
+                        "description": "Version of the data format. Use 1 for newrelic format.",
+                        "key": "Data-Format-Version",
+                        "value": "1"
+                      },
+                      {
+                        "description": "Use gzip for compressed payloads",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_73\": \"<string>\",\n        \"sint442\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_2db\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/trace/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "trace",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:03:01.000Z",
+                  "updatedAt": "2026-06-05T13:03:01.000Z",
+                  "uid": "35240-cea45234-eb26-4234-b3d3-5fdb9966ed52"
+                },
+                {
+                  "id": "16d424b6-e31a-487f-b751-2b28cd38bbc8",
+                  "name": "Payload too large.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The format of the trace data in the request body",
+                        "key": "Data-Format",
+                        "value": "zipkin"
+                      },
+                      {
+                        "description": "Version of the data format. Use 1 for newrelic format.",
+                        "key": "Data-Format-Version",
+                        "value": "1"
+                      },
+                      {
+                        "description": "Use gzip for compressed payloads",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_73\": \"<string>\",\n        \"sint442\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_2db\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/trace/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "trace",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Request Entity Too Large",
+                  "code": 413,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:03:01.000Z",
+                  "updatedAt": "2026-06-05T13:03:01.000Z",
+                  "uid": "35240-16d424b6-e31a-487f-b751-2b28cd38bbc8"
+                },
+                {
+                  "id": "c8eab4c6-2631-4a7a-b4a7-6ff4f00b1370",
+                  "name": "Too many requests. Rate limit exceeded.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The format of the trace data in the request body",
+                        "key": "Data-Format",
+                        "value": "zipkin"
+                      },
+                      {
+                        "description": "Version of the data format. Use 1 for newrelic format.",
+                        "key": "Data-Format-Version",
+                        "value": "1"
+                      },
+                      {
+                        "description": "Use gzip for compressed payloads",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_73\": \"<string>\",\n        \"sint442\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"spans\": [\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"trace.id\": \"<string>\",\n        \"timestamp\": \"<integer>\",\n        \"attributes\": {\n          \"name\": \"<string>\",\n          \"parent.id\": \"<string>\",\n          \"duration.ms\": \"<number>\",\n          \"service.name\": \"<string>\",\n          \"error\": \"<boolean>\",\n          \"db.statement\": \"<string>\",\n          \"http.url\": \"<string>\",\n          \"http.method\": \"<string>\",\n          \"http.statusCode\": \"<integer>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"attributes\": {\n        \"in_2db\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/trace/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "trace",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:03:01.000Z",
+                  "updatedAt": "2026-06-05T13:03:01.000Z",
+                  "uid": "35240-c8eab4c6-2631-4a7a-b4a7-6ff4f00b1370"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:01.000Z",
+              "updatedAt": "2026-06-05T13:03:01.000Z",
+              "uid": "35240-3125017e-2bbc-479e-9dea-b7e54f875506"
+            }
+          ],
+          "id": "6e4e5949-6d7f-4b6c-a01d-85b0d39465df",
+          "createdAt": "2026-06-05T13:03:01.000Z",
+          "updatedAt": "2026-06-05T13:03:01.000Z",
+          "uid": "35240-6e4e5949-6d7f-4b6c-a01d-85b0d39465df"
+        }
+      ],
+      "id": "026ed6c4-5bd4-471e-b33b-55aeab5fec5b",
+      "createdAt": "2026-06-05T13:03:01.000Z",
+      "updatedAt": "2026-06-05T13:03:01.000Z",
+      "uid": "35240-026ed6c4-5bd4-471e-b33b-55aeab5fec5b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://trace-api.newrelic.com"
+    }
+  ]
+}

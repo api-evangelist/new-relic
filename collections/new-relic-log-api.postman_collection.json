@@ -1,0 +1,424 @@
+{
+  "item": [
+    {
+      "id": "951cf5dd-5ffd-4c44-9f30-12056d36ecb4",
+      "name": "Logs",
+      "description": {
+        "content": "Log data ingestion endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c7876b2-3d7d-48e7-a226-77f7cc57bed9",
+          "name": "New Relic Send Log Data",
+          "request": {
+            "name": "New Relic Send Log Data",
+            "description": {
+              "content": "Sends one or more log records to the New Relic Log API. Accepts a JSON array of log data objects, each containing a logs array and optional common attributes. Payloads must be gzip-compressed. A single request may not exceed 1 MB compressed or 10,000 log entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "log",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Compression encoding. Gzip is required.",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"<string>\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"<string>\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"<string>\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"<string>\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\"\n        },\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c00a5879-d857-4486-911d-02894f2edd5c",
+              "name": "Accepted. Log data was received and queued for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Compression encoding. Gzip is required.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"logtype\": \"nginx\",\n        \"service.name\": \"myService\",\n        \"host.name\": \"web01\"\n      }\n    },\n    \"logs\": [\n      {\n        \"timestamp\": 1645564509000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"GET /api/health HTTP/1.1\\\" 200 24\",\n        \"level\": \"INFO\"\n      },\n      {\n        \"timestamp\": 1645564510000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"POST /api/orders HTTP/1.1\\\" 500 0\",\n        \"level\": \"ERROR\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3844cf60-7598-4d36-acaf-83582b656522",
+              "name": "Bad request. Payload is malformed or missing required fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Compression encoding. Gzip is required.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"logtype\": \"nginx\",\n        \"service.name\": \"myService\",\n        \"host.name\": \"web01\"\n      }\n    },\n    \"logs\": [\n      {\n        \"timestamp\": 1645564509000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"GET /api/health HTTP/1.1\\\" 200 24\",\n        \"level\": \"INFO\"\n      },\n      {\n        \"timestamp\": 1645564510000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"POST /api/orders HTTP/1.1\\\" 500 0\",\n        \"level\": \"ERROR\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b761ea19-a744-439c-9331-a82371b56e8c",
+              "name": "Forbidden. The API key is invalid or lacks insert permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Compression encoding. Gzip is required.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"logtype\": \"nginx\",\n        \"service.name\": \"myService\",\n        \"host.name\": \"web01\"\n      }\n    },\n    \"logs\": [\n      {\n        \"timestamp\": 1645564509000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"GET /api/health HTTP/1.1\\\" 200 24\",\n        \"level\": \"INFO\"\n      },\n      {\n        \"timestamp\": 1645564510000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"POST /api/orders HTTP/1.1\\\" 500 0\",\n        \"level\": \"ERROR\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8634c399-72e4-4614-ab7c-8afba2e5fb58",
+              "name": "Payload too large. Exceeds 1 MB compressed limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Compression encoding. Gzip is required.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"logtype\": \"nginx\",\n        \"service.name\": \"myService\",\n        \"host.name\": \"web01\"\n      }\n    },\n    \"logs\": [\n      {\n        \"timestamp\": 1645564509000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"GET /api/health HTTP/1.1\\\" 200 24\",\n        \"level\": \"INFO\"\n      },\n      {\n        \"timestamp\": 1645564510000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"POST /api/orders HTTP/1.1\\\" 500 0\",\n        \"level\": \"ERROR\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "387907bc-1a43-4fca-88c7-1ad34bc186b3",
+              "name": "Too many requests. Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Compression encoding. Gzip is required.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"attributes\": {\n        \"logtype\": \"nginx\",\n        \"service.name\": \"myService\",\n        \"host.name\": \"web01\"\n      }\n    },\n    \"logs\": [\n      {\n        \"timestamp\": 1645564509000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"GET /api/health HTTP/1.1\\\" 200 24\",\n        \"level\": \"INFO\"\n      },\n      {\n        \"timestamp\": 1645564510000,\n        \"message\": \"127.0.0.1 - - [01/Jan/2022] \\\"POST /api/orders HTTP/1.1\\\" 500 0\",\n        \"level\": \"ERROR\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://log-api.newrelic.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "98a6ac24-681f-4642-a7e0-3914c8aaf7c0",
+    "name": "New Relic Log API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Log API enables log data to be sent directly to the New Relic platform via HTTP POST requests. It accepts gzip-compressed JSON payloads and provides an alternative to log forwarding agents when direct integration is preferred. Logs are available for querying in New Relic Logs UI and via NRQL immediately after ingestion.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

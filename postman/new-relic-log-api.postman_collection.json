@@ -1,0 +1,419 @@
+{
+  "info": {
+    "_postman_id": "b0539c5f-57cd-44fa-9a02-96faf9318135",
+    "name": "New Relic Log API",
+    "description": "The New Relic Log API enables log data to be sent directly to the New Relic platform via HTTP POST requests. It accepts gzip-compressed JSON payloads and provides an alternative to log forwarding agents when direct integration is preferred. Logs are available for querying in New Relic Logs UI and via NRQL immediately after ingestion.\n\nContact Support:\n Name: New Relic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:02:54.000Z",
+    "updatedAt": "2026-06-05T13:02:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b0539c5f-57cd-44fa-9a02-96faf9318135"
+  },
+  "item": [
+    {
+      "name": "log",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "New Relic Send Log Data",
+              "id": "ed76e65d-5a39-45ca-8ed3-d8d74e623d7d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Compression encoding. Gzip is required.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"esseb_7\": \"<string>\",\n          \"deserunt6\": \"<string>\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"ERROR\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"do_f\": \"<string>\",\n          \"nulla__4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"laborum_768\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"FATAL\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"aliquipd7\": \"<string>\",\n          \"aliqua_9a\": \"<string>\"\n        },\n        \"sed_9_\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"sunt_a81\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ex_a6\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"veniam1\": \"<string>\"\n        },\n        \"Excepteur018\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ipsum76\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"adipisicing0\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"enim0\": \"<string>\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/log/v1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "log",
+                    "v1"
+                  ]
+                },
+                "description": "Sends one or more log records to the New Relic Log API. Accepts a JSON array of log data objects, each containing a logs array and optional common attributes. Payloads must be gzip-compressed. A single request may not exceed 1 MB compressed or 10,000 log entries."
+              },
+              "response": [
+                {
+                  "id": "5ba6845e-38c7-4a54-baed-142b741ea83e",
+                  "name": "Accepted. Log data was received and queued for processing.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Compression encoding. Gzip is required.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"esseb_7\": \"<string>\",\n          \"deserunt6\": \"<string>\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"ERROR\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"do_f\": \"<string>\",\n          \"nulla__4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"laborum_768\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"FATAL\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"aliquipd7\": \"<string>\",\n          \"aliqua_9a\": \"<string>\"\n        },\n        \"sed_9_\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"sunt_a81\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ex_a6\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"veniam1\": \"<string>\"\n        },\n        \"Excepteur018\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ipsum76\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"adipisicing0\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"enim0\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/log/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "log",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:02:55.000Z",
+                  "updatedAt": "2026-06-05T13:02:55.000Z",
+                  "uid": "35240-5ba6845e-38c7-4a54-baed-142b741ea83e"
+                },
+                {
+                  "id": "3bc866e9-41b6-4914-a0d9-1ca664ee1f1e",
+                  "name": "Bad request. Payload is malformed or missing required fields.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Compression encoding. Gzip is required.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"esseb_7\": \"<string>\",\n          \"deserunt6\": \"<string>\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"ERROR\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"do_f\": \"<string>\",\n          \"nulla__4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"laborum_768\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"FATAL\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"aliquipd7\": \"<string>\",\n          \"aliqua_9a\": \"<string>\"\n        },\n        \"sed_9_\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"sunt_a81\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ex_a6\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"veniam1\": \"<string>\"\n        },\n        \"Excepteur018\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ipsum76\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"adipisicing0\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"enim0\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/log/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "log",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:02:55.000Z",
+                  "updatedAt": "2026-06-05T13:02:55.000Z",
+                  "uid": "35240-3bc866e9-41b6-4914-a0d9-1ca664ee1f1e"
+                },
+                {
+                  "id": "f19a8ee2-61f0-46a0-9378-d8218bbbc174",
+                  "name": "Forbidden. The API key is invalid or lacks insert permissions.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Compression encoding. Gzip is required.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"esseb_7\": \"<string>\",\n          \"deserunt6\": \"<string>\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"ERROR\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"do_f\": \"<string>\",\n          \"nulla__4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"laborum_768\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"FATAL\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"aliquipd7\": \"<string>\",\n          \"aliqua_9a\": \"<string>\"\n        },\n        \"sed_9_\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"sunt_a81\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ex_a6\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"veniam1\": \"<string>\"\n        },\n        \"Excepteur018\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ipsum76\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"adipisicing0\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"enim0\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/log/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "log",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:02:55.000Z",
+                  "updatedAt": "2026-06-05T13:02:55.000Z",
+                  "uid": "35240-f19a8ee2-61f0-46a0-9378-d8218bbbc174"
+                },
+                {
+                  "id": "38b425ba-a6ba-4aaf-967c-9ca8ed76564a",
+                  "name": "Payload too large. Exceeds 1 MB compressed limit.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Compression encoding. Gzip is required.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"esseb_7\": \"<string>\",\n          \"deserunt6\": \"<string>\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"ERROR\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"do_f\": \"<string>\",\n          \"nulla__4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"laborum_768\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"FATAL\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"aliquipd7\": \"<string>\",\n          \"aliqua_9a\": \"<string>\"\n        },\n        \"sed_9_\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"sunt_a81\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ex_a6\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"veniam1\": \"<string>\"\n        },\n        \"Excepteur018\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ipsum76\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"adipisicing0\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"enim0\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/log/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "log",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Request Entity Too Large",
+                  "code": 413,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:02:55.000Z",
+                  "updatedAt": "2026-06-05T13:02:55.000Z",
+                  "uid": "35240-38b425ba-a6ba-4aaf-967c-9ca8ed76564a"
+                },
+                {
+                  "id": "58e10e2c-dda7-4577-a367-4a6b0f28711c",
+                  "name": "Too many requests. Rate limit exceeded.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Compression encoding. Gzip is required.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"esseb_7\": \"<string>\",\n          \"deserunt6\": \"<string>\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"ERROR\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"do_f\": \"<string>\",\n          \"nulla__4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"laborum_768\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"logs\": [\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"FATAL\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"aliquipd7\": \"<string>\",\n          \"aliqua_9a\": \"<string>\"\n        },\n        \"sed_9_\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"sunt_a81\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ex_a6\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      },\n      {\n        \"timestamp\": \"<integer>\",\n        \"message\": \"<string>\",\n        \"level\": \"DEBUG\",\n        \"logtype\": \"<string>\",\n        \"attributes\": {\n          \"veniam1\": \"<string>\"\n        },\n        \"Excepteur018\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"ipsum76\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        },\n        \"adipisicing0\": {\n          \"description\": \"Additional top-level attributes are accepted and stored\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"attributes\": {\n        \"enim0\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/log/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "log",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:02:55.000Z",
+                  "updatedAt": "2026-06-05T13:02:55.000Z",
+                  "uid": "35240-58e10e2c-dda7-4577-a367-4a6b0f28711c"
+                }
+              ],
+              "createdAt": "2026-06-05T13:02:55.000Z",
+              "updatedAt": "2026-06-05T13:02:55.000Z",
+              "uid": "35240-ed76e65d-5a39-45ca-8ed3-d8d74e623d7d"
+            }
+          ],
+          "id": "1b4a7129-f75d-4cbf-9a1b-dbd301dcca60",
+          "createdAt": "2026-06-05T13:02:55.000Z",
+          "updatedAt": "2026-06-05T13:02:55.000Z",
+          "uid": "35240-1b4a7129-f75d-4cbf-9a1b-dbd301dcca60"
+        }
+      ],
+      "id": "70da9b00-72b5-4d6f-8f58-9f53945f3165",
+      "createdAt": "2026-06-05T13:02:55.000Z",
+      "updatedAt": "2026-06-05T13:02:55.000Z",
+      "uid": "35240-70da9b00-72b5-4d6f-8f58-9f53945f3165"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://log-api.newrelic.com"
+    }
+  ]
+}

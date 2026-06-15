@@ -1,0 +1,1698 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications.json",
+            "params": [
+              {
+                "name": "filter[name]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Filter by application name"
+              },
+              {
+                "name": "filter[host]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Filter by application host"
+              },
+              {
+                "name": "filter[ids]",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by application ids"
+              },
+              {
+                "name": "filter[language]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Filter by application language"
+              },
+              {
+                "name": "exclude_links",
+                "value": "true",
+                "type": "query",
+                "description": "Exclude links section from the response"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "This GET endpoint retrieves a paginated list of all applications associated with your New Relic account. It returns application data in JSON format, including details such as application name, ID, health status, and response time metrics. You can use optional query parameters to filter results by application name or IDs, and control pagination through page and per_page parameters. The response includes summary information for each application, making it useful for monitoring multiple application"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/deployments.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves a paginated list of all deployment records associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can access historical deployment information including deployment timestamps, descriptions, revisions, changelogs, and the user who created each deployment record. This is useful for tracking application releases, correlating performance changes with deployments, and maintaining a comprehensive depl"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Applications Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/deployments.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new deployment marker for a specified application in New Relic by sending a POST request to the /applications/{application_id}/deployments.json endpoint. This operation allows you to record deployment events, which appear as vertical lines on charts in the New Relic UI, helping teams correlate application performance changes with specific deployments. The request requires the application_id path parameter to identify the target application, and typically accepts deployment details in t"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Applications Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/deployments/:id.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Deployment ID"
+              }
+            ]
+          },
+          "docs": "This API operation allows you to delete a specific deployment record from a New Relic application by making a DELETE request to the endpoint /applications/{application_id}/deployments/{id}.json, where {application_id} is the unique identifier of the application and {id} is the specific deployment record you want to remove. This is useful for removing incorrect or outdated deployment markers from your application's deployment history in New Relic, helping maintain accurate tracking of your applic"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/hosts.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "filter[hostname]",
+                "value": "web01.example.com",
+                "type": "query",
+                "description": "Filter by server hostname"
+              },
+              {
+                "name": "filter[ids]",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by application host ids"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves a paginated list of hosts associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can obtain information about all hosts running the specified application, including host details and performance metrics. The response is returned in JSON format and includes host identifiers, names, health status, and other relevant metadata that helps monitor application infrastructure across different servers or "
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts Host Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/hosts/:host_id/metrics.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "host_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Host ID"
+              },
+              {
+                "name": "name",
+                "value": "example-resource-01",
+                "type": "query",
+                "description": "Filter metrics by name"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index (will be deprecated)"
+              },
+              {
+                "name": "cursor",
+                "value": "example_string",
+                "type": "query",
+                "description": "Cursor for next page (replacing page param)"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves a list of metric names associated with a specific host within a given application in New Relic's Application Performance Monitoring (APM) system. By providing both an application ID and a host in the endpoint path, users can query the available metrics that New Relic is collecting for that particular host instance. The response returns metric name data in JSON format, which typically includes identifiers and metadata for various performance measurements such as CPU u"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts Host Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/hosts/:host_id/metrics/data.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "host_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Host ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves metric data for a specific host associated with a particular application in New Relic. By making a GET request to the endpoint with the application and host as path parameters, users can access detailed performance metrics and monitoring data for that specific host instance. The operation returns data in JSON format, which typically includes time-series metric values such as response times, throughput, error rates, and other performance indicators collected by New Re"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/hosts/:id.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application host ID"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves detailed information about a specific host associated with a particular application in New Relic's APM monitoring system. By providing both an application and a host in the endpoint path, it returns comprehensive data about that host's performance metrics, system specifications, and current status within the context of the specified application. The GET request returns a JSON response containing host-level details such as hostname, health status, response times, thro"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/instances.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "filter[hostname]",
+                "value": "web01.example.com",
+                "type": "query",
+                "description": "Filter by server hostname"
+              },
+              {
+                "name": "filter[ids]",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by application instance ids"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\">\npaginated</a> list of instances associated with the given application. The time range for summary data is the last 3-4 minutes.</p>\n\n<p>Application instances can be filtered by hostname, or the list of application instance IDs.</p>\n\n<p>See our documentation for a discussion and examples of\nusing <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/appli"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/instances/:id.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application instance ID"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a single application instance, identified by ID. The time range for summary data is the last 3-4 minutes.</p>\n\n<p>See our documentation for a discussion of\n <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2\" target=\"_blank\">summary data output</a>.</p>\n\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Instances Instance Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/instances/:instance_id/metrics.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "instance_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Instance ID"
+              },
+              {
+                "name": "name",
+                "value": "example-resource-01",
+                "type": "query",
+                "description": "Filter metrics by name"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index (will be deprecated)"
+              },
+              {
+                "name": "cursor",
+                "value": "example_string",
+                "type": "query",
+                "description": "Cursor for next page (replacing page param)"
+              }
+            ]
+          },
+          "docs": "<p>Return a list of known metrics and their value names for the given resource.</p>\n\n<p>See our documentation for a discussion\non <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\"> output pagination</a>\nand for examples of <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples\" target=\"_blank\">requesting and using metric values</a>.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Instances Instance Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/instances/:instance_id/metrics/data.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "instance_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Instance ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our doc"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/metrics.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "name",
+                "value": "example-resource-01",
+                "type": "query",
+                "description": "Filter metrics by name"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index (will be deprecated)"
+              },
+              {
+                "name": "cursor",
+                "value": "example_string",
+                "type": "query",
+                "description": "Cursor for next page (replacing page param)"
+              }
+            ]
+          },
+          "docs": "<p>Return a list of known metrics and their value names for the given resource.</p>\n\n<p>See our documentation for a discussion\non <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\"> output pagination</a>\nand for examples of <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples\" target=\"_blank\">requesting and using metric values</a>.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:application_id/metrics/data.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our doc"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/applications/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a single Application, identified by ID. The time range for summary data is the last 3-4 minutes.</p>\n\n<p>See our documentation for a discussion of the\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2\" target=\"_blank\"> summary data output</a>.</p>\n\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/applications/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p>This API endpoint allows you to update certain parameters of your application.</p>\n\n<p>The input is expected to be in <strong>JSON or XML</strong> format in the body parameter of the PUT request. The exact\nschema is defined below. Any extra parameters passed in the body <strong>will be ignored</strong>.</p>\n\n<p>See our documentation for a discussion and simple example of\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/changing-alias-your-application-v2\" target"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/applications/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint deletes an application and all of its reported data.</p>\n\n<p><strong>WARNING</strong>: Only applications that have stopped reporting can be deleted. This is an irreversible process\nwhich will delete all reported data for this application.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/mobile_applications.json"
+          },
+          "docs": "<p>This API endpoint returns a list of the Mobile Applications associated with your New Relic account.</p>\n\n<p>MobileApplications can be filtered by their name, or by the application IDs.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/mobile_applications/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Mobile Application ID"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a single Mobile Application, identified by ID. The time range for summary data is the last 30 minutes.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications Mobile Application Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/mobile_applications/:mobile_application_id/metrics.json",
+            "params": [
+              {
+                "name": "mobile_application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Mobile application ID"
+              },
+              {
+                "name": "name",
+                "value": "example-resource-01",
+                "type": "query",
+                "description": "Filter metrics by name"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index (will be deprecated)"
+              },
+              {
+                "name": "cursor",
+                "value": "example_string",
+                "type": "query",
+                "description": "Cursor for next page (replacing page param)"
+              }
+            ]
+          },
+          "docs": "<p>Return a list of known metrics and their value names for the given resource.</p>\n\n<p>See our documentation for a discussion\non <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\"> output pagination</a>\nand for examples of <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples\" target=\"_blank\">requesting and using metric values</a>.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications Mobile Application Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/mobile_applications/:mobile_application_id/metrics/data.json",
+            "params": [
+              {
+                "name": "mobile_application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Mobile application ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our doc"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Get",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Key Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/key_transactions.json",
+            "params": [
+              {
+                "name": "filter[name]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Filter by name"
+              },
+              {
+                "name": "filter[ids]",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by policy IDs"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\">paginated</a>\nlist of the key transactions associated with your New Relic account.  The time range for summary data is the last 10 minutes.</p>\n\n<p>Key transactions can be filtered by their name or list of IDs.</p>\n\n<p>See our documentation for a discussion of\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examp"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Key Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/key_transactions/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Key transaction ID"
+              }
+            ]
+          },
+          "docs": "<p>This endpoint returns a single key transaction, identified by ID. The time range for summary data is the last 10 minutes.</p>\n\n<p>See our documentation for a discussion of\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2\" target=\"_blank\">summary data output</a>.</p>\n\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Alerts Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_channels.json",
+            "params": [
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It returns a list of the channels associated with your New Relic account.</p>\n\n<p>Note: See our documentation for a discussion o"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/alerts_channels.json",
+            "params": [
+              {
+                "name": "policy_ids",
+                "value": "500123",
+                "type": "query",
+                "description": "Policy IDs to associate with channel"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It creates a channel associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/re"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Channels Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_channels/:channel_id.json",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts notification channels.</p>\n\n<p>Note: <code>User</code> notification channels cannot be deleted.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requir"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_conditions.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts policy ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p>Note: <strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting),"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/alerts_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to create APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are not a"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to update APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are not a"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to delete APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity ID"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the Alerts conditions an entity is part of.</p>\n\n<p>Entity type options (Synthetics is not yet supported):</p>\n\n<pre><code>BrowserApplication\n\nApplication\n\nMobileApplication\n\nServer\n\nKeyTransactio"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity to add"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              },
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to add an entity to a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.\n<br />\n  Entity "
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity to remove"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              },
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to disassociate an entity with a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_events.json",
+            "params": [
+              {
+                "name": "filter[product]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Filter by New Relic product"
+              },
+              {
+                "name": "filter[entity_type]",
+                "value": "standard",
+                "type": "query",
+                "description": "Filter by entity type"
+              },
+              {
+                "name": "filter[entity_group_id]",
+                "value": "100",
+                "type": "query",
+                "description": "Filter by entity group ID"
+              },
+              {
+                "name": "filter[entity_id]",
+                "value": "100",
+                "type": "query",
+                "description": "Filter by entity ID"
+              },
+              {
+                "name": "filter[event_type]",
+                "value": "standard",
+                "type": "query",
+                "description": "Filter by event type"
+              },
+              {
+                "name": "filter[incident_id]",
+                "value": "100",
+                "type": "query",
+                "description": "Filter by incident id"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the alert events for your account.</p>\n\n<p>Alerts events can be filter by product, target type, group ID, instance ID, and event type.</p>\n\n<p>The options for prod"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts External Service Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_external_service_conditions.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts policy ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the external service conditions for your alert policy.</p>\n\n<p>See our documentation for a discussion on\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts External Service Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/alerts_external_service_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to create external service conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>S"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts External Service Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_external_service_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update external service conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts External Service Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_external_service_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to delete external service conditions associated with your alert policy.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required."
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_incidents.json",
+            "params": [
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              },
+              {
+                "name": "only_open",
+                "value": "true",
+                "type": "query",
+                "description": "Filter by open incidents"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint returns a list of the Incidents associated with your New Relic account.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#incidents\" ta"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Location Failure Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_location_failure_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Location Failure Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/alerts_location_failure_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy failure condition"
+              },
+              {
+                "name": "location_failure_condition",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to create the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Location Failure Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_location_failure_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Location Failure Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_location_failure_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to Delete the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Nrql Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_nrql_conditions.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts policy ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Nrql Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/alerts_nrql_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Nrql Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_nrql_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Nrql Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_nrql_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_policies.json",
+            "params": [
+              {
+                "name": "filter[name]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Name (must be exact match)"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>This API endpoint returns a list of the alert policies associated with your New Relic account.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/apis/rest-api-"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/alerts_policies.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>This Alerts API endpoint creates a policy associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API "
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint updates Alerts policies associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on u"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Policy ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts policies associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on u"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_ids",
+                "value": "500123",
+                "type": "query",
+                "description": "Channel IDs"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint updates policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "query",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint deletes Alerts policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.<"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Synthetics Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_synthetics_conditions.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts policy ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to list the Synthetics conditions for your alert policy.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-reli"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Synthetics Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.newrelic.com/v2/alerts_synthetics_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to create Synthetics conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>S"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Synthetics Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.newrelic.com/v2/alerts_synthetics_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update Synthetics conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>S"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Synthetics Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.newrelic.com/v2/alerts_synthetics_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to delete Synthetics conditions associated with your alert policy.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Violations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.newrelic.com/v2/alerts_violations.json",
+            "params": [
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              },
+              {
+                "name": "start_date",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve violations created after this time"
+              },
+              {
+                "name": "end_date",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve violations created before this time"
+              },
+              {
+                "name": "only_open",
+                "value": "true",
+                "type": "query",
+                "description": "Filter by open violations"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It returns a list of the violations associated with your New Relic account.</p>\n\n<p>See our documentation for a discussion on <a href="
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Metric API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Send Metric Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metric-api.newrelic.com/metric/v1",
+            "headers": [
+              {
+                "name": "Api-Key",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": "gzip"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an array of metric data points to the New Relic Metric API. The request body must be a JSON array of metric data objects, each containing a metrics array and optional common attributes. Payloads should be gzip-compressed for best performance. The API supports count, gauge, and summary metric types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

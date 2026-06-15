@@ -1,0 +1,449 @@
+{
+  "info": {
+    "_postman_id": "22034cfa-b9e1-461d-a2a1-29ee2dc33f07",
+    "name": "New Relic Metric API",
+    "description": "The New Relic Metric API is an HTTP endpoint for ingesting dimensional metric data directly into the New Relic platform. It accepts JSON payloads via POST requests compressed with gzip and is the underlying API used by Telemetry SDKs and open source exporters such as Prometheus and DropWizard. Metrics are sent as arrays of metric data points with attributes, timestamps, and interval values.\n\nContact Support:\n Name: New Relic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:02:43.000Z",
+    "updatedAt": "2026-06-05T13:02:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-22034cfa-b9e1-461d-a2a1-29ee2dc33f07"
+  },
+  "item": [
+    {
+      "name": "metric",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "New Relic Send Metric Data",
+              "id": "20fd8b0b-6471-46a4-a976-6c80a1f2090f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                    "key": "Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Compression encoding. Use gzip for compressed payloads.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_4c8\": \"<string>\",\n          \"eiusmod_543\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"gauge\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"in_c7\": \"<string>\",\n          \"proident4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"commodo_c8\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"summary\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"sintb5\": \"<string>\",\n          \"irure1a\": \"<string>\",\n          \"laboris_90\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_f\": \"<string>\",\n          \"aute_1c2\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"Excepteur_f50\": \"<string>\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/metric/v1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metric",
+                    "v1"
+                  ]
+                },
+                "description": "Sends an array of metric data points to the New Relic Metric API. The request body must be a JSON array of metric data objects, each containing a metrics array and optional common attributes. Payloads should be gzip-compressed for best performance. The API supports count, gauge, and summary metric types."
+              },
+              "response": [
+                {
+                  "id": "9f6a6aa3-6c12-42f3-a3e2-1c768a4871a5",
+                  "name": "Accepted. The data was received and queued for processing.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                        "key": "Api-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Compression encoding. Use gzip for compressed payloads.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_4c8\": \"<string>\",\n          \"eiusmod_543\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"gauge\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"in_c7\": \"<string>\",\n          \"proident4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"commodo_c8\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"summary\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"sintb5\": \"<string>\",\n          \"irure1a\": \"<string>\",\n          \"laboris_90\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_f\": \"<string>\",\n          \"aute_1c2\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"Excepteur_f50\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/metric/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metric",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:02:44.000Z",
+                  "updatedAt": "2026-06-05T13:02:44.000Z",
+                  "uid": "35240-9f6a6aa3-6c12-42f3-a3e2-1c768a4871a5"
+                },
+                {
+                  "id": "6d5adda7-2380-4be6-93b7-5f56134312fd",
+                  "name": "Bad request. The payload is malformed or exceeds size limits.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                        "key": "Api-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Compression encoding. Use gzip for compressed payloads.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_4c8\": \"<string>\",\n          \"eiusmod_543\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"gauge\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"in_c7\": \"<string>\",\n          \"proident4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"commodo_c8\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"summary\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"sintb5\": \"<string>\",\n          \"irure1a\": \"<string>\",\n          \"laboris_90\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_f\": \"<string>\",\n          \"aute_1c2\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"Excepteur_f50\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/metric/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metric",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:02:44.000Z",
+                  "updatedAt": "2026-06-05T13:02:44.000Z",
+                  "uid": "35240-6d5adda7-2380-4be6-93b7-5f56134312fd"
+                },
+                {
+                  "id": "a07c7a5f-e55d-4ebe-839d-e333a07fff51",
+                  "name": "Forbidden. The API key is invalid or does not have insert permissions.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                        "key": "Api-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Compression encoding. Use gzip for compressed payloads.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_4c8\": \"<string>\",\n          \"eiusmod_543\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"gauge\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"in_c7\": \"<string>\",\n          \"proident4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"commodo_c8\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"summary\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"sintb5\": \"<string>\",\n          \"irure1a\": \"<string>\",\n          \"laboris_90\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_f\": \"<string>\",\n          \"aute_1c2\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"Excepteur_f50\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/metric/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metric",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:02:44.000Z",
+                  "updatedAt": "2026-06-05T13:02:44.000Z",
+                  "uid": "35240-a07c7a5f-e55d-4ebe-839d-e333a07fff51"
+                },
+                {
+                  "id": "87c18b2d-afa8-4fe2-aebf-19f7ce9eadeb",
+                  "name": "Payload too large. The request body exceeds the 1 MB limit.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                        "key": "Api-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Compression encoding. Use gzip for compressed payloads.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_4c8\": \"<string>\",\n          \"eiusmod_543\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"gauge\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"in_c7\": \"<string>\",\n          \"proident4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"commodo_c8\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"summary\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"sintb5\": \"<string>\",\n          \"irure1a\": \"<string>\",\n          \"laboris_90\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_f\": \"<string>\",\n          \"aute_1c2\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"Excepteur_f50\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/metric/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metric",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Request Entity Too Large",
+                  "code": 413,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:02:44.000Z",
+                  "updatedAt": "2026-06-05T13:02:44.000Z",
+                  "uid": "35240-87c18b2d-afa8-4fe2-aebf-19f7ce9eadeb"
+                },
+                {
+                  "id": "8f1aa2c7-83e7-4ae9-83ef-46dead72c240",
+                  "name": "Too many requests. The rate limit has been exceeded.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                        "key": "Api-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Compression encoding. Use gzip for compressed payloads.",
+                        "key": "Content-Encoding",
+                        "value": "gzip"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_4c8\": \"<string>\",\n          \"eiusmod_543\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"gauge\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"in_c7\": \"<string>\",\n          \"proident4\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"commodo_c8\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"summary\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"sintb5\": \"<string>\",\n          \"irure1a\": \"<string>\",\n          \"laboris_90\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"count\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"qui_f\": \"<string>\",\n          \"aute_1c2\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"Excepteur_f50\": \"<string>\"\n      }\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/metric/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metric",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:02:44.000Z",
+                  "updatedAt": "2026-06-05T13:02:44.000Z",
+                  "uid": "35240-8f1aa2c7-83e7-4ae9-83ef-46dead72c240"
+                }
+              ],
+              "createdAt": "2026-06-05T13:02:44.000Z",
+              "updatedAt": "2026-06-05T13:02:44.000Z",
+              "uid": "35240-20fd8b0b-6471-46a4-a976-6c80a1f2090f"
+            }
+          ],
+          "id": "35c947c1-1710-4a86-abb4-e1e399069f9b",
+          "createdAt": "2026-06-05T13:02:44.000Z",
+          "updatedAt": "2026-06-05T13:02:44.000Z",
+          "uid": "35240-35c947c1-1710-4a86-abb4-e1e399069f9b"
+        }
+      ],
+      "id": "eafdc0c4-b390-425b-b318-2c54e1aae488",
+      "createdAt": "2026-06-05T13:02:44.000Z",
+      "updatedAt": "2026-06-05T13:02:44.000Z",
+      "uid": "35240-eafdc0c4-b390-425b-b318-2c54e1aae488"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://metric-api.newrelic.com"
+    }
+  ]
+}

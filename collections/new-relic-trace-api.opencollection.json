@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Trace API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Traces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Send Trace Spans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://trace-api.newrelic.com/trace/v1",
+            "headers": [
+              {
+                "name": "Data-Format",
+                "value": "newrelic"
+              },
+              {
+                "name": "Data-Format-Version",
+                "value": "1"
+              },
+              {
+                "name": "Content-Encoding",
+                "value": "gzip"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends distributed trace spans to New Relic. Supports New Relic format (Content-Type application/json with Data-Format newrelic) and Zipkin JSON v2 format (Data-Format zipkin). Payloads can be gzip-compressed. A single request supports up to 10,000 spans and must not exceed 1 MB compressed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

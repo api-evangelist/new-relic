@@ -1,0 +1,460 @@
+{
+  "item": [
+    {
+      "id": "61e573ad-0423-4707-959c-47a37cfbdc07",
+      "name": "Metrics",
+      "description": {
+        "content": "Metric data ingestion endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fff4baee-59b7-48c0-817c-3a8594a1397a",
+          "name": "New Relic Send Metric Data",
+          "request": {
+            "name": "New Relic Send Metric Data",
+            "description": {
+              "content": "Sends an array of metric data points to the New Relic Metric API. The request body must be a JSON array of metric data objects, each containing a metrics array and optional common attributes. Payloads should be gzip-compressed for best performance. The API supports count, gauge, and summary metric types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metric",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                "key": "Api-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Compression encoding. Use gzip for compressed payloads.",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"metrics\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"interval.ms\": \"<integer>\",\n        \"attributes\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"common\": {\n      \"timestamp\": \"<integer>\",\n      \"interval.ms\": \"<integer>\",\n      \"attributes\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b7a67ab-9789-4959-b1f5-6f83f9608250",
+              "name": "Accepted. The data was received and queued for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metric",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                    "key": "Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Compression encoding. Use gzip for compressed payloads.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"timestamp\": 1531414060739,\n      \"interval.ms\": 10000,\n      \"attributes\": {\n        \"host.name\": \"host1\",\n        \"service.name\": \"myService\"\n      }\n    },\n    \"metrics\": [\n      {\n        \"name\": \"cpu.usage.percent\",\n        \"type\": \"gauge\",\n        \"value\": 12.3\n      },\n      {\n        \"name\": \"http.requests\",\n        \"type\": \"count\",\n        \"value\": 420,\n        \"interval.ms\": 10000\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dc0bdbf-0646-4b5c-9f1c-cf954704b121",
+              "name": "Bad request. The payload is malformed or exceeds size limits.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metric",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                    "key": "Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Compression encoding. Use gzip for compressed payloads.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"timestamp\": 1531414060739,\n      \"interval.ms\": 10000,\n      \"attributes\": {\n        \"host.name\": \"host1\",\n        \"service.name\": \"myService\"\n      }\n    },\n    \"metrics\": [\n      {\n        \"name\": \"cpu.usage.percent\",\n        \"type\": \"gauge\",\n        \"value\": 12.3\n      },\n      {\n        \"name\": \"http.requests\",\n        \"type\": \"count\",\n        \"value\": 420,\n        \"interval.ms\": 10000\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"Operation completed successfully\"\n      },\n      \"failed\": [\n        {}\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e85f19f-961c-412e-a5dc-33d4f23e05dc",
+              "name": "Forbidden. The API key is invalid or does not have insert permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metric",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                    "key": "Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Compression encoding. Use gzip for compressed payloads.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"timestamp\": 1531414060739,\n      \"interval.ms\": 10000,\n      \"attributes\": {\n        \"host.name\": \"host1\",\n        \"service.name\": \"myService\"\n      }\n    },\n    \"metrics\": [\n      {\n        \"name\": \"cpu.usage.percent\",\n        \"type\": \"gauge\",\n        \"value\": 12.3\n      },\n      {\n        \"name\": \"http.requests\",\n        \"type\": \"count\",\n        \"value\": 420,\n        \"interval.ms\": 10000\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"Operation completed successfully\"\n      },\n      \"failed\": [\n        {}\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eafcd862-e3a2-400f-8a63-3b04a2bccee4",
+              "name": "Payload too large. The request body exceeds the 1 MB limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metric",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                    "key": "Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Compression encoding. Use gzip for compressed payloads.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"timestamp\": 1531414060739,\n      \"interval.ms\": 10000,\n      \"attributes\": {\n        \"host.name\": \"host1\",\n        \"service.name\": \"myService\"\n      }\n    },\n    \"metrics\": [\n      {\n        \"name\": \"cpu.usage.percent\",\n        \"type\": \"gauge\",\n        \"value\": 12.3\n      },\n      {\n        \"name\": \"http.requests\",\n        \"type\": \"count\",\n        \"value\": 420,\n        \"interval.ms\": 10000\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"Operation completed successfully\"\n      },\n      \"failed\": [\n        {}\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c724229-6039-48ee-81cd-a3fc00657fb6",
+              "name": "Too many requests. The rate limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metric",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) New Relic License Key or Ingest API Key with Insert permissions",
+                    "key": "Api-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Compression encoding. Use gzip for compressed payloads.",
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"common\": {\n      \"timestamp\": 1531414060739,\n      \"interval.ms\": 10000,\n      \"attributes\": {\n        \"host.name\": \"host1\",\n        \"service.name\": \"myService\"\n      }\n    },\n    \"metrics\": [\n      {\n        \"name\": \"cpu.usage.percent\",\n        \"type\": \"gauge\",\n        \"value\": 12.3\n      },\n      {\n        \"name\": \"http.requests\",\n        \"type\": \"count\",\n        \"value\": 420,\n        \"interval.ms\": 10000\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"standard\",\n    \"message\": \"Operation completed successfully\"\n  },\n  \"failures\": [\n    {\n      \"error\": {\n        \"message\": \"Operation completed successfully\"\n      },\n      \"failed\": [\n        {}\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metric-api.newrelic.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "059b4896-75d1-4a55-8a2f-a5100a7353ad",
+    "name": "New Relic Metric API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Metric API is an HTTP endpoint for ingesting dimensional metric data directly into the New Relic platform. It accepts JSON payloads via POST requests compressed with gzip and is the underlying API used by Telemetry SDKs and open source exporters such as Prometheus and DropWizard. Metrics are sent as arrays of metric data points with attributes, timestamps, and interval values.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

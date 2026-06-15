@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Log API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Send Log Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://log-api.newrelic.com/log/v1",
+            "headers": [
+              {
+                "name": "Content-Encoding",
+                "value": "gzip"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends one or more log records to the New Relic Log API. Accepts a JSON array of log data objects, each containing a logs array and optional common attributes. Payloads must be gzip-compressed. A single request may not exceed 1 MB compressed or 10,000 log entries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
