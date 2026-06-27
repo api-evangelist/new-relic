@@ -459,7 +459,7 @@ apis:
     url: https://docs.newrelic.com/docs/browser/new-relic-browser/browser-apis/using-browser-apis/
   - type: Authentication
     url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/newrelic/newrelic-browser-agent
     title: Browser Agent SDK
   tags:
@@ -499,17 +499,17 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.newrelic.com/docs/data-apis/ingest-apis/telemetry-sdks-report-custom-telemetry-data/
-  - type: SDK
+  - type: SDKs
     url: https://docs.newrelic.com/docs/data-apis/ingest-apis/telemetry-sdks-report-custom-telemetry-data/
   - type: GitHubRepository
     url: https://github.com/newrelic/newrelic-telemetry-sdk-java
-  - type: SDK
+  - type: SDKs
     url: https://github.com/newrelic/newrelic-telemetry-sdk-python
     title: Python Telemetry SDK
-  - type: SDK
+  - type: SDKs
     url: https://github.com/newrelic/newrelic-telemetry-sdk-go
     title: Go Telemetry SDK
-  - type: SDK
+  - type: SDKs
     url: https://github.com/newrelic/newrelic-telemetry-sdk-dotnet
     title: .NET Telemetry SDK
   tags:
@@ -618,10 +618,10 @@ apis:
       https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/introduction-new-relic-mobile-ios/
   - type: GitHubRepository
     url: https://github.com/newrelic/newrelic-ios-agent
-  - type: SDK
+  - type: SDKs
     url: https://github.com/newrelic/newrelic-android-agent
     title: Android Agent SDK
-  - type: SDK
+  - type: SDKs
     url: https://github.com/newrelic/newrelic-unity-agent
     title: Unity Agent SDK
   tags:
@@ -657,69 +657,66 @@ specificationVersion: '0.19'
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/new-relic/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/new-relic-application-health-triage-workflow.yml
-    name: New Relic Application Health Triage
-    summary: Resolve an app, branch on health status, and pull recent metric data.
-  - url: arazzo/new-relic-associate-entity-with-condition-workflow.yml
-    name: New Relic Associate Entity With Condition
-    summary: Create a policy condition then associate an entity with it.
-  - url: arazzo/new-relic-attach-notification-channel-to-policy-workflow.yml
-    name: New Relic Attach Notification Channel To Policy
-    summary: Create a notification channel and associate it with an alert policy.
-  - url: arazzo/new-relic-create-alert-policy-with-condition-workflow.yml
-    name: New Relic Create Alert Policy With Condition
-    summary: Create an alert policy and attach an APM metric condition to it.
-  - url: arazzo/new-relic-create-nrql-alert-policy-workflow.yml
-    name: New Relic Create NRQL Alert Policy
-    summary: Create an alert policy and attach a NRQL alert condition to it.
-  - url: arazzo/new-relic-create-synthetics-alert-condition-workflow.yml
-    name: New Relic Create Synthetics Alert Condition
-    summary: Resolve a policy by name and attach a Synthetics monitor condition to it.
-  - url: arazzo/new-relic-find-policy-and-list-conditions-workflow.yml
-    name: New Relic Find Policy And List Conditions
-    summary: Resolve an alert policy by name and list its metric conditions.
-  - url: arazzo/new-relic-host-metric-drilldown-workflow.yml
-    name: New Relic Host Metric Drilldown
-    summary: Resolve an app, pick a host, list its metric names, and pull metric data.
-  - url: arazzo/new-relic-ingest-deployment-telemetry-workflow.yml
-    name: New Relic Ingest Deployment Telemetry
-    summary: Record a deployment marker then emit a matching custom deployment event.
-  - url: arazzo/new-relic-ingest-metrics-and-logs-workflow.yml
-    name: New Relic Ingest Metrics And Logs
-    summary: Send a metric batch then send a correlated log batch in one flow.
-  - url: arazzo/new-relic-ingest-trace-and-event-workflow.yml
-    name: New Relic Ingest Trace And Event
-    summary: Send a distributed trace then emit a correlated custom event.
-  - url: arazzo/new-relic-key-transaction-metric-report-workflow.yml
-    name: New Relic Key Transaction Metric Report
-    summary: Resolve a key transaction by name and read its detail record.
-  - url: arazzo/new-relic-mobile-app-crash-report-workflow.yml
-    name: New Relic Mobile App Crash Report
-    summary: List mobile applications, select one, and pull its crash metric data.
-  - url: arazzo/new-relic-open-violations-triage-workflow.yml
-    name: New Relic Open Violations Triage
-    summary: List open violations and branch into incident or event detail.
-  - url: arazzo/new-relic-provision-alerting-stack-workflow.yml
-    name: New Relic Provision Alerting Stack
-    summary: Create a policy, attach a NRQL condition, and wire a notification channel.
-  - url: arazzo/new-relic-prune-nrql-condition-workflow.yml
-    name: New Relic Prune NRQL Condition
-    summary: Resolve a policy by name, list its NRQL conditions, and delete one.
-  - url: arazzo/new-relic-record-deployment-marker-workflow.yml
-    name: New Relic Record Deployment Marker
-    summary: Resolve an application by name and record a deployment marker on it.
-  - url: arazzo/new-relic-rename-application-workflow.yml
-    name: New Relic Rename Application
-    summary: Resolve an application by name and update its display alias.
-  - url: arazzo/new-relic-rollback-deployment-marker-workflow.yml
-    name: New Relic Rollback Deployment Marker
-    summary: Resolve an app, find its latest deployment marker, and delete it.
-  - url: arazzo/new-relic-update-policy-and-condition-workflow.yml
-    name: New Relic Update Policy And Condition
-    summary: Resolve a policy by name, update it, then update one of its conditions.
+- type: Arazzo
+  url: arazzo/new-relic-application-health-triage-workflow.yml
+  name: New Relic Application Health Triage
+- type: Arazzo
+  url: arazzo/new-relic-associate-entity-with-condition-workflow.yml
+  name: New Relic Associate Entity With Condition
+- type: Arazzo
+  url: arazzo/new-relic-attach-notification-channel-to-policy-workflow.yml
+  name: New Relic Attach Notification Channel To Policy
+- type: Arazzo
+  url: arazzo/new-relic-create-alert-policy-with-condition-workflow.yml
+  name: New Relic Create Alert Policy With Condition
+- type: Arazzo
+  url: arazzo/new-relic-create-nrql-alert-policy-workflow.yml
+  name: New Relic Create NRQL Alert Policy
+- type: Arazzo
+  url: arazzo/new-relic-create-synthetics-alert-condition-workflow.yml
+  name: New Relic Create Synthetics Alert Condition
+- type: Arazzo
+  url: arazzo/new-relic-find-policy-and-list-conditions-workflow.yml
+  name: New Relic Find Policy And List Conditions
+- type: Arazzo
+  url: arazzo/new-relic-host-metric-drilldown-workflow.yml
+  name: New Relic Host Metric Drilldown
+- type: Arazzo
+  url: arazzo/new-relic-ingest-deployment-telemetry-workflow.yml
+  name: New Relic Ingest Deployment Telemetry
+- type: Arazzo
+  url: arazzo/new-relic-ingest-metrics-and-logs-workflow.yml
+  name: New Relic Ingest Metrics And Logs
+- type: Arazzo
+  url: arazzo/new-relic-ingest-trace-and-event-workflow.yml
+  name: New Relic Ingest Trace And Event
+- type: Arazzo
+  url: arazzo/new-relic-key-transaction-metric-report-workflow.yml
+  name: New Relic Key Transaction Metric Report
+- type: Arazzo
+  url: arazzo/new-relic-mobile-app-crash-report-workflow.yml
+  name: New Relic Mobile App Crash Report
+- type: Arazzo
+  url: arazzo/new-relic-open-violations-triage-workflow.yml
+  name: New Relic Open Violations Triage
+- type: Arazzo
+  url: arazzo/new-relic-provision-alerting-stack-workflow.yml
+  name: New Relic Provision Alerting Stack
+- type: Arazzo
+  url: arazzo/new-relic-prune-nrql-condition-workflow.yml
+  name: New Relic Prune NRQL Condition
+- type: Arazzo
+  url: arazzo/new-relic-record-deployment-marker-workflow.yml
+  name: New Relic Record Deployment Marker
+- type: Arazzo
+  url: arazzo/new-relic-rename-application-workflow.yml
+  name: New Relic Rename Application
+- type: Arazzo
+  url: arazzo/new-relic-rollback-deployment-marker-workflow.yml
+  name: New Relic Rollback Deployment Marker
+- type: Arazzo
+  url: arazzo/new-relic-update-policy-and-condition-workflow.yml
+  name: New Relic Update Policy And Condition
 - name: New Relic | Monitor, Debug and Improve Your Entire Stack
   description: 'null'
   url: https://newrelic.com/
@@ -759,7 +756,7 @@ common:
 - name: Sign Up
   description: 'null'
   url: https://newrelic.com/signup
-  type: SignUp
+  type: Signup
 - url: https://one.newrelic.com/
   name: New Relic Platform Console
   type: Console
@@ -939,35 +936,35 @@ common:
     description: Monitor Redis instances with memory usage, command statistics, and key metrics.
   - name: Nginx
     description: Monitor Nginx web server performance with request rates, error rates, and upstream metrics.
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/newrelic-java-agent
   name: New Relic Java Agent
   title: Java Agent
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/newrelic-python-agent
   name: New Relic Python Agent
   title: Python Agent
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/node-newrelic
   name: New Relic Node.js Agent
   title: Node.js Agent
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/go-agent
   name: New Relic Go Agent
   title: Go Agent
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/newrelic-dotnet-agent
   name: New Relic .NET Agent
   title: .NET Agent
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/newrelic-ruby-agent
   name: New Relic Ruby Agent
   title: Ruby Agent
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/newrelic-php-agent
   name: New Relic PHP Agent
   title: PHP Agent
-- type: SDK
+- type: SDKs
   url: https://github.com/newrelic/infrastructure-agent
   name: New Relic Infrastructure Agent
 - type: GitHubRepository
