@@ -655,6 +655,12 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: VulnerabilityDisclosure
+  url: security/new-relic-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/new-relic-domain-security.yml
+- type: Authentication
+  url: authentication/new-relic-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/new-relic/overview
 - type: Arazzo

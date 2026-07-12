@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/new-relic-event-api-openapi.yml, openapi/new-relic-log-api-openapi.yml, openapi/new-relic-metric-api-openapi.yml,
+  openapi/new-relic-openapi.yml, openapi/new-relic-trace-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: Api-Key
+  description: New Relic License Key or Ingest API Key
+  sources:
+  - openapi/new-relic-event-api-openapi.yml
+  - openapi/new-relic-log-api-openapi.yml
+  - openapi/new-relic-metric-api-openapi.yml
+  - openapi/new-relic-openapi.yml
+  - openapi/new-relic-trace-api-openapi.yml
