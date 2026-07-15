@@ -655,6 +655,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: AgenticAccess
+  url: agentic-access/new-relic-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/new-relic-vulnerability-disclosure.yml
 - type: DomainSecurity
