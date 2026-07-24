@@ -1,0 +1,599 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Instances API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Instances
+paths:
+  /applications/{application_id}/instances.json:
+    get:
+      tags:
+      - Instances
+      summary: New Relic Get Applications Instances
+      description: '<p>This API endpoint returns a <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        paginated</a> list of instances associated with the given application. The time range for summary data is the last 3-4 minutes.</p>
+
+
+        <p>Application instances can be filtered by hostname, or the list of application instance IDs.</p>
+
+
+        <p>See our documentation for a discussion and examples of
+
+        using <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/list-application-specific-server-host-instance-ids" target="_blank"> filters </a>
+
+        and <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank">summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: filter[hostname]
+        in: query
+        description: Filter by server hostname
+        schema:
+          type: string
+        example: web01.example.com
+      - name: filter[ids]
+        in: query
+        description: Filter by application instance ids
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstances200Example:
+                  summary: Default getApplicationsIdInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstances200Example:
+                  summary: Default getApplicationsIdInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstances
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{id}.json:
+    get:
+      tags:
+      - Instances
+      summary: New Relic Get Applications Instances
+      description: "<p>This API endpoint returns a single application instance, identified by ID. The time range for summary data is the last 3-4 minutes.</p>\n\n<p>See our documentation for a discussion of\n <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2\" target=\"_blank\">summary data output</a>.</p>\n\n"
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: id
+        in: path
+        description: Application instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstancesid200Example:
+                  summary: Default getApplicationsIdInstancesId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstancesid200Example:
+                  summary: Default getApplicationsIdInstancesId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{instance_id}/metrics.json:
+    get:
+      tags:
+      - Instances
+      summary: New Relic Get Applications Instances Instance Metrics
+      description: '<p>Return a list of known metrics and their value names for the given resource.</p>
+
+
+        <p>See our documentation for a discussion
+
+        on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>
+
+        and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: instance_id
+        in: path
+        description: Application Instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetrics200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetrics200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesInstanceIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{instance_id}/metrics/data.json:
+    get:
+      tags:
+      - Instances
+      summary: New Relic Get Applications Instances Instance Metrics Data
+      description: '<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics
+
+        can be returned using the Metric Name API endpoint.</p>
+
+
+        <p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.
+
+        Metric names and values will be matched intelligently in the background.</p>
+
+
+        <p>You can also retrieve a summarized data point across the entire time range selected by using the summarize
+
+        parameter.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>, <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data" target="_blank"> time range</a>
+
+        related considerations, and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: instance_id
+        in: path
+        description: Application Instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetricsdata200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetricsdata200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesInstanceIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MetricParserResponseType:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        values:
+          type: array
+          items:
+            type: string
+          example:
+          - example_string
+    MetricDataResponse:
+      type: object
+      properties:
+        metric_data:
+          $ref: '#/components/schemas/MetricDataResponseType'
+    TimesliceResponse:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        to:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        values:
+          type: object
+          properties: {}
+          example: {}
+    MetricDataResponseType:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponse'
+          example:
+          - name: example-resource-01
+            timeslices:
+            - {}
+        metrics_found:
+          type: string
+          example: example_string
+        metrics_not_found:
+          type: string
+          example: example_string
+        to:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+    ApplicationInstanceLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+        application_host:
+          type: integer
+          example: 100
+        server:
+          type: integer
+          example: 100
+    ApplicationInstanceResponse:
+      type: object
+      properties:
+        application_instance:
+          $ref: '#/components/schemas/ApplicationInstanceResponseType'
+    MetricResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        timeslices:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimesliceResponse'
+          example:
+          - from: '2026-04-18T14:30:00Z'
+            to: '2026-04-18T14:30:00Z'
+            values: {}
+    EndUserSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    ApplicationInstanceResponseType:
+      type: object
+      properties:
+        host:
+          type: string
+          example: example_string
+        application_name:
+          type: string
+          example: example_string
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryDataResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryDataResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        language:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ApplicationInstanceLinksResponse'
+        port:
+          type: integer
+          example: 8080
+    AppSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    MetricParserResponse:
+      type: object
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricParserResponseType'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

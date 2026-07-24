@@ -1,0 +1,3671 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Get API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Get
+paths:
+  /applications.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications
+      description: This GET endpoint retrieves a paginated list of all applications associated with your New Relic account. It returns application data in JSON format, including details such as application name, ID, health status, and response time metrics. You can use optional query parameters to filter results by application name or IDs, and control pagination through page and per_page parameters. The response includes summary information for each application, making it useful for monitoring multiple applications, building dashboards, or integrating New Relic data into external systems. Authentication requires an API key passed in the request headers.
+      parameters:
+      - name: filter[name]
+        in: query
+        description: Filter by application name
+        schema:
+          type: string
+        example: example_string
+      - name: filter[host]
+        in: query
+        description: Filter by application host
+        schema:
+          type: string
+        example: example_string
+      - name: filter[ids]
+        in: query
+        description: Filter by application ids
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: filter[language]
+        in: query
+        description: Filter by application language
+        schema:
+          type: string
+        example: example_string
+      - name: exclude_links
+        in: query
+        description: Exclude links section from the response
+        schema:
+          type: boolean
+        example: true
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplications200Example:
+                  summary: Default getApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplications200Example:
+                  summary: Default getApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplications
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/deployments.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Deployments
+      description: This API operation retrieves a paginated list of all deployment records associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can access historical deployment information including deployment timestamps, descriptions, revisions, changelogs, and the user who created each deployment record. This is useful for tracking application releases, correlating performance changes with deployments, and maintaining a comprehensive deployment history for monitoring and troubleshooting purposes.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Getapplicationsiddeployments200Example:
+                  summary: Default getApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Getapplicationsiddeployments200Example:
+                  summary: Default getApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdDeployments
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Hosts
+      description: This API operation retrieves a paginated list of hosts associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can obtain information about all hosts running the specified application, including host details and performance metrics. The response is returned in JSON format and includes host identifiers, names, health status, and other relevant metadata that helps monitor application infrastructure across different servers or containers.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: filter[hostname]
+        in: query
+        description: Filter by server hostname
+        schema:
+          type: string
+        example: web01.example.com
+      - name: filter[ids]
+        in: query
+        description: Filter by application host ids
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhosts200Example:
+                  summary: Default getApplicationsIdHosts 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: &id001
+                    - host: example_string
+                      application_name: example_string
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: active
+                      id: 100
+                      language: 100
+                      links: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhosts200Example:
+                  summary: Default getApplicationsIdHosts 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: *id001
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHosts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts/{host_id}/metrics.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Hosts Host Metrics
+      description: This API operation retrieves a list of metric names associated with a specific host within a given application in New Relic's Application Performance Monitoring (APM) system. By providing both an application ID and a host in the endpoint path, users can query the available metrics that New Relic is collecting for that particular host instance. The response returns metric name data in JSON format, which typically includes identifiers and metadata for various performance measurements such as CPU usage, memory consumption, throughput, response times, and other application-specific metrics. This endpoint is particularly useful for developers and operations teams who need to discover what metrics are available before constructing more detailed queries or building monitoring dashboards, allowing them to programmatically explore the monitoring data structure for their infrastructure.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: host_id
+        in: path
+        description: Application Host ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricListResponse'
+              examples:
+                Getapplicationsidhostshostidmetrics200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metrics: &id002
+                    - name: example-resource-01
+                      values:
+                      - {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricListResponse'
+              examples:
+                Getapplicationsidhostshostidmetrics200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metrics: *id002
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHostsHostIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts/{host_id}/metrics/data.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Hosts Host Metrics Data
+      description: This API operation retrieves metric data for a specific host associated with a particular application in New Relic. By making a GET request to the endpoint with the application and host as path parameters, users can access detailed performance metrics and monitoring data for that specific host instance. The operation returns data in JSON format, which typically includes time-series metric values such as response times, throughput, error rates, and other performance indicators collected by New Relic's monitoring agents. Additional query parameters can be used to filter the metrics by name, specify time ranges, set data summarization options, and control the granularity of the returned data, making it useful for building custom dashboards, generating reports, or integrating New Relic monitoring data into external systems and workflows.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: host_id
+        in: path
+        description: Application Host ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidhostshostidmetricsdata200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidhostshostidmetricsdata200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHostsHostIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts/{id}.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Hosts
+      description: This API operation retrieves detailed information about a specific host associated with a particular application in New Relic's APM monitoring system. By providing both an application and a host in the endpoint path, it returns comprehensive data about that host's performance metrics, system specifications, and current status within the context of the specified application. The GET request returns a JSON response containing host-level details such as hostname, health status, response times, throughput, error rates, and other relevant monitoring data that helps developers and operations teams understand how a specific server or container is performing while running the monitored application.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: id
+        in: path
+        description: Application host ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhostsid200Example:
+                  summary: Default getApplicationsIdHostsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: &id003
+                    - host: example_string
+                      application_name: example_string
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: active
+                      id: 100
+                      language: 100
+                      links: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhostsid200Example:
+                  summary: Default getApplicationsIdHostsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: *id003
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHostsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Instances
+      description: '<p>This API endpoint returns a <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        paginated</a> list of instances associated with the given application. The time range for summary data is the last 3-4 minutes.</p>
+
+
+        <p>Application instances can be filtered by hostname, or the list of application instance IDs.</p>
+
+
+        <p>See our documentation for a discussion and examples of
+
+        using <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/list-application-specific-server-host-instance-ids" target="_blank"> filters </a>
+
+        and <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank">summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: filter[hostname]
+        in: query
+        description: Filter by server hostname
+        schema:
+          type: string
+        example: web01.example.com
+      - name: filter[ids]
+        in: query
+        description: Filter by application instance ids
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstances200Example:
+                  summary: Default getApplicationsIdInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstances200Example:
+                  summary: Default getApplicationsIdInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstances
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{id}.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Instances
+      description: "<p>This API endpoint returns a single application instance, identified by ID. The time range for summary data is the last 3-4 minutes.</p>\n\n<p>See our documentation for a discussion of\n <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2\" target=\"_blank\">summary data output</a>.</p>\n\n"
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: id
+        in: path
+        description: Application instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstancesid200Example:
+                  summary: Default getApplicationsIdInstancesId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstancesid200Example:
+                  summary: Default getApplicationsIdInstancesId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{instance_id}/metrics.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Instances Instance Metrics
+      description: '<p>Return a list of known metrics and their value names for the given resource.</p>
+
+
+        <p>See our documentation for a discussion
+
+        on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>
+
+        and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: instance_id
+        in: path
+        description: Application Instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetrics200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetrics200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesInstanceIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{instance_id}/metrics/data.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Instances Instance Metrics Data
+      description: '<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics
+
+        can be returned using the Metric Name API endpoint.</p>
+
+
+        <p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.
+
+        Metric names and values will be matched intelligently in the background.</p>
+
+
+        <p>You can also retrieve a summarized data point across the entire time range selected by using the summarize
+
+        parameter.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>, <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data" target="_blank"> time range</a>
+
+        related considerations, and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: instance_id
+        in: path
+        description: Application Instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetricsdata200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetricsdata200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesInstanceIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/metrics.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Metrics
+      description: '<p>Return a list of known metrics and their value names for the given resource.</p>
+
+
+        <p>See our documentation for a discussion
+
+        on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>
+
+        and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidmetrics200Example:
+                  summary: Default getApplicationsIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidmetrics200Example:
+                  summary: Default getApplicationsIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/metrics/data.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications Metrics Data
+      description: '<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics
+
+        can be returned using the Metric Name API endpoint.</p>
+
+
+        <p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.
+
+        Metric names and values will be matched intelligently in the background.</p>
+
+
+        <p>You can also retrieve a summarized data point across the entire time range selected by using the summarize
+
+        parameter.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>, <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data" target="_blank"> time range</a>
+
+        related considerations, and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidmetricsdata200Example:
+                  summary: Default getApplicationsIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidmetricsdata200Example:
+                  summary: Default getApplicationsIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{id}.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Applications
+      description: '<p>This API endpoint returns a single Application, identified by ID. The time range for summary data is the last 3-4 minutes.</p>
+
+
+        <p>See our documentation for a discussion of the
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank"> summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplicationsid200Example:
+                  summary: Default getApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplicationsid200Example:
+                  summary: Default getApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /key_transactions.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Key Transactions
+      description: '<p>This API endpoint returns a <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">paginated</a>
+
+        list of the key transactions associated with your New Relic account.  The time range for summary data is the last 10 minutes.</p>
+
+
+        <p>Key transactions can be filtered by their name or list of IDs.</p>
+
+
+        <p>See our documentation for a discussion of
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank">summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: filter[name]
+        in: query
+        description: Filter by name
+        schema:
+          type: string
+        example: example_string
+      - name: filter[ids]
+        in: query
+        description: Filter by policy IDs
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactions200Example:
+                  summary: Default getKeyTransactions 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactions200Example:
+                  summary: Default getKeyTransactions 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getKeyTransactions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /key_transactions/{id}.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Key Transactions
+      description: '<p>This endpoint returns a single key transaction, identified by ID. The time range for summary data is the last 10 minutes.</p>
+
+
+        <p>See our documentation for a discussion of
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank">summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Key transaction ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactionsid200Example:
+                  summary: Default getKeyTransactionsId 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactionsid200Example:
+                  summary: Default getKeyTransactionsId 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getKeyTransactionsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Mobile Applications
+      description: '<p>This API endpoint returns a list of the Mobile Applications associated with your New Relic account.</p>
+
+
+        <p>MobileApplications can be filtered by their name, or by the application IDs.</p>
+
+        '
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplications200Example:
+                  summary: Default getMobileApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplications200Example:
+                  summary: Default getMobileApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplications
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications/{id}.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Mobile Applications
+      description: '<p>This API endpoint returns a single Mobile Application, identified by ID. The time range for summary data is the last 30 minutes.</p>
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Mobile Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplicationsid200Example:
+                  summary: Default getMobileApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplicationsid200Example:
+                  summary: Default getMobileApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplicationsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications/{mobile_application_id}/metrics.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Mobile Applications Mobile Application Metrics
+      description: '<p>Return a list of known metrics and their value names for the given resource.</p>
+
+
+        <p>See our documentation for a discussion
+
+        on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>
+
+        and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+        '
+      parameters:
+      - name: mobile_application_id
+        in: path
+        description: Mobile application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetrics200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetrics200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplicationsMobileApplicationIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications/{mobile_application_id}/metrics/data.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Mobile Applications Mobile Application Metrics Data
+      description: '<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics
+
+        can be returned using the Metric Name API endpoint.</p>
+
+
+        <p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.
+
+        Metric names and values will be matched intelligently in the background.</p>
+
+
+        <p>You can also retrieve a summarized data point across the entire time range selected by using the summarize
+
+        parameter.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>, <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data" target="_blank"> time range</a>
+
+        related considerations, and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+
+        '
+      parameters:
+      - name: mobile_application_id
+        in: path
+        description: Mobile application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetricsdata200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetricsdata200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplicationsMobileApplicationIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_channels.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Channels
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>
+
+
+        <p>It returns a list of the channels associated with your New Relic account.</p>
+
+
+        <p>Note: See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-list">listing notification channels</a>.</p>
+
+        '
+      parameters:
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Getalertschannels200Example:
+                  summary: Default getAlertsChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Getalertschannels200Example:
+                  summary: Default getAlertsChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsChannels
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_conditions.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Conditions
+      description: 'ðŸ”¥ðŸ”¥ New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>
+
+
+        <p>Note: <strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are not available.</strong></p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: query
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertsconditions200Example:
+                  summary: Default getAlertsConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertsconditions200Example:
+                  summary: Default getAlertsConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsConditions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_entity_conditions/{entity_id}.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Entity Conditions Entity
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list the Alerts conditions an entity is part of.</p>
+
+
+        <p>Entity type options (Synthetics is not yet supported):</p>
+
+
+        <pre><code>BrowserApplication
+
+
+        Application
+
+
+        MobileApplication
+
+
+        Server
+
+
+        KeyTransaction
+
+        </code></pre>
+
+        '
+      parameters:
+      - name: entity_id
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: entity_type
+        in: query
+        description: Entity Type
+        required: true
+        schema:
+          type: string
+        example: standard
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertsentityconditionsentityid200Example:
+                  summary: Default getAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertsentityconditionsentityid200Example:
+                  summary: Default getAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsEntityConditionsEntityId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_events.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Events
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list the alert events for your account.</p>
+
+
+        <p>Alerts events can be filter by product, target type, group ID, instance ID, and event type.</p>
+
+
+        <p>The options for products are: <b>APM</b>, <b>BROWSER</b>, <b>MOBILE</b>, <b>SERVERS</b>, <b>SYNTHETICS</b>, and <b>ALERTS</b>.</p>
+
+
+        <p>The options for entity type are: <b>Application</b>, <b>Server</b>, <b>KeyTransaction</b>, <b>MobileApplication</b>, <b>BrowserApplication</b>, and <b>Monitor</b>.</p>
+
+
+        <p>The options for event type are: <b>NOTIFICATION</b>, <b>DEPLOYMENT</b>, <b>VIOLATION_OPEN</b>, <b>VIOLATION_CLOSE</b>, <b>VIOLATION</b>, and <b>INSTRUMENTATION</b>.</p>
+
+
+        <p>The group option is normally the same as the entity (e.g. an Application group and entity will be the same)</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>.</p>
+
+        '
+      parameters:
+      - name: filter[product]
+        in: query
+        description: Filter by New Relic product
+        schema:
+          type: string
+        example: example_string
+      - name: filter[entity_type]
+        in: query
+        description: Filter by entity type
+        schema:
+          type: string
+        example: standard
+      - name: filter[entity_group_id]
+        in: query
+        description: Filter by entity group ID
+        schema:
+          type: integer
+        example: 100
+      - name: filter[entity_id]
+        in: query
+        description: Filter by entity ID
+        schema:
+          type: integer
+        example: 100
+      - name: filter[event_type]
+        in: query
+        description: Filter by event type
+        schema:
+          type: string
+        example: standard
+      - name: filter[incident_id]
+        in: query
+        description: Filter by incident id
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecentEventResponse'
+              examples:
+                Getalertsevents200Example:
+                  summary: Default getAlertsEvents 200 response
+                  x-microcks-default: true
+                  value:
+                    recent_event:
+                      description: {}
+                      entity_group_id: {}
+                      entity_id: {}
+                      entity_type: {}
+                      event_type: {}
+                      id: {}
+                      incident_id: {}
+                      priority: {}
+                      product: {}
+                      timestamp: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RecentEventResponse'
+              examples:
+                Getalertsevents200Example:
+                  summary: Default getAlertsEvents 200 response
+                  x-microcks-default: true
+                  value:
+                    recent_event:
+                      description: {}
+                      entity_group_id: {}
+                      entity_id: {}
+                      entity_type: {}
+                      event_type: {}
+                      id: {}
+                      incident_id: {}
+                      priority: {}
+                      product: {}
+                      timestamp: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsEvents
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_external_service_conditions.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts External Service Conditions
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list the external service conditions for your alert policy.</p>
+
+
+        <p>See our documentation for a discussion on
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: query
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Getalertsexternalserviceconditions200Example:
+                  summary: Default getAlertsExternalServiceConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Getalertsexternalserviceconditions200Example:
+                  summary: Default getAlertsExternalServiceConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsExternalServiceConditions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_incidents.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Incidents
+      description: 'ðŸ”¥ðŸ”¥ New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint returns a list of the Incidents associated with your New Relic account.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#incidents" target="_blank">listing incidents</a>
+
+        and <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">output pagination</a>.</p>
+
+        '
+      parameters:
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      - name: only_open
+        in: query
+        description: Filter by open incidents
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentResponse'
+              examples:
+                Getalertsincidents200Example:
+                  summary: Default getAlertsIncidents 200 response
+                  x-microcks-default: true
+                  value:
+                    incident:
+                      closed_at: {}
+                      id: {}
+                      incident_preference: {}
+                      links: {}
+                      opened_at: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/IncidentResponse'
+              examples:
+                Getalertsincidents200Example:
+                  summary: Default getAlertsIncidents 200 response
+                  x-microcks-default: true
+                  value:
+                    incident:
+                      closed_at: {}
+                      id: {}
+                      incident_preference: {}
+                      links: {}
+                      opened_at: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsIncidents
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_location_failure_conditions/policies/{policy_id}.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Location Failure Conditions Policies
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list the alerts location failure conditions for your Alerts policy.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: path
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertslocationfailureconditionspoliciespolicyid200Example:
+                  summary: Default getAlertsLocationFailureConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                  - condition: {}
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertslocationfailureconditionspoliciespolicyid200Example:
+                  summary: Default getAlertsLocationFailureConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                  - condition: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsLocationFailureConditionsPoliciesPolicyId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_nrql_conditions.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Nrql Conditions
+      description: 'ðŸ”¥ðŸ”¥ New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+        '
+      parameters:
+      - name: policy_id
+        in: query
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NrqlConditionResponse'
+              examples:
+                Getalertsnrqlconditions200Example:
+                  summary: Default getAlertsNrqlConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    nrql_condition:
+                      enabled: {}
+                      expected_groups: {}
+                      id: {}
+                      ignore_overlap: {}
+                      name: {}
+                      nrql: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      value_function: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NrqlConditionResponse'
+              examples:
+                Getalertsnrqlconditions200Example:
+                  summary: Default getAlertsNrqlConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    nrql_condition:
+                      enabled: {}
+                      expected_groups: {}
+                      id: {}
+                      ignore_overlap: {}
+                      name: {}
+                      nrql: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      value_function: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsNrqlConditions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_policies.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Policies
+      description: 'ðŸ”¥ðŸ”¥ New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>
+
+
+        <p>This API endpoint returns a list of the alert policies associated with your New Relic account.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>.</p>
+
+
+        '
+      parameters:
+      - name: filter[name]
+        in: query
+        description: Name (must be exact match)
+        schema:
+          type: string
+        example: example_string
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+              examples:
+                Getalertspolicies200Example:
+                  summary: Default getAlertsPolicies 200 response
+                  x-microcks-default: true
+                  value:
+                    policy:
+                      created_at: {}
+                      id: {}
+                      incident_preference: {}
+                      name: {}
+                      updated_at: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+              examples:
+                Getalertspolicies200Example:
+                  summary: Default getAlertsPolicies 200 response
+                  x-microcks-default: true
+                  value:
+                    policy:
+                      created_at: {}
+                      id: {}
+                      incident_preference: {}
+                      name: {}
+                      updated_at: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsPolicies
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_synthetics_conditions.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Synthetics Conditions
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <p>This API endpoint allows you to list the Synthetics conditions for your alert policy.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#synthetics-conditions-list" target="_blank">listing Synthetic conditions</a>
+
+        and <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>.</p>
+
+
+        '
+      parameters:
+      - name: policy_id
+        in: query
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyntheticsConditionResponse'
+              examples:
+                Getalertssyntheticsconditions200Example:
+                  summary: Default getAlertsSyntheticsConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    synthetics_condition:
+                      enabled: {}
+                      id: {}
+                      monitor_id: {}
+                      name: {}
+                      runbook_url: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SyntheticsConditionResponse'
+              examples:
+                Getalertssyntheticsconditions200Example:
+                  summary: Default getAlertsSyntheticsConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    synthetics_condition:
+                      enabled: {}
+                      id: {}
+                      monitor_id: {}
+                      name: {}
+                      runbook_url: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsSyntheticsConditions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_violations.json:
+    get:
+      tags:
+      - Get
+      summary: New Relic Get Alerts Violations
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>
+
+
+        <p>It returns a list of the violations associated with your New Relic account.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>.</p>
+
+
+        '
+      parameters:
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      - name: start_date
+        in: query
+        description: Retrieve violations created after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: end_date
+        in: query
+        description: Retrieve violations created before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: only_open
+        in: query
+        description: Filter by open violations
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViolationResponse'
+              examples:
+                Getalertsviolations200Example:
+                  summary: Default getAlertsViolations 200 response
+                  x-microcks-default: true
+                  value:
+                    violation:
+                      closed_at: {}
+                      condition_name: {}
+                      duration: {}
+                      entity: {}
+                      id: {}
+                      label: {}
+                      links: {}
+                      opened_at: {}
+                      policy_name: {}
+                      priority: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ViolationResponse'
+              examples:
+                Getalertsviolations200Example:
+                  summary: Default getAlertsViolations 200 response
+                  x-microcks-default: true
+                  value:
+                    violation:
+                      closed_at: {}
+                      condition_name: {}
+                      duration: {}
+                      entity: {}
+                      id: {}
+                      label: {}
+                      links: {}
+                      opened_at: {}
+                      policy_name: {}
+                      priority: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsViolations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MetricListResponse:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricParserResponseType'
+          example:
+          - name: example-resource-01
+            values:
+            - {}
+    ApplicationResponseType:
+      type: object
+      properties:
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        language:
+          type: string
+          example: example_string
+        last_reported_at:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        links:
+          $ref: '#/components/schemas/ApplicationLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        reporting:
+          type: boolean
+          example: true
+        settings:
+          $ref: '#/components/schemas/AppSettingsResponse'
+    ViolationEntityResponse:
+      type: object
+      properties:
+        group_id:
+          type: integer
+          example: 100
+        id:
+          type: integer
+          example: 100
+        name:
+          type: string
+          example: example-resource-01
+        product:
+          type: string
+          example: example_string
+        type:
+          type: string
+          example: standard
+    ViolationResponseType:
+      type: object
+      properties:
+        closed_at:
+          type: integer
+          example: 100
+        condition_name:
+          type: string
+          example: example_string
+        duration:
+          type: integer
+          example: 100
+        entity:
+          $ref: '#/components/schemas/ViolationEntityResponse'
+        id:
+          type: integer
+          example: 100
+        label:
+          type: string
+          example: example_string
+        links:
+          $ref: '#/components/schemas/ViolationLinksResponse'
+        opened_at:
+          type: integer
+          example: 100
+        policy_name:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+    NrqlConditionResponse:
+      type: object
+      properties:
+        nrql_condition:
+          $ref: '#/components/schemas/NrqlConditionResponseType'
+    KeyTransactionResponseType:
+      type: object
+      properties:
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        last_reported_at:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        links:
+          $ref: '#/components/schemas/KeyTransactionLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        reporting:
+          type: boolean
+          example: true
+        transaction_name:
+          type: string
+          example: example_string
+    AppSettingsResponse:
+      type: object
+      properties:
+        app_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+        enable_real_user_monitoring:
+          type: boolean
+          example: true
+        end_user_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+        use_server_side_config:
+          type: boolean
+          example: true
+    EndUserSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    PolicyResponse:
+      type: object
+      properties:
+        policy:
+          $ref: '#/components/schemas/PolicyResponseType'
+    ApplicationInstanceResponseType:
+      type: object
+      properties:
+        host:
+          type: string
+          example: example_string
+        application_name:
+          type: string
+          example: example_string
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryDataResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryDataResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        language:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ApplicationInstanceLinksResponse'
+        port:
+          type: integer
+          example: 8080
+    DeploymentLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+    ChannelResponseType:
+      type: object
+      properties:
+        configuration:
+          type: object
+          properties: {}
+          example: {}
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ChannelLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        type:
+          type: string
+          example: standard
+    SyntheticsConditionResponseType:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        id:
+          type: integer
+          example: 100
+        monitor_id:
+          type: string
+          example: '500123'
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+    MetricParserResponseType:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        values:
+          type: array
+          items:
+            type: string
+          example:
+          - example_string
+    ExternalServiceConditionResponseType:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        external_service_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        id:
+          type: integer
+          example: 100
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+    IncidentResponse:
+      type: object
+      properties:
+        incident:
+          $ref: '#/components/schemas/IncidentResponseType'
+    IncidentLinksResponse:
+      type: object
+      properties:
+        policy_id:
+          type: integer
+          example: 100
+        violations:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    MobileSummaryDataResponse:
+      type: object
+      properties:
+        active_users:
+          type: integer
+          example: 100
+        calls_per_session:
+          type: number
+          format: float
+          example: 42.5
+        failed_call_rate:
+          type: number
+          format: float
+          example: 12.3
+        interaction_time:
+          type: number
+          format: float
+          example: 42.5
+        launch_count:
+          type: integer
+          example: 42
+        remote_error_rate:
+          type: number
+          format: float
+          example: 12.3
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    ConditionResponse:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionResponseType'
+    IJKTermsType:
+      type: object
+      properties:
+        duration:
+          type: string
+          example: example_string
+        operator:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+        threshold:
+          type: string
+          example: example_string
+        time_function:
+          type: string
+          example: example_string
+    ExternalServiceConditionResponse:
+      type: object
+      properties:
+        external_service_condition:
+          $ref: '#/components/schemas/ExternalServiceConditionResponseType'
+    AppSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        concurrent_instance_count:
+          type: integer
+          example: 42
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        host_count:
+          type: integer
+          example: 42
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    DeploymentResponse:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentResponseType'
+    MetricResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        timeslices:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimesliceResponse'
+          example:
+          - from: '2026-04-18T14:30:00Z'
+            to: '2026-04-18T14:30:00Z'
+            values: {}
+    ApplicationInstanceResponse:
+      type: object
+      properties:
+        application_instance:
+          $ref: '#/components/schemas/ApplicationInstanceResponseType'
+    RecentEventResponse:
+      type: object
+      properties:
+        recent_event:
+          $ref: '#/components/schemas/RecentEventResponseType'
+    NrqlResponse:
+      type: object
+      properties:
+        query:
+          type: string
+          example: example_string
+        since_value:
+          type: string
+          example: example_string
+    ChannelResponse:
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelResponseType'
+    ApplicationHostResponse:
+      type: object
+      properties:
+        application_hosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationHostResponseType'
+          example:
+          - host: example_string
+            application_name: example_string
+            application_summary: {}
+            end_user_summary: {}
+            health_status: active
+            id: 100
+            language: 100
+            links: {}
+    MetricParserResponse:
+      type: object
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricParserResponseType'
+    SyntheticsConditionResponse:
+      type: object
+      properties:
+        synthetics_condition:
+          $ref: '#/components/schemas/SyntheticsConditionResponseType'
+    MobileApplicationResponse:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/MobileApplicationResponseType'
+    RecentEventResponseType:
+      type: object
+      properties:
+        description:
+          type: string
+          example: example_string
+        entity_group_id:
+          type: integer
+          example: 100
+        entity_id:
+          type: integer
+          example: 100
+        entity_type:
+          type: string
+          example: standard
+        event_type:
+          type: string
+          example: standard
+        id:
+          type: integer
+          example: 100
+        incident_id:
+          type: integer
+          example: 100
+        priority:
+          type: string
+          example: example_string
+        product:
+          type: string
+          example: example_string
+        timestamp:
+          type: integer
+          example: 1718153645993
+    ViolationResponse:
+      type: object
+      properties:
+        violation:
+          $ref: '#/components/schemas/ViolationResponseType'
+    TimesliceResponse:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        to:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        values:
+          type: object
+          properties: {}
+          example: {}
+    MetricDataResponseType:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponse'
+          example:
+          - name: example-resource-01
+            timeslices:
+            - {}
+        metrics_found:
+          type: string
+          example: example_string
+        metrics_not_found:
+          type: string
+          example: example_string
+        to:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+    KeyTransactionLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          description: Application from which this key transaction originated
+          example: 100
+    ApplicationHostResponseType:
+      type: object
+      properties:
+        host:
+          type: string
+          example: example_string
+        application_name:
+          type: string
+          example: example_string
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryDataResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryDataResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        language:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ApplicationHostLinksResponse'
+    ChannelLinksResponse:
+      type: object
+      properties:
+        policy_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    ApplicationResponse:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/ApplicationResponseType'
+    MobileApplicationResponseType:
+      type: object
+      properties:
+        crash_summary:
+          $ref: '#/components/schemas/CrashSummaryResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        mobile_summary:
+          $ref: '#/components/schemas/MobileSummaryDataResponse'
+        name:
+          type: string
+          example: example-resource-01
+        reporting:
+          type: boolean
+          example: true
+    PolicyResponseType:
+      type: object
+      properties:
+        created_at:
+          type: integer
+          example: 100
+        id:
+          type: integer
+          example: 100
+        incident_preference:
+          type: string
+          example: '500123'
+        name:
+          type: string
+          example: example-resource-01
+        updated_at:
+          type: integer
+          example: 100
+    NrqlConditionResponseType:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        expected_groups:
+          type: integer
+          example: 100
+        id:
+          type: integer
+          example: 100
+        ignore_overlap:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: example-resource-01
+        nrql:
+          $ref: '#/components/schemas/NrqlResponse'
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+        value_function:
+          type: string
+          example: example_string
+    KeyTransactionResponse:
+      type: object
+      properties:
+        key_transaction:
+          $ref: '#/components/schemas/KeyTransactionResponseType'
+    ApplicationLinksResponse:
+      type: object
+      properties:
+        servers:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        application_hosts:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        application_instances:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    IncidentResponseType:
+      type: object
+      properties:
+        closed_at:
+          type: integer
+          example: 100
+        id:
+          type: integer
+          example: 100
+        incident_preference:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/IncidentLinksResponse'
+        opened_at:
+          type: integer
+          example: 100
+    ApplicationHostLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+        application_instances:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        server:
+          type: integer
+          example: 100
+    EndUserSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    ApplicationInstanceLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+        application_host:
+          type: integer
+          example: 100
+        server:
+          type: integer
+          example: 100
+    CrashSummaryResponse:
+      type: object
+      properties:
+        crash_count:
+          type: integer
+          example: 42
+        crash_rate:
+          type: number
+          format: float
+          example: 12.3
+        supports_crash_data:
+          type: boolean
+          example: true
+        unresolved_crash_count:
+          type: integer
+          example: 42
+    UserDefinedConditionResponse:
+      type: object
+      properties:
+        metric:
+          type: string
+          example: example_string
+        value_function:
+          type: string
+          example: example_string
+    DeploymentResponseType:
+      type: object
+      properties:
+        changelog:
+          type: string
+          example: example_string
+        description:
+          type: string
+          example: example_string
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/DeploymentLinksResponse'
+        revision:
+          type: string
+          example: example_string
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        user:
+          type: string
+          example: example_string
+    ConditionResponseType:
+      type: object
+      properties:
+        condition_scope:
+          type: string
+          example: example_string
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        gc_metric:
+          type: string
+          example: example_string
+        id:
+          type: integer
+          example: 100
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+        user_defined:
+          $ref: '#/components/schemas/UserDefinedConditionResponse'
+        violation_close_timer:
+          type: integer
+          example: 1718153645993
+    AppSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    ViolationLinksResponse:
+      type: object
+      properties:
+        condition_id:
+          type: integer
+          example: 100
+        incident_id:
+          type: integer
+          example: 100
+        policy_id:
+          type: integer
+          example: 100
+    MetricDataResponse:
+      type: object
+      properties:
+        metric_data:
+          $ref: '#/components/schemas/MetricDataResponseType'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

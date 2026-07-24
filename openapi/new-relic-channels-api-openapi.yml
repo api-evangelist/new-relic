@@ -1,0 +1,482 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Channels API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Channels
+paths:
+  /alerts_channels.json:
+    get:
+      tags:
+      - Channels
+      summary: New Relic Get Alerts Channels
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>
+
+
+        <p>It returns a list of the channels associated with your New Relic account.</p>
+
+
+        <p>Note: See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-list">listing notification channels</a>.</p>
+
+        '
+      parameters:
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Getalertschannels200Example:
+                  summary: Default getAlertsChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Getalertschannels200Example:
+                  summary: Default getAlertsChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsChannels
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Channels
+      summary: New Relic Post Alerts Channels
+      description: "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It creates a channel associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-create\">creating notification channels</a>.</p>\n\n<p>Channel type configuration options:</p>\n\n<ul>\n  <li>\n    <p>Email</p>\n\n    <p>{</p>\n\n    <pre><code>\"recipients\" : \"test@google.com\",\n\"include_json_attachment\" : true\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>HipChat</p>\n\n    <p>{</p>\n\n    <pre><code>\"auth_token\": \"abc123\",\n\"room_id\": \"google.com\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>OpsGenie</p>\n\n    <p>{</p>\n\n    <pre><code>\"api_key\": \"abc123\",\n\"teams\": \"team1\",\n\"tags\": \"tag1\",\n\"recipients\": \"me@me.com\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Slack</p>\n\n    <p>{</p>\n\n    <pre><code>\"url\": \"http://test.com\",\n\"channel\": \"channel1\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Campfire</p>\n\n    <p>{</p>\n\n    <pre><code>\"subdomain\": \"mysubdomain\",\n\"token\": \"123abc\",\n\"room\": \"room1\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Victorops</p>\n\n    <p>{</p>\n\n    <pre><code>\"key\": \"mykey\",\n\"route_key\": \"theroute\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>PagerDuty</p>\n\n    <p>{</p>\n\n    <pre><code>\"service_key\": \"myservicekey\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Webhook (json)</p>\n\n    <p>{</p>\n\n    <pre><code>\"base_url\": \"http://test.com\",\n\"auth_username\": \"username\",\n\"auth_password\": \"password\",\n\"payload_type\": \"application/json\",\n\"payload\": {\n  \"account_id\": \"$ACCOUNT_ID\",\n  \"account_name\": \"$ACCOUNT_NAME\",\n  \"condition_id\": \"$CONDITION_ID\",\n  \"condition_name\": \"$CONDITION_NAME\",\n  \"current_state\": \"$EVENT_STATE\",\n  \"details\": \"$EVENT_DETAILS\",\n  \"event_type\": \"$EVENT_TYPE\",\n  \"incident_acknowledge_url\": \"$INCIDENT_ACKNOWLEDGE_URL\",\n  \"incident_id\": \"$INCIDENT_ID\",\n  \"incident_url\": \"$INCIDENT_URL\",\n  \"owner\": \"$EVENT_OWNER\",\n  \"policy_name\": \"$POLICY_NAME\",\n  \"policy_url\": \"$POLICY_URL\",\n  \"runbook_url\": \"$RUNBOOK_URL\",\n  \"severity\": \"$SEVERITY\",\n  \"targets\": \"$TARGETS\",\n  \"timestamp\": \"$TIMESTAMP\",\n  \"violation_chart_url\": \"$VIOLATION_CHART_URL\"\n},\n\"headers\": {\"header1\": \"test\", \"header2\": \"test\"}\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Webhook (x-www-form-urlencoded)</p>\n\n    <p>{</p>\n\n    <pre><code>\"base_url\": \"http://test.com\",\n\"auth_username\": \"username\",\n\"auth_password\": \"password\",\n\"payload_type\": \"application/x-www-form-urlencoded\",\n\"payload\": {\n  \"account_id\": \"$ACCOUNT_ID\",\n  \"account_name\": \"$ACCOUNT_NAME\",\n  \"condition_id\": \"$CONDITION_ID\",\n  \"condition_name\": \"$CONDITION_NAME\",\n  \"current_state\": \"$EVENT_STATE\",\n  \"details\": \"$EVENT_DETAILS\",\n  \"event_type\": \"$EVENT_TYPE\",\n  \"incident_acknowledge_url\": \"$INCIDENT_ACKNOWLEDGE_URL\",\n  \"incident_id\": \"$INCIDENT_ID\",\n  \"incident_url\": \"$INCIDENT_URL\",\n  \"owner\": \"$EVENT_OWNER\",\n  \"policy_name\": \"$POLICY_NAME\",\n  \"policy_url\": \"$POLICY_URL\",\n  \"runbook_url\": \"$RUNBOOK_URL\",\n  \"severity\": \"$SEVERITY\",\n  \"targets\": \"$TARGETS\",\n  \"timestamp\": \"$TIMESTAMP\",\n  \"violation_chart_url\": \"$VIOLATION_CHART_URL\"\n},\n\"headers\": {\"header1\": \"test\", \"header2\": \"test\"}\n</code></pre>\n\n    <p>}</p>\n  </li>\n</ul>\n\n"
+      parameters:
+      - name: policy_ids
+        in: query
+        description: Policy IDs to associate with channel
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      requestBody:
+        description: channel schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Channel'
+            examples:
+              PostalertschannelsRequestExample:
+                summary: Default postAlertsChannels request
+                x-microcks-default: true
+                value:
+                  channel:
+                    configuration: {}
+                    name: Example Title
+                    type: example_value
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Channel'
+            examples:
+              PostalertschannelsRequestExample:
+                summary: Default postAlertsChannels request
+                x-microcks-default: true
+                value:
+                  channel:
+                    configuration: {}
+                    name: Example Title
+                    type: example_value
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Postalertschannels200Example:
+                  summary: Default postAlertsChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Postalertschannels200Example:
+                  summary: Default postAlertsChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+      x-codegen-request-body-name: channel
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: postAlertsChannels
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_channels/{channel_id}.json:
+    delete:
+      tags:
+      - Channels
+      summary: New Relic Delete Alerts Channels Channel
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <p>This API endpoint deletes Alerts notification channels.</p>
+
+
+        <p>Note: <code>User</code> notification channels cannot be deleted.</p>
+
+
+        <p>Note: <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key">Admin Userâ€™s API Key</a> is required.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-delete">deleting notification channels</a>.</p>
+
+
+        '
+      parameters:
+      - name: channel_id
+        in: path
+        description: Channel ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Deletealertschannelschannelid200Example:
+                  summary: Default deleteAlertsChannelsChannelId 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Deletealertschannelschannelid200Example:
+                  summary: Default deleteAlertsChannelsChannelId 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteAlertsChannelsChannelId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_policy_channels.json:
+    put:
+      tags:
+      - Channels
+      summary: New Relic Put Alerts Policy Channels
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint updates policy/channel associations.</p>
+
+
+        <p>Note: <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key">Admin Userâ€™s API Key</a> is required.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#policy-channels-update">updating notification channels with policies</a>.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: query
+        description: Policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: channel_ids
+        in: query
+        description: Channel IDs
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyChannelsResponse'
+              examples:
+                Putalertspolicychannels200Example:
+                  summary: Default putAlertsPolicyChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    policy:
+                      channel_ids: {}
+                      id: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PolicyChannelsResponse'
+              examples:
+                Putalertspolicychannels200Example:
+                  summary: Default putAlertsPolicyChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    policy:
+                      channel_ids: {}
+                      id: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: putAlertsPolicyChannels
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - Channels
+      summary: New Relic Delete Alerts Policy Channels
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint deletes Alerts policy/channel associations.</p>
+
+
+        <p>Note: <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key">Admin Userâ€™s API Key</a> is required.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#policy-channels-delete">deleting notification channels with policies</a>.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: query
+        description: Policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: channel_id
+        in: query
+        description: Channel ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Deletealertspolicychannels200Example:
+                  summary: Default deleteAlertsPolicyChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Deletealertspolicychannels200Example:
+                  summary: Default deleteAlertsPolicyChannels 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteAlertsPolicyChannels
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PolicyChannelsResponseType:
+      type: object
+      properties:
+        channel_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        id:
+          type: integer
+          example: 100
+    ChannelBody:
+      type: object
+      properties:
+        configuration:
+          type: object
+          properties: {}
+          example: {}
+        name:
+          type: string
+          example: example-resource-01
+        type:
+          type: string
+          example: standard
+    ChannelLinksResponse:
+      type: object
+      properties:
+        policy_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    PolicyChannelsResponse:
+      type: object
+      properties:
+        policy:
+          $ref: '#/components/schemas/PolicyChannelsResponseType'
+    Channel:
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelBody'
+    ChannelResponse:
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelResponseType'
+    ChannelResponseType:
+      type: object
+      properties:
+        configuration:
+          type: object
+          properties: {}
+          example: {}
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ChannelLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        type:
+          type: string
+          example: standard
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

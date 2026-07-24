@@ -1,0 +1,204 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Violations API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Violations
+paths:
+  /alerts_violations.json:
+    get:
+      tags:
+      - Violations
+      summary: New Relic Get Alerts Violations
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>
+
+
+        <p>It returns a list of the violations associated with your New Relic account.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>.</p>
+
+
+        '
+      parameters:
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      - name: start_date
+        in: query
+        description: Retrieve violations created after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: end_date
+        in: query
+        description: Retrieve violations created before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: only_open
+        in: query
+        description: Filter by open violations
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViolationResponse'
+              examples:
+                Getalertsviolations200Example:
+                  summary: Default getAlertsViolations 200 response
+                  x-microcks-default: true
+                  value:
+                    violation:
+                      closed_at: {}
+                      condition_name: {}
+                      duration: {}
+                      entity: {}
+                      id: {}
+                      label: {}
+                      links: {}
+                      opened_at: {}
+                      policy_name: {}
+                      priority: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ViolationResponse'
+              examples:
+                Getalertsviolations200Example:
+                  summary: Default getAlertsViolations 200 response
+                  x-microcks-default: true
+                  value:
+                    violation:
+                      closed_at: {}
+                      condition_name: {}
+                      duration: {}
+                      entity: {}
+                      id: {}
+                      label: {}
+                      links: {}
+                      opened_at: {}
+                      policy_name: {}
+                      priority: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsViolations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ViolationResponseType:
+      type: object
+      properties:
+        closed_at:
+          type: integer
+          example: 100
+        condition_name:
+          type: string
+          example: example_string
+        duration:
+          type: integer
+          example: 100
+        entity:
+          $ref: '#/components/schemas/ViolationEntityResponse'
+        id:
+          type: integer
+          example: 100
+        label:
+          type: string
+          example: example_string
+        links:
+          $ref: '#/components/schemas/ViolationLinksResponse'
+        opened_at:
+          type: integer
+          example: 100
+        policy_name:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+    ViolationLinksResponse:
+      type: object
+      properties:
+        condition_id:
+          type: integer
+          example: 100
+        incident_id:
+          type: integer
+          example: 100
+        policy_id:
+          type: integer
+          example: 100
+    ViolationResponse:
+      type: object
+      properties:
+        violation:
+          $ref: '#/components/schemas/ViolationResponseType'
+    ViolationEntityResponse:
+      type: object
+      properties:
+        group_id:
+          type: integer
+          example: 100
+        id:
+          type: integer
+          example: 100
+        name:
+          type: string
+          example: example-resource-01
+        product:
+          type: string
+          example: example_string
+        type:
+          type: string
+          example: standard
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

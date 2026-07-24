@@ -1,0 +1,318 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Deployments API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Deployments
+paths:
+  /applications/{application_id}/deployments.json:
+    get:
+      tags:
+      - Deployments
+      summary: New Relic Get Applications Deployments
+      description: This API operation retrieves a paginated list of all deployment records associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can access historical deployment information including deployment timestamps, descriptions, revisions, changelogs, and the user who created each deployment record. This is useful for tracking application releases, correlating performance changes with deployments, and maintaining a comprehensive deployment history for monitoring and troubleshooting purposes.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Getapplicationsiddeployments200Example:
+                  summary: Default getApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Getapplicationsiddeployments200Example:
+                  summary: Default getApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdDeployments
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Deployments
+      summary: New Relic Post Applications Deployments
+      description: Creates a new deployment marker for a specified application in New Relic by sending a POST request to the /applications/{application_id}/deployments.json endpoint. This operation allows you to record deployment events, which appear as vertical lines on charts in the New Relic UI, helping teams correlate application performance changes with specific deployments. The request requires the application_id path parameter to identify the target application, and typically accepts deployment details in the request body such as revision, changelog, description, and user information. Deployment markers are useful for tracking releases, troubleshooting issues, and analyzing the impact of code changes on application performance metrics.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      requestBody:
+        description: Deployment schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Deployment'
+            examples:
+              PostapplicationsiddeploymentsRequestExample:
+                summary: Default postApplicationsIdDeployments request
+                x-microcks-default: true
+                value:
+                  deployment:
+                    changelog: example_value
+                    description: A sample description.
+                    revision: example_value
+                    user: example_value
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Deployment'
+            examples:
+              PostapplicationsiddeploymentsRequestExample:
+                summary: Default postApplicationsIdDeployments request
+                x-microcks-default: true
+                value:
+                  deployment:
+                    changelog: example_value
+                    description: A sample description.
+                    revision: example_value
+                    user: example_value
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Postapplicationsiddeployments200Example:
+                  summary: Default postApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Postapplicationsiddeployments200Example:
+                  summary: Default postApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+      x-codegen-request-body-name: deployment
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: postApplicationsIdDeployments
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/deployments/{id}.json:
+    delete:
+      tags:
+      - Deployments
+      summary: New Relic Delete Applications Deployments
+      description: This API operation allows you to delete a specific deployment record from a New Relic application by making a DELETE request to the endpoint /applications/{application_id}/deployments/{id}.json, where {application_id} is the unique identifier of the application and {id} is the specific deployment record you want to remove. This is useful for removing incorrect or outdated deployment markers from your application's deployment history in New Relic, helping maintain accurate tracking of your application's release timeline and deployment events.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: id
+        in: path
+        description: Deployment ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Deleteapplicationsiddeploymentsid200Example:
+                  summary: Default deleteApplicationsIdDeploymentsId 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Deleteapplicationsiddeploymentsid200Example:
+                  summary: Default deleteApplicationsIdDeploymentsId 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteApplicationsIdDeploymentsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DeploymentResponse:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentResponseType'
+    DeploymentResponseType:
+      type: object
+      properties:
+        changelog:
+          type: string
+          example: example_string
+        description:
+          type: string
+          example: example_string
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/DeploymentLinksResponse'
+        revision:
+          type: string
+          example: example_string
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        user:
+          type: string
+          example: example_string
+    DeploymentBody:
+      type: object
+      properties:
+        changelog:
+          type: string
+          example: example_string
+        description:
+          type: string
+          example: example_string
+        revision:
+          type: string
+          example: example_string
+        user:
+          type: string
+          example: example_string
+    DeploymentLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+    Deployment:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentBody'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

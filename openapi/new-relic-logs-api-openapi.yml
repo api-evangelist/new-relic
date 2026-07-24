@@ -1,41 +1,29 @@
 openapi: 3.1.0
 info:
-  title: New Relic Log API
-  description: >-
-    The New Relic Log API enables log data to be sent directly to the New Relic
-    platform via HTTP POST requests. It accepts gzip-compressed JSON payloads and
-    provides an alternative to log forwarding agents when direct integration is
-    preferred. Logs are available for querying in New Relic Logs UI and via NRQL
-    immediately after ingestion.
+  title: New Relic Event Alerts Logs API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
   version: '1'
   contact:
     name: New Relic Support
     url: https://support.newrelic.com/
   termsOfService: https://newrelic.com/termsandconditions/terms
   x-last-validated: '2026-04-18'
-externalDocs:
-  description: New Relic Log API Documentation
-  url: https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/
 servers:
-- url: https://log-api.newrelic.com
+- url: https://insights-collector.newrelic.com
   description: US Production
-- url: https://log-api.eu.newrelic.com
+- url: https://insights-collector.eu01.nr-data.net
   description: EU Production
+security:
+- apiKey: []
 tags:
 - name: Logs
   description: Log data ingestion endpoints
-security:
-- apiKey: []
 paths:
   /log/v1:
     post:
       operationId: sendLogs
       summary: New Relic Send Log Data
-      description: >-
-        Sends one or more log records to the New Relic Log API. Accepts a JSON
-        array of log data objects, each containing a logs array and optional
-        common attributes. Payloads must be gzip-compressed. A single request
-        may not exceed 1 MB compressed or 10,000 log entries.
+      description: Sends one or more log records to the New Relic Log API. Accepts a JSON array of log data objects, each containing a logs array and optional common attributes. Payloads must be gzip-compressed. A single request may not exceed 1 MB compressed or 10,000 log entries.
       tags:
       - Logs
       parameters:
@@ -146,56 +134,12 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      in: header
-      name: Api-Key
-      description: New Relic License Key or Ingest API Key
   schemas:
     LogPayload:
       type: array
       description: Array of log data batch objects
       items:
         $ref: '#/components/schemas/LogDataObject'
-    LogDataObject:
-      type: object
-      description: A batch of log records with optional shared attributes
-      required:
-      - logs
-      properties:
-        common:
-          $ref: '#/components/schemas/CommonBlock'
-        logs:
-          type: array
-          description: Array of individual log records
-          items:
-            $ref: '#/components/schemas/LogRecord'
-          example:
-          - timestamp: 1718153645993
-            message: Operation completed successfully
-            level: FATAL
-            logtype: standard
-            attributes:
-              customAttribute: example_value
-    CommonBlock:
-      type: object
-      description: Shared attributes applied to all log records in this batch
-      properties:
-        timestamp:
-          type: integer
-          description: Default Unix timestamp in milliseconds for all logs in the batch
-          example: 1718153645993
-        attributes:
-          type: object
-          description: Key-value attributes applied to all logs in this batch
-          additionalProperties:
-            oneOf:
-            - type: string
-            - type: number
-            - type: boolean
-          example:
-            customAttribute: example_value
     LogRecord:
       type: object
       description: A single log record
@@ -237,14 +181,44 @@ components:
             customAttribute: example_value
       additionalProperties:
         description: Additional top-level attributes are accepted and stored
-    AcceptedResponse:
+    CommonBlock:
       type: object
-      description: Response when the payload was accepted
+      description: Shared attributes applied to all log records in this batch
       properties:
-        requestId:
-          type: string
-          description: Unique identifier for the accepted ingestion request
-          example: '500123'
+        timestamp:
+          type: integer
+          description: Default Unix timestamp in milliseconds for all logs in the batch
+          example: 1718153645993
+        attributes:
+          type: object
+          description: Key-value attributes applied to all logs in this batch
+          additionalProperties:
+            oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            customAttribute: example_value
+    LogDataObject:
+      type: object
+      description: A batch of log records with optional shared attributes
+      required:
+      - logs
+      properties:
+        common:
+          $ref: '#/components/schemas/CommonBlock'
+        logs:
+          type: array
+          description: Array of individual log records
+          items:
+            $ref: '#/components/schemas/LogRecord'
+          example:
+          - timestamp: 1718153645993
+            message: Operation completed successfully
+            level: FATAL
+            logtype: standard
+            attributes:
+              customAttribute: example_value
     ErrorResponse:
       type: object
       description: Error response
@@ -259,4 +233,23 @@ components:
               type: string
             message:
               type: string
-          example: *id001
+          example:
+            type: standard
+            message: Operation completed successfully
+    AcceptedResponse:
+      type: object
+      description: Response when the payload was accepted
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the accepted ingestion request
+          example: '500123'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

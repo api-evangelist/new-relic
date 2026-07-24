@@ -1,0 +1,2428 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Applications API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Applications
+paths:
+  /applications.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications
+      description: This GET endpoint retrieves a paginated list of all applications associated with your New Relic account. It returns application data in JSON format, including details such as application name, ID, health status, and response time metrics. You can use optional query parameters to filter results by application name or IDs, and control pagination through page and per_page parameters. The response includes summary information for each application, making it useful for monitoring multiple applications, building dashboards, or integrating New Relic data into external systems. Authentication requires an API key passed in the request headers.
+      parameters:
+      - name: filter[name]
+        in: query
+        description: Filter by application name
+        schema:
+          type: string
+        example: example_string
+      - name: filter[host]
+        in: query
+        description: Filter by application host
+        schema:
+          type: string
+        example: example_string
+      - name: filter[ids]
+        in: query
+        description: Filter by application ids
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: filter[language]
+        in: query
+        description: Filter by application language
+        schema:
+          type: string
+        example: example_string
+      - name: exclude_links
+        in: query
+        description: Exclude links section from the response
+        schema:
+          type: boolean
+        example: true
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplications200Example:
+                  summary: Default getApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplications200Example:
+                  summary: Default getApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplications
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/deployments.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Deployments
+      description: This API operation retrieves a paginated list of all deployment records associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can access historical deployment information including deployment timestamps, descriptions, revisions, changelogs, and the user who created each deployment record. This is useful for tracking application releases, correlating performance changes with deployments, and maintaining a comprehensive deployment history for monitoring and troubleshooting purposes.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Getapplicationsiddeployments200Example:
+                  summary: Default getApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Getapplicationsiddeployments200Example:
+                  summary: Default getApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdDeployments
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Applications
+      summary: New Relic Post Applications Deployments
+      description: Creates a new deployment marker for a specified application in New Relic by sending a POST request to the /applications/{application_id}/deployments.json endpoint. This operation allows you to record deployment events, which appear as vertical lines on charts in the New Relic UI, helping teams correlate application performance changes with specific deployments. The request requires the application_id path parameter to identify the target application, and typically accepts deployment details in the request body such as revision, changelog, description, and user information. Deployment markers are useful for tracking releases, troubleshooting issues, and analyzing the impact of code changes on application performance metrics.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      requestBody:
+        description: Deployment schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Deployment'
+            examples:
+              PostapplicationsiddeploymentsRequestExample:
+                summary: Default postApplicationsIdDeployments request
+                x-microcks-default: true
+                value:
+                  deployment:
+                    changelog: example_value
+                    description: A sample description.
+                    revision: example_value
+                    user: example_value
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Deployment'
+            examples:
+              PostapplicationsiddeploymentsRequestExample:
+                summary: Default postApplicationsIdDeployments request
+                x-microcks-default: true
+                value:
+                  deployment:
+                    changelog: example_value
+                    description: A sample description.
+                    revision: example_value
+                    user: example_value
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Postapplicationsiddeployments200Example:
+                  summary: Default postApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Postapplicationsiddeployments200Example:
+                  summary: Default postApplicationsIdDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+      x-codegen-request-body-name: deployment
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: postApplicationsIdDeployments
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/deployments/{id}.json:
+    delete:
+      tags:
+      - Applications
+      summary: New Relic Delete Applications Deployments
+      description: This API operation allows you to delete a specific deployment record from a New Relic application by making a DELETE request to the endpoint /applications/{application_id}/deployments/{id}.json, where {application_id} is the unique identifier of the application and {id} is the specific deployment record you want to remove. This is useful for removing incorrect or outdated deployment markers from your application's deployment history in New Relic, helping maintain accurate tracking of your application's release timeline and deployment events.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: id
+        in: path
+        description: Deployment ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Deleteapplicationsiddeploymentsid200Example:
+                  summary: Default deleteApplicationsIdDeploymentsId 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+              examples:
+                Deleteapplicationsiddeploymentsid200Example:
+                  summary: Default deleteApplicationsIdDeploymentsId 200 response
+                  x-microcks-default: true
+                  value:
+                    deployment:
+                      changelog: {}
+                      description: {}
+                      id: {}
+                      links: {}
+                      revision: {}
+                      timestamp: {}
+                      user: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteApplicationsIdDeploymentsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Hosts
+      description: This API operation retrieves a paginated list of hosts associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can obtain information about all hosts running the specified application, including host details and performance metrics. The response is returned in JSON format and includes host identifiers, names, health status, and other relevant metadata that helps monitor application infrastructure across different servers or containers.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: filter[hostname]
+        in: query
+        description: Filter by server hostname
+        schema:
+          type: string
+        example: web01.example.com
+      - name: filter[ids]
+        in: query
+        description: Filter by application host ids
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhosts200Example:
+                  summary: Default getApplicationsIdHosts 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: &id001
+                    - host: example_string
+                      application_name: example_string
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: active
+                      id: 100
+                      language: 100
+                      links: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhosts200Example:
+                  summary: Default getApplicationsIdHosts 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: *id001
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHosts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts/{host_id}/metrics.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Hosts Host Metrics
+      description: This API operation retrieves a list of metric names associated with a specific host within a given application in New Relic's Application Performance Monitoring (APM) system. By providing both an application ID and a host in the endpoint path, users can query the available metrics that New Relic is collecting for that particular host instance. The response returns metric name data in JSON format, which typically includes identifiers and metadata for various performance measurements such as CPU usage, memory consumption, throughput, response times, and other application-specific metrics. This endpoint is particularly useful for developers and operations teams who need to discover what metrics are available before constructing more detailed queries or building monitoring dashboards, allowing them to programmatically explore the monitoring data structure for their infrastructure.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: host_id
+        in: path
+        description: Application Host ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricListResponse'
+              examples:
+                Getapplicationsidhostshostidmetrics200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metrics: &id002
+                    - name: example-resource-01
+                      values:
+                      - {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricListResponse'
+              examples:
+                Getapplicationsidhostshostidmetrics200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metrics: *id002
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHostsHostIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts/{host_id}/metrics/data.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Hosts Host Metrics Data
+      description: This API operation retrieves metric data for a specific host associated with a particular application in New Relic. By making a GET request to the endpoint with the application and host as path parameters, users can access detailed performance metrics and monitoring data for that specific host instance. The operation returns data in JSON format, which typically includes time-series metric values such as response times, throughput, error rates, and other performance indicators collected by New Relic's monitoring agents. Additional query parameters can be used to filter the metrics by name, specify time ranges, set data summarization options, and control the granularity of the returned data, making it useful for building custom dashboards, generating reports, or integrating New Relic monitoring data into external systems and workflows.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: host_id
+        in: path
+        description: Application Host ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidhostshostidmetricsdata200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidhostshostidmetricsdata200Example:
+                  summary: Default getApplicationsIdHostsHostIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHostsHostIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/hosts/{id}.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Hosts
+      description: This API operation retrieves detailed information about a specific host associated with a particular application in New Relic's APM monitoring system. By providing both an application and a host in the endpoint path, it returns comprehensive data about that host's performance metrics, system specifications, and current status within the context of the specified application. The GET request returns a JSON response containing host-level details such as hostname, health status, response times, throughput, error rates, and other relevant monitoring data that helps developers and operations teams understand how a specific server or container is performing while running the monitored application.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: id
+        in: path
+        description: Application host ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhostsid200Example:
+                  summary: Default getApplicationsIdHostsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: &id003
+                    - host: example_string
+                      application_name: example_string
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: active
+                      id: 100
+                      language: 100
+                      links: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationHostResponse'
+              examples:
+                Getapplicationsidhostsid200Example:
+                  summary: Default getApplicationsIdHostsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_hosts: *id003
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        WriteDescription: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdHostsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Instances
+      description: '<p>This API endpoint returns a <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        paginated</a> list of instances associated with the given application. The time range for summary data is the last 3-4 minutes.</p>
+
+
+        <p>Application instances can be filtered by hostname, or the list of application instance IDs.</p>
+
+
+        <p>See our documentation for a discussion and examples of
+
+        using <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/list-application-specific-server-host-instance-ids" target="_blank"> filters </a>
+
+        and <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank">summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: filter[hostname]
+        in: query
+        description: Filter by server hostname
+        schema:
+          type: string
+        example: web01.example.com
+      - name: filter[ids]
+        in: query
+        description: Filter by application instance ids
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstances200Example:
+                  summary: Default getApplicationsIdInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstances200Example:
+                  summary: Default getApplicationsIdInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstances
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{id}.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Instances
+      description: "<p>This API endpoint returns a single application instance, identified by ID. The time range for summary data is the last 3-4 minutes.</p>\n\n<p>See our documentation for a discussion of\n <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2\" target=\"_blank\">summary data output</a>.</p>\n\n"
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: id
+        in: path
+        description: Application instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstancesid200Example:
+                  summary: Default getApplicationsIdInstancesId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationInstanceResponse'
+              examples:
+                Getapplicationsidinstancesid200Example:
+                  summary: Default getApplicationsIdInstancesId 200 response
+                  x-microcks-default: true
+                  value:
+                    application_instance:
+                      host: {}
+                      application_name: {}
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      links: {}
+                      port: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{instance_id}/metrics.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Instances Instance Metrics
+      description: '<p>Return a list of known metrics and their value names for the given resource.</p>
+
+
+        <p>See our documentation for a discussion
+
+        on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>
+
+        and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: instance_id
+        in: path
+        description: Application Instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetrics200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetrics200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesInstanceIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/instances/{instance_id}/metrics/data.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Instances Instance Metrics Data
+      description: '<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics
+
+        can be returned using the Metric Name API endpoint.</p>
+
+
+        <p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.
+
+        Metric names and values will be matched intelligently in the background.</p>
+
+
+        <p>You can also retrieve a summarized data point across the entire time range selected by using the summarize
+
+        parameter.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>, <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data" target="_blank"> time range</a>
+
+        related considerations, and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: instance_id
+        in: path
+        description: Application Instance ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetricsdata200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidinstancesinstanceidmetricsdata200Example:
+                  summary: Default getApplicationsIdInstancesInstanceIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdInstancesInstanceIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/metrics.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Metrics
+      description: '<p>Return a list of known metrics and their value names for the given resource.</p>
+
+
+        <p>See our documentation for a discussion
+
+        on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>
+
+        and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidmetrics200Example:
+                  summary: Default getApplicationsIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getapplicationsidmetrics200Example:
+                  summary: Default getApplicationsIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{application_id}/metrics/data.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications Metrics Data
+      description: '<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics
+
+        can be returned using the Metric Name API endpoint.</p>
+
+
+        <p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.
+
+        Metric names and values will be matched intelligently in the background.</p>
+
+
+        <p>You can also retrieve a summarized data point across the entire time range selected by using the summarize
+
+        parameter.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>, <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data" target="_blank"> time range</a>
+
+        related considerations, and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+
+        '
+      parameters:
+      - name: application_id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidmetricsdata200Example:
+                  summary: Default getApplicationsIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getapplicationsidmetricsdata200Example:
+                  summary: Default getApplicationsIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{id}.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Applications
+      description: '<p>This API endpoint returns a single Application, identified by ID. The time range for summary data is the last 3-4 minutes.</p>
+
+
+        <p>See our documentation for a discussion of the
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank"> summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplicationsid200Example:
+                  summary: Default getApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Getapplicationsid200Example:
+                  summary: Default getApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getApplicationsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      tags:
+      - Applications
+      summary: New Relic Put Applications
+      description: '<p>This API endpoint allows you to update certain parameters of your application.</p>
+
+
+        <p>The input is expected to be in <strong>JSON or XML</strong> format in the body parameter of the PUT request. The exact
+
+        schema is defined below. Any extra parameters passed in the body <strong>will be ignored</strong>.</p>
+
+
+        <p>See our documentation for a discussion and simple example of
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/changing-alias-your-application-v2" target="_blank"> updating</a>
+
+        an application.</p>
+
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      requestBody:
+        description: Application schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+            examples:
+              PutapplicationsidRequestExample:
+                summary: Default putApplicationsId request
+                x-microcks-default: true
+                value:
+                  application:
+                    name: Example Title
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Application'
+            examples:
+              PutapplicationsidRequestExample:
+                summary: Default putApplicationsId request
+                x-microcks-default: true
+                value:
+                  application:
+                    name: Example Title
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Putapplicationsid200Example:
+                  summary: Default putApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Putapplicationsid200Example:
+                  summary: Default putApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+      x-codegen-request-body-name: application
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: putApplicationsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - Applications
+      summary: New Relic Delete Applications
+      description: '<p>This API endpoint deletes an application and all of its reported data.</p>
+
+
+        <p><strong>WARNING</strong>: Only applications that have stopped reporting can be deleted. This is an irreversible process
+
+        which will delete all reported data for this application.</p>
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Deleteapplicationsid200Example:
+                  summary: Default deleteApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+              examples:
+                Deleteapplicationsid200Example:
+                  summary: Default deleteApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      language: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      settings: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteApplicationsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Mobile Applications
+      description: '<p>This API endpoint returns a list of the Mobile Applications associated with your New Relic account.</p>
+
+
+        <p>MobileApplications can be filtered by their name, or by the application IDs.</p>
+
+        '
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplications200Example:
+                  summary: Default getMobileApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplications200Example:
+                  summary: Default getMobileApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplications
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications/{id}.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Mobile Applications
+      description: '<p>This API endpoint returns a single Mobile Application, identified by ID. The time range for summary data is the last 30 minutes.</p>
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Mobile Application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplicationsid200Example:
+                  summary: Default getMobileApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MobileApplicationResponse'
+              examples:
+                Getmobileapplicationsid200Example:
+                  summary: Default getMobileApplicationsId 200 response
+                  x-microcks-default: true
+                  value:
+                    application:
+                      crash_summary: {}
+                      health_status: {}
+                      id: {}
+                      mobile_summary: {}
+                      name: {}
+                      reporting: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplicationsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications/{mobile_application_id}/metrics.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Mobile Applications Mobile Application Metrics
+      description: '<p>Return a list of known metrics and their value names for the given resource.</p>
+
+
+        <p>See our documentation for a discussion
+
+        on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>
+
+        and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+        '
+      parameters:
+      - name: mobile_application_id
+        in: path
+        description: Mobile application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: name
+        in: query
+        description: Filter metrics by name
+        schema:
+          type: string
+        example: example-resource-01
+      - name: page
+        in: query
+        description: Pagination index (will be deprecated)
+        schema:
+          type: integer
+        example: 100
+      - name: cursor
+        in: query
+        description: Cursor for next page (replacing page param)
+        schema:
+          type: string
+        example: example_string
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetrics200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricParserResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetrics200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    metric:
+                      name: {}
+                      values: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplicationsMobileApplicationIdMetrics
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /mobile_applications/{mobile_application_id}/metrics/data.json:
+    get:
+      tags:
+      - Applications
+      summary: New Relic Get Mobile Applications Mobile Application Metrics Data
+      description: '<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics
+
+        can be returned using the Metric Name API endpoint.</p>
+
+
+        <p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.
+
+        Metric names and values will be matched intelligently in the background.</p>
+
+
+        <p>You can also retrieve a summarized data point across the entire time range selected by using the summarize
+
+        parameter.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">
+
+        output pagination</a>, <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data" target="_blank"> time range</a>
+
+        related considerations, and for examples of <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples" target="_blank">requesting and using metric values</a>.</p>
+
+
+        '
+      parameters:
+      - name: mobile_application_id
+        in: path
+        description: Mobile application ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: names
+        in: query
+        description: Retrieve specific metrics by name
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: values
+        in: query
+        description: Retrieve specific metric values
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - example_string
+      - name: from
+        in: query
+        description: Retrieve metrics after this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: to
+        in: query
+        description: Retrieve metrics before this time
+        schema:
+          type: string
+          format: date-time
+        example: '2026-04-18T14:30:00Z'
+      - name: period
+        in: query
+        description: Period of timeslices in seconds
+        schema:
+          type: integer
+        example: 100
+      - name: summarize
+        in: query
+        description: Summarize the data
+        schema:
+          type: boolean
+        example: true
+      - name: raw
+        in: query
+        description: Return unformatted raw values
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetricsdata200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MetricDataResponse'
+              examples:
+                Getmobileapplicationsmobileapplicationidmetricsdata200Example:
+                  summary: Default getMobileApplicationsMobileApplicationIdMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                    metric_data:
+                      from: {}
+                      metrics: {}
+                      metrics_found: {}
+                      metrics_not_found: {}
+                      to: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getMobileApplicationsMobileApplicationIdMetricsData
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MetricListResponse:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricParserResponseType'
+          example:
+          - name: example-resource-01
+            values:
+            - {}
+    ApplicationResponseType:
+      type: object
+      properties:
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        language:
+          type: string
+          example: example_string
+        last_reported_at:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        links:
+          $ref: '#/components/schemas/ApplicationLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        reporting:
+          type: boolean
+          example: true
+        settings:
+          $ref: '#/components/schemas/AppSettingsResponse'
+    ApplicationBody:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        settings:
+          $ref: '#/components/schemas/AppSettingsBody'
+    AppSettingsResponse:
+      type: object
+      properties:
+        app_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+        enable_real_user_monitoring:
+          type: boolean
+          example: true
+        end_user_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+        use_server_side_config:
+          type: boolean
+          example: true
+    EndUserSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    ApplicationInstanceResponseType:
+      type: object
+      properties:
+        host:
+          type: string
+          example: example_string
+        application_name:
+          type: string
+          example: example_string
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryDataResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryDataResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        language:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ApplicationInstanceLinksResponse'
+        port:
+          type: integer
+          example: 8080
+    DeploymentLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+    Application:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/ApplicationBody'
+    MetricParserResponseType:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        values:
+          type: array
+          items:
+            type: string
+          example:
+          - example_string
+    MobileSummaryDataResponse:
+      type: object
+      properties:
+        active_users:
+          type: integer
+          example: 100
+        calls_per_session:
+          type: number
+          format: float
+          example: 42.5
+        failed_call_rate:
+          type: number
+          format: float
+          example: 12.3
+        interaction_time:
+          type: number
+          format: float
+          example: 42.5
+        launch_count:
+          type: integer
+          example: 42
+        remote_error_rate:
+          type: number
+          format: float
+          example: 12.3
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    AppSettingsBody:
+      type: object
+      properties:
+        app_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+        enable_real_user_monitoring:
+          type: boolean
+          example: true
+        end_user_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+    AppSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        concurrent_instance_count:
+          type: integer
+          example: 42
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        host_count:
+          type: integer
+          example: 42
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    DeploymentResponse:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentResponseType'
+    ApplicationInstanceResponse:
+      type: object
+      properties:
+        application_instance:
+          $ref: '#/components/schemas/ApplicationInstanceResponseType'
+    MetricResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        timeslices:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimesliceResponse'
+          example:
+          - from: '2026-04-18T14:30:00Z'
+            to: '2026-04-18T14:30:00Z'
+            values: {}
+    DeploymentBody:
+      type: object
+      properties:
+        changelog:
+          type: string
+          example: example_string
+        description:
+          type: string
+          example: example_string
+        revision:
+          type: string
+          example: example_string
+        user:
+          type: string
+          example: example_string
+    MetricParserResponse:
+      type: object
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricParserResponseType'
+    ApplicationHostResponse:
+      type: object
+      properties:
+        application_hosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationHostResponseType'
+          example:
+          - host: example_string
+            application_name: example_string
+            application_summary: {}
+            end_user_summary: {}
+            health_status: active
+            id: 100
+            language: 100
+            links: {}
+    MobileApplicationResponse:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/MobileApplicationResponseType'
+    TimesliceResponse:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        to:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        values:
+          type: object
+          properties: {}
+          example: {}
+    MetricDataResponseType:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponse'
+          example:
+          - name: example-resource-01
+            timeslices:
+            - {}
+        metrics_found:
+          type: string
+          example: example_string
+        metrics_not_found:
+          type: string
+          example: example_string
+        to:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+    ApplicationHostResponseType:
+      type: object
+      properties:
+        host:
+          type: string
+          example: example_string
+        application_name:
+          type: string
+          example: example_string
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryDataResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryDataResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        language:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ApplicationHostLinksResponse'
+    ApplicationResponse:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/ApplicationResponseType'
+    MobileApplicationResponseType:
+      type: object
+      properties:
+        crash_summary:
+          $ref: '#/components/schemas/CrashSummaryResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        mobile_summary:
+          $ref: '#/components/schemas/MobileSummaryDataResponse'
+        name:
+          type: string
+          example: example-resource-01
+        reporting:
+          type: boolean
+          example: true
+    Deployment:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentBody'
+    ApplicationLinksResponse:
+      type: object
+      properties:
+        servers:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        application_hosts:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        application_instances:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    ApplicationHostLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+        application_instances:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        server:
+          type: integer
+          example: 100
+    EndUserSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    ApplicationInstanceLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+        application_host:
+          type: integer
+          example: 100
+        server:
+          type: integer
+          example: 100
+    CrashSummaryResponse:
+      type: object
+      properties:
+        crash_count:
+          type: integer
+          example: 42
+        crash_rate:
+          type: number
+          format: float
+          example: 12.3
+        supports_crash_data:
+          type: boolean
+          example: true
+        unresolved_crash_count:
+          type: integer
+          example: 42
+    DeploymentResponseType:
+      type: object
+      properties:
+        changelog:
+          type: string
+          example: example_string
+        description:
+          type: string
+          example: example_string
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/DeploymentLinksResponse'
+        revision:
+          type: string
+          example: example_string
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        user:
+          type: string
+          example: example_string
+    AppSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    MetricDataResponse:
+      type: object
+      properties:
+        metric_data:
+          $ref: '#/components/schemas/MetricDataResponseType'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

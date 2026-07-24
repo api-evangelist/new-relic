@@ -1,0 +1,529 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts External API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: External
+paths:
+  /alerts_external_service_conditions.json:
+    get:
+      tags:
+      - External
+      summary: New Relic Get Alerts External Service Conditions
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list the external service conditions for your alert policy.</p>
+
+
+        <p>See our documentation for a discussion on
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank"> output pagination</a>.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: query
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Getalertsexternalserviceconditions200Example:
+                  summary: Default getAlertsExternalServiceConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Getalertsexternalserviceconditions200Example:
+                  summary: Default getAlertsExternalServiceConditions 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsExternalServiceConditions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_external_service_conditions/policies/{policy_id}.json:
+    post:
+      tags:
+      - External
+      summary: New Relic Post Alerts External Service Conditions Policies
+      description: "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to create external service conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#ext-conditions-create\" target=\"_blank\">creating conditions for external services</a>.</p>\n\n<p>All fields are required except for â€œrunbook_urlâ€\x9D, â€œenabledâ€\x9D (defaults to false).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#type\" target=\"_blank\">type</a>: apm_external_service, mobile_external_service.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#name\" target=\"_blank\">name</a>: A title for your condition.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#enabled\" target=\"_blank\">enabled</a>: The status of your condition (optional).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#entities\" target=\"_blank\">entities</a>: An array of instance IDs associated with your condition.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#external_service_url\" target=\"_blank\">external_service_url</a>: The URL of the external service. Must not include protocol (â€œexample.comâ€\x9D, not â€œhttps://example.comâ€\x9D)</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#metric\" target=\"_blank\">metric</a>: The metric field accepts parameters based on the condition <b>type</b> selected as follows:</p>\n\n<p>Â Â When <b>apm_external_service</b>: response_time_average, response_time_minimum, response_time_maximum, throughput.</p>\n\n<p>Â Â When <b>mobile_external_service</b>: response_time_average, response_time_minimum, response_time_maximum, throughput, network_failure_percentage, http_status_error_percentage.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#runbook_url\" target=\"_blank\">runbook_url</a>: Runbook URL to display in notifications (optional).</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_duration\" target=\"_blank\">terms[duration]</a> (in minutes): 5, 10, 15, 30, 60, 120.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_operator\" target=\"_blank\">terms[operator]</a>: above, below, equal.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_priority\" target=\"_blank\">terms[priority]</a>: critical, warning.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_threshold\" target=\"_blank\">terms[threshold]</a>: Must be 0 or greater.</p>\n\n<p><a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/alerts-conditions-api-field-names#terms_time_function\" target=\"_blank\">terms[time_function]</a>: all, any.</p>\n\n"
+      parameters:
+      - name: policy_id
+        in: path
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      requestBody:
+        description: Condition schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalServiceCondition'
+            examples:
+              PostalertsexternalserviceconditionspoliciespolicyidRequestExample:
+                summary: Default postAlertsExternalServiceConditionsPoliciesPolicyId request
+                x-microcks-default: true
+                value:
+                  external_service_condition:
+                    enabled: true
+                    entities:
+                    - {}
+                    external_service_url: https://www.example.com
+                    metric: example_value
+                    name: Example Title
+                    runbook_url: https://www.example.com
+                    terms:
+                    - {}
+                    type: example_value
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExternalServiceCondition'
+            examples:
+              PostalertsexternalserviceconditionspoliciespolicyidRequestExample:
+                summary: Default postAlertsExternalServiceConditionsPoliciesPolicyId request
+                x-microcks-default: true
+                value:
+                  external_service_condition:
+                    enabled: true
+                    entities:
+                    - {}
+                    external_service_url: https://www.example.com
+                    metric: example_value
+                    name: Example Title
+                    runbook_url: https://www.example.com
+                    terms:
+                    - {}
+                    type: example_value
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Postalertsexternalserviceconditionspoliciespolicyid200Example:
+                  summary: Default postAlertsExternalServiceConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Postalertsexternalserviceconditionspoliciespolicyid200Example:
+                  summary: Default postAlertsExternalServiceConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+      x-codegen-request-body-name: external_service_condition
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: postAlertsExternalServiceConditionsPoliciesPolicyId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_external_service_conditions/{condition_id}.json:
+    put:
+      tags:
+      - External
+      summary: New Relic Put Alerts External Service Conditions
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to update external service conditions for your alert policies.</p>
+
+
+        <p>Note: <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key">Admin Userâ€™s API Key</a> is required.</p>
+
+
+        <p>See Alerts External Service Conditions &gt; Create for an explanation of the field values used in this command or the online documentation on
+
+        <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#ext-conditions-update" target="_blank">updating conditions for external services</a>.</p>
+
+        '
+      parameters:
+      - name: condition_id
+        in: path
+        description: Alerts condition to update
+        required: true
+        schema:
+          type: integer
+        example: 100
+      requestBody:
+        description: Condition schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalServiceCondition'
+            examples:
+              PutalertsexternalserviceconditionsconditionidRequestExample:
+                summary: Default putAlertsExternalServiceConditionsConditionId request
+                x-microcks-default: true
+                value:
+                  external_service_condition:
+                    enabled: true
+                    entities:
+                    - {}
+                    external_service_url: https://www.example.com
+                    metric: example_value
+                    name: Example Title
+                    runbook_url: https://www.example.com
+                    terms:
+                    - {}
+                    type: example_value
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ExternalServiceCondition'
+            examples:
+              PutalertsexternalserviceconditionsconditionidRequestExample:
+                summary: Default putAlertsExternalServiceConditionsConditionId request
+                x-microcks-default: true
+                value:
+                  external_service_condition:
+                    enabled: true
+                    entities:
+                    - {}
+                    external_service_url: https://www.example.com
+                    metric: example_value
+                    name: Example Title
+                    runbook_url: https://www.example.com
+                    terms:
+                    - {}
+                    type: example_value
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Putalertsexternalserviceconditionsconditionid200Example:
+                  summary: Default putAlertsExternalServiceConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Putalertsexternalserviceconditionsconditionid200Example:
+                  summary: Default putAlertsExternalServiceConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+      x-codegen-request-body-name: external_service_condition
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: putAlertsExternalServiceConditionsConditionId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - External
+      summary: New Relic Delete Alerts External Service Conditions
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <p>This API endpoint allows you to delete external service conditions associated with your alert policy.</p>
+
+
+        <p>Note: <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key">Admin Userâ€™s API Key</a> is required.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#ext-conditions-delete" target="_blank">deleting External services conditions</a>.</p>
+
+
+        '
+      parameters:
+      - name: condition_id
+        in: path
+        description: Alerts condition ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Deletealertsexternalserviceconditionsconditionid200Example:
+                  summary: Default deleteAlertsExternalServiceConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ExternalServiceConditionResponse'
+              examples:
+                Deletealertsexternalserviceconditionsconditionid200Example:
+                  summary: Default deleteAlertsExternalServiceConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    external_service_condition:
+                      enabled: {}
+                      entities: {}
+                      external_service_url: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteAlertsExternalServiceConditionsConditionId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ExternalServiceConditionResponseType:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        external_service_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        id:
+          type: integer
+          example: 100
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+    ExternalServiceCondition:
+      type: object
+      properties:
+        external_service_condition:
+          $ref: '#/components/schemas/ExternalServiceConditionBody'
+    IJKTermsType:
+      type: object
+      properties:
+        duration:
+          type: string
+          example: example_string
+        operator:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+        threshold:
+          type: string
+          example: example_string
+        time_function:
+          type: string
+          example: example_string
+    ExternalServiceConditionBody:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        external_service_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+    ExternalServiceConditionResponse:
+      type: object
+      properties:
+        external_service_condition:
+          $ref: '#/components/schemas/ExternalServiceConditionResponseType'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

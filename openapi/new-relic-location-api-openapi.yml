@@ -1,0 +1,570 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Location API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Location
+paths:
+  /alerts_location_failure_conditions/policies/{policy_id}.json:
+    get:
+      tags:
+      - Location
+      summary: New Relic Get Alerts Location Failure Conditions Policies
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list the alerts location failure conditions for your Alerts policy.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: path
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertslocationfailureconditionspoliciespolicyid200Example:
+                  summary: Default getAlertsLocationFailureConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                  - condition: {}
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertslocationfailureconditionspoliciespolicyid200Example:
+                  summary: Default getAlertsLocationFailureConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                  - condition: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsLocationFailureConditionsPoliciesPolicyId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Location
+      summary: New Relic Post Alerts Location Failure Conditions Policies
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to create the alerts location failure conditions for your Alerts policy.</p>
+
+        '
+      parameters:
+      - name: policy_id
+        in: path
+        description: Alerts policy failure condition
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: location_failure_condition
+        in: path
+        description: Alerts policy ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      requestBody:
+        description: Condition schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConditionResponse'
+            examples:
+              PostalertslocationfailureconditionspoliciespolicyidRequestExample:
+                summary: Default postAlertsLocationFailureConditionsPoliciesPolicyId request
+                x-microcks-default: true
+                value:
+                  condition:
+                    condition_scope: example_value
+                    enabled: true
+                    entities:
+                    - {}
+                    gc_metric: example_value
+                    id: abc123
+                    metric: example_value
+                    name: Example Title
+                    runbook_url: https://www.example.com
+                    terms:
+                    - {}
+                    type: example_value
+                    violation_close_timer: 10
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ConditionResponse'
+            examples:
+              PostalertslocationfailureconditionspoliciespolicyidRequestExample:
+                summary: Default postAlertsLocationFailureConditionsPoliciesPolicyId request
+                x-microcks-default: true
+                value:
+                  condition:
+                    condition_scope: example_value
+                    enabled: true
+                    entities:
+                    - {}
+                    gc_metric: example_value
+                    id: abc123
+                    metric: example_value
+                    name: Example Title
+                    runbook_url: https://www.example.com
+                    terms:
+                    - {}
+                    type: example_value
+                    violation_close_timer: 10
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Postalertslocationfailureconditionspoliciespolicyid200Example:
+                  summary: Default postAlertsLocationFailureConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Postalertslocationfailureconditionspoliciespolicyid200Example:
+                  summary: Default postAlertsLocationFailureConditionsPoliciesPolicyId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-codegen-request-body-name: condition
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: postAlertsLocationFailureConditionsPoliciesPolicyId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alerts_location_failure_conditions/{condition_id}.json:
+    put:
+      tags:
+      - Location
+      summary: New Relic Put Alerts Location Failure Conditions
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to update the alerts location failure conditions for your Alerts policy.</p>
+
+        '
+      parameters:
+      - name: condition_id
+        in: path
+        description: Alerts condition to update
+        required: true
+        schema:
+          type: integer
+        example: 100
+      requestBody:
+        description: Condition schema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Condition'
+            examples:
+              PutalertslocationfailureconditionsconditionidRequestExample:
+                summary: Default putAlertsLocationFailureConditionsConditionId request
+                x-microcks-default: true
+                value:
+                  condition:
+                    condition_scope: example_value
+                    enabled: true
+                    entities:
+                    - {}
+                    gc_metric: example_value
+                    metric: example_value
+                    name: Example Title
+                    terms:
+                    - {}
+                    type: example_value
+                    violation_close_timer: 10
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Condition'
+            examples:
+              PutalertslocationfailureconditionsconditionidRequestExample:
+                summary: Default putAlertsLocationFailureConditionsConditionId request
+                x-microcks-default: true
+                value:
+                  condition:
+                    condition_scope: example_value
+                    enabled: true
+                    entities:
+                    - {}
+                    gc_metric: example_value
+                    metric: example_value
+                    name: Example Title
+                    terms:
+                    - {}
+                    type: example_value
+                    violation_close_timer: 10
+        required: true
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Putalertslocationfailureconditionsconditionid200Example:
+                  summary: Default putAlertsLocationFailureConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Putalertslocationfailureconditionsconditionid200Example:
+                  summary: Default putAlertsLocationFailureConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-codegen-request-body-name: condition
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: putAlertsLocationFailureConditionsConditionId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - Location
+      summary: New Relic Delete Alerts Location Failure Conditions
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to Delete the alerts location failure conditions for your Alerts policy.</p>
+
+        '
+      parameters:
+      - name: condition_id
+        in: path
+        description: Alerts condition ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Deletealertslocationfailureconditionsconditionid200Example:
+                  summary: Default deleteAlertsLocationFailureConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Deletealertslocationfailureconditionsconditionid200Example:
+                  summary: Default deleteAlertsLocationFailureConditionsConditionId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-codegen-request-body-name: condition
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteAlertsLocationFailureConditionsConditionId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    UserDefinedConditionBody:
+      type: object
+      properties:
+        metric:
+          type: string
+          example: example_string
+        value_function:
+          type: string
+          example: example_string
+    ConditionResponse:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionResponseType'
+    IJKTermsType:
+      type: object
+      properties:
+        duration:
+          type: string
+          example: example_string
+        operator:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+        threshold:
+          type: string
+          example: example_string
+        time_function:
+          type: string
+          example: example_string
+    ConditionBody:
+      type: object
+      properties:
+        condition_scope:
+          type: string
+          example: example_string
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        gc_metric:
+          type: string
+          example: example_string
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+        user_defined:
+          $ref: '#/components/schemas/UserDefinedConditionBody'
+        violation_close_timer:
+          type: integer
+          example: 1718153645993
+    UserDefinedConditionResponse:
+      type: object
+      properties:
+        metric:
+          type: string
+          example: example_string
+        value_function:
+          type: string
+          example: example_string
+    ConditionResponseType:
+      type: object
+      properties:
+        condition_scope:
+          type: string
+          example: example_string
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        gc_metric:
+          type: string
+          example: example_string
+        id:
+          type: integer
+          example: 100
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+        user_defined:
+          $ref: '#/components/schemas/UserDefinedConditionResponse'
+        violation_close_timer:
+          type: integer
+          example: 1718153645993
+    Condition:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionBody'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

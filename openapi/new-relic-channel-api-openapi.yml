@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Channel API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Channel
+paths:
+  /alerts_channels/{channel_id}.json:
+    delete:
+      tags:
+      - Channel
+      summary: New Relic Delete Alerts Channels Channel
+      description: '<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <p>This API endpoint deletes Alerts notification channels.</p>
+
+
+        <p>Note: <code>User</code> notification channels cannot be deleted.</p>
+
+
+        <p>Note: <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key">Admin Userâ€™s API Key</a> is required.</p>
+
+
+        <p>See our documentation for a discussion on <a href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-delete">deleting notification channels</a>.</p>
+
+
+        '
+      parameters:
+      - name: channel_id
+        in: path
+        description: Channel ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Deletealertschannelschannelid200Example:
+                  summary: Default deleteAlertsChannelsChannelId 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+              examples:
+                Deletealertschannelschannelid200Example:
+                  summary: Default deleteAlertsChannelsChannelId 200 response
+                  x-microcks-default: true
+                  value:
+                    channel:
+                      configuration: {}
+                      id: {}
+                      links: {}
+                      name: {}
+                      type: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteAlertsChannelsChannelId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ChannelResponse:
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelResponseType'
+    ChannelResponseType:
+      type: object
+      properties:
+        configuration:
+          type: object
+          properties: {}
+          example: {}
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ChannelLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        type:
+          type: string
+          example: standard
+    ChannelLinksResponse:
+      type: object
+      properties:
+        policy_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

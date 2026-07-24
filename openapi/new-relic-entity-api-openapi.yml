@@ -1,0 +1,410 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Entity API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Entity
+paths:
+  /alerts_entity_conditions/{entity_id}.json:
+    get:
+      tags:
+      - Entity
+      summary: New Relic Get Alerts Entity Conditions Entity
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to list the Alerts conditions an entity is part of.</p>
+
+
+        <p>Entity type options (Synthetics is not yet supported):</p>
+
+
+        <pre><code>BrowserApplication
+
+
+        Application
+
+
+        MobileApplication
+
+
+        Server
+
+
+        KeyTransaction
+
+        </code></pre>
+
+        '
+      parameters:
+      - name: entity_id
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: entity_type
+        in: query
+        description: Entity Type
+        required: true
+        schema:
+          type: string
+        example: standard
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertsentityconditionsentityid200Example:
+                  summary: Default getAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Getalertsentityconditionsentityid200Example:
+                  summary: Default getAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getAlertsEntityConditionsEntityId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      tags:
+      - Entity
+      summary: New Relic Put Alerts Entity Conditions Entity
+      description: "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to add an entity to a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.\n<br />\n  Entity type options (Synthetics is not yet supported):</p>\n\n<pre><code>BrowserApplication\n\nApplication\n\nMobileApplication\n\nServer\n\nKeyTransaction\n</code></pre>\n"
+      parameters:
+      - name: entity_id
+        in: path
+        description: Entity to add
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: entity_type
+        in: query
+        description: Entity Type
+        required: true
+        schema:
+          type: string
+        example: standard
+      - name: condition_id
+        in: query
+        description: Alerts condition ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Putalertsentityconditionsentityid200Example:
+                  summary: Default putAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Putalertsentityconditionsentityid200Example:
+                  summary: Default putAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: putAlertsEntityConditionsEntityId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - Entity
+      summary: New Relic Delete Alerts Entity Conditions Entity
+      description: 'ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href="https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/">these docs about managing alerts via NerdGraph.</a>
+
+
+        <hr>
+
+
+        <p>This API endpoint allows you to disassociate an entity with a specified Alerts condition.</p>
+
+
+        <p>Note: <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key">Admin Userâ€™s API Key</a> is required.</p>
+
+
+        <p>Entity type options (Synthetics is not yet supported):</p>
+
+
+        <pre><code>BrowserApplication
+
+
+        Application
+
+
+        MobileApplication
+
+
+        Server
+
+
+        KeyTransaction
+
+        </code></pre>
+
+        '
+      parameters:
+      - name: entity_id
+        in: path
+        description: Entity to remove
+        required: true
+        schema:
+          type: integer
+        example: 100
+      - name: entity_type
+        in: query
+        description: Entity Type
+        required: true
+        schema:
+          type: string
+        example: standard
+      - name: condition_id
+        in: query
+        description: Alerts condition ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Deletealertsentityconditionsentityid200Example:
+                  summary: Default deleteAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ConditionResponse'
+              examples:
+                Deletealertsentityconditionsentityid200Example:
+                  summary: Default deleteAlertsEntityConditionsEntityId 200 response
+                  x-microcks-default: true
+                  value:
+                    condition:
+                      condition_scope: {}
+                      enabled: {}
+                      entities: {}
+                      gc_metric: {}
+                      id: {}
+                      metric: {}
+                      name: {}
+                      runbook_url: {}
+                      terms: {}
+                      type: {}
+                      user_defined: {}
+                      violation_close_timer: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: deleteAlertsEntityConditionsEntityId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    UserDefinedConditionResponse:
+      type: object
+      properties:
+        metric:
+          type: string
+          example: example_string
+        value_function:
+          type: string
+          example: example_string
+    ConditionResponse:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionResponseType'
+    IJKTermsType:
+      type: object
+      properties:
+        duration:
+          type: string
+          example: example_string
+        operator:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+        threshold:
+          type: string
+          example: example_string
+        time_function:
+          type: string
+          example: example_string
+    ConditionResponseType:
+      type: object
+      properties:
+        condition_scope:
+          type: string
+          example: example_string
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        gc_metric:
+          type: string
+          example: example_string
+        id:
+          type: integer
+          example: 100
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+        user_defined:
+          $ref: '#/components/schemas/UserDefinedConditionResponse'
+        violation_close_timer:
+          type: integer
+          example: 1718153645993
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/

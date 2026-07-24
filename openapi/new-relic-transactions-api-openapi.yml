@@ -1,0 +1,294 @@
+openapi: 3.1.0
+info:
+  title: New Relic Event Alerts Transactions API
+  description: The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.
+  version: '1'
+  contact:
+    name: New Relic Support
+    url: https://support.newrelic.com/
+  termsOfService: https://newrelic.com/termsandconditions/terms
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://insights-collector.newrelic.com
+  description: US Production
+- url: https://insights-collector.eu01.nr-data.net
+  description: EU Production
+security:
+- apiKey: []
+tags:
+- name: Transactions
+paths:
+  /key_transactions.json:
+    get:
+      tags:
+      - Transactions
+      summary: New Relic Get Key Transactions
+      description: '<p>This API endpoint returns a <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output" target="_blank">paginated</a>
+
+        list of the key transactions associated with your New Relic account.  The time range for summary data is the last 10 minutes.</p>
+
+
+        <p>Key transactions can be filtered by their name or list of IDs.</p>
+
+
+        <p>See our documentation for a discussion of
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank">summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: filter[name]
+        in: query
+        description: Filter by name
+        schema:
+          type: string
+        example: example_string
+      - name: filter[ids]
+        in: query
+        description: Filter by policy IDs
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - '500123'
+      - name: page
+        in: query
+        description: Pagination index
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          headers:
+            link:
+              description: 'Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.
+
+                '
+              schema:
+                type: array
+                items:
+                  type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactions200Example:
+                  summary: Default getKeyTransactions 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactions200Example:
+                  summary: Default getKeyTransactions 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getKeyTransactions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /key_transactions/{id}.json:
+    get:
+      tags:
+      - Transactions
+      summary: New Relic Get Key Transactions
+      description: '<p>This endpoint returns a single key transaction, identified by ID. The time range for summary data is the last 10 minutes.</p>
+
+
+        <p>See our documentation for a discussion of
+
+        <a href="https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2" target="_blank">summary data output</a>.</p>
+
+
+        '
+      parameters:
+      - name: id
+        in: path
+        description: Key transaction ID
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactionsid200Example:
+                  summary: Default getKeyTransactionsId 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KeyTransactionResponse'
+              examples:
+                Getkeytransactionsid200Example:
+                  summary: Default getKeyTransactionsId 200 response
+                  x-microcks-default: true
+                  value:
+                    key_transaction:
+                      application_summary: {}
+                      end_user_summary: {}
+                      health_status: {}
+                      id: {}
+                      last_reported_at: {}
+                      links: {}
+                      name: {}
+                      reporting: {}
+                      transaction_name: {}
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        CaselCaseOperationIds: true
+        GenerateOperationSummariesFromPath: true
+        ChooseTags: true
+      operationId: getKeyTransactionsId
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    KeyTransactionLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          description: Application from which this key transaction originated
+          example: 100
+    EndUserSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    AppSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        concurrent_instance_count:
+          type: integer
+          example: 42
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        host_count:
+          type: integer
+          example: 42
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    KeyTransactionResponseType:
+      type: object
+      properties:
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        last_reported_at:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        links:
+          $ref: '#/components/schemas/KeyTransactionLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        reporting:
+          type: boolean
+          example: true
+        transaction_name:
+          type: string
+          example: example_string
+    KeyTransactionResponse:
+      type: object
+      properties:
+        key_transaction:
+          $ref: '#/components/schemas/KeyTransactionResponseType'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Api-Key
+      description: New Relic License Key or Ingest API Key
+externalDocs:
+  description: New Relic Event API Documentation
+  url: https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/
