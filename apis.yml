@@ -8335,6 +8335,17 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: IssueTracker
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/issues
+- type: Releases
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/releases
+- type: CodeOfConduct
+  url: https://github.com/newrelic/.github/blob/main/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/blob/main/CONTRIBUTING.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/blob/main/LICENSE
 - type: AgenticAccess
   url: agentic-access/new-relic-agentic-access.yml
 - type: VulnerabilityDisclosure
