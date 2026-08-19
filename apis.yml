@@ -8333,7 +8333,7 @@ description: >-
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 common:
 - type: IssueTracker
   url: https://github.com/newrelic/newrelic-telemetry-sdk-java/issues
