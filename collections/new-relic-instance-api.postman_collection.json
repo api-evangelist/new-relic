@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "52a18f00-ff75-46b7-bfe0-9f0f9af2bd14",
+      "name": "Instance",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b983afe0-9ed8-4cda-8402-401d36a72cd7",
+          "name": "New Relic Get Applications Instances Instance Metrics",
+          "request": {
+            "name": "New Relic Get Applications Instances Instance Metrics",
+            "description": {
+              "content": "<p>Return a list of known metrics and their value names for the given resource.</p>\n\n<p>See our documentation for a discussion\non <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\"> output pagination</a>\nand for examples of <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples\" target=\"_blank\">requesting and using metric values</a>.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":application_id",
+                "instances",
+                ":instance_id",
+                "metrics.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter metrics by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Pagination index (will be deprecated)"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Cursor for next page (replacing page param)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "application_id",
+                  "description": "(Required) Application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "instance_id",
+                  "description": "(Required) Application Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fedbd5c4-13eb-40ea-bf62-b5a2a189ec2f",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application_id",
+                    "instances",
+                    ":instance_id",
+                    "metrics.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "example-resource-01"
+                    },
+                    {
+                      "key": "page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "example_string"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "application_id",
+                      "description": "(Required) Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "instance_id",
+                      "description": "(Required) Application Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.\n",
+                  "key": "link",
+                  "value": "string,string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metric\": {\n    \"name\": {},\n    \"values\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fc49b18-0b3c-435f-b75a-7b0f865f4d69",
+          "name": "New Relic Get Applications Instances Instance Metrics Data",
+          "request": {
+            "name": "New Relic Get Applications Instances Instance Metrics Data",
+            "description": {
+              "content": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\">\noutput pagination</a>, <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/extracting-metric-data\" target=\"_blank\"> time range</a>\nrelated considerations, and for examples of <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples\" target=\"_blank\">requesting and using metric values</a>.</p>\n\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":application_id",
+                "instances",
+                ":instance_id",
+                "metrics",
+                "data.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "names",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Retrieve specific metrics by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "values",
+                  "value": "<string>,<string>",
+                  "description": "Retrieve specific metric values"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Retrieve metrics after this time"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "Retrieve metrics before this time"
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<integer>",
+                  "description": "Period of timeslices in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "summarize",
+                  "value": "<boolean>",
+                  "description": "Summarize the data"
+                },
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "<boolean>",
+                  "description": "Return unformatted raw values"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "application_id",
+                  "description": "(Required) Application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "instance_id",
+                  "description": "(Required) Application Instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "301ec7be-847c-4b90-ae48-f019e6cc91e5",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application_id",
+                    "instances",
+                    ":instance_id",
+                    "metrics",
+                    "data.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "names",
+                      "value": "example_string"
+                    },
+                    {
+                      "key": "values",
+                      "value": "example_string"
+                    },
+                    {
+                      "key": "from",
+                      "value": "2026-04-18T14:30:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-04-18T14:30:00Z"
+                    },
+                    {
+                      "key": "period",
+                      "value": "100"
+                    },
+                    {
+                      "key": "summarize",
+                      "value": "true"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "application_id",
+                      "description": "(Required) Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "instance_id",
+                      "description": "(Required) Application Instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metric_data\": {\n    \"from\": {},\n    \"metrics\": {},\n    \"metrics_found\": {},\n    \"metrics_not_found\": {},\n    \"to\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://insights-collector.newrelic.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7c0992e2-7dd4-477f-8844-dcd2d721f205",
+    "name": "New Relic Event Alerts Instance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

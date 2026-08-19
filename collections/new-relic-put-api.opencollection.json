@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Put API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Put",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Put Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/applications/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p>This API endpoint allows you to update certain parameters of your application.</p>\n\n<p>The input is expected to be in <strong>JSON or XML</strong> format in the body parameter of the PUT request. The exact\nschema is defined below. Any extra parameters passed in the body <strong>will be ignored</strong>.</p>\n\n<p>See our documentation for a discussion and simple example of\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/changing-alias-your-application-v2\" target"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to update APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are not a"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity to add"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              },
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to add an entity to a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.\n<br />\n  Entity "
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts External Service Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_external_service_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update external service conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Location Failure Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Nrql Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_nrql_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint updates Alerts policies associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on u"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_ids",
+                "value": "500123",
+                "type": "query",
+                "description": "Channel IDs"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint updates policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Synthetics Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_synthetics_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update Synthetics conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>S"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

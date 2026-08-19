@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Channels API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Alerts Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/alerts_channels.json",
+            "params": [
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It returns a list of the channels associated with your New Relic account.</p>\n\n<p>Note: See our documentation for a discussion o"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_channels.json",
+            "params": [
+              {
+                "name": "policy_ids",
+                "value": "500123",
+                "type": "query",
+                "description": "Policy IDs to associate with channel"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It creates a channel associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/re"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Channels Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_channels/:channel_id.json",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts notification channels.</p>\n\n<p>Note: <code>User</code> notification channels cannot be deleted.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requir"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_ids",
+                "value": "500123",
+                "type": "query",
+                "description": "Channel IDs"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint updates policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "query",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint deletes Alerts policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.<"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

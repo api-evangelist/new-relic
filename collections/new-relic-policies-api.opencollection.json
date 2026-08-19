@@ -1,0 +1,304 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Policies API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Post Alerts Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to create APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are not a"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts External Service Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_external_service_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to create external service conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>S"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Location Failure Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Location Failure Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy failure condition"
+              },
+              {
+                "name": "location_failure_condition",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to create the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Nrql Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_nrql_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/alerts_policies.json",
+            "params": [
+              {
+                "name": "filter[name]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Name (must be exact match)"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>This API endpoint returns a list of the alert policies associated with your New Relic account.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/apis/rest-api-"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_policies.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>This Alerts API endpoint creates a policy associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API "
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint updates Alerts policies associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on u"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Policy ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts policies associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on u"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_ids",
+                "value": "500123",
+                "type": "query",
+                "description": "Channel IDs"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint updates policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "query",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint deletes Alerts policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.<"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Synthetics Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_synthetics_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to create Synthetics conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>S"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

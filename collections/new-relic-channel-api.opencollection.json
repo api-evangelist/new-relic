@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Channel API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Channels Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_channels/:channel_id.json",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts notification channels.</p>\n\n<p>Note: <code>User</code> notification channels cannot be deleted.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requir"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,546 @@
+{
+  "item": [
+    {
+      "id": "5d92d99a-2a5c-441e-8331-76a09f3f2b8c",
+      "name": "Channels",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f071e28-4a5b-42fc-bee3-99964b91b286",
+          "name": "New Relic Get Alerts Channels",
+          "request": {
+            "name": "New Relic Get Alerts Channels",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It returns a list of the channels associated with your New Relic account.</p>\n\n<p>Note: See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-list\">listing notification channels</a>.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_channels.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Pagination index"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a27c7e8-0651-4d81-b4ca-d89a7121fe13",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_channels.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.\n",
+                  "key": "link",
+                  "value": "string,string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": {\n    \"configuration\": {},\n    \"id\": {},\n    \"links\": {},\n    \"name\": {},\n    \"type\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "320bdb1c-77d5-4426-b76b-e037083a093a",
+          "name": "New Relic Post Alerts Channels",
+          "request": {
+            "name": "New Relic Post Alerts Channels",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint works with new Alerts on alerts.newrelic.com.</p>\n\n<p>It creates a channel associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-create\">creating notification channels</a>.</p>\n\n<p>Channel type configuration options:</p>\n\n<ul>\n  <li>\n    <p>Email</p>\n\n    <p>{</p>\n\n    <pre><code>\"recipients\" : \"test@google.com\",\n\"include_json_attachment\" : true\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>HipChat</p>\n\n    <p>{</p>\n\n    <pre><code>\"auth_token\": \"abc123\",\n\"room_id\": \"google.com\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>OpsGenie</p>\n\n    <p>{</p>\n\n    <pre><code>\"api_key\": \"abc123\",\n\"teams\": \"team1\",\n\"tags\": \"tag1\",\n\"recipients\": \"me@me.com\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Slack</p>\n\n    <p>{</p>\n\n    <pre><code>\"url\": \"http://test.com\",\n\"channel\": \"channel1\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Campfire</p>\n\n    <p>{</p>\n\n    <pre><code>\"subdomain\": \"mysubdomain\",\n\"token\": \"123abc\",\n\"room\": \"room1\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Victorops</p>\n\n    <p>{</p>\n\n    <pre><code>\"key\": \"mykey\",\n\"route_key\": \"theroute\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>PagerDuty</p>\n\n    <p>{</p>\n\n    <pre><code>\"service_key\": \"myservicekey\"\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Webhook (json)</p>\n\n    <p>{</p>\n\n    <pre><code>\"base_url\": \"http://test.com\",\n\"auth_username\": \"username\",\n\"auth_password\": \"password\",\n\"payload_type\": \"application/json\",\n\"payload\": {\n  \"account_id\": \"$ACCOUNT_ID\",\n  \"account_name\": \"$ACCOUNT_NAME\",\n  \"condition_id\": \"$CONDITION_ID\",\n  \"condition_name\": \"$CONDITION_NAME\",\n  \"current_state\": \"$EVENT_STATE\",\n  \"details\": \"$EVENT_DETAILS\",\n  \"event_type\": \"$EVENT_TYPE\",\n  \"incident_acknowledge_url\": \"$INCIDENT_ACKNOWLEDGE_URL\",\n  \"incident_id\": \"$INCIDENT_ID\",\n  \"incident_url\": \"$INCIDENT_URL\",\n  \"owner\": \"$EVENT_OWNER\",\n  \"policy_name\": \"$POLICY_NAME\",\n  \"policy_url\": \"$POLICY_URL\",\n  \"runbook_url\": \"$RUNBOOK_URL\",\n  \"severity\": \"$SEVERITY\",\n  \"targets\": \"$TARGETS\",\n  \"timestamp\": \"$TIMESTAMP\",\n  \"violation_chart_url\": \"$VIOLATION_CHART_URL\"\n},\n\"headers\": {\"header1\": \"test\", \"header2\": \"test\"}\n</code></pre>\n\n    <p>}</p>\n  </li>\n  <li>\n    <p>Webhook (x-www-form-urlencoded)</p>\n\n    <p>{</p>\n\n    <pre><code>\"base_url\": \"http://test.com\",\n\"auth_username\": \"username\",\n\"auth_password\": \"password\",\n\"payload_type\": \"application/x-www-form-urlencoded\",\n\"payload\": {\n  \"account_id\": \"$ACCOUNT_ID\",\n  \"account_name\": \"$ACCOUNT_NAME\",\n  \"condition_id\": \"$CONDITION_ID\",\n  \"condition_name\": \"$CONDITION_NAME\",\n  \"current_state\": \"$EVENT_STATE\",\n  \"details\": \"$EVENT_DETAILS\",\n  \"event_type\": \"$EVENT_TYPE\",\n  \"incident_acknowledge_url\": \"$INCIDENT_ACKNOWLEDGE_URL\",\n  \"incident_id\": \"$INCIDENT_ID\",\n  \"incident_url\": \"$INCIDENT_URL\",\n  \"owner\": \"$EVENT_OWNER\",\n  \"policy_name\": \"$POLICY_NAME\",\n  \"policy_url\": \"$POLICY_URL\",\n  \"runbook_url\": \"$RUNBOOK_URL\",\n  \"severity\": \"$SEVERITY\",\n  \"targets\": \"$TARGETS\",\n  \"timestamp\": \"$TIMESTAMP\",\n  \"violation_chart_url\": \"$VIOLATION_CHART_URL\"\n},\n\"headers\": {\"header1\": \"test\", \"header2\": \"test\"}\n</code></pre>\n\n    <p>}</p>\n  </li>\n</ul>\n\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_channels.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "policy_ids",
+                  "value": "<string>,<string>",
+                  "description": "Policy IDs to associate with channel"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel\": {\n    \"configuration\": {},\n    \"name\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c818b9e-6c4c-4cad-8aa2-e44609bcf909",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_channels.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policy_ids",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": {\n    \"configuration\": {},\n    \"name\": \"Example Title\",\n    \"type\": \"example_value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": {\n    \"configuration\": {},\n    \"id\": {},\n    \"links\": {},\n    \"name\": {},\n    \"type\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97b82b63-91ac-4faf-b870-70e702129b81",
+          "name": "New Relic Delete Alerts Channels Channel",
+          "request": {
+            "name": "New Relic Delete Alerts Channels Channel",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts notification channels.</p>\n\n<p>Note: <code>User</code> notification channels cannot be deleted.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#channels-delete\">deleting notification channels</a>.</p>\n\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_channels",
+                "{{channel_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c424cbd9-5433-459d-8d93-cb487e91c55a",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_channels",
+                    "{{channel_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": {\n    \"configuration\": {},\n    \"id\": {},\n    \"links\": {},\n    \"name\": {},\n    \"type\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "235ad90d-3943-4a1f-8bde-67fc9a6ae4ef",
+          "name": "New Relic Put Alerts Policy Channels",
+          "request": {
+            "name": "New Relic Put Alerts Policy Channels",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint updates policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#policy-channels-update\">updating notification channels with policies</a>.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_policy_channels.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "policy_id",
+                  "value": "<integer>",
+                  "description": "(Required) Policy ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel_ids",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Channel IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13bf6bb8-138b-441b-b886-46f6ce448636",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_policy_channels.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policy_id",
+                      "value": "100"
+                    },
+                    {
+                      "key": "channel_ids",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy\": {\n    \"channel_ids\": {},\n    \"id\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "282cefc7-d753-4430-87b9-ce5ac03edd26",
+          "name": "New Relic Delete Alerts Policy Channels",
+          "request": {
+            "name": "New Relic Delete Alerts Policy Channels",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint deletes Alerts policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#policy-channels-delete\">deleting notification channels with policies</a>.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_policy_channels.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "policy_id",
+                  "value": "<integer>",
+                  "description": "(Required) Policy ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel_id",
+                  "value": "<integer>",
+                  "description": "(Required) Channel ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92ecb47c-fbc8-49cc-be2d-b962c94c5bf6",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_policy_channels.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policy_id",
+                      "value": "100"
+                    },
+                    {
+                      "key": "channel_id",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"channel\": {\n    \"configuration\": {},\n    \"id\": {},\n    \"links\": {},\n    \"name\": {},\n    \"type\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://insights-collector.newrelic.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Channel ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "channel_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef057ecc-3b93-40a5-83bd-d5341aab5da9",
+    "name": "New Relic Event Alerts Channels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Entity API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity ID"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the Alerts conditions an entity is part of.</p>\n\n<p>Entity type options (Synthetics is not yet supported):</p>\n\n<pre><code>BrowserApplication\n\nApplication\n\nMobileApplication\n\nServer\n\nKeyTransactio"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity to add"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              },
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to add an entity to a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.\n<br />\n  Entity "
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity to remove"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              },
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to disassociate an entity with a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

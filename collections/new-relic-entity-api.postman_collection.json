@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "c8fe199c-2d9a-4926-845e-6d2e785627d2",
+      "name": "Entity",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e7f4247-fad5-46bf-a4c2-367ca606406a",
+          "name": "New Relic Get Alerts Entity Conditions Entity",
+          "request": {
+            "name": "New Relic Get Alerts Entity Conditions Entity",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the Alerts conditions an entity is part of.</p>\n\n<p>Entity type options (Synthetics is not yet supported):</p>\n\n<pre><code>BrowserApplication\n\nApplication\n\nMobileApplication\n\nServer\n\nKeyTransaction\n</code></pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_entity_conditions",
+                "{{entity_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>",
+                  "description": "(Required) Entity Type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "885db0b0-bb7d-4e01-98ab-ced7d7fc1c12",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_entity_conditions",
+                    "{{entity_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "standard"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c84b1351-a9fa-42bc-ad91-c04cae465353",
+          "name": "New Relic Put Alerts Entity Conditions Entity",
+          "request": {
+            "name": "New Relic Put Alerts Entity Conditions Entity",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to add an entity to a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.\n<br />\n  Entity type options (Synthetics is not yet supported):</p>\n\n<pre><code>BrowserApplication\n\nApplication\n\nMobileApplication\n\nServer\n\nKeyTransaction\n</code></pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_entity_conditions",
+                "{{entity_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>",
+                  "description": "(Required) Entity Type"
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_id",
+                  "value": "<integer>",
+                  "description": "(Required) Alerts condition ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6bd6051b-b52d-453b-8876-ccb104555ebe",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_entity_conditions",
+                    "{{entity_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "condition_id",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c07e95bd-5dee-49c5-aeeb-e2eec4fb502e",
+          "name": "New Relic Delete Alerts Entity Conditions Entity",
+          "request": {
+            "name": "New Relic Delete Alerts Entity Conditions Entity",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to disassociate an entity with a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>Entity type options (Synthetics is not yet supported):</p>\n\n<pre><code>BrowserApplication\n\nApplication\n\nMobileApplication\n\nServer\n\nKeyTransaction\n</code></pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_entity_conditions",
+                "{{entity_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>",
+                  "description": "(Required) Entity Type"
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_id",
+                  "value": "<integer>",
+                  "description": "(Required) Alerts condition ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "741ae063-29d9-4905-a321-6e50ed78f8bd",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_entity_conditions",
+                    "{{entity_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "condition_id",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://insights-collector.newrelic.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Entity ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "entity_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f775ad7b-0276-4c84-8f42-9859c894671d",
+    "name": "New Relic Event Alerts Entity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

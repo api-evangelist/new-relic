@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Mobile API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mobile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/mobile_applications.json"
+          },
+          "docs": "<p>This API endpoint returns a list of the Mobile Applications associated with your New Relic account.</p>\n\n<p>MobileApplications can be filtered by their name, or by the application IDs.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/mobile_applications/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Mobile Application ID"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a single Mobile Application, identified by ID. The time range for summary data is the last 30 minutes.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications Mobile Application Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/mobile_applications/:mobile_application_id/metrics.json",
+            "params": [
+              {
+                "name": "mobile_application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Mobile application ID"
+              },
+              {
+                "name": "name",
+                "value": "example-resource-01",
+                "type": "query",
+                "description": "Filter metrics by name"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index (will be deprecated)"
+              },
+              {
+                "name": "cursor",
+                "value": "example_string",
+                "type": "query",
+                "description": "Cursor for next page (replacing page param)"
+              }
+            ]
+          },
+          "docs": "<p>Return a list of known metrics and their value names for the given resource.</p>\n\n<p>See our documentation for a discussion\non <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\"> output pagination</a>\nand for examples of <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/new-relic-rest-api-v2-getting-started#examples\" target=\"_blank\">requesting and using metric values</a>.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications Mobile Application Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/mobile_applications/:mobile_application_id/metrics/data.json",
+            "params": [
+              {
+                "name": "mobile_application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Mobile application ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our doc"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

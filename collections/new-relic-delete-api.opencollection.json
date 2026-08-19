@@ -1,0 +1,259 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Delete API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Delete Applications Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/deployments/:id.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Deployment ID"
+              }
+            ]
+          },
+          "docs": "This API operation allows you to delete a specific deployment record from a New Relic application by making a DELETE request to the endpoint /applications/{application_id}/deployments/{id}.json, where {application_id} is the unique identifier of the application and {id} is the specific deployment record you want to remove. This is useful for removing incorrect or outdated deployment markers from your application's deployment history in New Relic, helping maintain accurate tracking of your applic"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/applications/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint deletes an application and all of its reported data.</p>\n\n<p><strong>WARNING</strong>: Only applications that have stopped reporting can be deleted. This is an irreversible process\nwhich will delete all reported data for this application.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Channels Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_channels/:channel_id.json",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts notification channels.</p>\n\n<p>Note: <code>User</code> notification channels cannot be deleted.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requir"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to delete APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Entity Conditions Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_entity_conditions/:entity_id.json",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "100",
+                "type": "path",
+                "description": "Entity to remove"
+              },
+              {
+                "name": "entity_type",
+                "value": "standard",
+                "type": "query",
+                "description": "Entity Type"
+              },
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "query",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to disassociate an entity with a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts External Service Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_external_service_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to delete external service conditions associated with your alert policy.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required."
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Location Failure Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to Delete the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Nrql Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_nrql_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Policy ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint deletes Alerts policies associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on u"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Policy Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_policy_channels.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "query",
+                "description": "Policy ID"
+              },
+              {
+                "name": "channel_id",
+                "value": "100",
+                "type": "query",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint deletes Alerts policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.<"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Synthetics Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_synthetics_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to delete Synthetics conditions associated with your alert policy.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Hosts API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/hosts.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "filter[hostname]",
+                "value": "web01.example.com",
+                "type": "query",
+                "description": "Filter by server hostname"
+              },
+              {
+                "name": "filter[ids]",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by application host ids"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves a paginated list of hosts associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can obtain information about all hosts running the specified application, including host details and performance metrics. The response is returned in JSON format and includes host identifiers, names, health status, and other relevant metadata that helps monitor application infrastructure across different servers or "
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts Host Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/hosts/:host_id/metrics.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "host_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Host ID"
+              },
+              {
+                "name": "name",
+                "value": "example-resource-01",
+                "type": "query",
+                "description": "Filter metrics by name"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index (will be deprecated)"
+              },
+              {
+                "name": "cursor",
+                "value": "example_string",
+                "type": "query",
+                "description": "Cursor for next page (replacing page param)"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves a list of metric names associated with a specific host within a given application in New Relic's Application Performance Monitoring (APM) system. By providing both an application ID and a host in the endpoint path, users can query the available metrics that New Relic is collecting for that particular host instance. The response returns metric name data in JSON format, which typically includes identifiers and metadata for various performance measurements such as CPU u"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts Host Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/hosts/:host_id/metrics/data.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "host_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Host ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves metric data for a specific host associated with a particular application in New Relic. By making a GET request to the endpoint with the application and host as path parameters, users can access detailed performance metrics and monitoring data for that specific host instance. The operation returns data in JSON format, which typically includes time-series metric values such as response times, throughput, error rates, and other performance indicators collected by New Re"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/hosts/:id.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Application host ID"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves detailed information about a specific host associated with a particular application in New Relic's APM monitoring system. By providing both an application and a host in the endpoint path, it returns comprehensive data about that host's performance metrics, system specifications, and current status within the context of the specified application. The GET request returns a JSON response containing host-level details such as hostname, health status, response times, thro"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,469 @@
+{
+  "item": [
+    {
+      "id": "9036aec4-1907-4ebb-9772-758d4e12184a",
+      "name": "Location",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ba9b6b7-b0d0-459f-8f17-acc5d52d3887",
+          "name": "New Relic Get Alerts Location Failure Conditions Policies",
+          "request": {
+            "name": "New Relic Get Alerts Location Failure Conditions Policies",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the alerts location failure conditions for your Alerts policy.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_location_failure_conditions",
+                "policies",
+                "{{policy_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Pagination index"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dea6fdea-d43e-468d-a74a-2c66bf80579d",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_location_failure_conditions",
+                    "policies",
+                    "{{policy_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Links to related resources, in the format defined by [RFC 5988](https://tools.ietf.org/html/rfc5988#section-5). This will include a link with relation type `next` to the next page and `last` to the last page, unless this page is itself the last page.\n",
+                  "key": "link",
+                  "value": "string,string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"condition\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36b254b2-9b00-4375-9b17-fde96bd33d91",
+          "name": "New Relic Post Alerts Location Failure Conditions Policies",
+          "request": {
+            "name": "New Relic Post Alerts Location Failure Conditions Policies",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to create the alerts location failure conditions for your Alerts policy.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_location_failure_conditions",
+                "policies",
+                "{{policy_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "location_failure_condition",
+                  "description": "(Required) Alerts policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"entities\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"gc_metric\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"metric\": \"<string>\",\n    \"name\": \"<string>\",\n    \"runbook_url\": \"<string>\",\n    \"terms\": [\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      },\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      }\n    ],\n    \"type\": \"<string>\",\n    \"user_defined\": {\n      \"metric\": \"<string>\",\n      \"value_function\": \"<string>\"\n    },\n    \"violation_close_timer\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cd9bb93-ff72-49ac-b7fc-45a07d15111a",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_location_failure_conditions",
+                    "policies",
+                    "{{policy_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "location_failure_condition",
+                      "description": "(Required) Alerts policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"example_value\",\n    \"enabled\": true,\n    \"entities\": [\n      {}\n    ],\n    \"gc_metric\": \"example_value\",\n    \"id\": \"abc123\",\n    \"metric\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"runbook_url\": \"https://www.example.com\",\n    \"terms\": [\n      {}\n    ],\n    \"type\": \"example_value\",\n    \"violation_close_timer\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1447e215-f1f5-45fa-bea1-2e89c13cd09a",
+          "name": "New Relic Put Alerts Location Failure Conditions",
+          "request": {
+            "name": "New Relic Put Alerts Location Failure Conditions",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update the alerts location failure conditions for your Alerts policy.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_location_failure_conditions",
+                "{{condition_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"entities\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"gc_metric\": \"<string>\",\n    \"metric\": \"<string>\",\n    \"name\": \"<string>\",\n    \"terms\": [\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      },\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      }\n    ],\n    \"type\": \"<string>\",\n    \"user_defined\": {\n      \"metric\": \"<string>\",\n      \"value_function\": \"<string>\"\n    },\n    \"violation_close_timer\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d611412-3a5b-4917-a5a3-c6cc7b2ad70d",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_location_failure_conditions",
+                    "{{condition_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"example_value\",\n    \"enabled\": true,\n    \"entities\": [\n      {}\n    ],\n    \"gc_metric\": \"example_value\",\n    \"metric\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"terms\": [\n      {}\n    ],\n    \"type\": \"example_value\",\n    \"violation_close_timer\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5e960ae-98b6-43aa-97d2-932db8e8cde6",
+          "name": "New Relic Delete Alerts Location Failure Conditions",
+          "request": {
+            "name": "New Relic Delete Alerts Location Failure Conditions",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to Delete the alerts location failure conditions for your Alerts policy.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_location_failure_conditions",
+                "{{condition_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5a3625f-f323-43ae-8a76-e34a385b8d54",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_location_failure_conditions",
+                    "{{condition_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://insights-collector.newrelic.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Alerts policy ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "policy_id"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Alerts condition to update",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "condition_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ed730905-f79f-4d95-9d20-0278735f97bd",
+    "name": "New Relic Event Alerts Location API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

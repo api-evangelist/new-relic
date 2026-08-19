@@ -1,0 +1,998 @@
+{
+  "item": [
+    {
+      "id": "ebc166f5-b097-41bf-ab22-778c1f40daba",
+      "name": "Put",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f4e136ec-a8a7-42f9-8ec6-1caccdc1ede7",
+          "name": "New Relic Put Applications",
+          "request": {
+            "name": "New Relic Put Applications",
+            "description": {
+              "content": "<p>This API endpoint allows you to update certain parameters of your application.</p>\n\n<p>The input is expected to be in <strong>JSON or XML</strong> format in the body parameter of the PUT request. The exact\nschema is defined below. Any extra parameters passed in the body <strong>will be ignored</strong>.</p>\n\n<p>See our documentation for a discussion and simple example of\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/changing-alias-your-application-v2\" target=\"_blank\"> updating</a>\nan application.</p>\n\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application\": {\n    \"name\": \"<string>\",\n    \"settings\": {\n      \"app_apdex_threshold\": \"<float>\",\n      \"enable_real_user_monitoring\": \"<boolean>\",\n      \"end_user_apdex_threshold\": \"<float>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39d03c79-eefd-4b95-92e3-3322189b756a",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application\": {\n    \"name\": \"Example Title\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application\": {\n    \"application_summary\": {},\n    \"end_user_summary\": {},\n    \"health_status\": {},\n    \"id\": {},\n    \"language\": {},\n    \"last_reported_at\": {},\n    \"links\": {},\n    \"name\": {},\n    \"reporting\": {},\n    \"settings\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c645396d-a85c-4575-872d-ad3d72c46b65",
+          "name": "New Relic Put Alerts Conditions",
+          "request": {
+            "name": "New Relic Put Alerts Conditions",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint allows you to update APM Application and Key Transaction, Browser and Mobile application metric conditions for your alert policies.</p>\n\n<p><strong>Conditions for web transaction percentiles, or conditions targeting labels (dynamic targeting), are not available.</strong></p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See Alerts Conditions &gt; Create for an explanation of the field values or the online\ndocumentation on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#conditions-update\" target=\"_blank\">updating conditions for policies</a>.</p>\n\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_conditions",
+                "{{condition_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"entities\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"gc_metric\": \"<string>\",\n    \"metric\": \"<string>\",\n    \"name\": \"<string>\",\n    \"terms\": [\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      },\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      }\n    ],\n    \"type\": \"<string>\",\n    \"user_defined\": {\n      \"metric\": \"<string>\",\n      \"value_function\": \"<string>\"\n    },\n    \"violation_close_timer\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d64282f4-e23f-4a4e-b446-71f2e85282d2",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_conditions",
+                    "{{condition_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"example_value\",\n    \"enabled\": true,\n    \"entities\": [\n      {}\n    ],\n    \"gc_metric\": \"example_value\",\n    \"metric\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"terms\": [\n      {}\n    ],\n    \"type\": \"example_value\",\n    \"violation_close_timer\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f629a44b-29b8-4c2f-9084-710a9563c1b8",
+          "name": "New Relic Put Alerts Entity Conditions Entity",
+          "request": {
+            "name": "New Relic Put Alerts Entity Conditions Entity",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to add an entity to a specified Alerts condition.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.\n<br />\n  Entity type options (Synthetics is not yet supported):</p>\n\n<pre><code>BrowserApplication\n\nApplication\n\nMobileApplication\n\nServer\n\nKeyTransaction\n</code></pre>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_entity_conditions",
+                "{{entity_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>",
+                  "description": "(Required) Entity Type"
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_id",
+                  "value": "<integer>",
+                  "description": "(Required) Alerts condition ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c320e3d-514e-4759-980b-2b9b5c59bc86",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_entity_conditions",
+                    "{{entity_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "condition_id",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49b67813-57a0-439e-a374-66aa0039e8bb",
+          "name": "New Relic Put Alerts External Service Conditions",
+          "request": {
+            "name": "New Relic Put Alerts External Service Conditions",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update external service conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See Alerts External Service Conditions &gt; Create for an explanation of the field values used in this command or the online documentation on\n<a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#ext-conditions-update\" target=\"_blank\">updating conditions for external services</a>.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_external_service_conditions",
+                "{{condition_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_service_condition\": {\n    \"enabled\": \"<boolean>\",\n    \"entities\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"external_service_url\": \"<string>\",\n    \"metric\": \"<string>\",\n    \"name\": \"<string>\",\n    \"runbook_url\": \"<string>\",\n    \"terms\": [\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      },\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      }\n    ],\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "483933ee-f31d-4a7c-a280-7b38fa7611a4",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_external_service_conditions",
+                    "{{condition_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_service_condition\": {\n    \"enabled\": true,\n    \"entities\": [\n      {}\n    ],\n    \"external_service_url\": \"https://www.example.com\",\n    \"metric\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"runbook_url\": \"https://www.example.com\",\n    \"terms\": [\n      {}\n    ],\n    \"type\": \"example_value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"external_service_condition\": {\n    \"enabled\": {},\n    \"entities\": {},\n    \"external_service_url\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f7794b8-f669-4319-adc4-21f74e97ea25",
+          "name": "New Relic Put Alerts Location Failure Conditions",
+          "request": {
+            "name": "New Relic Put Alerts Location Failure Conditions",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update the alerts location failure conditions for your Alerts policy.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_location_failure_conditions",
+                "{{condition_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"entities\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"gc_metric\": \"<string>\",\n    \"metric\": \"<string>\",\n    \"name\": \"<string>\",\n    \"terms\": [\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      },\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      }\n    ],\n    \"type\": \"<string>\",\n    \"user_defined\": {\n      \"metric\": \"<string>\",\n      \"value_function\": \"<string>\"\n    },\n    \"violation_close_timer\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "507f7464-0301-4411-b9eb-b316324a25a1",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_location_failure_conditions",
+                    "{{condition_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"condition\": {\n    \"condition_scope\": \"example_value\",\n    \"enabled\": true,\n    \"entities\": [\n      {}\n    ],\n    \"gc_metric\": \"example_value\",\n    \"metric\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"terms\": [\n      {}\n    ],\n    \"type\": \"example_value\",\n    \"violation_close_timer\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"condition\": {\n    \"condition_scope\": {},\n    \"enabled\": {},\n    \"entities\": {},\n    \"gc_metric\": {},\n    \"id\": {},\n    \"metric\": {},\n    \"name\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"user_defined\": {},\n    \"violation_close_timer\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "694491fd-033f-4e0f-b612-8623eb323e0a",
+          "name": "New Relic Put Alerts Nrql Conditions",
+          "request": {
+            "name": "New Relic Put Alerts Nrql Conditions",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_nrql_conditions",
+                "{{condition_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nrql_condition\": {\n    \"enabled\": \"<boolean>\",\n    \"expected_groups\": \"<integer>\",\n    \"ignore_overlap\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"nrql\": {\n      \"query\": \"<string>\",\n      \"since_value\": \"<string>\"\n    },\n    \"runbook_url\": \"<string>\",\n    \"terms\": [\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      },\n      {\n        \"duration\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"priority\": \"<string>\",\n        \"threshold\": \"<string>\",\n        \"time_function\": \"<string>\"\n      }\n    ],\n    \"value_function\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0a661d6-cb29-4168-baec-bb88a99fdbe4",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_nrql_conditions",
+                    "{{condition_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nrql_condition\": {\n    \"enabled\": true,\n    \"expected_groups\": 10,\n    \"ignore_overlap\": true,\n    \"name\": \"Example Title\",\n    \"runbook_url\": \"https://www.example.com\",\n    \"terms\": [\n      {}\n    ],\n    \"value_function\": \"example_value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nrql_condition\": {\n    \"enabled\": {},\n    \"expected_groups\": {},\n    \"id\": {},\n    \"ignore_overlap\": {},\n    \"name\": {},\n    \"nrql\": {},\n    \"runbook_url\": {},\n    \"terms\": {},\n    \"type\": {},\n    \"value_function\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dcaaff2-af43-46b9-827a-6fe45e1ee86a",
+          "name": "New Relic Put Alerts Policies",
+          "request": {
+            "name": "New Relic Put Alerts Policies",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<p>This API endpoint updates Alerts policies associated with your New Relic account.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on using the REST API for\n<a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#policies-update\" target=\"_blank\">updating policies</a>.</p>\n\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_policies",
+                "{{policy_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy\": {\n    \"incident_preference\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "535a0703-c876-47c8-9aa8-eaf12b96429c",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_policies",
+                    "{{policy_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": {\n    \"incident_preference\": \"example_value\",\n    \"name\": \"Example Title\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy\": {\n    \"created_at\": {},\n    \"id\": {},\n    \"incident_preference\": {},\n    \"name\": {},\n    \"updated_at\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6fef681-4f1f-4c98-b67f-cad243131f0a",
+          "name": "New Relic Put Alerts Policy Channels",
+          "request": {
+            "name": "New Relic Put Alerts Policy Channels",
+            "description": {
+              "content": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint updates policy/channel associations.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#policy-channels-update\">updating notification channels with policies</a>.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_policy_channels.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "policy_id",
+                  "value": "<integer>",
+                  "description": "(Required) Policy ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel_ids",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Channel IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed339dd8-a3e7-46c8-a9ec-8fcbb965a9ed",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_policy_channels.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policy_id",
+                      "value": "100"
+                    },
+                    {
+                      "key": "channel_ids",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy\": {\n    \"channel_ids\": {},\n    \"id\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57da0806-234f-4b84-be4d-fc16a224b5b6",
+          "name": "New Relic Put Alerts Synthetics Conditions",
+          "request": {
+            "name": "New Relic Put Alerts Synthetics Conditions",
+            "description": {
+              "content": "ðŸ”¥ðŸ”¥ New users should use NRQL Alert Conditions, refer to <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update Synthetics conditions for your alert policies.</p>\n\n<p>Note: <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/rest-api-key\">Admin Userâ€™s API Key</a> is required.</p>\n\n<p>See our documentation for a discussion on <a href=\"https://docs.newrelic.com/docs/alerts/new-relic-alerts/rest-api-alerts/rest-api-calls-new-relic-alerts#synthetics-conditions-update\" target=\"_blank\">updating Synthetic conditions</a>.</p>\n\n<p>See Alerts Synthetics Conditions &gt; Create for an explanation of the field values used in this command.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts_synthetics_conditions",
+                "{{condition_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"synthetics_condition\": {\n    \"enabled\": \"<boolean>\",\n    \"monitor_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"runbook_url\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71da003d-601b-41a8-a497-061b38b81c21",
+              "name": "No response was specified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts_synthetics_conditions",
+                    "{{condition_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"synthetics_condition\": {\n    \"enabled\": true,\n    \"monitor_id\": \"500123\",\n    \"name\": \"Example Title\",\n    \"runbook_url\": \"https://www.example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"synthetics_condition\": {\n    \"enabled\": {},\n    \"id\": {},\n    \"monitor_id\": {},\n    \"name\": {},\n    \"runbook_url\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://insights-collector.newrelic.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Application ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "id"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Alerts condition to update",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "condition_id"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Entity to add",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "entity_id"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Policy ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "policy_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0fd4faa6-8725-4152-b1af-ca3e80e5a9ad",
+    "name": "New Relic Event Alerts Put API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events. Each event is a JSON object with an eventType and any number of additional attribute key-value pairs.\n\nContact Support:\n Name: New Relic Support",
+      "type": "text/plain"
+    }
+  }
+}

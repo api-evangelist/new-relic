@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Location API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Location",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Alerts Location Failure Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to list the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Alerts Location Failure Conditions Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/policies/:policy_id.json",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy failure condition"
+              },
+              {
+                "name": "location_failure_condition",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to create the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Put Alerts Location Failure Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to update the alerts location failure conditions for your Alerts policy.</p>\n"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Alerts Location Failure Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/alerts_location_failure_conditions/:condition_id.json",
+            "params": [
+              {
+                "name": "condition_id",
+                "value": "100",
+                "type": "path",
+                "description": "Alerts condition ID"
+              }
+            ]
+          },
+          "docs": "<strong>ðŸ”¥ This endpoint will be deprecated after 2024/01 ðŸ”¥</strong> New users should use <a href=\"https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/advanced-alerts/alerts-nerdgraph/nerdgraph-api-examples/\">these docs about managing alerts via NerdGraph.</a>\n\n<hr>\n\n<p>This API endpoint allows you to Delete the alerts location failure conditions for your Alerts policy.</p>\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

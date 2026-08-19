@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Deployments API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Applications Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/deployments.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves a paginated list of all deployment records associated with a specific application in New Relic. By making a GET request to the endpoint with a valid application ID, users can access historical deployment information including deployment timestamps, descriptions, revisions, changelogs, and the user who created each deployment record. This is useful for tracking application releases, correlating performance changes with deployments, and maintaining a comprehensive depl"
+        },
+        {
+          "info": {
+            "name": "New Relic Post Applications Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/deployments.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new deployment marker for a specified application in New Relic by sending a POST request to the /applications/{application_id}/deployments.json endpoint. This operation allows you to record deployment events, which appear as vertical lines on charts in the New Relic UI, helping teams correlate application performance changes with specific deployments. The request requires the application_id path parameter to identify the target application, and typically accepts deployment details in t"
+        },
+        {
+          "info": {
+            "name": "New Relic Delete Applications Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/deployments/:id.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Deployment ID"
+              }
+            ]
+          },
+          "docs": "This API operation allows you to delete a specific deployment record from a New Relic application by making a DELETE request to the endpoint /applications/{application_id}/deployments/{id}.json, where {application_id} is the unique identifier of the application and {id} is the specific deployment record you want to remove. This is useful for removing incorrect or outdated deployment markers from your application's deployment history in New Relic, helping maintain accurate tracking of your applic"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

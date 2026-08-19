@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Transactions API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Key Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/key_transactions.json",
+            "params": [
+              {
+                "name": "filter[name]",
+                "value": "example_string",
+                "type": "query",
+                "description": "Filter by name"
+              },
+              {
+                "name": "filter[ids]",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by policy IDs"
+              },
+              {
+                "name": "page",
+                "value": "100",
+                "type": "query",
+                "description": "Pagination index"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a <a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/pagination-api-output\" target=\"_blank\">paginated</a>\nlist of the key transactions associated with your New Relic account.  The time range for summary data is the last 10 minutes.</p>\n\n<p>Key transactions can be filtered by their name or list of IDs.</p>\n\n<p>See our documentation for a discussion of\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examp"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Key Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/key_transactions/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "100",
+                "type": "path",
+                "description": "Key transaction ID"
+              }
+            ]
+          },
+          "docs": "<p>This endpoint returns a single key transaction, identified by ID. The time range for summary data is the last 10 minutes.</p>\n\n<p>See our documentation for a discussion of\n<a href=\"https://docs.newrelic.com/docs/apis/rest-api-v2/application-examples-v2/summary-data-examples-v2\" target=\"_blank\">summary data output</a>.</p>\n\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

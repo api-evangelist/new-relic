@@ -1,0 +1,282 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "New Relic Event Alerts Data API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "New Relic Get Applications Hosts Host Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/hosts/:host_id/metrics/data.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "host_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Host ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "This API operation retrieves metric data for a specific host associated with a particular application in New Relic. By making a GET request to the endpoint with the application and host as path parameters, users can access detailed performance metrics and monitoring data for that specific host instance. The operation returns data in JSON format, which typically includes time-series metric values such as response times, throughput, error rates, and other performance indicators collected by New Re"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Instances Instance Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/instances/:instance_id/metrics/data.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "instance_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application Instance ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our doc"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Applications Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/applications/:application_id/metrics/data.json",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Application ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our doc"
+        },
+        {
+          "info": {
+            "name": "New Relic Get Mobile Applications Mobile Application Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://insights-collector.newrelic.com/mobile_applications/:mobile_application_id/metrics/data.json",
+            "params": [
+              {
+                "name": "mobile_application_id",
+                "value": "100",
+                "type": "path",
+                "description": "Mobile application ID"
+              },
+              {
+                "name": "names",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metrics by name"
+              },
+              {
+                "name": "values",
+                "value": "example_string",
+                "type": "query",
+                "description": "Retrieve specific metric values"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics after this time"
+              },
+              {
+                "name": "to",
+                "value": "2026-04-18T14:30:00Z",
+                "type": "query",
+                "description": "Retrieve metrics before this time"
+              },
+              {
+                "name": "period",
+                "value": "100",
+                "type": "query",
+                "description": "Period of timeslices in seconds"
+              },
+              {
+                "name": "summarize",
+                "value": "true",
+                "type": "query",
+                "description": "Summarize the data"
+              },
+              {
+                "name": "raw",
+                "value": "true",
+                "type": "query",
+                "description": "Return unformatted raw values"
+              }
+            ]
+          },
+          "docs": "<p>This API endpoint returns a list of values for each of the requested metrics. The list of available metrics\ncan be returned using the Metric Name API endpoint.</p>\n\n<p>Metric data can be filtered by a number of parameters, including multiple names and values, and by time range.\nMetric names and values will be matched intelligently in the background.</p>\n\n<p>You can also retrieve a summarized data point across the entire time range selected by using the summarize\nparameter.</p>\n\n<p>See our doc"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
