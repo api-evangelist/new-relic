@@ -53,6 +53,11 @@ apis:
   tags:
   - Alerts
   - Monitoring
+  - Notification
+  - REST
+  tags_raw:
+  - Alerts
+  - Monitoring
   - Notifications
   - REST
 - aid: new-relic:new-relic-synthetics-api
@@ -173,6 +178,11 @@ apis:
     url: https://github.com/newrelic/newrelic-telemetry-sdk-dotnet
     title: .NET Telemetry SDK
   tags:
+  - Client Libraries
+  - Open-Source
+  - SDK
+  - Telemetry
+  tags_raw:
   - Client Libraries
   - Open Source
   - SDKs
@@ -576,6 +586,8 @@ apis:
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -2231,7 +2243,8 @@ apis:
   humanURL: >-
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
-  tags:
+  tags: []
+  tags_raw:
   - Delete
   properties:
   - type: OpenAPI
@@ -2508,6 +2521,8 @@ apis:
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -3060,6 +3075,8 @@ apis:
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -3887,7 +3904,8 @@ apis:
   humanURL: >-
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
-  tags:
+  tags: []
+  tags_raw:
   - Get
   properties:
   - type: OpenAPI
@@ -6923,7 +6941,8 @@ apis:
   humanURL: >-
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
-  tags:
+  tags: []
+  tags_raw:
   - Post
   properties:
   - type: OpenAPI
@@ -7199,7 +7218,8 @@ apis:
   humanURL: >-
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
-  tags:
+  tags: []
+  tags_raw:
   - Put
   properties:
   - type: OpenAPI
@@ -7752,6 +7772,8 @@ apis:
     https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
   baseURL: https://api.newrelic.com/v2/
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
