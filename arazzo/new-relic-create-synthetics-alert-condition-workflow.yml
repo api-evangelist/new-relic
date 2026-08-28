@@ -10,8 +10,8 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: newRelicApi
-  url: ../openapi/new-relic-openapi.yml
+- name: alertsApi
+  url: ../openapi/new-relic-alerts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-synthetics-alert-condition

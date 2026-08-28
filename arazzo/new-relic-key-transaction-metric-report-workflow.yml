@@ -10,8 +10,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: newRelicApi
-  url: ../openapi/new-relic-openapi.yml
+- name: getApi
+  url: ../openapi/new-relic-get-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: key-transaction-metric-report

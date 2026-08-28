@@ -10,8 +10,8 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: newRelicApi
-  url: ../openapi/new-relic-openapi.yml
+- name: applicationsApi
+  url: ../openapi/new-relic-applications-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: mobile-app-crash-report

@@ -10,11 +10,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: newRelicMetricApi
-  url: ../openapi/new-relic-metric-api-openapi.yml
+- name: logsApi
+  url: ../openapi/new-relic-logs-api-openapi.yml
   type: openapi
-- name: newRelicLogApi
-  url: ../openapi/new-relic-log-api-openapi.yml
+- name: metricsApi
+  url: ../openapi/new-relic-metrics-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: ingest-metrics-and-logs
