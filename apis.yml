@@ -2273,17 +2273,18 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
 access: 3rd-Party
 created: '2025-01-13'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: >-
   New Relic provides observability platform APIs for monitoring, analyzing, and optimizing your entire software stack
   with real-time insights into applications, infrastructure, and customer experience.
