@@ -2293,6 +2293,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: Website
+  url: https://www.newrelic.com/
 - type: CapabilityMap
   url: capabilities/new-relic-capability-edges.yml
   name: New Relic Business Capability Map
