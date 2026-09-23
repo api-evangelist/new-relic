@@ -1,0 +1,32 @@
+# Front Door AI Index — new-relic — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: new-relic
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.newrelic.com
+  final_host: newrelic.com
+  ownership: inherited
+  owner: new-relic
+  shares_host_with: null
+  inherited_from: opsmatic.com
+  verdict: scored
+  score: null
+  host_score: 142
+  density: null
+  words: 3537
+  tiers:
+    agentic: 32
+    core: 110
+    model: 0
+  ambiguous: 65
+  top_terms:
+    AI: 109
+    agent: 34
+    intelligence: 19
+    AI agent: 16
+    agentic: 16
+    automation: 9
+    smart: 3
+    LLMs: 1
