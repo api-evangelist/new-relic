@@ -36,30 +36,6 @@ apis:
   - Monitoring
   - Observability
   - Platform
-- aid: new-relic:new-relic-alerts-api
-  name: New Relic Alerts API
-  description: >-
-    The New Relic Alerts REST API provides endpoints for programmatically managing alert policies, conditions,
-    notification channels, and muting rules. New Relic recommends using NerdGraph for new alert management
-    integrations, as the REST Alerts API is in maintenance mode.
-  image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
-  humanURL: https://docs.newrelic.com/docs/alerts/scale-automate/rest-api/rest-api-calls-alerts/
-  baseURL: https://api.newrelic.com/v2/
-  properties:
-  - type: Documentation
-    url: https://docs.newrelic.com/docs/alerts/scale-automate/rest-api/rest-api-calls-alerts/
-  - type: Authentication
-    url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
-  tags:
-  - Alerts
-  - Monitoring
-  - Notification
-  - REST
-  tags_raw:
-  - Alerts
-  - Monitoring
-  - Notifications
-  - REST
 - aid: new-relic:new-relic-synthetics-api
   name: New Relic Synthetics API
   description: >-
@@ -179,7 +155,7 @@ apis:
     title: .NET Telemetry SDK
   tags:
   - Client Libraries
-  - Open-Source
+  - Open Source
   - SDK
   - Telemetry
   tags_raw:
@@ -187,6 +163,7 @@ apis:
   - Open Source
   - SDKs
   - Telemetry
+  - Open-Source
 - aid: new-relic:new-relic-opentelemetry-otlp
   name: New Relic OpenTelemetry OTLP Endpoint
   description: >-
@@ -305,12 +282,16 @@ apis:
   - SDK
 - aid: new-relic:new-relic-alerts-api
   name: New Relic Alerts API
-  description: The Alerts API from New Relic — 23 operation(s) for alerts.
-  humanURL: >-
-    https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/
+  description: The New Relic Alerts REST API provides endpoints for programmatically managing alert policies,
+    conditions, notification channels, and muting rules. New Relic recommends using NerdGraph for new alert
+    management integrations, as the REST Alerts API is in maintenance mode.
+  humanURL: https://docs.newrelic.com/docs/alerts/scale-automate/rest-api/rest-api-calls-alerts/
   baseURL: https://api.newrelic.com/v2/
   tags:
   - Alerts
+  - Monitoring
+  - Notification
+  - REST
   properties:
   - type: OpenAPI
     url: openapi/new-relic-alerts-api-openapi.yml
@@ -579,6 +560,14 @@ apis:
     url: json-schema/trace-api-span-batch-schema.json
   - type: JSONLD
     url: json-ld/new-relic-trace-api-context.jsonld
+  - type: Documentation
+    url: https://docs.newrelic.com/docs/alerts/scale-automate/rest-api/rest-api-calls-alerts/
+  image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
+  tags_raw:
+  - Alerts
+  - Monitoring
+  - Notifications
+  - REST
 - aid: new-relic:new-relic-applications-api
   name: New Relic Applications API
   description: The Applications API from New Relic — 18 operation(s) for applications.
@@ -2251,6 +2240,7 @@ tags:
 - Observability
 - Performance
 - Platform
+- Real-Time
 type: Index
 deliveryModel:
   model: open-core

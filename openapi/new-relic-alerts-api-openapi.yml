@@ -3437,7 +3437,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    NrqlBody:
+    SyntheticsConditionResponseType:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        id:
+          type: integer
+          example: 100
+        monitor_id:
+          type: string
+          example: '500123'
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+    NrqlResponse:
       type: object
       properties:
         query:
@@ -3446,37 +3464,26 @@ components:
         since_value:
           type: string
           example: example_string
-    IncidentLinksResponse:
+    IncidentResponse:
       type: object
       properties:
-        policy_id:
-          type: integer
-          example: 100
-        violations:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-    SyntheticsConditionResponse:
+        incident:
+          $ref: '#/components/schemas/IncidentResponseType'
+    SyntheticsConditionBody:
       type: object
       properties:
-        synthetics_condition:
-          $ref: '#/components/schemas/SyntheticsConditionResponseType'
-    ConditionResponse:
-      type: object
-      properties:
-        condition:
-          $ref: '#/components/schemas/ConditionResponseType'
-    UserDefinedConditionResponse:
-      type: object
-      properties:
-        metric:
+        enabled:
+          type: boolean
+          example: true
+        monitor_id:
           type: string
-          example: example_string
-        value_function:
+          example: '500123'
+        name:
           type: string
-          example: example_string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
     IncidentResponseType:
       type: object
       properties:
@@ -3494,340 +3501,6 @@ components:
         opened_at:
           type: integer
           example: 100
-    PolicyResponseType:
-      type: object
-      properties:
-        created_at:
-          type: integer
-          example: 100
-        id:
-          type: integer
-          example: 100
-        incident_preference:
-          type: string
-          example: '500123'
-        name:
-          type: string
-          example: example-resource-01
-        updated_at:
-          type: integer
-          example: 100
-    ExternalServiceConditionResponseType:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        entities:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-        external_service_url:
-          type: string
-          example: https://portal.example.com/path/abc123
-        id:
-          type: integer
-          example: 100
-        metric:
-          type: string
-          example: example_string
-        name:
-          type: string
-          example: example-resource-01
-        runbook_url:
-          type: string
-          example: https://portal.example.com/path/abc123
-        terms:
-          type: array
-          items:
-            $ref: '#/components/schemas/IJKTermsType'
-          example:
-          - duration: example_string
-            operator: example_string
-            priority: example_string
-            threshold: example_string
-            time_function: example_string
-        type:
-          type: string
-          example: standard
-    PolicyBody:
-      type: object
-      properties:
-        incident_preference:
-          type: string
-          example: '500123'
-        name:
-          type: string
-          example: example-resource-01
-    IncidentResponse:
-      type: object
-      properties:
-        incident:
-          $ref: '#/components/schemas/IncidentResponseType'
-    IJKTermsType:
-      type: object
-      properties:
-        duration:
-          type: string
-          example: example_string
-        operator:
-          type: string
-          example: example_string
-        priority:
-          type: string
-          example: example_string
-        threshold:
-          type: string
-          example: example_string
-        time_function:
-          type: string
-          example: example_string
-    NrqlConditionResponse:
-      type: object
-      properties:
-        nrql_condition:
-          $ref: '#/components/schemas/NrqlConditionResponseType'
-    NrqlConditionBody:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        expected_groups:
-          type: integer
-          example: 100
-        ignore_overlap:
-          type: boolean
-          example: true
-        name:
-          type: string
-          example: example-resource-01
-        nrql:
-          $ref: '#/components/schemas/NrqlBody'
-        runbook_url:
-          type: string
-          example: https://portal.example.com/path/abc123
-        terms:
-          type: array
-          items:
-            $ref: '#/components/schemas/IJKTermsType'
-          example:
-          - duration: example_string
-            operator: example_string
-            priority: example_string
-            threshold: example_string
-            time_function: example_string
-        value_function:
-          type: string
-          example: example_string
-    NrqlResponse:
-      type: object
-      properties:
-        query:
-          type: string
-          example: example_string
-        since_value:
-          type: string
-          example: example_string
-    RecentEventResponseType:
-      type: object
-      properties:
-        description:
-          type: string
-          example: example_string
-        entity_group_id:
-          type: integer
-          example: 100
-        entity_id:
-          type: integer
-          example: 100
-        entity_type:
-          type: string
-          example: standard
-        event_type:
-          type: string
-          example: standard
-        id:
-          type: integer
-          example: 100
-        incident_id:
-          type: integer
-          example: 100
-        priority:
-          type: string
-          example: example_string
-        product:
-          type: string
-          example: example_string
-        timestamp:
-          type: integer
-          example: 1718153645993
-    ExternalServiceCondition:
-      type: object
-      properties:
-        external_service_condition:
-          $ref: '#/components/schemas/ExternalServiceConditionBody'
-    ViolationEntityResponse:
-      type: object
-      properties:
-        group_id:
-          type: integer
-          example: 100
-        id:
-          type: integer
-          example: 100
-        name:
-          type: string
-          example: example-resource-01
-        product:
-          type: string
-          example: example_string
-        type:
-          type: string
-          example: standard
-    ChannelResponseType:
-      type: object
-      properties:
-        configuration:
-          type: object
-          properties: {}
-          example: {}
-        id:
-          type: integer
-          example: 100
-        links:
-          $ref: '#/components/schemas/ChannelLinksResponse'
-        name:
-          type: string
-          example: example-resource-01
-        type:
-          type: string
-          example: standard
-    Condition:
-      type: object
-      properties:
-        condition:
-          $ref: '#/components/schemas/ConditionBody'
-    ExternalServiceConditionBody:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        entities:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-        external_service_url:
-          type: string
-          example: https://portal.example.com/path/abc123
-        metric:
-          type: string
-          example: example_string
-        name:
-          type: string
-          example: example-resource-01
-        runbook_url:
-          type: string
-          example: https://portal.example.com/path/abc123
-        terms:
-          type: array
-          items:
-            $ref: '#/components/schemas/IJKTermsType'
-          example:
-          - duration: example_string
-            operator: example_string
-            priority: example_string
-            threshold: example_string
-            time_function: example_string
-        type:
-          type: string
-          example: standard
-    PolicyResponse:
-      type: object
-      properties:
-        policy:
-          $ref: '#/components/schemas/PolicyResponseType'
-    ViolationResponseType:
-      type: object
-      properties:
-        closed_at:
-          type: integer
-          example: 100
-        condition_name:
-          type: string
-          example: example_string
-        duration:
-          type: integer
-          example: 100
-        entity:
-          $ref: '#/components/schemas/ViolationEntityResponse'
-        id:
-          type: integer
-          example: 100
-        label:
-          type: string
-          example: example_string
-        links:
-          $ref: '#/components/schemas/ViolationLinksResponse'
-        opened_at:
-          type: integer
-          example: 100
-        policy_name:
-          type: string
-          example: example_string
-        priority:
-          type: string
-          example: example_string
-    UserDefinedConditionBody:
-      type: object
-      properties:
-        metric:
-          type: string
-          example: example_string
-        value_function:
-          type: string
-          example: example_string
-    PolicyChannelsResponseType:
-      type: object
-      properties:
-        channel_ids:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-        id:
-          type: integer
-          example: 100
-    RecentEventResponse:
-      type: object
-      properties:
-        recent_event:
-          $ref: '#/components/schemas/RecentEventResponseType'
-    ChannelResponse:
-      type: object
-      properties:
-        channel:
-          $ref: '#/components/schemas/ChannelResponseType'
-    ChannelLinksResponse:
-      type: object
-      properties:
-        policy_ids:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-    SyntheticsCondition:
-      type: object
-      properties:
-        synthetics_condition:
-          $ref: '#/components/schemas/SyntheticsConditionBody'
     ConditionResponseType:
       type: object
       properties:
@@ -3876,24 +3549,115 @@ components:
         violation_close_timer:
           type: integer
           example: 1718153645993
-    SyntheticsConditionResponseType:
+    NrqlBody:
+      type: object
+      properties:
+        query:
+          type: string
+          example: example_string
+        since_value:
+          type: string
+          example: example_string
+    Channel:
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelBody'
+    ChannelBody:
+      type: object
+      properties:
+        configuration:
+          type: object
+          properties: {}
+          example: {}
+        name:
+          type: string
+          example: example-resource-01
+        type:
+          type: string
+          example: standard
+    ExternalServiceConditionBody:
       type: object
       properties:
         enabled:
           type: boolean
           example: true
-        id:
-          type: integer
-          example: 100
-        monitor_id:
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        external_service_url:
           type: string
-          example: '500123'
+          example: https://portal.example.com/path/abc123
+        metric:
+          type: string
+          example: example_string
         name:
           type: string
           example: example-resource-01
         runbook_url:
           type: string
           example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+    ExternalServiceConditionResponse:
+      type: object
+      properties:
+        external_service_condition:
+          $ref: '#/components/schemas/ExternalServiceConditionResponseType'
+    PolicyChannelsResponseType:
+      type: object
+      properties:
+        channel_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        id:
+          type: integer
+          example: 100
+    SyntheticsCondition:
+      type: object
+      properties:
+        synthetics_condition:
+          $ref: '#/components/schemas/SyntheticsConditionBody'
+    Condition:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionBody'
+    ViolationEntityResponse:
+      type: object
+      properties:
+        group_id:
+          type: integer
+          example: 100
+        id:
+          type: integer
+          example: 100
+        name:
+          type: string
+          example: example-resource-01
+        product:
+          type: string
+          example: example_string
+        type:
+          type: string
+          example: standard
     NrqlConditionResponseType:
       type: object
       properties:
@@ -3933,6 +3697,215 @@ components:
         value_function:
           type: string
           example: example_string
+    PolicyChannelsResponse:
+      type: object
+      properties:
+        policy:
+          $ref: '#/components/schemas/PolicyChannelsResponseType'
+    PolicyResponseType:
+      type: object
+      properties:
+        created_at:
+          type: integer
+          example: 100
+        id:
+          type: integer
+          example: 100
+        incident_preference:
+          type: string
+          example: '500123'
+        name:
+          type: string
+          example: example-resource-01
+        updated_at:
+          type: integer
+          example: 100
+    ViolationResponse:
+      type: object
+      properties:
+        violation:
+          $ref: '#/components/schemas/ViolationResponseType'
+    IJKTermsType:
+      type: object
+      properties:
+        duration:
+          type: string
+          example: example_string
+        operator:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+        threshold:
+          type: string
+          example: example_string
+        time_function:
+          type: string
+          example: example_string
+    IncidentLinksResponse:
+      type: object
+      properties:
+        policy_id:
+          type: integer
+          example: 100
+        violations:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    RecentEventResponse:
+      type: object
+      properties:
+        recent_event:
+          $ref: '#/components/schemas/RecentEventResponseType'
+    ChannelResponse:
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelResponseType'
+    RecentEventResponseType:
+      type: object
+      properties:
+        description:
+          type: string
+          example: example_string
+        entity_group_id:
+          type: integer
+          example: 100
+        entity_id:
+          type: integer
+          example: 100
+        entity_type:
+          type: string
+          example: standard
+        event_type:
+          type: string
+          example: standard
+        id:
+          type: integer
+          example: 100
+        incident_id:
+          type: integer
+          example: 100
+        priority:
+          type: string
+          example: example_string
+        product:
+          type: string
+          example: example_string
+        timestamp:
+          type: integer
+          example: 1718153645993
+    ConditionResponse:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionResponseType'
+    ExternalServiceConditionResponseType:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        entities:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        external_service_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        id:
+          type: integer
+          example: 100
+        metric:
+          type: string
+          example: example_string
+        name:
+          type: string
+          example: example-resource-01
+        runbook_url:
+          type: string
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        type:
+          type: string
+          example: standard
+    ChannelLinksResponse:
+      type: object
+      properties:
+        policy_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    NrqlCondition:
+      type: object
+      properties:
+        nrql_condition:
+          $ref: '#/components/schemas/NrqlConditionBody'
+    ViolationLinksResponse:
+      type: object
+      properties:
+        condition_id:
+          type: integer
+          example: 100
+        incident_id:
+          type: integer
+          example: 100
+        policy_id:
+          type: integer
+          example: 100
+    UserDefinedConditionBody:
+      type: object
+      properties:
+        metric:
+          type: string
+          example: example_string
+        value_function:
+          type: string
+          example: example_string
+    ChannelResponseType:
+      type: object
+      properties:
+        configuration:
+          type: object
+          properties: {}
+          example: {}
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/ChannelLinksResponse'
+        name:
+          type: string
+          example: example-resource-01
+        type:
+          type: string
+          example: standard
+    SyntheticsConditionResponse:
+      type: object
+      properties:
+        synthetics_condition:
+          $ref: '#/components/schemas/SyntheticsConditionResponseType'
+    Policy:
+      type: object
+      properties:
+        policy:
+          $ref: '#/components/schemas/PolicyBody'
     ConditionBody:
       type: object
       properties:
@@ -3975,76 +3948,103 @@ components:
         violation_close_timer:
           type: integer
           example: 1718153645993
-    Policy:
+    ExternalServiceCondition:
       type: object
       properties:
-        policy:
-          $ref: '#/components/schemas/PolicyBody'
-    NrqlCondition:
+        external_service_condition:
+          $ref: '#/components/schemas/ExternalServiceConditionBody'
+    PolicyBody:
       type: object
       properties:
-        nrql_condition:
-          $ref: '#/components/schemas/NrqlConditionBody'
-    SyntheticsConditionBody:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        monitor_id:
+        incident_preference:
           type: string
           example: '500123'
         name:
           type: string
           example: example-resource-01
-        runbook_url:
-          type: string
-          example: https://portal.example.com/path/abc123
-    ChannelBody:
+    ViolationResponseType:
       type: object
       properties:
-        configuration:
-          type: object
-          properties: {}
-          example: {}
+        closed_at:
+          type: integer
+          example: 100
+        condition_name:
+          type: string
+          example: example_string
+        duration:
+          type: integer
+          example: 100
+        entity:
+          $ref: '#/components/schemas/ViolationEntityResponse'
+        id:
+          type: integer
+          example: 100
+        label:
+          type: string
+          example: example_string
+        links:
+          $ref: '#/components/schemas/ViolationLinksResponse'
+        opened_at:
+          type: integer
+          example: 100
+        policy_name:
+          type: string
+          example: example_string
+        priority:
+          type: string
+          example: example_string
+    NrqlConditionBody:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        expected_groups:
+          type: integer
+          example: 100
+        ignore_overlap:
+          type: boolean
+          example: true
         name:
           type: string
           example: example-resource-01
-        type:
+        nrql:
+          $ref: '#/components/schemas/NrqlBody'
+        runbook_url:
           type: string
-          example: standard
-    ViolationResponse:
-      type: object
-      properties:
-        violation:
-          $ref: '#/components/schemas/ViolationResponseType'
-    Channel:
-      type: object
-      properties:
-        channel:
-          $ref: '#/components/schemas/ChannelBody'
-    ExternalServiceConditionResponse:
-      type: object
-      properties:
-        external_service_condition:
-          $ref: '#/components/schemas/ExternalServiceConditionResponseType'
-    PolicyChannelsResponse:
+          example: https://portal.example.com/path/abc123
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/IJKTermsType'
+          example:
+          - duration: example_string
+            operator: example_string
+            priority: example_string
+            threshold: example_string
+            time_function: example_string
+        value_function:
+          type: string
+          example: example_string
+    PolicyResponse:
       type: object
       properties:
         policy:
-          $ref: '#/components/schemas/PolicyChannelsResponseType'
-    ViolationLinksResponse:
+          $ref: '#/components/schemas/PolicyResponseType'
+    NrqlConditionResponse:
       type: object
       properties:
-        condition_id:
-          type: integer
-          example: 100
-        incident_id:
-          type: integer
-          example: 100
-        policy_id:
-          type: integer
-          example: 100
+        nrql_condition:
+          $ref: '#/components/schemas/NrqlConditionResponseType'
+    UserDefinedConditionResponse:
+      type: object
+      properties:
+        metric:
+          type: string
+          example: example_string
+        value_function:
+          type: string
+          example: example_string
   securitySchemes:
     APIKeyHeader:
       type: apiKey

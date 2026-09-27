@@ -151,6 +151,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    SuccessResponse:
+      type: object
+      description: Successful ingestion response
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was accepted
+          example: true
+        uuid:
+          type: string
+          description: Unique request identifier
+          example: '500123'
     ErrorResponse:
       type: object
       description: Error response
@@ -197,18 +209,6 @@ components:
           maxLength: 4096
         - type: number
         - type: boolean
-    SuccessResponse:
-      type: object
-      description: Successful ingestion response
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was accepted
-          example: true
-        uuid:
-          type: string
-          description: Unique request identifier
-          example: '500123'
     EventPayload:
       type: array
       description: An array of custom event objects to ingest

@@ -188,11 +188,128 @@ components:
           example:
             type: standard
             message: Operation completed successfully
+    SpanBatch:
+      type: object
+      description: A batch of spans with optional shared attributes
+      required:
+      - spans
+      properties:
+        common:
+          $ref: '#/components/schemas/CommonBlock'
+        spans:
+          type: array
+          description: Array of individual span objects
+          items:
+            $ref: '#/components/schemas/Span'
+          example:
+          - id: '500123'
+            trace.id: '500123'
+            timestamp: 1718153645993
+            attributes:
+              name: {}
+              parent.id: {}
+              duration.ms: {}
+              service.name: {}
+              error: {}
+              db.statement: {}
+              http.url: {}
+              http.method: {}
+              http.statusCode: {}
+    Span:
+      type: object
+      description: A single distributed trace span in New Relic format
+      required:
+      - id
+      - trace.id
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this span (16 hex characters)
+          example: '500123'
+        trace.id:
+          type: string
+          description: Trace ID that groups all spans in a distributed trace
+          example: '500123'
+        timestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds when the span started
+          example: 1718153645993
+        attributes:
+          type: object
+          description: Span attributes
+          properties:
+            name:
+              type: string
+              description: Name of the operation represented by this span
+            parent.id:
+              type: string
+              description: The span ID of the parent span
+            duration.ms:
+              type: number
+              description: Duration of the span in milliseconds
+            service.name:
+              type: string
+              description: Name of the service that generated this span
+            error:
+              type: boolean
+              description: Whether the span represents an error
+            db.statement:
+              type: string
+              description: Database query statement if applicable
+            http.url:
+              type: string
+              description: HTTP URL for outbound calls
+            http.method:
+              type: string
+              description: HTTP method for outbound calls
+            http.statusCode:
+              type: integer
+              description: HTTP response status code
+          additionalProperties:
+            oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            name: example-resource-01
+            parent.id: '500123'
+            duration.ms: 0.42
+            service.name: myService
+            error: true
+            db.statement: example_string
+            http.url: https://portal.example.com/path/abc123
+            http.method: example_string
+            http.statusCode: 200
+    ZipkinTracePayload:
+      type: array
+      description: Zipkin JSON v2 format trace payload
+      items:
+        $ref: '#/components/schemas/ZipkinSpan'
     NewRelicTracePayload:
       type: array
       description: New Relic format trace payload — array of span batch objects
       items:
         $ref: '#/components/schemas/SpanBatch'
+    CommonBlock:
+      type: object
+      description: Shared attributes applied to all spans in this batch
+      properties:
+        attributes:
+          type: object
+          description: Key-value attributes applied to every span in the batch
+          additionalProperties:
+            oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+          example:
+            customAttribute: example_value
+    AcceptedResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          example: '500123'
     ZipkinSpan:
       type: object
       description: A single span in Zipkin JSON v2 format
@@ -276,123 +393,6 @@ components:
           example:
           - timestamp: 1718153645993
             value: example_string
-    SpanBatch:
-      type: object
-      description: A batch of spans with optional shared attributes
-      required:
-      - spans
-      properties:
-        common:
-          $ref: '#/components/schemas/CommonBlock'
-        spans:
-          type: array
-          description: Array of individual span objects
-          items:
-            $ref: '#/components/schemas/Span'
-          example:
-          - id: '500123'
-            trace.id: '500123'
-            timestamp: 1718153645993
-            attributes:
-              name: {}
-              parent.id: {}
-              duration.ms: {}
-              service.name: {}
-              error: {}
-              db.statement: {}
-              http.url: {}
-              http.method: {}
-              http.statusCode: {}
-    ZipkinTracePayload:
-      type: array
-      description: Zipkin JSON v2 format trace payload
-      items:
-        $ref: '#/components/schemas/ZipkinSpan'
-    Span:
-      type: object
-      description: A single distributed trace span in New Relic format
-      required:
-      - id
-      - trace.id
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this span (16 hex characters)
-          example: '500123'
-        trace.id:
-          type: string
-          description: Trace ID that groups all spans in a distributed trace
-          example: '500123'
-        timestamp:
-          type: integer
-          description: Unix epoch timestamp in milliseconds when the span started
-          example: 1718153645993
-        attributes:
-          type: object
-          description: Span attributes
-          properties:
-            name:
-              type: string
-              description: Name of the operation represented by this span
-            parent.id:
-              type: string
-              description: The span ID of the parent span
-            duration.ms:
-              type: number
-              description: Duration of the span in milliseconds
-            service.name:
-              type: string
-              description: Name of the service that generated this span
-            error:
-              type: boolean
-              description: Whether the span represents an error
-            db.statement:
-              type: string
-              description: Database query statement if applicable
-            http.url:
-              type: string
-              description: HTTP URL for outbound calls
-            http.method:
-              type: string
-              description: HTTP method for outbound calls
-            http.statusCode:
-              type: integer
-              description: HTTP response status code
-          additionalProperties:
-            oneOf:
-            - type: string
-            - type: number
-            - type: boolean
-          example:
-            name: example-resource-01
-            parent.id: '500123'
-            duration.ms: 0.42
-            service.name: myService
-            error: true
-            db.statement: example_string
-            http.url: https://portal.example.com/path/abc123
-            http.method: example_string
-            http.statusCode: 200
-    CommonBlock:
-      type: object
-      description: Shared attributes applied to all spans in this batch
-      properties:
-        attributes:
-          type: object
-          description: Key-value attributes applied to every span in the batch
-          additionalProperties:
-            oneOf:
-            - type: string
-            - type: number
-            - type: boolean
-          example:
-            customAttribute: example_value
-    AcceptedResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          example: '500123'
   securitySchemes:
     apiKey:
       type: apiKey
