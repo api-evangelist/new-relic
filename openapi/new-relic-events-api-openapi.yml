@@ -187,6 +187,12 @@ components:
           example:
           - error: example_string
             timestamp: example_string
+    EventPayload:
+      type: array
+      description: An array of custom event objects to ingest
+      maxItems: 2000
+      items:
+        $ref: '#/components/schemas/CustomEvent'
     CustomEvent:
       type: object
       description: A custom event to record. Must include eventType. All other attributes are user-defined key-value pairs. Attribute names must not start with nr. (reserved). Values can be strings, numbers, or booleans.
@@ -209,12 +215,6 @@ components:
           maxLength: 4096
         - type: number
         - type: boolean
-    EventPayload:
-      type: array
-      description: An array of custom event objects to ingest
-      maxItems: 2000
-      items:
-        $ref: '#/components/schemas/CustomEvent'
   securitySchemes:
     apiKey:
       type: apiKey

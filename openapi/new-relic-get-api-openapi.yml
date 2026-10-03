@@ -216,37 +216,11 @@ components:
           type: number
           format: float
           example: 42.5
-    EndUserSummaryResponse:
-      type: object
-      properties:
-        apdex_score:
-          type: number
-          format: float
-          example: 87.5
-        apdex_target:
-          type: number
-          format: float
-          example: 42.5
-        response_time:
-          type: number
-          format: float
-          example: 42.5
-        throughput:
-          type: number
-          format: float
-          example: 42.5
     KeyTransactionResponse:
       type: object
       properties:
         key_transaction:
           $ref: '#/components/schemas/KeyTransactionResponseType'
-    KeyTransactionLinksResponse:
-      type: object
-      properties:
-        application:
-          type: integer
-          description: Application from which this key transaction originated
-          example: 100
     KeyTransactionResponseType:
       type: object
       properties:
@@ -275,6 +249,32 @@ components:
         transaction_name:
           type: string
           example: example_string
+    KeyTransactionLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          description: Application from which this key transaction originated
+          example: 100
+    EndUserSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
   securitySchemes:
     APIKeyHeader:
       type: apiKey

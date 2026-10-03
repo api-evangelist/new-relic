@@ -141,6 +141,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AcceptedResponse:
+      type: object
+      description: Response when the payload was accepted
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the accepted ingestion request
+          example: '500123'
     ErrorResponse:
       type: object
       description: Error response
@@ -163,26 +171,6 @@ components:
       description: Array of log data batch objects
       items:
         $ref: '#/components/schemas/LogDataObject'
-    LogDataObject:
-      type: object
-      description: A batch of log records with optional shared attributes
-      required:
-      - logs
-      properties:
-        common:
-          $ref: '#/components/schemas/CommonBlock'
-        logs:
-          type: array
-          description: Array of individual log records
-          items:
-            $ref: '#/components/schemas/LogRecord'
-          example:
-          - timestamp: 1718153645993
-            message: Operation completed successfully
-            level: FATAL
-            logtype: standard
-            attributes:
-              customAttribute: example_value
     LogRecord:
       type: object
       description: A single log record
@@ -224,6 +212,26 @@ components:
             customAttribute: example_value
       additionalProperties:
         description: Additional top-level attributes are accepted and stored
+    LogDataObject:
+      type: object
+      description: A batch of log records with optional shared attributes
+      required:
+      - logs
+      properties:
+        common:
+          $ref: '#/components/schemas/CommonBlock'
+        logs:
+          type: array
+          description: Array of individual log records
+          items:
+            $ref: '#/components/schemas/LogRecord'
+          example:
+          - timestamp: 1718153645993
+            message: Operation completed successfully
+            level: FATAL
+            logtype: standard
+            attributes:
+              customAttribute: example_value
     CommonBlock:
       type: object
       description: Shared attributes applied to all log records in this batch
@@ -242,14 +250,6 @@ components:
             - type: boolean
           example:
             customAttribute: example_value
-    AcceptedResponse:
-      type: object
-      description: Response when the payload was accepted
-      properties:
-        requestId:
-          type: string
-          description: Unique identifier for the accepted ingestion request
-          example: '500123'
   securitySchemes:
     apiKey:
       type: apiKey

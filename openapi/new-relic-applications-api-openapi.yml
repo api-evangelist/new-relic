@@ -1907,18 +1907,7 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MetricListResponse:
-      type: object
-      properties:
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricParserResponseType'
-          example:
-          - name: example-resource-01
-            values:
-            - {}
-    DeploymentBody:
+    DeploymentResponseType:
       type: object
       properties:
         changelog:
@@ -1927,13 +1916,190 @@ components:
         description:
           type: string
           example: example_string
+        id:
+          type: integer
+          example: 100
+        links:
+          $ref: '#/components/schemas/DeploymentLinksResponse'
         revision:
           type: string
           example: example_string
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
         user:
           type: string
           example: example_string
-    AppSettingsResponse:
+    MobileApplicationResponseType:
+      type: object
+      properties:
+        crash_summary:
+          $ref: '#/components/schemas/CrashSummaryResponse'
+        health_status:
+          type: string
+          example: active
+        id:
+          type: integer
+          example: 100
+        mobile_summary:
+          $ref: '#/components/schemas/MobileSummaryDataResponse'
+        name:
+          type: string
+          example: example-resource-01
+        reporting:
+          type: boolean
+          example: true
+    AppSummaryResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        apdex_target:
+          type: number
+          format: float
+          example: 42.5
+        concurrent_instance_count:
+          type: integer
+          example: 42
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        host_count:
+          type: integer
+          example: 42
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    ApplicationHostResponse:
+      type: object
+      properties:
+        application_hosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationHostResponseType'
+          example:
+          - host: example_string
+            application_name: example_string
+            application_summary: {}
+            end_user_summary: {}
+            health_status: active
+            id: 100
+            language: 100
+            links: {}
+    Deployment:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentBody'
+    TimesliceResponse:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        to:
+          type: string
+          format: date-time
+          example: '2026-04-18T14:30:00Z'
+        values:
+          type: object
+          properties: {}
+          example: {}
+    DeploymentLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+    ApplicationHostLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+        application_instances:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+        server:
+          type: integer
+          example: 100
+    CrashSummaryResponse:
+      type: object
+      properties:
+        crash_count:
+          type: integer
+          example: 42
+        crash_rate:
+          type: number
+          format: float
+          example: 12.3
+        supports_crash_data:
+          type: boolean
+          example: true
+        unresolved_crash_count:
+          type: integer
+          example: 42
+    ApplicationBody:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        settings:
+          $ref: '#/components/schemas/AppSettingsBody'
+    MobileApplicationResponse:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/MobileApplicationResponseType'
+    ApplicationInstanceLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          example: 100
+        application_host:
+          type: integer
+          example: 100
+        server:
+          type: integer
+          example: 100
+    MetricParserResponse:
+      type: object
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricParserResponseType'
+    MetricResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        timeslices:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimesliceResponse'
+          example:
+          - from: '2026-04-18T14:30:00Z'
+            to: '2026-04-18T14:30:00Z'
+            values: {}
+    AppSettingsBody:
       type: object
       properties:
         app_apdex_threshold:
@@ -1947,19 +2113,38 @@ components:
           type: number
           format: float
           example: 42.5
-        use_server_side_config:
-          type: boolean
-          example: true
-    Deployment:
+    ApplicationResponse:
       type: object
       properties:
-        deployment:
-          $ref: '#/components/schemas/DeploymentBody'
-    DeploymentResponse:
+        application:
+          $ref: '#/components/schemas/ApplicationResponseType'
+    MetricDataResponse:
       type: object
       properties:
-        deployment:
-          $ref: '#/components/schemas/DeploymentResponseType'
+        metric_data:
+          $ref: '#/components/schemas/MetricDataResponseType'
+    ApplicationInstanceResponse:
+      type: object
+      properties:
+        application_instance:
+          $ref: '#/components/schemas/ApplicationInstanceResponseType'
+    Application:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/ApplicationBody'
+    MetricParserResponseType:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-resource-01
+        values:
+          type: array
+          items:
+            type: string
+          example:
+          - example_string
     MetricDataResponseType:
       type: object
       properties:
@@ -1985,53 +2170,47 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T14:30:00Z'
-    MetricResponse:
+    MetricListResponse:
       type: object
       properties:
-        name:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricParserResponseType'
+          example:
+          - name: example-resource-01
+            values:
+            - {}
+    EndUserSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
+    DeploymentBody:
+      type: object
+      properties:
+        changelog:
           type: string
-          example: example-resource-01
-        timeslices:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimesliceResponse'
-          example:
-          - from: '2026-04-18T14:30:00Z'
-            to: '2026-04-18T14:30:00Z'
-            values: {}
-    ApplicationInstanceLinksResponse:
-      type: object
-      properties:
-        application:
-          type: integer
-          example: 100
-        application_host:
-          type: integer
-          example: 100
-        server:
-          type: integer
-          example: 100
-    ApplicationLinksResponse:
-      type: object
-      properties:
-        servers:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-        application_hosts:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-        application_instances:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
+          example: example_string
+        description:
+          type: string
+          example: example_string
+        revision:
+          type: string
+          example: example_string
+        user:
+          type: string
+          example: example_string
     EndUserSummaryResponse:
       type: object
       properties:
@@ -2051,30 +2230,38 @@ components:
           type: number
           format: float
           example: 42.5
-    DeploymentResponseType:
+    ApplicationInstanceResponseType:
       type: object
       properties:
-        changelog:
+        host:
           type: string
           example: example_string
-        description:
+        application_name:
           type: string
           example: example_string
+        application_summary:
+          $ref: '#/components/schemas/AppSummaryDataResponse'
+        end_user_summary:
+          $ref: '#/components/schemas/EndUserSummaryDataResponse'
+        health_status:
+          type: string
+          example: active
         id:
           type: integer
           example: 100
+        language:
+          type: integer
+          example: 100
         links:
-          $ref: '#/components/schemas/DeploymentLinksResponse'
-        revision:
-          type: string
-          example: example_string
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-04-18T14:30:00Z'
-        user:
-          type: string
-          example: example_string
+          $ref: '#/components/schemas/ApplicationInstanceLinksResponse'
+        port:
+          type: integer
+          example: 8080
+    DeploymentResponse:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentResponseType'
     ApplicationHostResponseType:
       type: object
       properties:
@@ -2099,26 +2286,23 @@ components:
           example: 100
         links:
           $ref: '#/components/schemas/ApplicationHostLinksResponse'
-    TimesliceResponse:
+    AppSettingsResponse:
       type: object
       properties:
-        from:
-          type: string
-          format: date-time
-          example: '2026-04-18T14:30:00Z'
-        to:
-          type: string
-          format: date-time
-          example: '2026-04-18T14:30:00Z'
-        values:
-          type: object
-          properties: {}
-          example: {}
-    MetricParserResponse:
-      type: object
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricParserResponseType'
+        app_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+        enable_real_user_monitoring:
+          type: boolean
+          example: true
+        end_user_apdex_threshold:
+          type: number
+          format: float
+          example: 42.5
+        use_server_side_config:
+          type: boolean
+          example: true
     MobileSummaryDataResponse:
       type: object
       properties:
@@ -2152,49 +2336,49 @@ components:
           type: number
           format: float
           example: 42.5
-    ApplicationBody:
+    ApplicationLinksResponse:
       type: object
       properties:
-        name:
-          type: string
-          example: example-resource-01
-        settings:
-          $ref: '#/components/schemas/AppSettingsBody'
-    MobileApplicationResponseType:
-      type: object
-      properties:
-        crash_summary:
-          $ref: '#/components/schemas/CrashSummaryResponse'
-        health_status:
-          type: string
-          example: active
-        id:
-          type: integer
-          example: 100
-        mobile_summary:
-          $ref: '#/components/schemas/MobileSummaryDataResponse'
-        name:
-          type: string
-          example: example-resource-01
-        reporting:
-          type: boolean
-          example: true
-    ApplicationHostResponse:
-      type: object
-      properties:
+        servers:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
         application_hosts:
           type: array
           items:
-            $ref: '#/components/schemas/ApplicationHostResponseType'
+            type: integer
           example:
-          - host: example_string
-            application_name: example_string
-            application_summary: {}
-            end_user_summary: {}
-            health_status: active
-            id: 100
-            language: 100
-            links: {}
+          - 100
+        application_instances:
+          type: array
+          items:
+            type: integer
+          example:
+          - 100
+    AppSummaryDataResponse:
+      type: object
+      properties:
+        apdex_score:
+          type: number
+          format: float
+          example: 87.5
+        error_rate:
+          type: number
+          format: float
+          example: 12.3
+        instance_count:
+          type: integer
+          example: 42
+        response_time:
+          type: number
+          format: float
+          example: 42.5
+        throughput:
+          type: number
+          format: float
+          example: 42.5
     ApplicationResponseType:
       type: object
       properties:
@@ -2225,190 +2409,6 @@ components:
           example: true
         settings:
           $ref: '#/components/schemas/AppSettingsResponse'
-    MobileApplicationResponse:
-      type: object
-      properties:
-        application:
-          $ref: '#/components/schemas/MobileApplicationResponseType'
-    AppSummaryDataResponse:
-      type: object
-      properties:
-        apdex_score:
-          type: number
-          format: float
-          example: 87.5
-        error_rate:
-          type: number
-          format: float
-          example: 12.3
-        instance_count:
-          type: integer
-          example: 42
-        response_time:
-          type: number
-          format: float
-          example: 42.5
-        throughput:
-          type: number
-          format: float
-          example: 42.5
-    EndUserSummaryDataResponse:
-      type: object
-      properties:
-        apdex_score:
-          type: number
-          format: float
-          example: 87.5
-        response_time:
-          type: number
-          format: float
-          example: 42.5
-        throughput:
-          type: number
-          format: float
-          example: 42.5
-    AppSettingsBody:
-      type: object
-      properties:
-        app_apdex_threshold:
-          type: number
-          format: float
-          example: 42.5
-        enable_real_user_monitoring:
-          type: boolean
-          example: true
-        end_user_apdex_threshold:
-          type: number
-          format: float
-          example: 42.5
-    Application:
-      type: object
-      properties:
-        application:
-          $ref: '#/components/schemas/ApplicationBody'
-    AppSummaryResponse:
-      type: object
-      properties:
-        apdex_score:
-          type: number
-          format: float
-          example: 87.5
-        apdex_target:
-          type: number
-          format: float
-          example: 42.5
-        concurrent_instance_count:
-          type: integer
-          example: 42
-        error_rate:
-          type: number
-          format: float
-          example: 12.3
-        host_count:
-          type: integer
-          example: 42
-        instance_count:
-          type: integer
-          example: 42
-        response_time:
-          type: number
-          format: float
-          example: 42.5
-        throughput:
-          type: number
-          format: float
-          example: 42.5
-    MetricDataResponse:
-      type: object
-      properties:
-        metric_data:
-          $ref: '#/components/schemas/MetricDataResponseType'
-    ApplicationResponse:
-      type: object
-      properties:
-        application:
-          $ref: '#/components/schemas/ApplicationResponseType'
-    ApplicationInstanceResponseType:
-      type: object
-      properties:
-        host:
-          type: string
-          example: example_string
-        application_name:
-          type: string
-          example: example_string
-        application_summary:
-          $ref: '#/components/schemas/AppSummaryDataResponse'
-        end_user_summary:
-          $ref: '#/components/schemas/EndUserSummaryDataResponse'
-        health_status:
-          type: string
-          example: active
-        id:
-          type: integer
-          example: 100
-        language:
-          type: integer
-          example: 100
-        links:
-          $ref: '#/components/schemas/ApplicationInstanceLinksResponse'
-        port:
-          type: integer
-          example: 8080
-    CrashSummaryResponse:
-      type: object
-      properties:
-        crash_count:
-          type: integer
-          example: 42
-        crash_rate:
-          type: number
-          format: float
-          example: 12.3
-        supports_crash_data:
-          type: boolean
-          example: true
-        unresolved_crash_count:
-          type: integer
-          example: 42
-    ApplicationInstanceResponse:
-      type: object
-      properties:
-        application_instance:
-          $ref: '#/components/schemas/ApplicationInstanceResponseType'
-    DeploymentLinksResponse:
-      type: object
-      properties:
-        application:
-          type: integer
-          example: 100
-    ApplicationHostLinksResponse:
-      type: object
-      properties:
-        application:
-          type: integer
-          example: 100
-        application_instances:
-          type: array
-          items:
-            type: integer
-          example:
-          - 100
-        server:
-          type: integer
-          example: 100
-    MetricParserResponseType:
-      type: object
-      properties:
-        name:
-          type: string
-          example: example-resource-01
-        values:
-          type: array
-          items:
-            type: string
-          example:
-          - example_string
   securitySchemes:
     APIKeyHeader:
       type: apiKey

@@ -159,6 +159,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AcceptedResponse:
+      type: object
+      description: Response returned when the payload was accepted
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the accepted request
+          example: '500123'
     ErrorResponse:
       type: object
       description: Error response body
@@ -195,11 +203,6 @@ components:
               message: Operation completed successfully
             failed:
             - {}
-    MetricPayload:
-      type: array
-      description: An array of metric data objects to be ingested
-      items:
-        $ref: '#/components/schemas/MetricDataObject'
     MetricDataPoint:
       type: object
       description: A single metric data point
@@ -245,6 +248,11 @@ components:
             - type: boolean
           example:
             customAttribute: example_value
+    MetricPayload:
+      type: array
+      description: An array of metric data objects to be ingested
+      items:
+        $ref: '#/components/schemas/MetricDataObject'
     SummaryValue:
       type: object
       description: Summary metric value containing statistical aggregations
@@ -292,14 +300,6 @@ components:
             - type: boolean
           example:
             customAttribute: example_value
-    AcceptedResponse:
-      type: object
-      description: Response returned when the payload was accepted
-      properties:
-        requestId:
-          type: string
-          description: Unique identifier for the accepted request
-          example: '500123'
     MetricDataObject:
       type: object
       description: A container for a batch of metrics with optional shared attributes
