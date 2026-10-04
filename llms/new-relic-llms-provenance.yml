@@ -1,0 +1,6 @@
+generated: '2026-10-03'
+method: probed
+generator: harvest-llms.py
+source: https://docs.newrelic.com/llms.txt
+bytes: 447733
+note: saved verbatim; the provider's own document

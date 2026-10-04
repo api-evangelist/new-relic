@@ -20,7 +20,7 @@ info:
     url: https://support.newrelic.com/
   license:
     name: Proprietary
-  externalDocs:
+  x-externalDocs:
     description: New Relic Documentation
     url: https://docs.newrelic.com/
 defaultContentType: application/json

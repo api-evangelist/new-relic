@@ -1,5 +1,471 @@
 aid: new-relic
+
 url: https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/apis.yml
+
+name: New Relic
+
+tags:
+- Analysis
+- Analytics
+- APM
+- DevOps
+- Infrastructure
+- Monitoring
+- Observability
+- Performance
+- Platform
+- Real-Time
+
+deliveryModel:
+  model: open-core
+  license: Apache-2.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
+
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: medium
+  source:
+  - plans
+  - authentication
+  - security
+  generated: '2026-09-03'
+  method: derived
+
+image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
+
+access: 3rd-Party
+
+created: '2025-01-13'
+
+modified: '2026-05-19'
+
+position: Consuming
+
+description: 'New Relic offers an AI‑powered observability platform that provides application performance monitoring, digital experience monitoring, infrastructure monitoring, log management, and security services. The platform helps enterprises gain real‑time visibility into cloud costs, multi‑cloud and Kubernetes environments, and AI model behavior. It is aimed at engineers and IT teams that need to monitor, troubleshoot, and optimize the performance and reliability of their digital systems.'
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+specificationVersion: '0.23'
+
+common:
+- type: FinOps
+  url: finops/new-relic-finops.yml
+- type: RateLimits
+  url: rate-limits/new-relic-rate-limits.yml
+- type: Plans
+  url: plans/new-relic-plans-pricing.yml
+- type: Spectral
+  url: rules/new-relic-spectral-rules.yml
+- type: Spectral
+  url: rules/new-relic-rules.yml
+- type: Spectral
+  url: rules/new-relic-jsonschema-spectral-rules.yml
+- type: Spectral
+  url: rules/new-relic-asyncapi-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/new-relic-trace-context.jsonld
+- type: JSONLD
+  url: json-ld/new-relic-metric-context.jsonld
+- type: JSONLD
+  url: json-ld/new-relic-log-context.jsonld
+- type: JSONLD
+  url: json-ld/new-relic-event-context.jsonld
+- type: Vocabulary
+  url: vocabulary/new-relic-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AsyncAPI
+  url: asyncapi/new-relic-streaming-asyncapi.yml
+- type: DataModel
+  url: data-model/new-relic-data-model.yml
+- type: CLI
+  url: cli/new-relic-cli.yml
+- type: ErrorCatalog
+  url: errors/new-relic-problem-types.yml
+- type: Conformance
+  url: conformance/new-relic-conformance.yml
+- type: Overlay
+  url: overlays/new-relic-alerts-api-overlay.yml
+- type: LLMsTxt
+  url: llms/new-relic-llms.txt
+- type: MCPServer
+  url: mcp/new-relic-mcp.yml
+- type: Hosts
+  url: hosts/new-relic-hosts.yml
+- type: Vendors
+  url: vendors/new-relic-vendors.yml
+- type: Packages
+  url: packages/new-relic-packages.yml
+- type: Newsroom
+  url: https://newrelic.com/about/newsroom
+- type: Leadership
+  url: https://newrelic.com/about/leadership
+- type: Website
+  url: https://www.newrelic.com/
+- type: CapabilityMap
+  url: capabilities/new-relic-capability-edges.yml
+  name: New Relic Business Capability Map
+- type: IssueTracker
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/issues
+- type: Releases
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/releases
+- type: CodeOfConduct
+  url: https://github.com/newrelic/.github/blob/main/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/blob/main/CONTRIBUTING.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/blob/main/LICENSE
+- type: AgenticAccess
+  url: agentic-access/new-relic-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/new-relic-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/new-relic-domain-security.yml
+- type: Authentication
+  url: authentication/new-relic-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/new-relic/overview
+- type: Arazzo
+  url: arazzo/new-relic-application-health-triage-workflow.yml
+  name: New Relic Application Health Triage
+- type: Arazzo
+  url: arazzo/new-relic-associate-entity-with-condition-workflow.yml
+  name: New Relic Associate Entity With Condition
+- type: Arazzo
+  url: arazzo/new-relic-attach-notification-channel-to-policy-workflow.yml
+  name: New Relic Attach Notification Channel To Policy
+- type: Arazzo
+  url: arazzo/new-relic-create-alert-policy-with-condition-workflow.yml
+  name: New Relic Create Alert Policy With Condition
+- type: Arazzo
+  url: arazzo/new-relic-create-nrql-alert-policy-workflow.yml
+  name: New Relic Create NRQL Alert Policy
+- type: Arazzo
+  url: arazzo/new-relic-create-synthetics-alert-condition-workflow.yml
+  name: New Relic Create Synthetics Alert Condition
+- type: Arazzo
+  url: arazzo/new-relic-find-policy-and-list-conditions-workflow.yml
+  name: New Relic Find Policy And List Conditions
+- type: Arazzo
+  url: arazzo/new-relic-host-metric-drilldown-workflow.yml
+  name: New Relic Host Metric Drilldown
+- type: Arazzo
+  url: arazzo/new-relic-ingest-deployment-telemetry-workflow.yml
+  name: New Relic Ingest Deployment Telemetry
+- type: Arazzo
+  url: arazzo/new-relic-ingest-metrics-and-logs-workflow.yml
+  name: New Relic Ingest Metrics And Logs
+- type: Arazzo
+  url: arazzo/new-relic-ingest-trace-and-event-workflow.yml
+  name: New Relic Ingest Trace And Event
+- type: Arazzo
+  url: arazzo/new-relic-key-transaction-metric-report-workflow.yml
+  name: New Relic Key Transaction Metric Report
+- type: Arazzo
+  url: arazzo/new-relic-mobile-app-crash-report-workflow.yml
+  name: New Relic Mobile App Crash Report
+- type: Arazzo
+  url: arazzo/new-relic-open-violations-triage-workflow.yml
+  name: New Relic Open Violations Triage
+- type: Arazzo
+  url: arazzo/new-relic-provision-alerting-stack-workflow.yml
+  name: New Relic Provision Alerting Stack
+- type: Arazzo
+  url: arazzo/new-relic-prune-nrql-condition-workflow.yml
+  name: New Relic Prune NRQL Condition
+- type: Arazzo
+  url: arazzo/new-relic-record-deployment-marker-workflow.yml
+  name: New Relic Record Deployment Marker
+- type: Arazzo
+  url: arazzo/new-relic-rename-application-workflow.yml
+  name: New Relic Rename Application
+- type: Arazzo
+  url: arazzo/new-relic-rollback-deployment-marker-workflow.yml
+  name: New Relic Rollback Deployment Marker
+- type: Arazzo
+  url: arazzo/new-relic-update-policy-and-condition-workflow.yml
+  name: New Relic Update Policy And Condition
+- name: New Relic | Monitor, Debug and Improve Your Entire Stack
+  description: 'null'
+  url: https://newrelic.com/
+  type: Portal
+- name: Transparent Pricing - Start for Free | New Relic
+  description: 'null'
+  url: https://newrelic.com/pricing
+  type: Pricing
+- name: New Relic Documentation
+  description: 'null'
+  url: https://docs.newrelic.com/
+  type: Documentation
+- name: Terms of Service Agreement | New Relic
+  description: 'null'
+  url: https://newrelic.com/termsandconditions/terms
+  type: TermsOfService
+- name: General Data Privacy Notice
+  description: 'null'
+  url: https://newrelic.com/termsandconditions/privacy
+  type: PrivacyPolicy
+- name: The New Relic Blog | New Relic
+  description: 'null'
+  url: https://newrelic.com/blog
+  type: Blog
+- name: New Relic Partner Program | New Relic
+  description: 'null'
+  url: https://newrelic.com/solutions/partners
+  type: Partners
+- name: New Relic Trust Center
+  description: 'null'
+  url: https://trust.newrelic.com/
+  type: TrustCenter
+- name: Log in to New Relic
+  description: 'null'
+  url: https://login.newrelic.com/login
+  type: Login
+- name: Sign Up
+  description: 'null'
+  url: https://newrelic.com/signup
+  type: Signup
+- url: https://one.newrelic.com/
+  name: New Relic Platform Console
+  type: Console
+- url: https://developer.newrelic.com/
+  name: New Relic Developer Portal
+  type: Portal
+- url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
+  name: New Relic API Keys
+  type: Authentication
+- url: https://support.newrelic.com/
+  name: New Relic Support
+  type: Support
+- url: https://status.newrelic.com/
+  name: New Relic Status
+  type: StatusPage
+- url: https://github.com/newrelic
+  name: New Relic GitHub Organization
+  type: GitHubOrganization
+- url: https://discuss.newrelic.com/
+  name: New Relic Explorers Hub Community Forum
+  type: Support
+- url: https://docs.newrelic.com/docs/new-relic-solutions/get-started/intro-new-relic/
+  name: Get Started with New Relic
+  type: GettingStarted
+- url: https://docs.newrelic.com/whats-new/
+  name: What's New in New Relic
+  type: ChangeLog
+- url: https://docs.newrelic.com/docs/release-notes/
+  name: New Relic Release Notes
+  type: ChangeLog
+- url: https://docs.newrelic.com/docs/data-apis/manage-data/view-system-limits/
+  name: New Relic Data Limits
+  type: RateLimits
+- url: https://stackoverflow.com/questions/tagged/new-relic
+  name: New Relic on Stack Overflow
+  type: StackOverflow
+- url: https://opensource.newrelic.com/
+  name: New Relic Open Source
+  type: GitHubOrganization
+- url: https://www.youtube.com/@NewRelicInc
+  name: New Relic YouTube Channel
+  type: YouTube
+- url: json-ld/new-relic-context.jsonld
+  name: New Relic JSON-LD Context
+  type: JSONLD
+- url: json-schema/new-relic-metric-payload-schema.json
+  name: New Relic Metric Payload Schema
+  type: JSONSchema
+- url: json-schema/new-relic-event-payload-schema.json
+  name: New Relic Event Payload Schema
+  type: JSONSchema
+- url: https://twitter.com/newrelic
+  name: New Relic on X (Twitter)
+  type: X
+- url: https://www.linkedin.com/company/new-relic-inc-
+  name: New Relic on LinkedIn
+  type: LinkedIn
+- url: https://newrelic.com/security
+  name: New Relic Security Overview
+  type: Security
+- url: https://newrelic.com/security/compliance-certifications
+  name: New Relic Compliance and Certifications
+  type: Security
+- url: https://github.com/newrelic/newrelic-cli
+  name: New Relic CLI
+  type: CLI
+- url: https://docs.newrelic.com/docs/new-relic-solutions/build-nr-ui/newrelic-cli/
+  name: New Relic CLI Reference
+  type: CLI
+- url: https://registry.terraform.io/providers/newrelic/newrelic/latest/docs
+  name: New Relic Terraform Provider
+  type: GitHubRepository
+- url: https://github.com/newrelic/terraform-provider-newrelic
+  name: New Relic Terraform Provider GitHub Repository
+  type: GitHubRepository
+- url: https://www.postman.com/new-relic/
+  name: New Relic Postman Workspace
+  type: Resources
+- url: https://docs.newrelic.com/docs/apis/intro-apis/introduction-new-relic-apis/
+  name: Introduction to New Relic APIs
+  type: Documentation
+- url: https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/
+  name: Introduction to NRQL
+  type: Documentation
+- type: Features
+  name: New Relic Platform Features
+  data:
+  - 'Free: 100 GB/mo ingest, 1 full-platform user, unlimited basic users'
+  - 'Standard: $10 first user, $99 additional (max 5)'
+  - 'Pro: $349/user/yr unlimited full-platform users'
+  - 'Enterprise: FedRAMP/HIPAA, 1-hr critical SLA'
+  - $0.40/GB Original Data, $0.60/GB Data Plus beyond 100 GB free
+  - NerdGraph (GraphQL) API at api.newrelic.com/graphql
+  - 'NerdGraph rate limit: 3,000 req/min/user-key'
+  - 'Insights query API: 1,000 queries/min'
+  - 'Insights insert: 100,000 events/min'
+  - 'Metric API: 100,000 req/min'
+  - OpenTelemetry, Prometheus, Pixie, AWS, GCP, Azure integrations
+  - APM, Browser, Mobile, Logs, Infrastructure, Synthetics
+  - AI Monitoring for LLM observability
+  - User keys, license keys, ingest keys
+  - Live archive (Data Plus)
+  - Custom dashboards via NRQL
+  sources:
+  - https://newrelic.com/pricing
+  updated: '2026-05-04'
+- type: UseCases
+  name: New Relic Use Cases
+  data:
+  - name: Full-Stack Observability
+    description: >-
+      Gain unified visibility across applications, infrastructure, and digital experiences to quickly identify and
+      resolve issues.
+  - name: Cloud Migration Monitoring
+    description: >-
+      Monitor and validate cloud migration progress with baseline comparisons and performance tracking across hybrid
+      environments.
+  - name: DevOps and CI/CD Integration
+    description: >-
+      Integrate observability into development workflows with deployment markers, error tracking, and automated
+      testing.
+  - name: Site Reliability Engineering
+    description: Define and track SLOs, manage error budgets, and implement reliability practices with data-driven insights.
+  - name: Incident Response and Management
+    description: >-
+      Detect, diagnose, and resolve incidents faster with correlated telemetry, anomaly detection, and automated
+      workflows.
+  - name: Digital Experience Monitoring
+    description: Measure and optimize end-user experience across web, mobile, and synthetic channels.
+  - name: Capacity Planning
+    description: Analyze resource utilization trends and forecast capacity needs to optimize infrastructure spending.
+  - name: Compliance and Audit
+    description: Maintain audit trails, security compliance, and data governance across observability data.
+- type: Integrations
+  name: New Relic Integrations
+  url: https://newrelic.com/instant-observability
+  data:
+  - name: Amazon Web Services
+    description: Monitor AWS services including EC2, Lambda, RDS, S3, ECS, EKS, and CloudWatch with native integration.
+  - name: Microsoft Azure
+    description: Monitor Azure services including VMs, App Service, Functions, AKS, and Azure Monitor with native integration.
+  - name: Google Cloud Platform
+    description: Monitor GCP services including Compute Engine, Cloud Functions, GKE, BigQuery, and Cloud Monitoring.
+  - name: Kubernetes
+    description: Monitor Kubernetes clusters with automatic discovery, Pixie integration, and OpenTelemetry support.
+  - name: Prometheus
+    description: Ingest Prometheus metrics using remote write or the Prometheus OpenMetrics integration.
+  - name: OpenTelemetry
+    description: >-
+      Native OTLP endpoint support for ingesting metrics, traces, and logs from OpenTelemetry-instrumented
+      applications.
+  - name: Terraform
+    description: Provision and manage New Relic resources as code using the official Terraform provider.
+  - name: Grafana
+    description: Query New Relic data from Grafana dashboards using the Grafana data source plugin.
+  - name: PagerDuty
+    description: Send alert notifications to PagerDuty for incident management and on-call escalation.
+  - name: Slack
+    description: Receive alert notifications and share observability insights directly in Slack channels.
+  - name: Jira
+    description: Create Jira issues from New Relic errors and alerts for issue tracking and resolution workflows.
+  - name: ServiceNow
+    description: Integrate with ServiceNow for ITSM workflows, incident creation, and change management.
+  - name: GitHub
+    description: Connect repositories for code-level visibility, error linking, and deployment tracking via CodeStream.
+  - name: Docker
+    description: Monitor Docker containers with automatic instrumentation and container-level metrics.
+  - name: Apache Kafka
+    description: Monitor Kafka clusters, topics, consumer groups, and message throughput.
+  - name: MySQL
+    description: Monitor MySQL database performance with query analysis, connection tracking, and replication metrics.
+  - name: PostgreSQL
+    description: Monitor PostgreSQL database performance with query analysis, index usage, and connection metrics.
+  - name: MongoDB
+    description: Monitor MongoDB instances with query performance, replication status, and cluster metrics.
+  - name: Redis
+    description: Monitor Redis instances with memory usage, command statistics, and key metrics.
+  - name: Nginx
+    description: Monitor Nginx web server performance with request rates, error rates, and upstream metrics.
+- type: SDKs
+  url: https://github.com/newrelic/newrelic-java-agent
+  name: New Relic Java Agent
+  title: Java Agent
+- type: SDKs
+  url: https://github.com/newrelic/newrelic-python-agent
+  name: New Relic Python Agent
+  title: Python Agent
+- type: SDKs
+  url: https://github.com/newrelic/node-newrelic
+  name: New Relic Node.js Agent
+  title: Node.js Agent
+- type: SDKs
+  url: https://github.com/newrelic/go-agent
+  name: New Relic Go Agent
+  title: Go Agent
+- type: SDKs
+  url: https://github.com/newrelic/newrelic-dotnet-agent
+  name: New Relic .NET Agent
+  title: .NET Agent
+- type: SDKs
+  url: https://github.com/newrelic/newrelic-ruby-agent
+  name: New Relic Ruby Agent
+  title: Ruby Agent
+- type: SDKs
+  url: https://github.com/newrelic/newrelic-php-agent
+  name: New Relic PHP Agent
+  title: PHP Agent
+- type: SDKs
+  url: https://github.com/newrelic/infrastructure-agent
+  name: New Relic Infrastructure Agent
+- type: GitHubRepository
+  url: https://github.com/newrelic/helm-charts
+  name: New Relic Helm Charts
+- type: CodeExamples
+  url: https://github.com/newrelic/newrelic-opentelemetry-examples
+  name: New Relic OpenTelemetry Examples
+- type: SpectralRules
+  url: rules/new-relic-spectral-rules.yml
+  name: New Relic Spectral Rules
+- type: Vocabulary
+  url: vocabulary/new-relic-vocabulary.yaml
+  name: New Relic Vocabulary
+
 apis:
 - aid: new-relic:new-relic-nerdgraph-api
   name: New Relic NerdGraph API
@@ -2229,405 +2695,11 @@ apis:
     url: json-schema/trace-api-span-batch-schema.json
   - type: JSONLD
     url: json-ld/new-relic-trace-api-context.jsonld
-name: New Relic
-tags:
-- Analysis
-- Analytics
-- APM
-- DevOps
-- Infrastructure
-- Monitoring
-- Observability
-- Performance
-- Platform
-- Real-Time
+
 type: Index
-deliveryModel:
-  model: open-core
-  license: Apache-2.0
-  open_source: true
-  commercial: true
-  callable_host: true
-  label: Open core · an OSS project plus a commercial hosted product
-  confidence: high
-  source:
-  - license
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
-accessModel:
-  pricing: freemium
-  onboarding: self-serve
-  trial: false
-  try_now: true
-  public: false
-  label: Freemium · Self-serve signup
-  confidence: medium
-  source:
-  - plans
-  - authentication
-  - security
-  generated: '2026-09-03'
-  method: derived
-image: https://newrelic.com/themes/custom/erno/assets/mediakit/new_relic_logo_horizontal.png
-access: 3rd-Party
-created: '2025-01-13'
-modified: '2026-05-19'
-position: Consuming
-description: >-
-  New Relic provides observability platform APIs for monitoring, analyzing, and optimizing your entire software stack
-  with real-time insights into applications, infrastructure, and customer experience.
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-specificationVersion: '0.23'
-common:
-- type: Website
-  url: https://www.newrelic.com/
-- type: CapabilityMap
-  url: capabilities/new-relic-capability-edges.yml
-  name: New Relic Business Capability Map
-- type: IssueTracker
-  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/issues
-- type: Releases
-  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/releases
-- type: CodeOfConduct
-  url: https://github.com/newrelic/.github/blob/main/CODE_OF_CONDUCT.md
-- type: ContributionGuide
-  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/blob/main/CONTRIBUTING.md
-- type: License
-  name: Apache-2.0
-  url: https://github.com/newrelic/newrelic-telemetry-sdk-java/blob/main/LICENSE
-- type: AgenticAccess
-  url: agentic-access/new-relic-agentic-access.yml
-- type: VulnerabilityDisclosure
-  url: security/new-relic-vulnerability-disclosure.yml
-- type: DomainSecurity
-  url: security/new-relic-domain-security.yml
-- type: Authentication
-  url: authentication/new-relic-authentication.yml
-- type: PostmanWorkspace
-  url: https://www.postman.com/kinlaneapi/new-relic/overview
-- type: Arazzo
-  url: arazzo/new-relic-application-health-triage-workflow.yml
-  name: New Relic Application Health Triage
-- type: Arazzo
-  url: arazzo/new-relic-associate-entity-with-condition-workflow.yml
-  name: New Relic Associate Entity With Condition
-- type: Arazzo
-  url: arazzo/new-relic-attach-notification-channel-to-policy-workflow.yml
-  name: New Relic Attach Notification Channel To Policy
-- type: Arazzo
-  url: arazzo/new-relic-create-alert-policy-with-condition-workflow.yml
-  name: New Relic Create Alert Policy With Condition
-- type: Arazzo
-  url: arazzo/new-relic-create-nrql-alert-policy-workflow.yml
-  name: New Relic Create NRQL Alert Policy
-- type: Arazzo
-  url: arazzo/new-relic-create-synthetics-alert-condition-workflow.yml
-  name: New Relic Create Synthetics Alert Condition
-- type: Arazzo
-  url: arazzo/new-relic-find-policy-and-list-conditions-workflow.yml
-  name: New Relic Find Policy And List Conditions
-- type: Arazzo
-  url: arazzo/new-relic-host-metric-drilldown-workflow.yml
-  name: New Relic Host Metric Drilldown
-- type: Arazzo
-  url: arazzo/new-relic-ingest-deployment-telemetry-workflow.yml
-  name: New Relic Ingest Deployment Telemetry
-- type: Arazzo
-  url: arazzo/new-relic-ingest-metrics-and-logs-workflow.yml
-  name: New Relic Ingest Metrics And Logs
-- type: Arazzo
-  url: arazzo/new-relic-ingest-trace-and-event-workflow.yml
-  name: New Relic Ingest Trace And Event
-- type: Arazzo
-  url: arazzo/new-relic-key-transaction-metric-report-workflow.yml
-  name: New Relic Key Transaction Metric Report
-- type: Arazzo
-  url: arazzo/new-relic-mobile-app-crash-report-workflow.yml
-  name: New Relic Mobile App Crash Report
-- type: Arazzo
-  url: arazzo/new-relic-open-violations-triage-workflow.yml
-  name: New Relic Open Violations Triage
-- type: Arazzo
-  url: arazzo/new-relic-provision-alerting-stack-workflow.yml
-  name: New Relic Provision Alerting Stack
-- type: Arazzo
-  url: arazzo/new-relic-prune-nrql-condition-workflow.yml
-  name: New Relic Prune NRQL Condition
-- type: Arazzo
-  url: arazzo/new-relic-record-deployment-marker-workflow.yml
-  name: New Relic Record Deployment Marker
-- type: Arazzo
-  url: arazzo/new-relic-rename-application-workflow.yml
-  name: New Relic Rename Application
-- type: Arazzo
-  url: arazzo/new-relic-rollback-deployment-marker-workflow.yml
-  name: New Relic Rollback Deployment Marker
-- type: Arazzo
-  url: arazzo/new-relic-update-policy-and-condition-workflow.yml
-  name: New Relic Update Policy And Condition
-- name: New Relic | Monitor, Debug and Improve Your Entire Stack
-  description: 'null'
-  url: https://newrelic.com/
-  type: Portal
-- name: Transparent Pricing - Start for Free | New Relic
-  description: 'null'
-  url: https://newrelic.com/pricing
-  type: Pricing
-- name: New Relic Documentation
-  description: 'null'
-  url: https://docs.newrelic.com/
-  type: Documentation
-- name: Terms of Service Agreement | New Relic
-  description: 'null'
-  url: https://newrelic.com/termsandconditions/terms
-  type: TermsOfService
-- name: General Data Privacy Notice
-  description: 'null'
-  url: https://newrelic.com/termsandconditions/privacy
-  type: PrivacyPolicy
-- name: The New Relic Blog | New Relic
-  description: 'null'
-  url: https://newrelic.com/blog
-  type: Blog
-- name: New Relic Partner Program | New Relic
-  description: 'null'
-  url: https://newrelic.com/solutions/partners
-  type: Partners
-- name: New Relic Trust Center
-  description: 'null'
-  url: https://trust.newrelic.com/
-  type: TrustCenter
-- name: Log in to New Relic
-  description: 'null'
-  url: https://login.newrelic.com/login
-  type: Login
-- name: Sign Up
-  description: 'null'
-  url: https://newrelic.com/signup
-  type: Signup
-- url: https://one.newrelic.com/
-  name: New Relic Platform Console
-  type: Console
-- url: https://developer.newrelic.com/
-  name: New Relic Developer Portal
-  type: Portal
-- url: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
-  name: New Relic API Keys
-  type: Authentication
-- url: https://support.newrelic.com/
-  name: New Relic Support
-  type: Support
-- url: https://status.newrelic.com/
-  name: New Relic Status
-  type: StatusPage
-- url: https://github.com/newrelic
-  name: New Relic GitHub Organization
-  type: GitHubOrganization
-- url: https://discuss.newrelic.com/
-  name: New Relic Explorers Hub Community Forum
-  type: Support
-- url: https://docs.newrelic.com/docs/new-relic-solutions/get-started/intro-new-relic/
-  name: Get Started with New Relic
-  type: GettingStarted
-- url: https://docs.newrelic.com/whats-new/
-  name: What's New in New Relic
-  type: ChangeLog
-- url: https://docs.newrelic.com/docs/release-notes/
-  name: New Relic Release Notes
-  type: ChangeLog
-- url: https://docs.newrelic.com/docs/data-apis/manage-data/view-system-limits/
-  name: New Relic Data Limits
-  type: RateLimits
-- url: https://stackoverflow.com/questions/tagged/new-relic
-  name: New Relic on Stack Overflow
-  type: StackOverflow
-- url: https://opensource.newrelic.com/
-  name: New Relic Open Source
-  type: GitHubOrganization
-- url: https://www.youtube.com/@NewRelicInc
-  name: New Relic YouTube Channel
-  type: YouTube
-- url: json-ld/new-relic-context.jsonld
-  name: New Relic JSON-LD Context
-  type: JSONLD
-- url: json-schema/new-relic-metric-payload-schema.json
-  name: New Relic Metric Payload Schema
-  type: JSONSchema
-- url: json-schema/new-relic-event-payload-schema.json
-  name: New Relic Event Payload Schema
-  type: JSONSchema
-- url: https://twitter.com/newrelic
-  name: New Relic on X (Twitter)
-  type: X
-- url: https://www.linkedin.com/company/new-relic-inc-
-  name: New Relic on LinkedIn
-  type: LinkedIn
-- url: https://newrelic.com/security
-  name: New Relic Security Overview
-  type: Security
-- url: https://newrelic.com/security/compliance-certifications
-  name: New Relic Compliance and Certifications
-  type: Security
-- url: https://github.com/newrelic/newrelic-cli
-  name: New Relic CLI
-  type: CLI
-- url: https://docs.newrelic.com/docs/new-relic-solutions/build-nr-ui/newrelic-cli/
-  name: New Relic CLI Reference
-  type: CLI
-- url: https://registry.terraform.io/providers/newrelic/newrelic/latest/docs
-  name: New Relic Terraform Provider
-  type: GitHubRepository
-- url: https://github.com/newrelic/terraform-provider-newrelic
-  name: New Relic Terraform Provider GitHub Repository
-  type: GitHubRepository
-- url: https://www.postman.com/new-relic/
-  name: New Relic Postman Workspace
-  type: Resources
-- url: https://docs.newrelic.com/docs/apis/intro-apis/introduction-new-relic-apis/
-  name: Introduction to New Relic APIs
-  type: Documentation
-- url: https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/
-  name: Introduction to NRQL
-  type: Documentation
-- type: Features
-  name: New Relic Platform Features
-  data:
-  - 'Free: 100 GB/mo ingest, 1 full-platform user, unlimited basic users'
-  - 'Standard: $10 first user, $99 additional (max 5)'
-  - 'Pro: $349/user/yr unlimited full-platform users'
-  - 'Enterprise: FedRAMP/HIPAA, 1-hr critical SLA'
-  - $0.40/GB Original Data, $0.60/GB Data Plus beyond 100 GB free
-  - NerdGraph (GraphQL) API at api.newrelic.com/graphql
-  - 'NerdGraph rate limit: 3,000 req/min/user-key'
-  - 'Insights query API: 1,000 queries/min'
-  - 'Insights insert: 100,000 events/min'
-  - 'Metric API: 100,000 req/min'
-  - OpenTelemetry, Prometheus, Pixie, AWS, GCP, Azure integrations
-  - APM, Browser, Mobile, Logs, Infrastructure, Synthetics
-  - AI Monitoring for LLM observability
-  - User keys, license keys, ingest keys
-  - Live archive (Data Plus)
-  - Custom dashboards via NRQL
-  sources:
-  - https://newrelic.com/pricing
-  updated: '2026-05-04'
-- type: UseCases
-  name: New Relic Use Cases
-  data:
-  - name: Full-Stack Observability
-    description: >-
-      Gain unified visibility across applications, infrastructure, and digital experiences to quickly identify and
-      resolve issues.
-  - name: Cloud Migration Monitoring
-    description: >-
-      Monitor and validate cloud migration progress with baseline comparisons and performance tracking across hybrid
-      environments.
-  - name: DevOps and CI/CD Integration
-    description: >-
-      Integrate observability into development workflows with deployment markers, error tracking, and automated
-      testing.
-  - name: Site Reliability Engineering
-    description: Define and track SLOs, manage error budgets, and implement reliability practices with data-driven insights.
-  - name: Incident Response and Management
-    description: >-
-      Detect, diagnose, and resolve incidents faster with correlated telemetry, anomaly detection, and automated
-      workflows.
-  - name: Digital Experience Monitoring
-    description: Measure and optimize end-user experience across web, mobile, and synthetic channels.
-  - name: Capacity Planning
-    description: Analyze resource utilization trends and forecast capacity needs to optimize infrastructure spending.
-  - name: Compliance and Audit
-    description: Maintain audit trails, security compliance, and data governance across observability data.
-- type: Integrations
-  name: New Relic Integrations
-  url: https://newrelic.com/instant-observability
-  data:
-  - name: Amazon Web Services
-    description: Monitor AWS services including EC2, Lambda, RDS, S3, ECS, EKS, and CloudWatch with native integration.
-  - name: Microsoft Azure
-    description: Monitor Azure services including VMs, App Service, Functions, AKS, and Azure Monitor with native integration.
-  - name: Google Cloud Platform
-    description: Monitor GCP services including Compute Engine, Cloud Functions, GKE, BigQuery, and Cloud Monitoring.
-  - name: Kubernetes
-    description: Monitor Kubernetes clusters with automatic discovery, Pixie integration, and OpenTelemetry support.
-  - name: Prometheus
-    description: Ingest Prometheus metrics using remote write or the Prometheus OpenMetrics integration.
-  - name: OpenTelemetry
-    description: >-
-      Native OTLP endpoint support for ingesting metrics, traces, and logs from OpenTelemetry-instrumented
-      applications.
-  - name: Terraform
-    description: Provision and manage New Relic resources as code using the official Terraform provider.
-  - name: Grafana
-    description: Query New Relic data from Grafana dashboards using the Grafana data source plugin.
-  - name: PagerDuty
-    description: Send alert notifications to PagerDuty for incident management and on-call escalation.
-  - name: Slack
-    description: Receive alert notifications and share observability insights directly in Slack channels.
-  - name: Jira
-    description: Create Jira issues from New Relic errors and alerts for issue tracking and resolution workflows.
-  - name: ServiceNow
-    description: Integrate with ServiceNow for ITSM workflows, incident creation, and change management.
-  - name: GitHub
-    description: Connect repositories for code-level visibility, error linking, and deployment tracking via CodeStream.
-  - name: Docker
-    description: Monitor Docker containers with automatic instrumentation and container-level metrics.
-  - name: Apache Kafka
-    description: Monitor Kafka clusters, topics, consumer groups, and message throughput.
-  - name: MySQL
-    description: Monitor MySQL database performance with query analysis, connection tracking, and replication metrics.
-  - name: PostgreSQL
-    description: Monitor PostgreSQL database performance with query analysis, index usage, and connection metrics.
-  - name: MongoDB
-    description: Monitor MongoDB instances with query performance, replication status, and cluster metrics.
-  - name: Redis
-    description: Monitor Redis instances with memory usage, command statistics, and key metrics.
-  - name: Nginx
-    description: Monitor Nginx web server performance with request rates, error rates, and upstream metrics.
-- type: SDKs
-  url: https://github.com/newrelic/newrelic-java-agent
-  name: New Relic Java Agent
-  title: Java Agent
-- type: SDKs
-  url: https://github.com/newrelic/newrelic-python-agent
-  name: New Relic Python Agent
-  title: Python Agent
-- type: SDKs
-  url: https://github.com/newrelic/node-newrelic
-  name: New Relic Node.js Agent
-  title: Node.js Agent
-- type: SDKs
-  url: https://github.com/newrelic/go-agent
-  name: New Relic Go Agent
-  title: Go Agent
-- type: SDKs
-  url: https://github.com/newrelic/newrelic-dotnet-agent
-  name: New Relic .NET Agent
-  title: .NET Agent
-- type: SDKs
-  url: https://github.com/newrelic/newrelic-ruby-agent
-  name: New Relic Ruby Agent
-  title: Ruby Agent
-- type: SDKs
-  url: https://github.com/newrelic/newrelic-php-agent
-  name: New Relic PHP Agent
-  title: PHP Agent
-- type: SDKs
-  url: https://github.com/newrelic/infrastructure-agent
-  name: New Relic Infrastructure Agent
-- type: GitHubRepository
-  url: https://github.com/newrelic/helm-charts
-  name: New Relic Helm Charts
-- type: CodeExamples
-  url: https://github.com/newrelic/newrelic-opentelemetry-examples
-  name: New Relic OpenTelemetry Examples
-- type: SpectralRules
-  url: rules/new-relic-spectral-rules.yml
-  name: New Relic Spectral Rules
-- type: Vocabulary
-  url: vocabulary/new-relic-vocabulary.yaml
-  name: New Relic Vocabulary
+x-enrichment:
+  date: '2026-10-03'
+  status: enriched
+  artifacts_added: 16
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

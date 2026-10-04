@@ -141,36 +141,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AcceptedResponse:
-      type: object
-      description: Response when the payload was accepted
-      properties:
-        requestId:
-          type: string
-          description: Unique identifier for the accepted ingestion request
-          example: '500123'
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        requestId:
-          type: string
-          example: '500123'
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-            message:
-              type: string
-          example:
-            type: standard
-            message: Operation completed successfully
-    LogPayload:
-      type: array
-      description: Array of log data batch objects
-      items:
-        $ref: '#/components/schemas/LogDataObject'
     LogRecord:
       type: object
       description: A single log record
@@ -232,6 +202,11 @@ components:
             logtype: standard
             attributes:
               customAttribute: example_value
+    LogPayload:
+      type: array
+      description: Array of log data batch objects
+      items:
+        $ref: '#/components/schemas/LogDataObject'
     CommonBlock:
       type: object
       description: Shared attributes applied to all log records in this batch
@@ -250,6 +225,31 @@ components:
             - type: boolean
           example:
             customAttribute: example_value
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        requestId:
+          type: string
+          example: '500123'
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+            message:
+              type: string
+          example:
+            type: standard
+            message: Operation completed successfully
+    AcceptedResponse:
+      type: object
+      description: Response when the payload was accepted
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the accepted ingestion request
+          example: '500123'
   securitySchemes:
     apiKey:
       type: apiKey

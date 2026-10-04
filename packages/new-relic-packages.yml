@@ -1,0 +1,24 @@
+generated: '2026-10-03'
+method: probed
+generator: harvest-packages.py
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io)
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (agentic-access/new-relic-agentic-access.yml,
+  arazzo/new-relic-application-health-triage-workflow.yml, arazzo/new-relic-associate-entity-with-condition-workflow.yml, arazzo/new-relic-attach-notification-channel-to-policy-workflow.yml,
+  arazzo/new-relic-create-alert-policy-with-condition-workflow.yml, arazzo/new-relic-create-nrql-alert-policy-workflow.yml, arazzo/new-relic-create-synthetics-alert-condition-workflow.yml,
+  arazzo/new-relic-find-policy-and-list-conditions-workflow.yml, arazzo/new-relic-host-metric-drilldown-workflow.yml, arazzo/new-relic-ingest-deployment-telemetry-workflow.yml,
+  arazzo/new-relic-ingest-metrics-and-logs-workflow.yml, arazzo/new-relic-ingest-trace-and-event-workflow.yml, arazzo/new-relic-key-transaction-metric-report-workflow.yml,
+  arazzo/new-relic-mobile-app-crash-report-workflow.yml, arazzo/new-relic-open-violations-triage-workflow.yml, arazzo/new-relic-provision-alerting-stack-workflow.yml,
+  arazzo/new-relic-prune-nrql-condition-workflow.yml, arazzo/new-relic-record-deployment-marker-workflow.yml, arazzo/new-relic-rename-application-workflow.yml,
+  arazzo/new-relic-rollback-deployment-marker-workflow.yml, arazzo/new-relic-update-policy-and-condition-workflow.yml, authentication/new-relic-authentication.yml,
+  capabilities/new-relic-capability-edges.yml, json-ld/new-relic-context.jsonld, json-schema/new-relic-event-payload-schema.json, json-schema/new-relic-metric-payload-schema.json,
+  linkedin.com, newrelic.com, nr-data.net, postman.com, rules/new-relic-spectral-rules.yml, security/new-relic-domain-security.yml, security/new-relic-vulnerability-disclosure.yml,
+  stackoverflow.com, terraform.io, twitter.com, vocabulary/new-relic-vocabulary.yaml, youtube.com) or its accepted GitHub org.'
+packages:
+- name: newrelic
+  registry: crates
+  url: https://crates.io/crates/newrelic
+  language: Rust
+  official: true
+  version: 0.2.2
+  published: '2020-03-02'
+  evidence: metadata names newrelic.com

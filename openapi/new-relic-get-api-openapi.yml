@@ -216,11 +216,6 @@ components:
           type: number
           format: float
           example: 42.5
-    KeyTransactionResponse:
-      type: object
-      properties:
-        key_transaction:
-          $ref: '#/components/schemas/KeyTransactionResponseType'
     KeyTransactionResponseType:
       type: object
       properties:
@@ -249,13 +244,6 @@ components:
         transaction_name:
           type: string
           example: example_string
-    KeyTransactionLinksResponse:
-      type: object
-      properties:
-        application:
-          type: integer
-          description: Application from which this key transaction originated
-          example: 100
     EndUserSummaryResponse:
       type: object
       properties:
@@ -275,6 +263,18 @@ components:
           type: number
           format: float
           example: 42.5
+    KeyTransactionLinksResponse:
+      type: object
+      properties:
+        application:
+          type: integer
+          description: Application from which this key transaction originated
+          example: 100
+    KeyTransactionResponse:
+      type: object
+      properties:
+        key_transaction:
+          $ref: '#/components/schemas/KeyTransactionResponseType'
   securitySchemes:
     APIKeyHeader:
       type: apiKey

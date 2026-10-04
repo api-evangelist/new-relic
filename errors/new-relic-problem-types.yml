@@ -1,0 +1,53 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/new-relic-alerts-api-openapi.yml
+- openapi/new-relic-applications-api-openapi.yml
+- openapi/new-relic-events-api-openapi.yml
+- openapi/new-relic-get-api-openapi.yml
+- openapi/new-relic-logs-api-openapi.yml
+- openapi/new-relic-metrics-api-openapi.yml
+- openapi/new-relic-traces-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+coverage:
+  operations: 62
+  statuses_declared: 5
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request. The payload is malformed.
+  operations: 4
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 403
+  title: Forbidden
+  description: Forbidden. The API key is invalid or lacks insert permissions.
+  operations: 4
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 408
+  title: Request Timeout
+  description: Request timeout. The server did not receive the request in time.
+  operations: 1
+  media_types: []
+  schema: null
+- status: 413
+  title: Content Too Large
+  description: Payload too large. The request body exceeds 1 MB.
+  operations: 4
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 429
+  title: Too Many Requests
+  description: Too many requests. Rate limit exceeded.
+  operations: 4
+  media_types:
+  - application/json
+  schema: ErrorResponse

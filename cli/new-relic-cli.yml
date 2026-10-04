@@ -1,0 +1,66 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.newrelic.com/docs/serverless-function-monitoring/aws-lambda-monitoring/instrument-lambda-function/sdk-based-instrumentation.md
+sources:
+- https://docs.newrelic.com/docs/serverless-function-monitoring/aws-lambda-monitoring/instrument-lambda-function/sdk-based-instrumentation.md
+- https://docs.newrelic.com/docs/new-relic-solutions/build-nr-ui/newrelic-cli.md
+- https://docs.newrelic.com/docs/new-relic-solutions/tutorials/new-relic-cli.md
+- https://docs.newrelic.com/docs/new-relic-solutions/build-nr-ui/build-ab-app/install-cli.md
+install:
+- method: snap
+  command: sudo snap install newrelic-cli
+- method: homebrew
+  command: brew install newrelic-cli
+- method: scoop
+  command: 'scoop bucket add newrelic-cli https://github.com/newrelic/newrelic-cli.git
+
+    scoop install newrelic-cli'
+commands:
+- group: apm
+  commands:
+  - newrelic apm
+  - newrelic apm application search
+  - newrelic apm deployment create
+- group: completion
+  commands:
+  - newrelic completion
+- group: config
+  commands:
+  - newrelic config
+- group: decode
+  commands:
+  - newrelic decode
+- group: documentation
+  commands:
+  - newrelic documentation
+- group: entity
+  commands:
+  - newrelic entity
+  - newrelic entity tags create
+  - newrelic entity tags get
+  - newrelic entity tags delete
+- group: nerdgraph
+  commands:
+  - newrelic nerdgraph
+- group: nerdstorage
+  commands:
+  - newrelic nerdstorage
+- group: nrql
+  commands:
+  - newrelic nrql
+- group: profile
+  commands:
+  - newrelic profile
+  - newrelic profiles add
+  - newrelic profiles default
+  - newrelic profiles list
+- group: version
+  commands:
+  - newrelic version
+- group: workload
+  commands:
+  - newrelic workload
+binary: newrelic
+docs: https://docs.newrelic.com/docs/serverless-function-monitoring/aws-lambda-monitoring/instrument-lambda-function/sdk-based-instrumentation.md
+note: 1 extracted row(s) were dropped because their quote was not on the page.

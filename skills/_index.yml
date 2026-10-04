@@ -1,0 +1,19 @@
+generated: '2026-10-03'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/new-relic-alerts-api-openapi.yml
+skills:
+- file: skills/new-relic-manage-alert-channels.md
+  name: new-relic-manage-alert-channels
+  api: openapi/new-relic-alerts-api-openapi.yml
+  operations:
+  - getAlertsChannels
+  - postAlertsChannels
+  - deleteAlertsChannelsChannelId
+- file: skills/new-relic-fetch-application-metrics.md
+  name: new-relic-fetch-application-metrics
+  api: openapi/new-relic-applications-api-openapi.yml
+  operations:
+  - getApplications
+  - getApplicationsIdMetrics
+  - getApplicationsIdMetricsData

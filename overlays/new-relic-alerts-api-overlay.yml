@@ -1,0 +1,6 @@
+generated: '2026-10-03'
+method: derived
+source: openapi/new-relic-alerts-api-openapi.yml
+overlay:
+  version: 1.0.0
+  actions: []
