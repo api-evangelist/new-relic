@@ -14,6 +14,53 @@ marketplace_apps:
   adapter: sweep-observability.py:github-quickstarts
   listed: 795
 edges:
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=New%20Relic
+  listing_count: 2
+  apps:
+  - New Relic Infrastructure
+  - New Relic Infrastructure
+  seller_name: New Relic
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=New%20Relic%2C%20Incorporated
+  listing_count: 2
+  apps:
+  - 'New Relic for Azure : Cloud Monitoring - Start for free'
+  - New Relic monitoring for Kubernetes (AKS Cluster Extension)
+  seller_name: New Relic, Incorporated
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=New%20Relic%2C%20Inc.%20-%20Private%20Offers
+  listing_count: 1
+  apps:
+  - 'New Relic: the Observability Platform'
+  seller_name: New Relic, Inc. - Private Offers
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
 - partner_name: OpenTelemetry
   partner: null
   type: contract
@@ -12759,53 +12806,6 @@ edges:
   detected_by: sweep-observability.py
   detected: '2026-10-13'
   source: https://github.com/newrelic/newrelic-quickstarts/tree/main/quickstarts/zipkin
-- partner_name: Microsoft Azure Marketplace
-  partner: microsoft-azure
-  partner_match: aggregator
-  type: marketplace
-  marketplace: azure-marketplace
-  channel: distribution
-  relationship: platform-app
-  direction: provider-built
-  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=New%20Relic
-  listing_count: 2
-  apps:
-  - New Relic Infrastructure
-  - New Relic Infrastructure
-  seller_name: New Relic
-  detected_by: sweep-cloud-marketplaces.py
-  detected: '2026-10-13'
-- partner_name: Microsoft Azure Marketplace
-  partner: microsoft-azure
-  partner_match: aggregator
-  type: marketplace
-  marketplace: azure-marketplace
-  channel: distribution
-  relationship: platform-app
-  direction: provider-built
-  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=New%20Relic%2C%20Incorporated
-  listing_count: 2
-  apps:
-  - 'New Relic for Azure : Cloud Monitoring - Start for free'
-  - New Relic monitoring for Kubernetes (AKS Cluster Extension)
-  seller_name: New Relic, Incorporated
-  detected_by: sweep-cloud-marketplaces.py
-  detected: '2026-10-13'
-- partner_name: Microsoft Azure Marketplace
-  partner: microsoft-azure
-  partner_match: aggregator
-  type: marketplace
-  marketplace: azure-marketplace
-  channel: distribution
-  relationship: platform-app
-  direction: provider-built
-  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=New%20Relic%2C%20Inc.%20-%20Private%20Offers
-  listing_count: 1
-  apps:
-  - 'New Relic: the Observability Platform'
-  seller_name: New Relic, Inc. - Private Offers
-  detected_by: sweep-cloud-marketplaces.py
-  detected: '2026-10-13'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
