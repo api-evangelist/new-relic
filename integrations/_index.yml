@@ -9049,18 +9049,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: new-relic-twilio-segment
-  label: Twilio Segment
-  partner: segment
-  partner_name: Twilio Segment
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/new-relic
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
 - slug: new-relic-github-marketplace-apps
   label: GitHub Marketplace (apps)
   partner: github
@@ -9105,6 +9093,31 @@
   marketplace: vscode
   channel: partner-built
   evidence: https://marketplace.visualstudio.com/publishers/CodeStream
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: new-relic-twilio-segment
+  label: Twilio Segment
+  partner: segment
+  partner_name: Twilio Segment
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/new-relic
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: new-relic-okta-own
+  label: Okta (own)
+  partner: okta
+  partner_name: Okta (own)
+  category: Single Sign-On
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.okta.com/integrations/newreliclr/
   source: edge
   relationship: platform-app
   status: not-a-workflow
