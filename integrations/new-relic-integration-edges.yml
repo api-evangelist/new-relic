@@ -2,9 +2,13 @@ generated: '2026-10-13'
 method: searched
 checked:
 - https://azuremarketplace.microsoft.com/
+- https://github.com/marketplace?type=actions
+- https://github.com/marketplace?type=apps
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
+- https://marketplace.visualstudio.com/vscode
 - https://newrelic.com/instant-observability
+- https://plugins.jetbrains.com/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/new-relic
 marketplace_apps:
 - marketplace: own
@@ -12832,6 +12836,76 @@ edges:
       - Track
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: GitHub Marketplace (apps)
+  partner: github
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-apps
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/new-relic-observability
+  listing_count: 1
+  apps:
+  - New Relic Observability
+  publisher_name: New Relic Apps
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/actions/new-relic-application-deployment-marker
+  listing_count: 4
+  apps:
+  - New Relic Application Deployment Marker
+  - Bi-directional Wiki Sync Action
+  - Repolinter Action
+  - Validate Nerdpack Action
+  publisher_name: New Relic
+  badges:
+  - Verified creator
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: JetBrains Marketplace
+  partner: jetbrains
+  partner_match: aggregator
+  type: marketplace
+  marketplace: jetbrains
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://plugins.jetbrains.com/vendor/newrelic
+  listing_count: 1
+  apps:
+  - New Relic CodeStream
+  publisher_name: New Relic
+  badges:
+  - Verified vendor
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/CodeStream
+  listing_count: 1
+  apps:
+  - New Relic CodeStream
+  publisher_name: New Relic
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
