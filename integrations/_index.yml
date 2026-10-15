@@ -9198,7 +9198,7 @@
     app_slug: new-relic-insights
     beta: false
     builder: unknown (not in the directory record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: new-relic-n8n
   label: n8n
@@ -9225,7 +9225,7 @@
     published: '2026-06-19T00:58:59.738Z'
     matched_on: publisher-email
     builder: provider (package published from the provider's own domain)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: new-relic-pipedream
   label: Pipedream
@@ -9251,7 +9251,7 @@
     actions: true
     sources: true
     builder: Pipedream repo (component)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: new-relic-fedramp
   label: FedRAMP
