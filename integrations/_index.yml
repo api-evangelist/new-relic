@@ -9319,7 +9319,7 @@
     quality:
     - silver
     builder: 'community (Meltano Hub variant maintainers: fixdauto)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: new-relic-microsoft-teams-own
   label: Microsoft Teams (own)
