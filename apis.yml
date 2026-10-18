@@ -620,7 +620,7 @@ apis:
     url: https://github.com/newrelic/newrelic-telemetry-sdk-dotnet
     title: .NET Telemetry SDK
   tags:
-  - Client Libraries
+  - Client Library
   - Open Source
   - SDK
   - Telemetry
