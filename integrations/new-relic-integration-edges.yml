@@ -41,6 +41,7 @@ checked:
 - https://officialskills.sh/sitemap.xml
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
+- docker-hub/integrations/docker-hub-integration-edges.yml
 marketplace_apps:
 - marketplace: own
   channel: partner-built
@@ -13038,83 +13039,6 @@ edges:
       latest_authorization: '2020-02-27'
   detected_by: sweep-gov-cloud.py
   first_seen: '2026-10-15'
-- partner_name: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200008155
-  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
-  apps:
-  - New Relic for Microsoft Teams
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Microsoft Teams app
-  publisher_verified:
-  - Microsoft 365 Publisher Attestation
-- partner_name: n8n (n8n-community)
-  partner: n8n
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: n8n-community
-  evidence: https://www.npmjs.com/package/n8n-nodes-newrelic
-  mirror_of: n8n/integrations/n8n-integration-edges.yml
-  apps: []
-  listing_count: 1
-  detected: '2026-10-19'
-  detected_by: mirror-platform-listings.py
-- partner_name: Okta (own)
-  partner: okta
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.okta.com/integrations/newreliclr/
-  mirror_of: okta/integrations/okta-integration-edges.yml
-  apps:
-  - New Relic by Organization
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Single Sign-On
-  badges:
-  - OKTA_VERIFIED
-  features:
-  - CREATE
-  - DEACTIVATE
-  - GROUP_LINKING
-  - GROUP_PUSH
-  - SAML
-  - UPDATE
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A0ATV7NGLLD-new-relic-jp
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - New Relic - JP
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 - partner_name: CNCF (Cloud Native Landscape)
   partner: cncf
   partner_match: register
@@ -13316,6 +13240,116 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-agent-skills.py
   first_seen: '2026-10-20'
+- partner_name: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200008155
+  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+  apps:
+  - New Relic for Microsoft Teams
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Microsoft Teams app
+  publisher_verified:
+  - Microsoft 365 Publisher Attestation
+- partner_name: n8n (n8n-community)
+  partner: n8n
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: n8n-community
+  evidence: https://www.npmjs.com/package/n8n-nodes-newrelic
+  mirror_of: n8n/integrations/n8n-integration-edges.yml
+  apps: []
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+- partner_name: Okta (own)
+  partner: okta
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.okta.com/integrations/newreliclr/
+  mirror_of: okta/integrations/okta-integration-edges.yml
+  apps:
+  - New Relic by Organization
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Single Sign-On
+  badges:
+  - OKTA_VERIFIED
+  features:
+  - CREATE
+  - DEACTIVATE
+  - GROUP_LINKING
+  - GROUP_PUSH
+  - SAML
+  - UPDATE
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A0ATV7NGLLD-new-relic-jp
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - New Relic - JP
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Docker Hub (docker-verified-publisher)
+  partner: docker-hub
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: docker-verified-publisher
+  evidence: https://hub.docker.com/u/newrelic
+  mirror_of: docker-hub/integrations/docker-hub-integration-edges.yml
+  apps:
+  - newrelic/infrastructure-bundle
+  - newrelic/nri-kube-events
+  - newrelic/nri-kubernetes
+  - newrelic/newrelic-fluentbit-output
+  - newrelic/k8s-metadata-injection
+  - newrelic/nri-ecs
+  - newrelic/newrelic-prometheus-configurator
+  - newrelic/nrsysmond
+  - newrelic/php-daemon
+  - newrelic/infrastructure
+  - newrelic/k8s-events-forwarder
+  - newrelic/nri-prometheus
+  - newrelic/synthetics-node-api-runtime
+  - newrelic/cli
+  - newrelic/newrelic-k8s-metrics-adapter
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Docker Verified Publisher
+  badges:
+  - Docker Verified Publisher
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
