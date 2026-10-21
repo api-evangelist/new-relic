@@ -44,6 +44,7 @@ checked:
 - docker-hub/integrations/docker-hub-integration-edges.yml
 - opentofu/integrations/opentofu-integration-edges.yml
 - terraform/integrations/terraform-integration-edges.yml
+- atlassian/integrations/atlassian-integration-edges.yml
 marketplace_apps:
 - marketplace: own
   channel: partner-built
@@ -13388,6 +13389,23 @@ edges:
   category: infrastructure-as-code provider registry listing
   badges:
   - Verified publisher (Terraform partner tier)
+- partner_name: Atlassian (own)
+  partner: atlassian
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.atlassian.com/vendors/1214969/new-relic
+  mirror_of: atlassian/integrations/atlassian-integration-edges.yml
+  apps:
+  - New Relic Errors Inbox for Jira
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: Integrations
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
