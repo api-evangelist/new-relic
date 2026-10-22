@@ -46,6 +46,7 @@ checked:
 - terraform/integrations/terraform-integration-edges.yml
 - atlassian/integrations/atlassian-integration-edges.yml
 - google-play/integrations/google-play-integration-edges.yml
+- vercel/integrations/vercel-integration-edges.yml
 marketplace_apps:
 - marketplace: own
   channel: partner-built
@@ -13426,6 +13427,24 @@ edges:
   category: mobile SDK (analytics)
   publisher_verified:
   - Registered in Google Play SDK Console
+- partner_name: Vercel (own)
+  partner: vercel
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://vercel.com/marketplace/newrelic
+  mirror_of: vercel/integrations/vercel-integration-edges.yml
+  apps:
+  - New Relic
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Vercel Marketplace
+  partner_tier: connectable-account
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/

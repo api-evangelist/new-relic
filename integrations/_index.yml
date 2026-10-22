@@ -9506,3 +9506,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: new-relic-vercel-own
+  label: Vercel (own)
+  partner: vercel
+  partner_name: Vercel (own)
+  category: Vercel Marketplace
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://vercel.com/marketplace/newrelic
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
