@@ -9390,6 +9390,190 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: new-relic-raycast
+  label: Raycast
+  partner: raycast
+  partner_name: Raycast
+  category: Raycast Store extension (community wrapper)
+  type: marketplace
+  marketplace: raycast-store
+  channel: connector-listing
+  evidence: https://www.raycast.com/cirne/new-relic
+  source: edge
+  relationship: connector-coverage
+  contract_reference:
+    register: Raycast Store (raycast/extensions monorepo + store_listings JSON)
+    spec_file: null
+    role: raycast-community-wrapper
+    builder: community
+    authors:
+    - cirne
+    matched_domain: newrelic.com
+    matched_by: domain
+    monorepo_commit: 84f9ac51336a8c69f70974a75bc067c0feae3658
+    listings:
+    - title: New Relic
+      store_url: https://www.raycast.com/cirne/new-relic
+      installs: 332
+      categories:
+      - Developer Tools
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/new-relic/
+      author: cirne
+    categories:
+    - Developer Tools
+    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
+      passes partner_link's name check; built by Raycast community developers, not the vendor
+    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
+      (product, store); install / listing counts are context, never counted'
+    detected_by: sweep-raycast-store-extensions.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: new-relic-red-hat-ecosystem-catalog-certified-partners
+  label: Red Hat Ecosystem Catalog (certified partners)
+  partner: red-hat
+  partner_name: Red Hat Ecosystem Catalog (certified partners)
+  category: Red Hat OpenShift / RHEL software certification
+  type: register
+  channel: standard-directory
+  evidence: https://catalog.redhat.com/software/containers/search?p=1&vendor_name=New%20Relic
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: 'Red Hat Ecosystem Catalog (catalog.redhat.com/api/containers/v1: repositories, vendors, certified
+      operator bundles)'
+    standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
+    spec_file: null
+    role: red-hat-certified-partner
+    registered_name: New Relic
+    register_id: newrelic-openshift
+    matched_domain: newrelic.com
+    matched_by: domain
+    identity_source: the register's own company_url for the vendor (no lookup)
+    certified_products:
+    - product: Red Hat certified container image
+      product_type: container-image
+      standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
+      lapsed: false
+      repositories_listed: 4
+      products_sample:
+      - newrelic-openshift/java-agent
+      - newrelic-openshift/newrelic-infra-agent
+      - newrelic-openshift/newrelic-infrastructure-k8s-1
+      - newrelic-openshift/newrelic-python-agent
+    signal_note: 'certified_products = one entry per certified product TYPE (container image, OpenShift operator),
+      standard named on each; lapsed: true when no certified item of that type is current (containers: all Deprecated
+      / past EOL / unpublished; operators: absent from the three newest certified-operator indexes); repository
+      and package counts are context, never counted'
+    detected_by: sweep-red-hat-certified-ecosystem.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: new-relic-cd-foundation-continuous-delivery-foundation-landscape
+  label: CD Foundation (Continuous Delivery Foundation landscape)
+  partner: continuous-delivery-foundation
+  partner_name: CD Foundation (Continuous Delivery Foundation landscape)
+  category: Continuous delivery foundation membership / landscape
+  type: register
+  channel: standard-directory
+  evidence: https://landscape.cd.foundation/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CD Foundation landscape (landscape.cd.foundation/data/full.json)
+    spec_file: null
+    standard: Continuous Delivery Foundation
+    role: cdf-landscape-listed
+    registered_name: New Relic
+    registered_names:
+    - New Relic
+    website: https://newrelic.com/
+    matched_domain: newrelic.com
+    matched_by: domain
+    member_tier: null
+    landscape_categories:
+    - Observability and Analysis / Monitoring and Logging
+    cdf_projects: []
+    signal_note: 'participation only: CDF membership or a landscape listing is standard-participant evidence, never
+      depth; tier, categories and entries are context, never counted'
+    detected_by: sweep-jenkins-cd-foundation-plugins.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: new-relic-tx-ramp
+  label: TX-RAMP
+  partner_name: TX-RAMP
+  category: Texas state cloud security certification (TX-RAMP)
+  type: contract
+  channel: regulator-register
+  evidence: https://dir.texas.gov/resource-library-item/tx-ramp-certified-cloud-products
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: TX-RAMP Certified Cloud Products (Texas DIR)
+    standard: TX-RAMP
+    spec_file: null
+    role: tx-ramp-certified
+    register_file: https://dir.texas.gov/sites/default/files/2026-10/Copy%20of%20TX-RAMP%20Certified%20Cloud%20Products_1.xlsx
+    registrations:
+    - certification_id: TX985499
+      product: New Relic
+      registered_vendor: New Relic
+      certification_level: Level 2
+      cloud_categories:
+      - SaaS
+      certification_path: Certification Due to Existing Other RAMP-Certification
+      expires: null
+      lapsed: false
+      matched_domain: newrelic.com
+      matched_by: domain
+    identity: wikidata Q7011152 'New Relic' P856 http://newrelic.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    signal_note: 'certified_products = one entry per cloud category (SaaS / PaaS / IaaS) the vendor holds a TX-RAMP
+      certification in, never per product; products are context, never counted. certification_level = the highest
+      level in that category; lapsed: true when every product in the category is past its expiry date. partner_tier
+      = the highest CURRENT level'
+    certified_products:
+    - product: SaaS
+      product_type: SaaS
+      standard: TX-RAMP
+      certification_level: Level 2
+      lapsed: false
+    detected_by: sweep-tx-ramp-certified-cloud.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: new-relic-pub-dev
+  label: pub.dev
+  partner: pub-dev
+  partner_name: pub.dev
+  category: official SDK (Dart/Flutter)
+  type: register
+  channel: package-registry
+  evidence: https://pub.dev/packages/newrelic_mobile
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: pub.dev (public registry JSON)
+    spec_file: null
+    language: Dart/Flutter
+    packages:
+    - name: newrelic_mobile
+      version: 1.3.3
+      released: '2026-10-20'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/newrelic_mobile
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:newrelic.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
 - slug: new-relic-microsoft-teams-own
   label: Microsoft Teams (own)
   partner: microsoft-teams
@@ -9519,113 +9703,29 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: new-relic-raycast
-  label: Raycast
-  partner: raycast
-  partner_name: Raycast
-  category: Raycast Store extension (community wrapper)
+- slug: new-relic-ansible-ansible-galaxy
+  label: Ansible (ansible-galaxy)
+  partner: ansible
+  partner_name: Ansible (ansible-galaxy)
+  category: configuration-management content listing (Ansible collection)
   type: marketplace
-  marketplace: raycast-store
-  channel: connector-listing
-  evidence: https://www.raycast.com/cirne/new-relic
+  marketplace: ansible-galaxy
+  channel: partner-built
+  evidence: https://galaxy.ansible.com/ui/repo/published/newrelic/newrelic_agents/
   source: edge
-  relationship: connector-coverage
-  contract_reference:
-    register: Raycast Store (raycast/extensions monorepo + store_listings JSON)
-    spec_file: null
-    role: raycast-community-wrapper
-    builder: community
-    authors:
-    - cirne
-    matched_domain: newrelic.com
-    matched_by: domain
-    monorepo_commit: 84f9ac51336a8c69f70974a75bc067c0feae3658
-    listings:
-    - title: New Relic
-      store_url: https://www.raycast.com/cirne/new-relic
-      installs: 332
-      categories:
-      - Developer Tools
-      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/new-relic/
-      author: cirne
-    categories:
-    - Developer Tools
-    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
-      passes partner_link's name check; built by Raycast community developers, not the vendor
-    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
-      (product, store); install / listing counts are context, never counted'
-    detected_by: sweep-raycast-store-extensions.py
-    detected: '2026-10-22'
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: new-relic-red-hat-ecosystem-catalog-certified-partners
-  label: Red Hat Ecosystem Catalog (certified partners)
-  partner: red-hat
-  partner_name: Red Hat Ecosystem Catalog (certified partners)
-  category: Red Hat OpenShift / RHEL software certification
-  type: register
-  channel: standard-directory
-  evidence: https://catalog.redhat.com/software/containers/search?p=1&vendor_name=New%20Relic
+- slug: new-relic-chef-software-chef-supermarket
+  label: Chef Software (chef-supermarket)
+  partner: chef-software
+  partner_name: Chef Software (chef-supermarket)
+  category: configuration-management content listing (Chef cookbook)
+  type: marketplace
+  marketplace: chef-supermarket
+  channel: partner-built
+  evidence: https://supermarket.chef.io/cookbooks/newrelic-infra
   source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: 'Red Hat Ecosystem Catalog (catalog.redhat.com/api/containers/v1: repositories, vendors, certified
-      operator bundles)'
-    standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
-    spec_file: null
-    role: red-hat-certified-partner
-    registered_name: New Relic
-    register_id: newrelic-openshift
-    matched_domain: newrelic.com
-    matched_by: domain
-    identity_source: the register's own company_url for the vendor (no lookup)
-    certified_products:
-    - product: Red Hat certified container image
-      product_type: container-image
-      standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
-      lapsed: false
-      repositories_listed: 4
-      products_sample:
-      - newrelic-openshift/java-agent
-      - newrelic-openshift/newrelic-infra-agent
-      - newrelic-openshift/newrelic-infrastructure-k8s-1
-      - newrelic-openshift/newrelic-python-agent
-    signal_note: 'certified_products = one entry per certified product TYPE (container image, OpenShift operator),
-      standard named on each; lapsed: true when no certified item of that type is current (containers: all Deprecated
-      / past EOL / unpublished; operators: absent from the three newest certified-operator indexes); repository
-      and package counts are context, never counted'
-    detected_by: sweep-red-hat-certified-ecosystem.py
-    detected: '2026-10-22'
-  status: not-a-workflow
-  arazzo: null
-- slug: new-relic-cd-foundation-continuous-delivery-foundation-landscape
-  label: CD Foundation (Continuous Delivery Foundation landscape)
-  partner: continuous-delivery-foundation
-  partner_name: CD Foundation (Continuous Delivery Foundation landscape)
-  category: Continuous delivery foundation membership / landscape
-  type: register
-  channel: standard-directory
-  evidence: https://landscape.cd.foundation/
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: CD Foundation landscape (landscape.cd.foundation/data/full.json)
-    spec_file: null
-    standard: Continuous Delivery Foundation
-    role: cdf-landscape-listed
-    registered_name: New Relic
-    registered_names:
-    - New Relic
-    website: https://newrelic.com/
-    matched_domain: newrelic.com
-    matched_by: domain
-    member_tier: null
-    landscape_categories:
-    - Observability and Analysis / Monitoring and Logging
-    cdf_projects: []
-    signal_note: 'participation only: CDF membership or a landscape listing is standard-participant evidence, never
-      depth; tier, categories and entries are context, never counted'
-    detected_by: sweep-jenkins-cd-foundation-plugins.py
-    detected: '2026-10-22'
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
