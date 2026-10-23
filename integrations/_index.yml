@@ -9770,3 +9770,50 @@
     detected: '2026-10-23'
   status: not-a-workflow
   arazzo: null
+- slug: new-relic-arch-user-repository-aur
+  label: Arch User Repository (AUR)
+  partner_name: Arch User Repository (AUR)
+  category: official CLI (Arch User Repository (AUR))
+  type: register
+  channel: package-registry
+  evidence: https://aur.archlinux.org/packages/newrelic-cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Arch User Repository (AUR) (public package index)
+    spec_file: null
+    packages:
+    - name: newrelic-cli
+      kind: aur
+      version: 0.115.2-1
+      released: '2026-10-19'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/newrelic-cli
+      upstream: https://github.com/newrelic/newrelic-cli
+      cli: 'AUR description: The New Relic Command Line Interface'
+      repo_leg: github-org:newrelic
+      publisher_leg: artifact-github-org:newrelic
+      matched_by: github-org
+    - name: newrelic-cli-bin
+      kind: aur
+      version: 0.111.2-1
+      released: '2026-03-26'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/newrelic-cli-bin
+      upstream: https://github.com/newrelic/newrelic-cli/
+      cli: 'AUR description: New Relic: All-in-One Observability Service - command line tool'
+      repo_leg: github-org:newrelic
+      publisher_leg: artifact-github-org:newrelic
+      matched_by: github-org
+    current: true
+    signal_note: 'the provider''s own command-line tool packaged for Arch Linux (community-maintained PKGBUILD whose
+      upstream and source artifact are the provider''s): distribution, not an integration; lapsed = flagged out-of-date
+      or not updated in 24 months'
+    detected_by: sweep-aur-vendor-cli-packages.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
