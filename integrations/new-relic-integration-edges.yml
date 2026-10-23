@@ -57,6 +57,9 @@ checked:
 - https://plugins.jenkins.io/api/plugin/
 - https://plugins.jenkins.io/api/plugins
 - https://dir.texas.gov/resource-library-item/tx-ramp-certified-cloud-products
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
 marketplace_apps:
 - marketplace: own
   channel: partner-built
@@ -13042,9 +13045,9 @@ edges:
     - SaaS
     paths:
     - Agency
-    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service models,
-      paths and leveraging agencies are context, never counted. The register lists current designations only (revoked / expired
-      are removed), so lapsed is always false
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
+      models, paths and leveraging agencies are context, never counted. The register lists current designations
+      only (revoked / expired are removed), so lapsed is always false
     detected_by: sweep-gov-cloud.py
     detected: '2026-10-15'
     certified_products:
@@ -13081,8 +13084,8 @@ edges:
     landscape_categories:
     - Observability and Analysis / Observability
     landscape_entries: 1
-    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries, categories,
-      tier and projects are CONTEXT, never read (breadth is not credit)'
+    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
+      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
     detected_by: sweep-cloud-native.py
     detected: '2026-10-19'
   detected_by: sweep-cloud-native.py
@@ -13188,9 +13191,9 @@ edges:
     levels:
     - STAR Level 1
     certified_products: []
-    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level 2 / STAR
-      for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed = every instance
-      marked (Deprecated) by the registry; service counts never recorded
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
@@ -13219,8 +13222,8 @@ edges:
       publisher_leg: artifact-github-org:newrelic
       matched_by: github-org
     current: true
-    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration; lapsed = no
-      release in 24 months or deprecated / disabled by the manager'
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
     detected_by: sweep-official-clis.py
     detected: '2026-10-20'
   detected_by: sweep-official-clis.py
@@ -13488,10 +13491,10 @@ edges:
       author: cirne
     categories:
     - Developer Tools
-    identity_note: the extension's own source calls a host on the product's domain AND its title / package name passes partner_link's
-      name check; built by Raycast community developers, not the vendor
-    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per (product,
-      store); install / listing counts are context, never counted'
+    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
+      passes partner_link's name check; built by Raycast community developers, not the vendor
+    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
+      (product, store); install / listing counts are context, never counted'
     detected_by: sweep-raycast-store-extensions.py
     detected: '2026-10-22'
   detected_by: sweep-raycast-store-extensions.py
@@ -13507,8 +13510,8 @@ edges:
   evidence: https://catalog.redhat.com/software/containers/search?p=1&vendor_name=New%20Relic
   category: Red Hat OpenShift / RHEL software certification
   contract_reference:
-    register: 'Red Hat Ecosystem Catalog (catalog.redhat.com/api/containers/v1: repositories, vendors, certified operator
-      bundles)'
+    register: 'Red Hat Ecosystem Catalog (catalog.redhat.com/api/containers/v1: repositories, vendors, certified
+      operator bundles)'
     standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
     spec_file: null
     role: red-hat-certified-partner
@@ -13528,10 +13531,10 @@ edges:
       - newrelic-openshift/newrelic-infra-agent
       - newrelic-openshift/newrelic-infrastructure-k8s-1
       - newrelic-openshift/newrelic-python-agent
-    signal_note: 'certified_products = one entry per certified product TYPE (container image, OpenShift operator), standard
-      named on each; lapsed: true when no certified item of that type is current (containers: all Deprecated / past EOL /
-      unpublished; operators: absent from the three newest certified-operator indexes); repository and package counts are
-      context, never counted'
+    signal_note: 'certified_products = one entry per certified product TYPE (container image, OpenShift operator),
+      standard named on each; lapsed: true when no certified item of that type is current (containers: all Deprecated
+      / past EOL / unpublished; operators: absent from the three newest certified-operator indexes); repository
+      and package counts are context, never counted'
     detected_by: sweep-red-hat-certified-ecosystem.py
     detected: '2026-10-22'
   detected_by: sweep-red-hat-certified-ecosystem.py
@@ -13560,11 +13563,85 @@ edges:
     landscape_categories:
     - Observability and Analysis / Monitoring and Logging
     cdf_projects: []
-    signal_note: 'participation only: CDF membership or a landscape listing is standard-participant evidence, never depth;
-      tier, categories and entries are context, never counted'
+    signal_note: 'participation only: CDF membership or a landscape listing is standard-participant evidence, never
+      depth; tier, categories and entries are context, never counted'
     detected_by: sweep-jenkins-cd-foundation-plugins.py
     detected: '2026-10-22'
   detected_by: sweep-jenkins-cd-foundation-plugins.py
+  first_seen: '2026-10-22'
+- partner_name: TX-RAMP
+  partner: null
+  partner_match: register
+  partner_tier: Level 2
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://dir.texas.gov/resource-library-item/tx-ramp-certified-cloud-products
+  category: Texas state cloud security certification (TX-RAMP)
+  contract_reference:
+    register: TX-RAMP Certified Cloud Products (Texas DIR)
+    standard: TX-RAMP
+    spec_file: null
+    role: tx-ramp-certified
+    register_file: https://dir.texas.gov/sites/default/files/2026-10/Copy%20of%20TX-RAMP%20Certified%20Cloud%20Products_1.xlsx
+    registrations:
+    - certification_id: TX985499
+      product: New Relic
+      registered_vendor: New Relic
+      certification_level: Level 2
+      cloud_categories:
+      - SaaS
+      certification_path: Certification Due to Existing Other RAMP-Certification
+      expires: null
+      lapsed: false
+      matched_domain: newrelic.com
+      matched_by: domain
+    identity: wikidata Q7011152 'New Relic' P856 http://newrelic.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    signal_note: 'certified_products = one entry per cloud category (SaaS / PaaS / IaaS) the vendor holds a TX-RAMP
+      certification in, never per product; products are context, never counted. certification_level = the highest
+      level in that category; lapsed: true when every product in the category is past its expiry date. partner_tier
+      = the highest CURRENT level'
+    certified_products:
+    - product: SaaS
+      product_type: SaaS
+      standard: TX-RAMP
+      certification_level: Level 2
+      lapsed: false
+    detected_by: sweep-tx-ramp-certified-cloud.py
+    detected: '2026-10-22'
+  detected_by: sweep-tx-ramp-certified-cloud.py
+  first_seen: '2026-10-22'
+- partner_name: pub.dev
+  partner: pub-dev
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Dart/Flutter)
+  evidence: https://pub.dev/packages/newrelic_mobile
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: pub.dev (public registry JSON)
+    spec_file: null
+    language: Dart/Flutter
+    packages:
+    - name: newrelic_mobile
+      version: 1.3.3
+      released: '2026-10-20'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/newrelic_mobile
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:newrelic.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
   first_seen: '2026-10-22'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
