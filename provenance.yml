@@ -7,65 +7,65 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   arazzo/new-relic-application-health-triage-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-associate-entity-with-condition-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-attach-notification-channel-to-policy-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-create-alert-policy-with-condition-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-create-nrql-alert-policy-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-create-synthetics-alert-condition-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-find-policy-and-list-conditions-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-host-metric-drilldown-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-ingest-deployment-telemetry-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-ingest-metrics-and-logs-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-ingest-trace-and-event-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-key-transaction-metric-report-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-mobile-app-crash-report-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-open-violations-triage-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-provision-alerting-stack-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-prune-nrql-condition-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-record-deployment-marker-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-rename-application-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-rollback-deployment-marker-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/new-relic-update-policy-and-condition-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   asyncapi/new-relic-streaming-asyncapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -75,6 +75,12 @@ artifacts:
   capabilities/new-relic-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  changelog/new-relic-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/new-relic-cli.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/new-relic-alerts-api.opencollection.json:
     method: derived
     evidence: openapi/new-relic-alerts-api
@@ -279,6 +285,15 @@ artifacts:
   collections/new-relic.postman_collection.json:
     method: derived
     evidence: openapi/new-relic
+  conformance/new-relic-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/new-relic-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/new-relic-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/event-api-custom-event-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -1146,6 +1161,15 @@ artifacts:
   graphql/new-relic-graphql.md:
     method: unknown
     evidence: no authorship recorded
+  hosts/new-relic-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/new-relic-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
   json-ld/new-relic-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -2823,127 +2847,7 @@ artifacts:
   json-structure/trace-api-zipkin-trace-payload-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -3027,6 +2931,27 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/new-relic-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  llms/new-relic-llms.txt:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
   mcp/new-relic-mcp.yml:
     method: unknown
     evidence: no authorship recorded
@@ -3071,6 +2996,33 @@ artifacts:
   openapi/new-relic-traces-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/new-relic-alerts-api-overlay.yml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/new-relic-alerts-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/new-relic-applications-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/new-relic-events-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/new-relic-get-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/new-relic-logs-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/new-relic-metrics-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/new-relic-traces-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/new-relic-packages.yml:
+    method: unknown
+    evidence: no authorship recorded
   plans/new-relic-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
@@ -3098,6 +3050,9 @@ artifacts:
   rules/new-relic-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
+  rules/new-relic-rules.yml:
+    method: generated
+    evidence: declared in the artifact
   rules/new-relic-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
@@ -3106,6 +3061,15 @@ artifacts:
     evidence: no authorship recorded
   security/new-relic-vulnerability-disclosure.yml:
     method: searched
+    evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/new-relic-fetch-application-metrics.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/new-relic-manage-alert-channels.md:
+    method: generated
     evidence: declared in the artifact
   subway/build-map.py:
     method: unknown
@@ -3122,9 +3086,15 @@ artifacts:
   subway/new-relic-subway-map.svg:
     method: unknown
     evidence: no authorship recorded
+  vendors/new-relic-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
   vocabulary/new-relic-vocabulary.yaml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/new-relic-vocabulary.yml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/new-relic-well-known.yml:
     method: unknown
     evidence: no authorship recorded
