@@ -1,4 +1,4 @@
-# New Relic (new-relic)
+# New Relic
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,691 +64,360 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-New Relic provides observability platform APIs for monitoring, analyzing, and optimizing your entire software stack with real-time insights into applications, infrastructure, and customer experience.
-
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/new-relic/refs/heads/main/apis.yml)
-
-## Scope
-
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
-
-## Tags
-
-- Analysis
-- Analytics
-- APM
-- DevOps
-- Infrastructure
-- Monitoring
-- Observability
-- Performance
-- Platform
-
-## Timestamps
-
-- **Created:** 2025-01-13
-- **Modified:** 2026-05-19
-
-## APIs
-
-### New Relic REST API v2
-
-The New Relic REST API v2 is the original HTTP REST interface for querying application performance data, configuring alerts, and managing account settings. New Relic recommends NerdGraph (GraphQL) for new integrations, as the REST API v2 is in maintenance mode with minimal ongoing development.
-
-- **Human URL:** [https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/](https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/)
-- **Base URL:** `https://api.newrelic.com/v2/`
-
-#### Tags
-
-- APM
-- Applications
-- Monitoring
-- REST
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/introduction-new-relic-rest-api-v2/)
-- [OpenAPI](openapi/new-relic-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [API Reference](https://docs.newrelic.com/docs/apis/rest-api-v2/api-explorer-v2/introduction-new-relics-rest-api-explorer/)
-- [JSON Schema](json-schema/openapi-mobile-application-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-synthetics-condition-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-metric-parser-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-external-service-condition-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-label-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-label-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-external-service-condition-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-metric-data-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-policy-channels-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-deployment-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-instance-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-app-summary-data-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-deployment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-browser-application-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-app-summary-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-policy-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-instance-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-policy-channels-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-incident-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-channel-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-channel-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-label-origins-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-violation-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-app-settings-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-condition-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-deployment-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-incident-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-metric-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-metric-data-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-key-transaction-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-mobile-application-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-condition-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-label-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-policy-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-instance-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-ijkterms-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-violation-entity-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-recent-event-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-external-service-condition-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-label-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-deployment-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-nrql-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-browser-application-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-browser-application-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-channel-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-incident-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-condition-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-timeslice-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-violation-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-end-user-summary-data-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-condition-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-metric-list-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-host-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-channel-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-external-service-condition-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-channel-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-nrql-condition-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-synthetics-condition-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-policy-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-end-user-summary-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-synthetics-condition-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-host-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-browser-application-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-nrql-condition-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-key-transaction-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-metric-parser-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-nrql-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-host-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-app-settings-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-nrql-condition-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-violation-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-key-transaction-links-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-recent-event-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-synthetics-condition-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-user-defined-condition-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-user-defined-condition-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-deployment-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-nrql-condition-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-crash-summary-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-policy-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-label-response-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-application-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-label-links-body-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/openapi-mobile-summary-data-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/new-relic-openapi-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-### New Relic NerdGraph API
-
-NerdGraph is New Relic's primary GraphQL API for querying observability data, managing account configuration, and accessing the full breadth of New Relic platform capabilities. It is the recommended API for new integrations, replacing the older REST API v2 for most use cases.
-
-- **Human URL:** [https://docs.newrelic.com/docs/apis/nerdgraph/get-started/introduction-new-relic-nerdgraph/](https://docs.newrelic.com/docs/apis/nerdgraph/get-started/introduction-new-relic-nerdgraph/)
-- **Base URL:** `https://api.newrelic.com/graphql`
-
-#### Tags
-
-- GraphQL
-- Monitoring
-- Observability
-- Platform
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/apis/nerdgraph/get-started/introduction-new-relic-nerdgraph/)
-- [API Reference](https://docs.newrelic.com/docs/apis/nerdgraph/get-started/nerdgraph-explorer/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Rate Limits](https://docs.newrelic.com/docs/apis/nerdgraph/nerdgraph-usage-limits/)
-- [Getting Started](https://docs.newrelic.com/docs/apis/nerdgraph/get-started/introduction-new-relic-nerdgraph/)
-- [Console](https://api.newrelic.com/graphiql)
-- [Resources](https://www.postman.com/new-relic/new-relic-graphql-api-collection/documentation/btuxnnc/new-relic-nerdgraph-graphql-api-collection)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Metric API
-
-The New Relic Metric API is an HTTP endpoint for ingesting dimensional metric data directly into the New Relic platform. It accepts JSON payloads via POST requests and is the underlying API used by Telemetry SDKs and open source exporters such as Prometheus and DropWizard.
-
-- **Human URL:** [https://docs.newrelic.com/docs/data-apis/ingest-apis/metric-api/introduction-metric-api/](https://docs.newrelic.com/docs/data-apis/ingest-apis/metric-api/introduction-metric-api/)
-- **Base URL:** `https://metric-api.newrelic.com/metric/v1`
-
-#### Tags
-
-- Ingest
-- Metrics
-- Monitoring
-- Telemetry
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/data-apis/ingest-apis/metric-api/introduction-metric-api/)
-- [API Reference](https://docs.newrelic.com/docs/data-apis/ingest-apis/metric-api/report-metrics-metric-api/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Rate Limits](https://docs.newrelic.com/docs/data-apis/ingest-apis/metric-api/metric-api-limits-restricted-attributes/)
-- [OpenAPI](openapi/new-relic-metric-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/new-relic-metric-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/metric-api-common-block-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/metric-api-summary-value-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/metric-api-metric-data-object-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/metric-api-metric-data-point-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/metric-api-metric-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/metric-api-accepted-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/new-relic-metric-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-### New Relic Event API
-
-The New Relic Event API allows you to send custom event data to the New Relic platform via HTTP POST. Custom events submitted through this API can be queried and visualized using NRQL, making it suitable for tracking arbitrary business or application events.
-
-- **Human URL:** [https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/](https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/)
-- **Base URL:** `https://insights-collector.newrelic.com/v1/accounts`
-
-#### Tags
-
-- Custom Data
-- Events
-- Ingest
-- Telemetry
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/data-apis/ingest-apis/event-api/introduction-event-api/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [OpenAPI](openapi/new-relic-event-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/new-relic-event-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Rate Limits](https://docs.newrelic.com/docs/data-apis/custom-data/custom-events/data-requirements-limits-custom-event-data/)
-- [JSON Schema](json-schema/event-api-success-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/event-api-custom-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/event-api-event-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/new-relic-event-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-### New Relic Log API
-
-The New Relic Log API enables log data to be sent directly to the New Relic platform via HTTP POST requests. It accepts compressed JSON payloads and provides an alternative to log forwarding agents when direct integration is preferred.
-
-- **Human URL:** [https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/](https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/)
-- **Base URL:** `https://log-api.newrelic.com/log/v1`
-
-#### Tags
-
-- Ingest
-- Log Management
-- Logs
-- Telemetry
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [API Reference](https://docs.newrelic.com/docs/logs/forward-logs/enable-log-management-new-relic/)
-- [OpenAPI](openapi/new-relic-log-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/log-api-log-data-object-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/log-api-accepted-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/log-api-log-record-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/log-api-common-block-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/log-api-log-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/new-relic-log-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-### New Relic Trace API
-
-The New Relic Trace API allows distributed tracing data to be sent directly to New Relic in either New Relic format or Zipkin JSON v2 format. It is used by Telemetry SDKs, open source integrations, and custom tracing implementations that need to report span data without a full APM agent.
-
-- **Human URL:** [https://docs.newrelic.com/docs/distributed-tracing/trace-api/introduction-trace-api/](https://docs.newrelic.com/docs/distributed-tracing/trace-api/introduction-trace-api/)
-- **Base URL:** `https://trace-api.newrelic.com/trace/v1`
-
-#### Tags
-
-- Distributed Tracing
-- Ingest
-- Telemetry
-- Traces
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/distributed-tracing/trace-api/introduction-trace-api/)
-- [API Reference](https://docs.newrelic.com/docs/distributed-tracing/trace-api/trace-api-general-requirements-limits/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [OpenAPI](openapi/new-relic-trace-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Rate Limits](https://docs.newrelic.com/docs/distributed-tracing/trace-api/trace-api-general-requirements-limits/)
-- [JSON Schema](json-schema/trace-api-new-relic-trace-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trace-api-accepted-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trace-api-common-block-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trace-api-zipkin-span-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trace-api-span-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trace-api-zipkin-trace-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trace-api-span-batch-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/new-relic-trace-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-### New Relic Alerts API
-
-The New Relic Alerts REST API provides endpoints for programmatically managing alert policies, conditions, notification channels, and muting rules. New Relic recommends using NerdGraph for new alert management integrations, as the REST Alerts API is in maintenance mode.
-
-- **Human URL:** [https://docs.newrelic.com/docs/alerts/scale-automate/rest-api/rest-api-calls-alerts/](https://docs.newrelic.com/docs/alerts/scale-automate/rest-api/rest-api-calls-alerts/)
-- **Base URL:** `https://api.newrelic.com/v2/`
-
-#### Tags
-
-- Alerts
-- Monitoring
-- Notifications
-- REST
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/alerts/scale-automate/rest-api/rest-api-calls-alerts/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Synthetics API
-
-The New Relic Synthetics API, available through NerdGraph, allows you to programmatically create, update, delete, and query synthetic monitors including ping monitors, scripted API monitors, browser monitors, and broken links monitors. A legacy REST-based Synthetics API is also available but NerdGraph is the recommended approach.
-
-- **Human URL:** [https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/administration/synthetics-api/](https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/administration/synthetics-api/)
-- **Base URL:** `https://api.newrelic.com/graphql`
-
-#### Tags
-
-- Monitoring
-- Synthetics
-- Testing
-- Uptime Monitoring
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/administration/synthetics-api/)
-- [API Reference](https://docs.newrelic.com/docs/apis/nerdgraph/examples/synthetics-api/overview/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Infrastructure Alerts API
-
-The New Relic Infrastructure Alerts REST API provides endpoints for creating and managing infrastructure-specific alert conditions such as host, process, and integration alert conditions. It uses the infra-api.newrelic.com endpoint and is separate from the general Alerts REST API.
-
-- **Human URL:** [https://docs.newrelic.com/docs/infrastructure/infrastructure-alerts/rest-api-calls-new-relic-infrastructure-alerts/](https://docs.newrelic.com/docs/infrastructure/infrastructure-alerts/rest-api-calls-new-relic-infrastructure-alerts/)
-- **Base URL:** `https://infra-api.newrelic.com/v2/`
-
-#### Tags
-
-- Alerts
-- Infrastructure
-- Monitoring
-- REST
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/infrastructure/infrastructure-alerts/rest-api-calls-new-relic-infrastructure-alerts/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Browser API
-
-The New Relic Browser API provides JavaScript methods for extending and customizing browser monitoring data collection within the New Relic browser agent. Developers can use it to add custom attributes, record custom events, track page actions, and control agent behavior programmatically.
-
-- **Human URL:** [https://docs.newrelic.com/docs/browser/new-relic-browser/browser-apis/using-browser-apis/](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-apis/using-browser-apis/)
-- **Base URL:** `https://bam.nr-data.net`
-
-#### Tags
-
-- Browser
-- JavaScript
-- Monitoring
-- Real User Monitoring
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-apis/using-browser-apis/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [SDK](https://github.com/newrelic/newrelic-browser-agent)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Partnership API
-
-The New Relic Partnership API is a web service API for New Relic partners that enables them to create, edit, upgrade, downgrade, and cancel New Relic accounts on behalf of their customers. It is available only to New Relic partner accounts with partnership-level access.
-
-- **Human URL:** [https://docs.newrelic.com/docs/new-relic-partnerships/partner-integration-guide/partner-account-maintenance/partner-api/](https://docs.newrelic.com/docs/new-relic-partnerships/partner-integration-guide/partner-account-maintenance/partner-api/)
-- **Base URL:** `https://rpm.newrelic.com/api/v2/partners/`
-
-#### Tags
-
-- Account Management
-- Partners
-- Platform
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/new-relic-partnerships/partner-integration-guide/partner-account-maintenance/partner-api/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Telemetry SDKs
-
-The New Relic Telemetry SDKs are open source client libraries for sending metrics, events, logs, and traces (MELT) to New Relic using the ingest APIs. SDKs are available for Java, Python, Node.js, Go, .NET, and C, and are released under the Apache 2.0 license on GitHub.
-
-- **Human URL:** [https://docs.newrelic.com/docs/data-apis/ingest-apis/telemetry-sdks-report-custom-telemetry-data/](https://docs.newrelic.com/docs/data-apis/ingest-apis/telemetry-sdks-report-custom-telemetry-data/)
-- **Base URL:** `https://metric-api.newrelic.com`
-
-#### Tags
-
-- Client Libraries
-- Open Source
-- SDKs
-- Telemetry
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/data-apis/ingest-apis/telemetry-sdks-report-custom-telemetry-data/)
-- [SDK](https://docs.newrelic.com/docs/data-apis/ingest-apis/telemetry-sdks-report-custom-telemetry-data/)
-- [GitHub Repository](https://github.com/newrelic/newrelic-telemetry-sdk-java)
-- [SDK](https://github.com/newrelic/newrelic-telemetry-sdk-python)
-- [SDK](https://github.com/newrelic/newrelic-telemetry-sdk-go)
-- [SDK](https://github.com/newrelic/newrelic-telemetry-sdk-dotnet)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic OpenTelemetry OTLP Endpoint
-
-New Relic provides a native OTLP (OpenTelemetry Protocol) endpoint that accepts metrics, traces, and logs from any OpenTelemetry-instrumented application or OTLP exporter. It supports both gRPC and HTTP/protobuf transport and is the recommended integration path for OpenTelemetry users.
-
-- **Human URL:** [https://docs.newrelic.com/docs/opentelemetry/best-practices/opentelemetry-otlp/](https://docs.newrelic.com/docs/opentelemetry/best-practices/opentelemetry-otlp/)
-- **Base URL:** `https://otlp.nr-data.net`
-
-#### Tags
-
-- Ingest
-- OpenTelemetry
-- OTLP
-- Telemetry
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/opentelemetry/best-practices/opentelemetry-otlp/)
-- [Getting Started](https://docs.newrelic.com/docs/opentelemetry/opentelemetry-introduction/)
-- [API Reference](https://docs.newrelic.com/docs/opentelemetry/best-practices/opentelemetry-data-overview/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Control
-
-New Relic Control is an observability control plane that unifies Fleet Control, Agent Control, and Pipeline Control into a single management layer. It enables DevOps and platform teams to remotely deploy, configure, update, and monitor New Relic agents and OpenTelemetry collectors across Kubernetes clusters and hosts without manual per-host intervention. Fleet Control manages agent lifecycles at scale via a remote configuration API.
-
-- **Human URL:** [https://docs.newrelic.com/docs/new-relic-control/getting-started/](https://docs.newrelic.com/docs/new-relic-control/getting-started/)
-- **Base URL:** `https://api.newrelic.com`
-
-#### Tags
-
-- Agent Management
-- Automation
-- Fleet Control
-- Observability
-- Platform
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/new-relic-control/getting-started/)
-- [API Reference](https://docs.newrelic.com/docs/new-relic-control/fleet-control/overview/)
-- [Getting Started](https://docs.newrelic.com/docs/new-relic-control/getting-started/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic NRQL Lookups API
-
-The New Relic NRQL Lookups API is a REST API for managing lookup tables that can be used to enrich NRQL query results. It supports creating, updating, downloading, listing, and deleting lookup tables in both CSV and JSON formats, enabling automated lookup table maintenance for data enrichment workflows.
-
-- **Human URL:** [https://docs.newrelic.com/docs/apis/lookups-service-api/lookups-service-api/](https://docs.newrelic.com/docs/apis/lookups-service-api/lookups-service-api/)
-- **Base URL:** `https://nrql-lookup.service.newrelic.com`
-
-#### Tags
-
-- Data Enrichment
-- Lookups
-- NRQL
-- REST
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/apis/lookups-service-api/lookups-service-api/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Security Data API
-
-The New Relic Security Data API allows vulnerability and security finding data to be sent directly to New Relic via HTTP POST. It accepts JSON payloads describing detected vulnerabilities or security events, enabling integration with third-party vulnerability assessment tools and custom security scanning solutions for use with New Relic Security RX.
-
-- **Human URL:** [https://docs.newrelic.com/docs/data-apis/ingest-apis/security-data-api/](https://docs.newrelic.com/docs/data-apis/ingest-apis/security-data-api/)
-- **Base URL:** `https://security-api.newrelic.com/security/v1`
-
-#### Tags
-
-- Compliance
-- Ingest
-- Security
-- Vulnerabilities
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/data-apis/ingest-apis/security-data-api/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### New Relic Mobile SDK
-
-The New Relic Mobile SDK provides iOS and Android APIs for extending mobile monitoring data collection beyond what the agent captures automatically. Developers can add custom attributes, record custom events, track user interactions, report handled exceptions, set custom user IDs, and control agent behavior within iOS (Swift/Objective-C) and Android (Java/Kotlin) applications.
-
-- **Human URL:** [https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile/mobile-sdk/mobile-sdk-api-guide/](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile/mobile-sdk/mobile-sdk-api-guide/)
-- **Base URL:** `https://mobile-collector.newrelic.com`
-
-#### Tags
-
-- Android
-- iOS
-- Mobile
-- Monitoring
-- SDK
-
-#### Properties
-
-- [Documentation](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile/mobile-sdk/mobile-sdk-api-guide/)
-- [API Reference](https://docs.newrelic.com/docs/mobile-monitoring/new-relic-mobile-ios/get-started/introduction-new-relic-mobile-ios/)
-- [GitHub Repository](https://github.com/newrelic/newrelic-ios-agent)
-- [SDK](https://github.com/newrelic/newrelic-android-agent)
-- [SDK](https://github.com/newrelic/newrelic-unity-agent)
-- [Postman Collection](collections/new-relic-event-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-event-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-log-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-log-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-metric-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-metric-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic-trace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic-trace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/new-relic.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/new-relic.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://newrelic.com/)
-- [Pricing](https://newrelic.com/pricing)
+New Relic offers an AI‑powered observability platform that provides application performance monitoring, digital experience monitoring, infrastructure monitoring, log management, and security services. The platform helps enterprises gain real‑time visibility into cloud costs, multi‑cloud and Kubernetes environments, and AI model behavior. It is aimed at engineers and IT teams that need to monitor, troubleshoot, and optimize the performance and reliability of their digital systems.
+
+**Areas:** Analysis · Analytics · APM · DevOps · Infrastructure · Monitoring · Observability · Performance · Platform · Real-Time
+
+## New Relic on APIs.io
+
+Everything profiled for New Relic is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/new-relic/](https://apis.io/providers/new-relic/)** — or go straight to one of the APIs or properties below.
+
+### APIs (18)
+
+- [New Relic NerdGraph API](https://apis.io/apis/new-relic/new-relic-nerdgraph-api/) — NerdGraph is New Relic's primary GraphQL API for querying observability data, managing account configuration, and accessing the full breadth of New Relic…
+- [New Relic Synthetics API](https://apis.io/apis/new-relic/new-relic-synthetics-api/) — The New Relic Synthetics API, available through NerdGraph, allows you to programmatically create, update, delete, and query synthetic monitors including…
+- [New Relic Infrastructure Alerts API](https://apis.io/apis/new-relic/new-relic-infrastructure-alerts-api/) — The New Relic Infrastructure Alerts REST API provides endpoints for creating and managing infrastructure-specific alert conditions such as host, process,…
+- [New Relic Browser API](https://apis.io/apis/new-relic/new-relic-browser-api/) — The New Relic Browser API provides JavaScript methods for extending and customizing browser monitoring data collection within the New Relic browser agent.…
+- [New Relic Partnership API](https://apis.io/apis/new-relic/new-relic-partnership-api/) — The New Relic Partnership API is a web service API for New Relic partners that enables them to create, edit, upgrade, downgrade, and cancel New Relic…
+- [New Relic Telemetry SDKs](https://apis.io/apis/new-relic/new-relic-telemetry-sdk/) — The New Relic Telemetry SDKs are open source client libraries for sending metrics, events, logs, and traces (MELT) to New Relic using the ingest APIs. SDKs…
+- [New Relic OpenTelemetry OTLP Endpoint](https://apis.io/apis/new-relic/new-relic-opentelemetry-otlp/) — New Relic provides a native OTLP (OpenTelemetry Protocol) endpoint that accepts metrics, traces, and logs from any OpenTelemetry-instrumented application or…
+- [New Relic Control](https://apis.io/apis/new-relic/new-relic-control/) — New Relic Control is an observability control plane that unifies Fleet Control, Agent Control, and Pipeline Control into a single management layer. It…
+- [New Relic NRQL Lookups API](https://apis.io/apis/new-relic/new-relic-nrql-lookups-api/) — The New Relic NRQL Lookups API is a REST API for managing lookup tables that can be used to enrich NRQL query results. It supports creating, updating,…
+- [New Relic Security Data API](https://apis.io/apis/new-relic/new-relic-security-data-api/) — The New Relic Security Data API allows vulnerability and security finding data to be sent directly to New Relic via HTTP POST. It accepts JSON payloads…
+- [New Relic Mobile SDK](https://apis.io/apis/new-relic/new-relic-mobile-sdk/) — The New Relic Mobile SDK provides iOS and Android APIs for extending mobile monitoring data collection beyond what the agent captures automatically.…
+- [New Relic Alerts API](https://apis.io/apis/new-relic/new-relic-alerts-api/) — The New Relic Alerts REST API provides endpoints for programmatically managing alert policies, conditions, notification channels, and muting rules. New…
+- [New Relic Applications API](https://apis.io/apis/new-relic/new-relic-applications-api/) — The Applications API from New Relic — 18 operation(s) for applications.
+- [New Relic Events API](https://apis.io/apis/new-relic/new-relic-events-api/) — Custom event ingestion endpoints
+- [New Relic Get API](https://apis.io/apis/new-relic/new-relic-get-api/) — The Get API from New Relic — 30 operation(s) for get.
+- [New Relic Logs API](https://apis.io/apis/new-relic/new-relic-logs-api/) — Log data ingestion endpoints
+- [New Relic Metrics API](https://apis.io/apis/new-relic/new-relic-metrics-api/) — Metric data ingestion endpoints
+- [New Relic Traces API](https://apis.io/apis/new-relic/new-relic-traces-api/) — Distributed trace span ingestion
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (20)
+
+Multi-step workflows that chain operations into a business task.
+
+- [New Relic Application Health Triage](https://apis.io/arazzos/new-relic/new-relic-application-health-triage-workflow/)
+- [New Relic Associate Entity With Condition](https://apis.io/arazzos/new-relic/new-relic-associate-entity-with-condition-workflow/)
+- [New Relic Attach Notification Channel To Policy](https://apis.io/arazzos/new-relic/new-relic-attach-notification-channel-to-policy-workflow/)
+- [New Relic Create Alert Policy With Condition](https://apis.io/arazzos/new-relic/new-relic-create-alert-policy-with-condition-workflow/)
+- [New Relic Create NRQL Alert Policy](https://apis.io/arazzos/new-relic/new-relic-create-nrql-alert-policy-workflow/)
+- [New Relic Create Synthetics Alert Condition](https://apis.io/arazzos/new-relic/new-relic-create-synthetics-alert-condition-workflow/)
+- [New Relic Find Policy And List Conditions](https://apis.io/arazzos/new-relic/new-relic-find-policy-and-list-conditions-workflow/)
+- [New Relic Host Metric Drilldown](https://apis.io/arazzos/new-relic/new-relic-host-metric-drilldown-workflow/)
+- [New Relic Ingest Deployment Telemetry](https://apis.io/arazzos/new-relic/new-relic-ingest-deployment-telemetry-workflow/)
+- [New Relic Ingest Metrics And Logs](https://apis.io/arazzos/new-relic/new-relic-ingest-metrics-and-logs-workflow/)
+- [New Relic Ingest Trace And Event](https://apis.io/arazzos/new-relic/new-relic-ingest-trace-and-event-workflow/)
+- [New Relic Key Transaction Metric Report](https://apis.io/arazzos/new-relic/new-relic-key-transaction-metric-report-workflow/)
+- [New Relic Mobile App Crash Report](https://apis.io/arazzos/new-relic/new-relic-mobile-app-crash-report-workflow/)
+- [New Relic Open Violations Triage](https://apis.io/arazzos/new-relic/new-relic-open-violations-triage-workflow/)
+- [New Relic Provision Alerting Stack](https://apis.io/arazzos/new-relic/new-relic-provision-alerting-stack-workflow/)
+- [New Relic Prune NRQL Condition](https://apis.io/arazzos/new-relic/new-relic-prune-nrql-condition-workflow/)
+- [New Relic Record Deployment Marker](https://apis.io/arazzos/new-relic/new-relic-record-deployment-marker-workflow/)
+- [New Relic Rename Application](https://apis.io/arazzos/new-relic/new-relic-rename-application-workflow/)
+- [New Relic Rollback Deployment Marker](https://apis.io/arazzos/new-relic/new-relic-rollback-deployment-marker-workflow/)
+- [New Relic Update Policy And Condition](https://apis.io/arazzos/new-relic/new-relic-update-policy-and-condition-workflow/)
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [New Relic Streaming and Event-Driven Surfaces](https://apis.io/asyncapis/new-relic/new-relic-streaming-asyncapi/)
+
+#### Event channels (5)
+
+Individual events and webhooks the provider emits.
+
+- [change-tracking/webhook](https://apis.io/channels/new-relic/change-tracking-webhook/)
+- [streaming-export/aws-kinesis-firehose](https://apis.io/channels/new-relic/streaming-export-aws-kinesis-firehose/)
+- [streaming-export/azure-event-hub](https://apis.io/channels/new-relic/streaming-export-azure-event-hub/)
+- [streaming-export/gcp-pubsub](https://apis.io/channels/new-relic/streaming-export-gcp-pubsub/)
+- [workflow/webhook](https://apis.io/channels/new-relic/workflow-webhook/)
+
+#### GraphQL (1)
+
+GraphQL schemas.
+
+- [New Relic GraphQL API](https://apis.io/graphqls/new-relic/new-relic-graphql/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [new-relic](https://apis.io/servers/new-relic/new-relic/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [New Relic Agentic Access](https://apis.io/agentic-access/new-relic/new-relic-agentic-access/)
+
+#### JSON Schema (324)
+
+The data models the API reads and writes.
+
+- [CustomEvent](https://apis.io/schemas/new-relic/event-api-custom-event/)
+- [EventPayload](https://apis.io/schemas/new-relic/event-api-event-payload/)
+- [SuccessResponse](https://apis.io/schemas/new-relic/event-api-success-response/)
+- [AcceptedResponse](https://apis.io/schemas/new-relic/log-api-accepted-response/)
+- [CommonBlock](https://apis.io/schemas/new-relic/log-api-common-block/)
+- [LogDataObject](https://apis.io/schemas/new-relic/log-api-log-data-object/)
+- [LogPayload](https://apis.io/schemas/new-relic/log-api-log-payload/)
+- [LogRecord](https://apis.io/schemas/new-relic/log-api-log-record/)
+- [AcceptedResponse](https://apis.io/schemas/new-relic/metric-api-accepted-response/)
+- [CommonBlock](https://apis.io/schemas/new-relic/metric-api-common-block/)
+- [MetricDataObject](https://apis.io/schemas/new-relic/metric-api-metric-data-object/)
+- [MetricDataPoint](https://apis.io/schemas/new-relic/metric-api-metric-data-point/)
+- [MetricPayload](https://apis.io/schemas/new-relic/metric-api-metric-payload/)
+- [SummaryValue](https://apis.io/schemas/new-relic/metric-api-summary-value/)
+- [AcceptedResponse](https://apis.io/schemas/new-relic/new-relic-acceptedresponse/)
+- [AppSettingsBody](https://apis.io/schemas/new-relic/new-relic-app-settings-body/)
+- [AppSettingsResponse](https://apis.io/schemas/new-relic/new-relic-app-settings-response/)
+- [AppSummaryDataResponse](https://apis.io/schemas/new-relic/new-relic-app-summary-data-response/)
+- [AppSummaryResponse](https://apis.io/schemas/new-relic/new-relic-app-summary-response/)
+- [Application](https://apis.io/schemas/new-relic/new-relic-application/)
+- [ApplicationBody](https://apis.io/schemas/new-relic/new-relic-application-body/)
+- [ApplicationHostLinksResponse](https://apis.io/schemas/new-relic/new-relic-application-host-links-response/)
+- [ApplicationHostResponse](https://apis.io/schemas/new-relic/new-relic-application-host-response/)
+- [ApplicationHostResponseType](https://apis.io/schemas/new-relic/new-relic-application-host-response-type/)
+- [ApplicationInstanceLinksResponse](https://apis.io/schemas/new-relic/new-relic-application-instance-links-response/)
+- …and 299 more published on APIs.io
+
+#### JSON Structure (225)
+
+Data models expressed in JSON Structure.
+
+- [Event Api Custom Event Structure](https://apis.io/json-structure/new-relic/event-api-custom-event-structure/)
+- [Event Api Event Payload Structure](https://apis.io/json-structure/new-relic/event-api-event-payload-structure/)
+- [Event Api Success Response Structure](https://apis.io/json-structure/new-relic/event-api-success-response-structure/)
+- [Log Api Accepted Response Structure](https://apis.io/json-structure/new-relic/log-api-accepted-response-structure/)
+- [Log Api Common Block Structure](https://apis.io/json-structure/new-relic/log-api-common-block-structure/)
+- [Log Api Log Data Object Structure](https://apis.io/json-structure/new-relic/log-api-log-data-object-structure/)
+- [Log Api Log Payload Structure](https://apis.io/json-structure/new-relic/log-api-log-payload-structure/)
+- [Log Api Log Record Structure](https://apis.io/json-structure/new-relic/log-api-log-record-structure/)
+- [Metric Api Accepted Response Structure](https://apis.io/json-structure/new-relic/metric-api-accepted-response-structure/)
+- [Metric Api Common Block Structure](https://apis.io/json-structure/new-relic/metric-api-common-block-structure/)
+- [Metric Api Metric Data Object Structure](https://apis.io/json-structure/new-relic/metric-api-metric-data-object-structure/)
+- [Metric Api Metric Data Point Structure](https://apis.io/json-structure/new-relic/metric-api-metric-data-point-structure/)
+- [Metric Api Metric Payload Structure](https://apis.io/json-structure/new-relic/metric-api-metric-payload-structure/)
+- [Metric Api Summary Value Structure](https://apis.io/json-structure/new-relic/metric-api-summary-value-structure/)
+- [New Relic App Settings Body Structure](https://apis.io/json-structure/new-relic/new-relic-app-settings-body-structure/)
+- [New Relic App Settings Response Structure](https://apis.io/json-structure/new-relic/new-relic-app-settings-response-structure/)
+- [New Relic App Summary Data Response Structure](https://apis.io/json-structure/new-relic/new-relic-app-summary-data-response-structure/)
+- [New Relic App Summary Response Structure](https://apis.io/json-structure/new-relic/new-relic-app-summary-response-structure/)
+- [New Relic Application Body Structure](https://apis.io/json-structure/new-relic/new-relic-application-body-structure/)
+- [New Relic Application Host Links Response Structure](https://apis.io/json-structure/new-relic/new-relic-application-host-links-response-structure/)
+- [New Relic Application Host Response Structure](https://apis.io/json-structure/new-relic/new-relic-application-host-response-structure/)
+- [New Relic Application Host Response Type Structure](https://apis.io/json-structure/new-relic/new-relic-application-host-response-type-structure/)
+- [New Relic Application Instance Links Response Structure](https://apis.io/json-structure/new-relic/new-relic-application-instance-links-response-structure/)
+- [New Relic Application Instance Response Structure](https://apis.io/json-structure/new-relic/new-relic-application-instance-response-structure/)
+- [New Relic Application Instance Response Type Structure](https://apis.io/json-structure/new-relic/new-relic-application-instance-response-type-structure/)
+- …and 200 more published on APIs.io
+
+#### JSON-LD (10)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [New Relic Context](https://apis.io/jsonld/new-relic/new-relic-context/)
+- [New Relic Event Api Context](https://apis.io/jsonld/new-relic/new-relic-event-api-context/)
+- [New Relic Event Context](https://apis.io/jsonld/new-relic/new-relic-event-context/)
+- [New Relic Log Api Context](https://apis.io/jsonld/new-relic/new-relic-log-api-context/)
+- [New Relic Log Context](https://apis.io/jsonld/new-relic/new-relic-log-context/)
+- [New Relic Metric Api Context](https://apis.io/jsonld/new-relic/new-relic-metric-api-context/)
+- [New Relic Metric Context](https://apis.io/jsonld/new-relic/new-relic-metric-context/)
+- [New Relic Openapi Context](https://apis.io/jsonld/new-relic/new-relic-openapi-context/)
+- [New Relic Trace Api Context](https://apis.io/jsonld/new-relic/new-relic-trace-api-context/)
+- [New Relic Trace Context](https://apis.io/jsonld/new-relic/new-relic-trace-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [New Relic Domain Vocabulary](https://apis.io/vocabularies/new-relic/new-relic-vocabulary/)
+
+#### Examples (271)
+
+Example requests and responses.
+
+- [Event Api Custom Event Example](https://apis.io/examples/new-relic/event-api-custom-event-example/)
+- [Event Api Success Response Example](https://apis.io/examples/new-relic/event-api-success-response-example/)
+- [Log Api Accepted Response Example](https://apis.io/examples/new-relic/log-api-accepted-response-example/)
+- [Log Api Common Block Example](https://apis.io/examples/new-relic/log-api-common-block-example/)
+- [Log Api Log Data Object Example](https://apis.io/examples/new-relic/log-api-log-data-object-example/)
+- [Log Api Log Record Example](https://apis.io/examples/new-relic/log-api-log-record-example/)
+- [Metric Api Accepted Response Example](https://apis.io/examples/new-relic/metric-api-accepted-response-example/)
+- [Metric Api Common Block Example](https://apis.io/examples/new-relic/metric-api-common-block-example/)
+- [Metric Api Metric Data Object Example](https://apis.io/examples/new-relic/metric-api-metric-data-object-example/)
+- [Metric Api Metric Data Point Example](https://apis.io/examples/new-relic/metric-api-metric-data-point-example/)
+- [Metric Api Summary Value Example](https://apis.io/examples/new-relic/metric-api-summary-value-example/)
+- [New Relic App Settings Body Example](https://apis.io/examples/new-relic/new-relic-app-settings-body-example/)
+- [New Relic App Settings Response Example](https://apis.io/examples/new-relic/new-relic-app-settings-response-example/)
+- [New Relic App Summary Data Response Example](https://apis.io/examples/new-relic/new-relic-app-summary-data-response-example/)
+- [New Relic App Summary Response Example](https://apis.io/examples/new-relic/new-relic-app-summary-response-example/)
+- [New Relic Application Body Example](https://apis.io/examples/new-relic/new-relic-application-body-example/)
+- [New Relic Application Example](https://apis.io/examples/new-relic/new-relic-application-example/)
+- [New Relic Application Host Links Response Example](https://apis.io/examples/new-relic/new-relic-application-host-links-response-example/)
+- [New Relic Application Host Response Example](https://apis.io/examples/new-relic/new-relic-application-host-response-example/)
+- [New Relic Application Host Response Type Example](https://apis.io/examples/new-relic/new-relic-application-host-response-type-example/)
+- [New Relic Application Instance Links Response Example](https://apis.io/examples/new-relic/new-relic-application-instance-links-response-example/)
+- [New Relic Application Instance Response Example](https://apis.io/examples/new-relic/new-relic-application-instance-response-example/)
+- [New Relic Application Instance Response Type Example](https://apis.io/examples/new-relic/new-relic-application-instance-response-type-example/)
+- [New Relic Application Links Response Example](https://apis.io/examples/new-relic/new-relic-application-links-response-example/)
+- [New Relic Application Response Example](https://apis.io/examples/new-relic/new-relic-application-response-example/)
+- …and 246 more published on APIs.io
+
+#### Collections (39)
+
+Postman and Open Collection request collections.
+
+- [New Relic](https://apis.io/collections/new-relic/open-new-relic/)
+- [New Relic Event Alerts API](https://apis.io/collections/new-relic/open-new-relic-alerts-api/)
+- [New Relic Event Alerts Applications API](https://apis.io/collections/new-relic/open-new-relic-applications-api/)
+- [New Relic Event Alerts Channel API](https://apis.io/collections/new-relic/open-new-relic-channel-api/)
+- [New Relic Event Alerts Channels API](https://apis.io/collections/new-relic/open-new-relic-channels-api/)
+- [New Relic Event Alerts Condition API](https://apis.io/collections/new-relic/open-new-relic-condition-api/)
+- [New Relic Event Alerts Conditions API](https://apis.io/collections/new-relic/open-new-relic-conditions-api/)
+- [New Relic Event Alerts Data API](https://apis.io/collections/new-relic/open-new-relic-data-api/)
+- [New Relic Event Alerts Delete API](https://apis.io/collections/new-relic/open-new-relic-delete-api/)
+- [New Relic Event Alerts Deployments API](https://apis.io/collections/new-relic/open-new-relic-deployments-api/)
+- [New Relic Event Alerts Entity API](https://apis.io/collections/new-relic/open-new-relic-entity-api/)
+- [New Relic Event API](https://apis.io/collections/new-relic/open-new-relic-event-api/)
+- [New Relic Event Alerts Events API](https://apis.io/collections/new-relic/open-new-relic-events-api/)
+- [New Relic Event Alerts External API](https://apis.io/collections/new-relic/open-new-relic-external-api/)
+- [New Relic Event Alerts Failure API](https://apis.io/collections/new-relic/open-new-relic-failure-api/)
+- [New Relic Event Alerts Get API](https://apis.io/collections/new-relic/open-new-relic-get-api/)
+- [New Relic Event Alerts Hosts API](https://apis.io/collections/new-relic/open-new-relic-hosts-api/)
+- [New Relic Event Alerts Identifiers API](https://apis.io/collections/new-relic/open-new-relic-identifiers-api/)
+- [New Relic Event Alerts Instance API](https://apis.io/collections/new-relic/open-new-relic-instance-api/)
+- [New Relic Event Alerts Instances API](https://apis.io/collections/new-relic/open-new-relic-instances-api/)
+- [New Relic Event Alerts Keys API](https://apis.io/collections/new-relic/open-new-relic-keys-api/)
+- [New Relic Event Alerts Location API](https://apis.io/collections/new-relic/open-new-relic-location-api/)
+- [New Relic Log API](https://apis.io/collections/new-relic/open-new-relic-log-api/)
+- [New Relic Event Alerts Logs API](https://apis.io/collections/new-relic/open-new-relic-logs-api/)
+- [New Relic Metric API](https://apis.io/collections/new-relic/open-new-relic-metric-api/)
+- …and 14 more published on APIs.io
+
+#### Overlays (8)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [New Relic Alerts Api Overlay](https://apis.io/overlays/new-relic/new-relic-alerts-api-overlay/)
+- [New Relic Alerts Api Phrasing Overlay](https://apis.io/overlays/new-relic/new-relic-alerts-api-phrasing-overlay/)
+- [New Relic Applications Api Phrasing Overlay](https://apis.io/overlays/new-relic/new-relic-applications-api-phrasing-overlay/)
+- [New Relic Events Api Phrasing Overlay](https://apis.io/overlays/new-relic/new-relic-events-api-phrasing-overlay/)
+- [New Relic Get Api Phrasing Overlay](https://apis.io/overlays/new-relic/new-relic-get-api-phrasing-overlay/)
+- [New Relic Logs Api Phrasing Overlay](https://apis.io/overlays/new-relic/new-relic-logs-api-phrasing-overlay/)
+- [New Relic Metrics Api Phrasing Overlay](https://apis.io/overlays/new-relic/new-relic-metrics-api-phrasing-overlay/)
+- [New Relic Traces Api Phrasing Overlay](https://apis.io/overlays/new-relic/new-relic-traces-api-phrasing-overlay/)
+
+#### Governance rules (4)
+
+Spectral rulesets for the provider's contracts.
+
+- [New Relic — asyncapi rules](https://apis.io/rules/new-relic/new-relic-asyncapi-spectral-rules/)
+- [New Relic — jsonschema rules](https://apis.io/rules/new-relic/new-relic-jsonschema-spectral-rules/)
+- [New Relic API Rules](https://apis.io/rules/new-relic/new-relic-rules/)
+- [New Relic API Rules](https://apis.io/rules/new-relic/new-relic-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [New Relic Authentication](https://apis.io/security/new-relic/new-relic-authentication/)
+- [New Relic Domain Security](https://apis.io/security/new-relic/new-relic-domain-security/)
+- [New Relic Vulnerability Disclosure](https://apis.io/security/new-relic/new-relic-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [New Relic Plans Pricing](https://apis.io/plans/new-relic/new-relic-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [New Relic Rate Limits](https://apis.io/rate-limits/new-relic/new-relic-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [New Relic Finops](https://apis.io/finops/new-relic/new-relic-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.newrelic.com/)
 - [Documentation](https://docs.newrelic.com/)
-- [Terms of Service](https://newrelic.com/termsandconditions/terms)
-- [Privacy Policy](https://newrelic.com/termsandconditions/privacy)
-- [Blog](https://newrelic.com/blog)
-- [Partners](https://newrelic.com/solutions/partners)
-- [Trust Center](https://trust.newrelic.com/)
-- [Login](https://login.newrelic.com/login)
-- [Sign Up](https://newrelic.com/signup)
-- [Console](https://one.newrelic.com/)
-- [Portal](https://developer.newrelic.com/)
-- [Authentication](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)
+- [Getting started](https://docs.newrelic.com/docs/new-relic-solutions/get-started/intro-new-relic/)
+- [Pricing](https://newrelic.com/pricing)
 - [Support](https://support.newrelic.com/)
-- [Status Page](https://status.newrelic.com/)
-- [GitHub Organization](https://github.com/newrelic)
-- [Support](https://discuss.newrelic.com/)
-- [Getting Started](https://docs.newrelic.com/docs/new-relic-solutions/get-started/intro-new-relic/)
 - [Changelog](https://docs.newrelic.com/whats-new/)
-- [Changelog](https://docs.newrelic.com/docs/release-notes/)
-- [Rate Limits](https://docs.newrelic.com/docs/data-apis/manage-data/view-system-limits/)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/new-relic)
-- [GitHub Organization](https://opensource.newrelic.com/)
-- [YouTube](https://www.youtube.com/@NewRelicInc)
-- [JSON-LD](json-ld/new-relic-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/new-relic-metric-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/new-relic-event-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [X (Twitter)](https://twitter.com/newrelic)
-- [LinkedIn](https://www.linkedin.com/company/new-relic-inc-)
+- [Blog](https://newrelic.com/blog)
 - [Security](https://newrelic.com/security)
-- [Security](https://newrelic.com/security/compliance-certifications)
-- [C L I](https://github.com/newrelic/newrelic-cli)
-- [C L I](https://docs.newrelic.com/docs/new-relic-solutions/build-nr-ui/newrelic-cli/)
-- [GitHub Repository](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs)
-- [GitHub Repository](https://github.com/newrelic/terraform-provider-newrelic)
-- [Resources](https://www.postman.com/new-relic/)
-- [Documentation](https://docs.newrelic.com/docs/apis/intro-apis/introduction-new-relic-apis/)
-- [Documentation](https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](https://newrelic.com/instant-observability)
-- [SDK](https://github.com/newrelic/newrelic-java-agent)
-- [SDK](https://github.com/newrelic/newrelic-python-agent)
-- [SDK](https://github.com/newrelic/node-newrelic)
-- [SDK](https://github.com/newrelic/go-agent)
-- [SDK](https://github.com/newrelic/newrelic-dotnet-agent)
-- [SDK](https://github.com/newrelic/newrelic-ruby-agent)
-- [SDK](https://github.com/newrelic/newrelic-php-agent)
-- [SDK](https://github.com/newrelic/infrastructure-agent)
-- [GitHub Repository](https://github.com/newrelic/helm-charts)
-- [Code Examples](https://github.com/newrelic/newrelic-opentelemetry-examples)
-- [Spectral Rules](rules/new-relic-spectral-rules.yml)
-- [Vocabulary](vocabulary/new-relic-vocabulary.yaml)
+- [Trust centre](https://trust.newrelic.com/)
+- [Terms of service](https://newrelic.com/termsandconditions/terms)
+- [Privacy policy](https://newrelic.com/termsandconditions/privacy)
+- [GitHub](https://github.com/newrelic)
+- [Status](https://status.newrelic.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 71.0** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 83.3 |
+| Contract quality | 80.6 |
+| Contract governance | 31.8 |
+| Operational transparency | 55.3 |
+| Developer ergonomics | 87.5 |
+| Access clarity | 60.5 |
+
+**Agent readiness 45.7** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/new-relic/](https://apis.io/providers/new-relic/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for New Relic: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/new-relic/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
